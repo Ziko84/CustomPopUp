@@ -2,4 +2,9 @@
     <string name="app_name">CustomPopUp</string>
     <string name="hello_world">Hello World</string>
     <string name="show_pop_up">Show Pop-Up</string>
+    <string name="x">X</string>
+    <string name="lin_su">Lin Su</string>
+    <string name="new_york_united_states">New-York, United States</string>
+    <string name="_150">150</string>
+    <string name="followers">Followers</string>
 </resources>
