@@ -7,11 +7,14 @@ Rules, applied to visible text only (HTML tags, comments, <script> and <style> a
   - Any other single dash becomes a colon: "<strong>Size</strong> - 30cm" -> "<strong>Size</strong>: 30cm"
 
 Usage:
-  SHOPIFY_ADMIN_TOKEN=shpat_... python3 scripts/fix_blog_dashes.py            # dry run: report only
-  SHOPIFY_ADMIN_TOKEN=shpat_... python3 scripts/fix_blog_dashes.py --apply    # update articles, then verify
-  python3 scripts/fix_blog_dashes.py --from-jsonl export.jsonl                # offline dry run on a bulk export
+  python3 scripts/fix_blog_dashes.py                            # dry run: report only
+  python3 scripts/fix_blog_dashes.py --apply                    # update articles, then verify
+  python3 scripts/fix_blog_dashes.py --from-jsonl export.jsonl  # offline dry run on a bulk export
 
-The token needs the read_content and write_content scopes.
+Credentials come from the environment: SHOPIFY_CLIENT_ID and SHOPIFY_CLIENT_SECRET of a
+Dev Dashboard app installed on the store (exchanged for a 24-hour token via the client
+credentials grant), or a ready-made SHOPIFY_ADMIN_TOKEN. The app needs the read_content
+and write_content scopes.
 """
 import argparse
 import json
@@ -72,10 +75,33 @@ def fix_body(body):
     return "".join(out), len(rep)
 
 
+_token = None
+
+
+def access_token():
+    global _token
+    if _token:
+        return _token
+    _token = os.environ.get("SHOPIFY_ADMIN_TOKEN")
+    if _token:
+        return _token
+    client_id = os.environ.get("SHOPIFY_CLIENT_ID")
+    client_secret = os.environ.get("SHOPIFY_CLIENT_SECRET")
+    if not (client_id and client_secret):
+        sys.exit("Set SHOPIFY_CLIENT_ID and SHOPIFY_CLIENT_SECRET (or SHOPIFY_ADMIN_TOKEN)")
+    req = urllib.request.Request(
+        f"https://{STORE}/admin/oauth/access_token",
+        data=json.dumps({"client_id": client_id, "client_secret": client_secret,
+                         "grant_type": "client_credentials"}).encode(),
+        headers={"Content-Type": "application/json"},
+    )
+    with urllib.request.urlopen(req, timeout=60) as resp:
+        _token = json.load(resp)["access_token"]
+    return _token
+
+
 def gql(query, variables=None):
-    token = os.environ.get("SHOPIFY_ADMIN_TOKEN")
-    if not token:
-        sys.exit("SHOPIFY_ADMIN_TOKEN is not set")
+    token = access_token()
     req = urllib.request.Request(
         f"https://{STORE}/admin/api/{API_VERSION}/graphql.json",
         data=json.dumps({"query": query, "variables": variables or {}}).encode(),
