@@ -125,6 +125,14 @@ for i in items:
         w(fence(part['exact_text']))
         w('')
 
+if data.get('review_advice'):
+    w('---\n\n## Deciding on REVIEW items\n')
+    for t in data['review_advice']: w(f'- {t}')
+    w('')
+if data.get('not_scanned'):
+    w('---\n\n## Not scanned yet (possible next step)\n')
+    for t in data['not_scanned']: w(f'- {t}')
+    w('')
 if data.get('do_not_apply'):
     w('---\n\n## Known issues that are NOT deletions (do not apply without asking Ziko)\n')
     for d in data['do_not_apply']:

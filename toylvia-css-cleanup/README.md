@@ -3,9 +3,9 @@
 Dead and commented-out CSS found in the live theme of https://toylvia.com by a cloud Claude scan.
 Every item was found by one agent and then attacked by a separate skeptic agent that tried to prove it still affects the page. Only items that survived are listed.
 
-- Scan started: 2026-10-11T15:16:39Z | last update: 2026-10-11T16:04:48Z | rounds: 3
-- Items: **56** total, **38 TODO** (proven safe), **18 REVIEW** (very likely safe, ask Ziko first)
-- Lines removed if every item is applied (superseding items instead of the ones they contain): 1953 | TODO items only: 707
+- Scan started: 2026-10-11T15:16:39Z | last update: 2026-10-11T16:13:58Z | rounds: 4
+- Items: **80** total, **38 TODO** (proven safe), **42 REVIEW** (very likely safe, ask Ziko first)
+- Lines removed if every item is applied (superseding items instead of the ones they contain): 2493 | TODO items only: 707
 - Status legend: `TODO` apply | `REVIEW` apply only if Ziko says yes | `DONE` applied and verified | `SKIPPED: reason`
 
 ---
@@ -2504,6 +2504,885 @@ Delete:
 ```css
 html body #MainContent#MainContent#MainContent .cr-card.cr-card.cr-card .cr-card__footer{margin-top:0!important}
 ```
+
+### T57 [REVIEW] Collection back button: back-arrow, wrapper and pink/yellow/cyan colour variants
+- **File:** `assets/toylvia.css` | baseline lines 1979-2027 | kind: orphan selectors (no markup uses these classes)
+- **Why it is dead:** No markup or script ever outputs .back-arrow, .collection-back-wrapper, .collection-back-btn--pink, --yellow or --cyan. Their only mentions are CSS text: the CSS string toylvia.js:1103 injects into a <style> element, and the custom_css array in settings_data.json line 60. Neither counts as usage. The base .collection-back-btn rule (1962-1978, kept with its header) counts as used because of the querySelector strings in toylvia.js:1113 and 1267. Nothing in the theme builds 'collection-back-btn--' dynamically. The range covers whole rules from .collection-back-btn .back-arrow through .collection-back-btn--cyan:hover, plus one trailing blank line.
+- **Proof:** Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): .back-arrow (only in toylvia.js:1103 CSS string); .collection-back-wrapper (only toylvia.js:1103 CSS string and settings_data custom_css); .collection-back-btn--pink/--yellow/--cyan (only toylvia.js:1103 CSS string); no 'collection-back-btn--' + / {{ }} construction anywhere Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .collection-back-btn .back-arrow { width: 18px; height: 18px; flex-shrink: 0; transition: transform 0.25s; display: inline-block; } /   - removed: .collection-back-btn:hover .back-arrow { transform: translateX(-3px); } /   - removed: .collection-back-wrapper { margin-bottom: 0.5rem; } /   - removed: .collection-back-btn--pink { border-color: hsl(var(--toylvia-pink)); color: hsl(var(--toylvia-pink)); } /   - removed: .collection-back-btn--pink:hover { background: hsl(var(--toylvia-pink)); color: rgb(255, 255, 255); transform: translateX(-4px); } /   - removed: .collection-back-btn--yellow { border-color: hsl(var(--toylvia-yellow)); color: rgb(204, 150, 0); } /   - removed: .collection-back-btn--yellow:hover { background: hsl(var(--toylvia-yellow)); color: rgb(26, 26, 26); transform: translateX(-4px); box-shadow: rgba(255, 216, 61, 0.4) 4px 4px 16px; } /   - removed: .collection-back-btn--cyan { border-color: hsl(var(--toylvia-cyan)); color: rgb(105, 179, 15); } /   - removed: .collection-back-btn--cyan:hover { background: hsl(var(--toylvia-cyan)); color: rgb(255, 255, 255); transform: translateX(-4px); box-shadow: rgba(33, 213, 237, 0.35) 4px 4px 16px; }**
+- **Visual change if removed:** None expected (markup-based, hence REVIEW).
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 1979-2027). Manual anchor: from `.collection-back-btn .back-arrow {` to `}`.
+Delete:
+```css
+.collection-back-btn .back-arrow {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+  display: inline-block;
+}
+.collection-back-btn:hover .back-arrow {
+  transform: translateX(-3px);
+}
+.collection-back-wrapper {
+  margin-bottom: 0.5rem;
+}
+
+/* pink pages: building-blocks, toy-blasters, all-products */
+.collection-back-btn--pink {
+  border-color: hsl(var(--toylvia-pink));
+  color: hsl(var(--toylvia-pink));
+}
+.collection-back-btn--pink:hover {
+  background: hsl(var(--toylvia-pink));
+  color: #fff;
+  transform: translateX(-4px);
+  
+}
+
+/* yellow pages: collectibles, plush-toys */
+.collection-back-btn--yellow {
+  border-color: hsl(var(--toylvia-yellow));
+  color: hsl(44, 100%, 40%);
+}
+.collection-back-btn--yellow:hover {
+  background: hsl(var(--toylvia-yellow));
+  color: #1a1a1a;
+  transform: translateX(-4px);
+  box-shadow: 4px 4px 16px hsla(48, 100%, 62%, 0.4);
+}
+
+/* cyan pages: vehicles, puzzles-iq */
+.collection-back-btn--cyan {
+  border-color: hsl(var(--toylvia-cyan));
+  color: hsl(87, 85%, 38%);
+}
+.collection-back-btn--cyan:hover {
+  background: hsl(var(--toylvia-cyan));
+  color: #fff;
+  transform: translateX(-4px);
+  box-shadow: 4px 4px 16px hsla(187, 85%, 53%, 0.35);
+}
+```
+
+### T58 [REVIEW] Legacy product-card image tints, badge and like button
+- **File:** `assets/toylvia.css` | baseline lines 516-556 | kind: orphan selectors (no markup uses these classes)
+- **Why it is dead:** No markup or JS outputs product-card__image, product-card__image--cyan/pink/yellow/purple/green/orange, product-card__badge or product-card__like. The product-card class is only added to cr-card in shared-product-card.liquid:73. Its children are cr-card__*, and nothing builds product-card__ or __image-- names dynamically. Both rules inside the (hover:hover) media block need .product-card__image, so the whole media group goes. .product-card__price (558) and .product-card__cta (563) are used and stay outside the range.
+- **Proof:** Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): .product-card__image, .product-card__image--cyan/--pink/--yellow/--purple/--green/--orange, .product-card__badge, .product-card__like, .liked: 0 markup or script hits; .product-grid and .product-card are used, but every selector here also needs one of the missing classes Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: @media (hover: hover) and (pointer: fine) [group] /   - removed: @media (hover: hover) and (pointer: fine) > .product-grid:hover .product-card__image img { filter: drop-shadow(rgba(0, 0, 0, 0.12) 0px 8px 20px) grayscale(0.6) brightness(0.92); } /   - removed: @media (hover: hover) and (pointer: fine) > .product-grid:hover .product-card:hover .product-card__image img { filter: drop-shadow(rgba(0, 0, 0, 0.12) 0px 8px 20px) grayscale(0); } /   - removed: .product-card__image--cyan { background: linear-gradient(to right bottom, rgb(226, 245, 248), rgb(203, 241, 246)); } /   - removed: .product-card__image--pink { background: linear-gradient(to right bottom, rgb(250, 235, 242), rgb(245, 214, 230)); } /   - removed: .product-card__image--yellow { background: linear-gradient(to right bottom, rgb(251, 246, 223), rgb(247, 235, 186)); } /   - removed: .product-card__image--purple { background: linear-gradient(to right bottom, rgb(241, 226, 248), rgb(232, 203, 246)); } /   - removed: .product-card__image--green { background: linear-gradient(to right bottom, rgb(226, 248, 234), rgb(205, 244, 218)); } /   - removed: .product-card__image--orange { background: linear-gradient(to right bottom, rgb(251, 235, 223), rgb(255, 219, 194)); } /   - removed: .product-card__badge { position: absolute; top: 0.75rem; left: 0.75rem; padding: 0.22rem 0.55rem; border-radius: 999px; background: transparent; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; z-index: 5; } /   - removed: .product-card__like { position: absolute; top: 0.75rem; right: 0.75rem; width: 32px; height: 32px; border-radius: 50%; background: rgba(249, 250, 251, 0.8); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; transition: transform 0.3s cubic-bezier(0.34, 1.56, 0. /   - removed: .product-card__like:hover { transform: scale(1.1); } /   - removed: .product-card__like.liked svg { color: hsl(var(--destructive)); fill: hsl(var(--destructive)); }**
+- **Visual change if removed:** None expected (markup-based, hence REVIEW).
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 516-556). Manual anchor: from `@media (hover: hover) and (pointer: fine) {` to `.product-card__like.liked svg { color: hsl(var(--destructive)); fill: hsl(var(--destruc...`.
+Delete:
+```css
+@media (hover: hover) and (pointer: fine) {
+  .product-grid:hover .product-card__image img { filter: drop-shadow(0 8px 20px rgba(0,0,0,0.12)) grayscale(0.6) brightness(0.92); }
+  .product-grid:hover .product-card:hover .product-card__image img { filter: drop-shadow(0 8px 20px rgba(0,0,0,0.12)) grayscale(0); }
+}
+.product-card__image--cyan { background: linear-gradient(to bottom right, hsl(187,60%,93%), hsl(187,70%,88%)); }
+.product-card__image--pink { background: linear-gradient(to bottom right, hsl(330,60%,95%), hsl(330,60%,90%)); }
+.product-card__image--yellow { background: linear-gradient(to bottom right, hsl(48,80%,93%), hsl(48,80%,85%)); }
+.product-card__image--purple { background: linear-gradient(to bottom right, hsl(280,60%,93%), hsl(280,70%,88%)); }
+.product-card__image--green { background: linear-gradient(to bottom right, hsl(140,60%,93%), hsl(140,65%,88%)); }
+.product-card__image--orange { background: linear-gradient(to bottom right, hsl(25,80%,93%), hsl(25,100%,88%)); }
+
+.product-card__badge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  padding: 0.22rem 0.55rem;
+  border-radius: 999px;
+  background: transparent;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  z-index: 5;
+}
+
+.product-card__like {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: hsla(210, 20%, 98%, 0.8);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 5;
+}
+.product-card__like:hover { transform: scale(1.1); }
+.product-card__like.liked svg { color: hsl(var(--destructive)); fill: hsl(var(--destructive)); }
+```
+
+### T59 [REVIEW] Border-shine animation: borderShine* keyframes and product-card--<color> rules
+- **File:** `assets/toylvia.css` | baseline lines 1051-1089 | kind: orphan selectors (no markup uses these classes)
+- **Why it is dead:** No markup or script outputs .product-card--cyan, --pink, --yellow, --purple, --green or --orange. shared-product-card.liquid takes no color parameter, and no 'product-card--' prefix is built with {{ }}, + or ${}. The only product-card--* occurrences outside toylvia.css are CSS in a <style> block in theme.liquid (lines 1339-1347). Searching the whole theme shows the six @keyframes borderShine* are referenced only by the six orphaned rules at 1084-1089. The comment at line 6108 is only text. The block is the complete dead feature: six keyframes, comment and six rules. 1031-1049 is already logged and 1050 is blank, so there is no overlap. The range ends with one trailing blank line.
+- **Proof:** Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): .product-card--cyan/--pink/--yellow/--purple/--green/--orange: no class attribute or JS usage (only theme.liquid <style> CSS); borderShineCyan/Pink/Yellow/Purple/Green/Orange: only referenced at toylvia.css 1084-1089 Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: @keyframes borderShineCyan { 0% { border-color: rgba(33, 213, 237, 0.15); box-shadow: rgba(0, 0, 0, 0.06) 0px 4px 16px; } 50% { border-color: rgba(33, 213, 237, 0.5); box-shadow: rgba(0, 0, 0, 0.06) 0px 4px 16px, rgba(33, 213, 237, 0.15) 0px 0px 18px; } 100% { border-color: rgba(33, 213, 237, 0.15); /   - removed: @keyframes borderShinePink { 0% { border-color: rgba(255, 66, 161, 0.15); box-shadow: rgba(0, 0, 0, 0.06) 0px 4px 16px; } 50% { border-color: rgba(255, 66, 161, 0.5); box-shadow: rgba(0, 0, 0, 0.06) 0px 4px 16px, rgba(255, 66, 161, 0.15) 0px 0px 18px; } 100% { border-color: rgba(255, 66, 161, 0.15); /   - removed: @keyframes borderShineYellow { 0% { border-color: rgba(255, 216, 61, 0.15); box-shadow: rgba(0, 0, 0, 0.06) 0px 4px 16px; } 50% { border-color: rgba(255, 216, 61, 0.5); box-shadow: rgba(0, 0, 0, 0.06) 0px 4px 16px, rgba(255, 216, 61, 0.15) 0px 0px 18px; } 100% { border-color: rgba(255, 216, 61, 0.15 /   - removed: @keyframes borderShinePurple { 0% { border-color: rgba(167, 60, 221, 0.15); box-shadow: rgba(0, 0, 0, 0.06) 0px 4px 16px; } 50% { border-color: rgba(167, 60, 221, 0.5); box-shadow: rgba(0, 0, 0, 0.06) 0px 4px 16px, rgba(167, 60, 221, 0.15) 0px 0px 18px; } 100% { border-color: rgba(167, 60, 221, 0.15 /   - removed: @keyframes borderShineGreen { 0% { border-color: rgba(37, 177, 84, 0.15); box-shadow: rgba(0, 0, 0, 0.06) 0px 4px 16px; } 50% { border-color: rgba(37, 177, 84, 0.5); box-shadow: rgba(0, 0, 0, 0.06) 0px 4px 16px, rgba(37, 177, 84, 0.15) 0px 0px 18px; } 100% { border-color: rgba(37, 177, 84, 0.15); bo /   - removed: @keyframes borderShineOrange { 0% { border-color: rgba(255, 121, 26, 0.15); box-shadow: rgba(0, 0, 0, 0.06) 0px 4px 16px; } 50% { border-color: rgba(255, 121, 26, 0.5); box-shadow: rgba(0, 0, 0, 0.06) 0px 4px 16px, rgba(255, 121, 26, 0.15) 0px 0px 18px; } 100% { border-color: rgba(255, 121, 26, 0.15 /   - removed: .product-card--cyan { animation: 8s ease 0s infinite normal none running borderShineCyan; } /   - removed: .product-card--pink { animation: 8s ease 0s infinite normal none running borderShinePink; } /   - removed: .product-card--yellow { animation: 8s ease 0s infinite normal none running borderShineYellow; } /   - removed: .product-card--purple { animation: 8s ease 0s infinite normal none running borderShinePurple; } /   - removed: .product-card--green { animation: 8s ease 0s infinite normal none running borderShineGreen; } /   - removed: .product-card--orange { animation: 8s ease 0s infinite normal none running borderShineOrange; }**
+- **Visual change if removed:** None expected (markup-based, hence REVIEW).
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 1051-1089). Manual anchor: from `@keyframes borderShineCyan {` to `.product-card--orange { animation: borderShineOrange 8s ease infinite; }`.
+Delete:
+```css
+@keyframes borderShineCyan {
+  0% { border-color: hsla(187, 85%, 53%, 0.15); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+  50% { border-color: hsla(187, 85%, 53%, 0.5); box-shadow: 0 4px 16px rgba(0,0,0,0.06), 0 0 18px hsla(187, 85%, 53%, 0.15); }
+  100% { border-color: hsla(187, 85%, 53%, 0.15); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+}
+@keyframes borderShinePink {
+  0% { border-color: hsla(330, 100%, 63%, 0.15); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+  50% { border-color: hsla(330, 100%, 63%, 0.5); box-shadow: 0 4px 16px rgba(0,0,0,0.06), 0 0 18px hsla(330, 100%, 63%, 0.15); }
+  100% { border-color: hsla(330, 100%, 63%, 0.15); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+}
+@keyframes borderShineYellow {
+  0% { border-color: hsla(48, 100%, 62%, 0.15); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+  50% { border-color: hsla(48, 100%, 62%, 0.5); box-shadow: 0 4px 16px rgba(0,0,0,0.06), 0 0 18px hsla(48, 100%, 62%, 0.15); }
+  100% { border-color: hsla(48, 100%, 62%, 0.15); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+}
+@keyframes borderShinePurple {
+    0% { border-color: hsla(280, 70%, 55%, 0.15); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+      50% { border-color: hsla(280, 70%, 55%, 0.5); box-shadow: 0 4px 16px rgba(0,0,0,0.06), 0 0 18px hsla(280, 70%, 55%, 0.15); }
+        100% { border-color: hsla(280, 70%, 55%, 0.15); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+        }
+        @keyframes borderShineGreen {
+          0% { border-color: hsla(140, 65%, 42%, 0.15); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+            50% { border-color: hsla(140, 65%, 42%, 0.5); box-shadow: 0 4px 16px rgba(0,0,0,0.06), 0 0 18px hsla(140, 65%, 42%, 0.15); }
+              100% { border-color: hsla(140, 65%, 42%, 0.15); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+              }
+              @keyframes borderShineOrange {
+                0% { border-color: hsla(25, 100%, 55%, 0.15); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+                  50% { border-color: hsla(25, 100%, 55%, 0.5); box-shadow: 0 4px 16px rgba(0,0,0,0.06), 0 0 18px hsla(25, 100%, 55%, 0.15); }
+                    100% { border-color: hsla(25, 100%, 55%, 0.15); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+                    }
+
+
+/* Border shine animation defaults */
+.product-card--cyan { animation: borderShineCyan 8s ease infinite; }
+.product-card--pink { animation: borderShinePink 8s ease infinite; }
+.product-card--yellow { animation: borderShineYellow 8s ease infinite; }
+.product-card--purple { animation: borderShinePurple 8s ease infinite; }
+.product-card--green { animation: borderShineGreen 8s ease infinite; }
+.product-card--orange { animation: borderShineOrange 8s ease infinite; }
+```
+
+### T60 [REVIEW] Product page trust badges block
+- **File:** `assets/toylvia.css` | baseline lines 990-990, 1010-1018 | kind: orphan selectors (no markup uses these classes)
+- **Why it is dead:** The .product-trust-badges class appears nowhere in layout, sections, snippets, templates, settings_data or assets JS. product-main.liquid does not output it. Every rule in the block requires it: the base rule, the .trust-badge and .trust-badge__icon descendants, and the max-width:639px media group. That makes the whole comment-delimited block dead. It ends right before the already-logged likeBurst keyframes at 1020.
+- **Proof:** Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): .product-trust-badges: 0 hits (.trust-badge and .trust-badge__icon only appear in toylvia.js querySelector strings, but every selector here is also scoped under .product-trust-badges) Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: @media (max-width: 639px) [group] /   - removed: @media (max-width: 639px) > .product-trust-badges { justify-content: center; gap: 0.6rem 1rem; margin-top: 1rem; padding-top: 1rem; flex-wrap: nowrap !important; }**
+- **Visual change if removed:** None expected (markup-based, hence REVIEW).
+- **Parts:** 2 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 990-990). Manual anchor: from `/* === PRODUCT PAGE TRUST BADGES === */` to `/* === PRODUCT PAGE TRUST BADGES === */`.
+Delete:
+```css
+/* === PRODUCT PAGE TRUST BADGES === */
+```
+
+**Part 2** (baseline lines 1010-1018). Manual anchor: from `@media (max-width: 639px) {` to `}`.
+Delete:
+```css
+@media (max-width: 639px) {
+  .product-trust-badges {
+    justify-content: center;
+    gap: 0.6rem 1rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    flex-wrap: nowrap !important;
+  }
+}
+```
+
+### T61 [REVIEW] Newsletter social icon row
+- **File:** `assets/toylvia.css` | baseline lines 711-714 | kind: orphan selectors (no markup uses these classes)
+- **Why it is dead:** sections/newsletter.liquid outputs only newsletter__title, __subtitle, __form, __input and __btn. Neither .newsletter__socials nor .newsletter__social-link appears in any markup or script. Their only other mentions are CSS inside a <style> block in templates/page.liquid (lines 61-71). The range is directly followed by the already-logged 715-749, so the two can be cut together.
+- **Proof:** Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): .newsletter__socials, .newsletter__social-link: only in templates/page.liquid <style> CSS, no class attribute or JS usage Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .newsletter__social-link:hover { color: hsl(var(--primary)); border-color: rgba(255, 66, 161, 0.4); }**
+- **Visual change if removed:** None expected (markup-based, hence REVIEW).
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 711-714). Manual anchor: from `.newsletter__social-link:hover {` to `}`.
+Delete:
+```css
+.newsletter__social-link:hover {
+  color: hsl(var(--primary));
+  border-color: hsla(330,100%,63%,0.4);
+}
+```
+
+### T62 [REVIEW] Plexus canvas class and Tailwind-style utility classes
+- **File:** `assets/toylvia.css` | baseline lines 1120-1141 | kind: orphan selectors (no markup uses these classes)
+- **Why it is dead:** The plexus background is <canvas id="plexus-bg"> in snippets/plexus-bg.liquid and is only accessed by id. No code ever gives it the .plexus-canvas class. None of the utilities appears in any class attribute, classList, className or selector string: .text-center, .flex, .items-center, .justify-center, .gap-4, .mt-8, .mb-8, .py-6, .space-y-4. Every hit for 'flex' is an inline-style or style-value string such as style="display:flex" or el.style.display='flex', never a class. Both comment-delimited mini-blocks are fully dead. The range ends with one blank line, before the used max-width:639px media block at 1143.
+- **Proof:** Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): .plexus-canvas (0 hits; canvas uses id plexus-bg); .text-center, .items-center, .justify-center, .gap-4, .mt-8, .mb-8, .py-6, .space-y-4 (0 hits); .flex (all hits were inline-style values or style.display strings, no class usage) Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .plexus-canvas { position: fixed; inset: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 0; filter: blur(2px); opacity: 0.6; } /   - removed: .text-center { text-align: center; } /   - removed: .flex { display: flex; } /   - removed: .items-center { align-items: center; } /   - removed: .justify-center { justify-content: center; } /   - removed: .gap-4 { gap: 1rem; } /   - removed: .mt-8 { margin-top: 2rem; } /   - removed: .mb-8 { margin-bottom: 2rem; } /   - removed: .py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; } /   - removed: .space-y-4 > * + * { margin-top: 1rem; }**
+- **Visual change if removed:** None expected (markup-based, hence REVIEW).
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 1120-1141). Manual anchor: from `/* Plexus canvas */` to `.space-y-4 > * + * { margin-top: 1rem; }`.
+Delete:
+```css
+/* Plexus canvas */
+.plexus-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(2px);
+  opacity: 0.6;
+}
+
+/* Utility */
+.text-center { text-align: center; }
+.flex { display: flex; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.gap-4 { gap: 1rem; }
+.mt-8 { margin-top: 2rem; }
+.mb-8 { margin-bottom: 2rem; }
+.py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+.space-y-4 > * + * { margin-top: 1rem; }
+```
+
+### T63 [REVIEW] Futuristic glitch-grid background for section.category-arc (rule, ::before, ::after)
+- **File:** `assets/toylvia.css` | baseline lines 4171-4213 | kind: orphan selectors (no markup uses these classes)
+- **Why it is dead:** All three rules need the class category-arc on a <section>. No markup or script outputs that class. sections/category-arc.liquid renders <section id="cat-section" class="holo-section scroll-reveal">, and no section schema sets a wrapper tag or class. The class has zero hits in layout/sections/snippets/templates/assets/*.js once <style> blocks are stripped. It appears only as CSS: settings_data custom_css 'section.category-arc {padding-top...}'. I also checked live Shopify content and found it in no page, article, collection or product body. The next rule, 4215-4219 (.category-arc__grid, .all-products-btn__wrapper), stays because all-products-btn__wrapper is used in category-arc.liquid:148. After this cut, @keyframes glitch-sweep (4221-4231) and glitch-flicker (4233-4242) are referenced by nothing, but they are not part of this range. The range runs past 4200 by 14 lines.
+- **Proof:** Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): category-arc (0 markup/JS hits; no section schema class/tag; 0 in Shopify page/article/collection/product bodies); all-products-btn__wrapper USED (kept, outside range) Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: section.category-arc { position: relative !important; overflow: hidden !important; background: repeating-linear-gradient(90deg, rgba(0, 200, 255, 0.06) 0px, rgba(0, 200, 255, 0.06) 1px, transparent 1px, transparent 80px), repeating-linear-gradient(0deg, rgba(0, 200, 255, 0.05) 0px, rgba(0, 200, 255, /   - removed: section.category-arc::before { content: "" !important; position: absolute !important; inset: 0px !important; pointer-events: none !important; background: linear-gradient(90deg, transparent 0%, rgba(0, 240, 255, 0.35) 15%, transparent 16%, transparent 30%, rgba(255, 0, 180, 0.25) 45%, transparent 46% /   - removed: section.category-arc::after { content: "" !important; position: absolute !important; inset: 0px !important; pointer-events: none !important; background: linear-gradient(0deg, transparent 0%, rgba(0, 240, 255, 0.2) 30%, transparent 31%, transparent 60%, rgba(255, 0, 180, 0.18) 75%, transparent 76%) 8**
+- **Visual change if removed:** None expected (markup-based, hence REVIEW).
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 4171-4213). Manual anchor: from `/* Futuristic glitchy grid background for category section */` to `}`.
+Delete:
+```css
+/* Futuristic glitchy grid background for category section */
+section.category-arc {
+  position: relative !important;
+  overflow: hidden !important;
+  background:
+    repeating-linear-gradient(90deg,
+      rgba(0, 200, 255, 0.06) 0px, rgba(0, 200, 255, 0.06) 1px,
+      transparent 1px, transparent 80px),
+    repeating-linear-gradient(0deg,
+      rgba(0, 200, 255, 0.05) 0px, rgba(0, 200, 255, 0.05) 1px,
+      transparent 1px, transparent 80px),
+    repeating-linear-gradient(0deg,
+      rgba(255, 0, 180, 0.025) 0px, rgba(255, 0, 180, 0.025) 1px,
+      transparent 1px, transparent 4px),
+    radial-gradient(ellipse at center, rgba(10, 20, 40, 0.04), transparent 70%) !important;
+}
+
+section.category-arc::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  pointer-events: none !important;
+  background:
+    linear-gradient(90deg, transparent 0%, rgba(0, 240, 255, 0.35) 15%, transparent 16%, transparent 30%, rgba(255, 0, 180, 0.25) 45%, transparent 46%, transparent 70%, rgba(0, 240, 255, 0.3) 82%, transparent 83%) 0 25% / 100% 1px no-repeat,
+    linear-gradient(90deg, transparent 0%, transparent 20%, rgba(0, 240, 255, 0.25) 40%, transparent 41%, transparent 60%, rgba(255, 255, 0, 0.2) 75%, transparent 76%) 0 68% / 100% 1px no-repeat,
+    linear-gradient(90deg, transparent 0%, rgba(255, 0, 180, 0.3) 10%, transparent 11%, transparent 55%, rgba(0, 240, 255, 0.3) 70%, transparent 71%) 0 88% / 100% 1px no-repeat !important;
+  z-index: 0 !important;
+  animation: glitch-sweep 5s steps(10) infinite !important;
+}
+
+section.category-arc::after {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  pointer-events: none !important;
+  background:
+    linear-gradient(0deg, transparent 0%, rgba(0, 240, 255, 0.2) 30%, transparent 31%, transparent 60%, rgba(255, 0, 180, 0.18) 75%, transparent 76%) 8% 0 / 1px 100% no-repeat,
+    linear-gradient(0deg, transparent 0%, transparent 20%, rgba(0, 240, 255, 0.15) 40%, transparent 41%) 22% 0 / 1px 100% no-repeat,
+    linear-gradient(0deg, transparent 0%, rgba(255, 255, 0, 0.15) 15%, transparent 16%, transparent 70%, rgba(0, 240, 255, 0.2) 85%, transparent 86%) 66% 0 / 1px 100% no-repeat,
+    linear-gradient(0deg, transparent 0%, rgba(0, 240, 255, 0.2) 55%, transparent 56%) 93% 0 / 1px 100% no-repeat !important;
+  z-index: 0 !important;
+  animation: glitch-flicker 3.2s steps(8) infinite !important;
+}
+```
+
+### T64 [REVIEW] Social icons block: .newsletter__social-link / .site-footer__social-icon styling and brand hover colours
+- **File:** `assets/toylvia.css` | baseline lines 3561-3571, 3575-3598 | kind: orphan selectors (no markup uses these classes)
+- **Why it is dead:** Every selector needs newsletter__social-link or site-footer__social-icon, and no markup or script outputs either one. sections/newsletter.liquid uses nl-socials, and sections/footer.liquid uses site-footer__soc-icon. The only other mentions are CSS inside the <style> block in templates/page.liquid (lines 50-73). Neither class appears in any Shopify page, article or product body. The range ends on one blank line, and 3600 starts the live shopify-policy rule.
+- **Proof:** Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): newsletter__social-link (only in page.liquid <style>), site-footer__social-icon (0 hits; footer uses site-footer__soc-icon); none in Shopify content bodies Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .newsletter__social-link, .site-footer__social-icon { background: transparent !important; border: none !important; box-shadow: none !important; backdrop-filter: none !important; color: rgba(255, 255, 255, 0.55) !important; transition: color 250ms, background 250ms, transform 250ms !important; } /   - removed: .newsletter__social-link::before, .site-footer__social-icon::before { display: none !important; } /   - removed: .newsletter__social-link svg, .site-footer__social-icon svg { opacity: 1; transition: fill 250ms, stroke 250ms; } /   - removed: .newsletter__social-link[aria-label="Facebook"]:hover, .site-footer__social-icon[aria-label="Facebook"]:hover { color: rgb(24, 119, 242) !important; transform: translateY(-3px); } /   - removed: .newsletter__social-link[aria-label="Instagram"]:hover, .site-footer__social-icon[aria-label="Instagram"]:hover { color: rgb(225, 48, 108) !important; transform: translateY(-3px); } /   - removed: .newsletter__social-link[aria-label="TikTok"]:hover, .site-footer__social-icon[aria-label="TikTok"]:hover { color: rgb(255, 66, 161) !important; transform: translateY(-3px); } /   - removed: .newsletter__social-link[aria-label="Twitter"]:hover, .site-footer__social-icon[aria-label="Twitter"]:hover { color: rgb(29, 161, 242) !important; transform: translateY(-3px); } /   - removed: .newsletter__social-link[aria-label="YouTube"]:hover, .site-footer__social-icon[aria-label="YouTube"]:hover { color: rgb(255, 0, 0) !important; transform: translateY(-3px); } /   - removed: .newsletter__social-link:hover svg, .site-footer__social-icon:hover svg { fill: currentcolor; stroke: currentcolor; opacity: 1; }**
+- **Visual change if removed:** None expected (markup-based, hence REVIEW).
+- **Parts:** 2 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 3561-3571). Manual anchor: from `/* Social Icons — clean default, brand fill on hover */` to `}`.
+Delete:
+```css
+/* Social Icons — clean default, brand fill on hover */
+.newsletter__social-link,
+.site-footer__social-icon {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  color: rgba(255,255,255,0.55) !important;
+  transition: color 250ms ease, background 250ms ease, transform 250ms ease !important;
+}
+```
+
+**Part 2** (baseline lines 3575-3598). Manual anchor: from `.newsletter__social-link::before,` to `.site-footer__social-icon:hover svg { fill: currentColor; stroke: currentColor; opacity...`.
+Delete:
+```css
+.newsletter__social-link::before,
+.site-footer__social-icon::before { display: none !important; }
+
+.newsletter__social-link svg,
+.site-footer__social-icon svg { opacity: 1; transition: fill 250ms ease, stroke 250ms ease; }
+
+/* Hover: fill with brand color */
+.newsletter__social-link[aria-label="Facebook"]:hover,
+.site-footer__social-icon[aria-label="Facebook"]:hover { color: #1877F2 !important; transform: translateY(-3px); }
+
+.newsletter__social-link[aria-label="Instagram"]:hover,
+.site-footer__social-icon[aria-label="Instagram"]:hover { color: #E1306C !important; transform: translateY(-3px); }
+
+.newsletter__social-link[aria-label="TikTok"]:hover,
+.site-footer__social-icon[aria-label="TikTok"]:hover { color: #ff42a1 !important; transform: translateY(-3px); }
+
+.newsletter__social-link[aria-label="Twitter"]:hover,
+.site-footer__social-icon[aria-label="Twitter"]:hover { color: #1DA1F2 !important; transform: translateY(-3px); }
+
+.newsletter__social-link[aria-label="YouTube"]:hover,
+.site-footer__social-icon[aria-label="YouTube"]:hover { color: #FF0000 !important; transform: translateY(-3px); }
+
+.newsletter__social-link:hover svg,
+.site-footer__social-icon:hover svg { fill: currentColor; stroke: currentColor; opacity: 1; }
+```
+
+### T65 [REVIEW] Product-page trust badges neumorphic block (.product-trust-badges ...) incl. .announcement-bar__track animation kill
+- **File:** `assets/toylvia.css` | baseline lines 2931-2960 | kind: orphan selectors (no markup uses these classes)
+- **Why it is dead:** All four rules need product-trust-badges, or announcement-bar__track for the third selector of the third rule. Neither class is output anywhere. The announcement-bar section outputs only announcement-bar, __inner-emboss, __inner, __logo and __text, and there is no product-trust-badges markup. trust-badge itself counts as used because toylvia.js calls .closest('.trust-badge') and querySelectorAll('.trust-badge__icon'), so every rule here is compounded with an unused class. The next rule (2968: '.product-trust-badges .trust-badge, .trust-badge, ...') is live and stays.
+- **Proof:** Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): product-trust-badges (0 hits), announcement-bar__track (0 hits); trust-badge treated USED (JS querySelector) but every rule here also requires product-trust-badges Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .product-trust-badges .trust-badge { background-color: rgb(240, 240, 243) !important; box-shadow: rgba(163, 177, 198, 0.6) 9px 9px 16px, rgb(255, 255, 255) -9px -9px 16px !important; border-radius: 50px !important; padding: 8px 16px !important; display: flex !important; align-items: center !importan /   - removed: .product-trust-badges .trust-badge span { font-weight: 700 !important; color: rgb(68, 68, 68) !important; letter-spacing: 0.04em !important; text-decoration: none !important; font-variation-settings: "wght" 700 !important; } /   - removed: .product-trust-badges, .product-trust-badges *, .announcement-bar__track { animation: auto ease 0s 1 normal none running none !important; }**
+- **Visual change if removed:** None expected (markup-based, hence REVIEW).
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 2931-2960). Manual anchor: from `/* 1. Neumorphic White Design & Layout */` to `}`.
+Delete:
+```css
+/* 1. Neumorphic White Design & Layout */
+.product-trust-badges .trust-badge {
+  background-color: #f0f0f3 !important;
+  box-shadow: 
+    9px 9px 16px rgba(163, 177, 198, 0.6), 
+    -9px -9px 16px rgba(255, 255, 255, 1) !important;
+  border-radius: 50px !important;
+  padding: 8px 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  border: none !important;
+}
+
+
+/* 3. Text Consistency (Stop thinning/color changes) */
+.product-trust-badges .trust-badge span {
+  font-weight: 700 !important;
+  color: #444 !important; /* Adjust to your preferred dark gray */
+  letter-spacing: 0.04em !important;
+  text-decoration: none !important;
+  font-variation-settings: "wght" 700 !important;
+}
+
+/* 4. Disable All Original Animations/Marquees */
+.product-trust-badges,
+.product-trust-badges *,
+.announcement-bar__track {
+  animation: none !important;
+}
+```
+
+### T66 [REVIEW] Old blog-page leftovers: .card-btn, .card:hover .card-btn, .card,.featured
+- **File:** `assets/toylvia.css` | baseline lines 2590-2617 | kind: orphan selectors (no markup uses these classes)
+- **Why it is dead:** These rules are leftovers from a pasted blog-page stylesheet (2516-2617). They need card-btn, card or featured. My robust class-attribute extraction, which handles Liquid and ${} in class="" and className/classList/querySelector strings, found none of the three anywhere. None appears in any of the 10 pages, 65 articles, collection bodies or 740 product descriptions on Shopify. The same feature has more orphaned ranges, left out here only because of the 6-item limit: 2564-2576 (.card ... .footer span, 10 rules, cssom-confirmed), 2553-2561 (.badge.cyan/.yellow, .featured-body h2/.excerpt/.meta, .read-more x3, 8 rules, confirmed) and 2522-2532 (.toylvia-blog-wrapper and ::before, 2 rules, confirmed). Do NOT delete .grid (2562-2563, 2580-2588): the live Contact page body uses class="grid". Do NOT delete .badge (2552): it is used in about-us.liquid:68 and the contact/return page bodies. Also 
+- **Proof:** Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): card-btn, card, featured: 0 class usages in theme markup/JS (only alt text/prose) and 0 in Shopify page/article/collection/product bodies; grid IS used in contact page body (excluded); badge USED (excluded) Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .card-btn { display: inline-flex; margin-top: 1.5rem; padding: 0.924rem 2.464rem; font-weight: 900; font-size: 16px; background: rgb(249, 250, 251); color: rgb(255, 42, 148); border: 2.5px solid transparent; border-radius: 9999px; box-shadow: rgba(255, 255, 255, 0.9) -10px -8px 20px, rgba(148, 150,  /   - removed: .card:hover .card-btn { background: rgb(249, 250, 251); color: rgb(255, 42, 148); box-shadow: rgba(255, 255, 255, 0.6) -10px -8px 20px, rgba(176, 148, 162, 0.4) 10px 8px 20px, rgb(33, 213, 237) 0px 0px 45px; transform: scale(1.05); } /   - removed: .card, .featured { display: block; text-decoration: none !important; color: inherit !important; }**
+- **Visual change if removed:** None expected (markup-based, hence REVIEW).
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 2590-2617). Manual anchor: from `.card-btn {` to `}`.
+Delete:
+```css
+.card-btn {
+  display: inline-flex;
+  margin-top: 1.5rem;
+  padding: 0.924rem 2.464rem;
+  font-weight: 900;
+  font-size: 16px;
+  background: rgb(249,250,251);
+  color: rgb(255,42,148);
+  border: 2.5px solid transparent;
+  border-radius: 9999px;
+  box-shadow: -10px -8px 20px rgba(255,255,255,0.9), 10px 8px 20px rgba(148,150,176,0.45);
+  text-transform: uppercase;
+  transition: all 0.4s ease;
+}
+
+.card:hover .card-btn {
+  background: rgb(249,250,251);
+  color: rgb(255,42,148);
+  box-shadow: -10px -8px 20px rgba(255,255,255,0.6), 
+              10px 8px 20px rgba(176, 148, 162, 0.4), 
+              rgb(33, 213, 237) 0px 0px 45px;
+  transform: scale(1.05);
+}
+.card, .featured {
+  text-decoration: none !important;
+  color: inherit !important;
+  display: block;
+}
+```
+
+### T67 [REVIEW] Mobile PRODUCT DESCRIPTION @media block for .product-main__description-full
+- **File:** `assets/toylvia.css` | baseline lines 3299-3316 | kind: orphan selectors (no markup uses these classes)
+- **Why it is dead:** The whole @media (max-width: 640px) block holds only .product-main__description-full rules (base, h2/h3, table). That class has zero hits in theme markup or JS, and none in any of the 740 product descriptions on Shopify. product-main.liquid does not output it. The @media opener is part of the range and its closing brace is at 3316, so brace balance is kept. The range ends on one blank line. A separate one-line rule at 3397 inside the MOBILE FIX V2 @media is also orphaned but was not included.
+- **Proof:** Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): product-main__description-full (0 hits theme; 0 in Shopify product/page bodies) Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: @media (max-width: 640px) [group] /   - removed: @media (max-width: 640px) > .product-main__description-full { padding: 0px 0.5rem !important; font-size: 15px !important; line-height: 1.7 !important; margin-top: 2rem !important; } /   - removed: @media (max-width: 640px) > .product-main__description-full h2, .product-main__description-full h3 { font-size: 19px !important; margin: 1.75rem 0px 0.875rem !important; } /   - removed: @media (max-width: 640px) > .product-main__description-full table { width: 100% !important; font-size: 14px !important; display: block !important; overflow-x: auto !important; }**
+- **Visual change if removed:** None expected (markup-based, hence REVIEW).
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 3299-3316). Manual anchor: from `/* ---- PRODUCT DESCRIPTION ---- */` to `}`.
+Delete:
+```css
+                                                                          /* ---- PRODUCT DESCRIPTION ---- */
+                                                                          @media (max-width: 640px) {
+                                                                            .product-main__description-full {
+                                                                                padding: 0 0.5rem !important;
+                                                                                    font-size: 15px !important;
+                                                                                        line-height: 1.7 !important;
+                                                                                            margin-top: 2rem !important;
+                                                                                              }
+                                                                                                .product-main__description-full h2,
+                                                                                                  .product-main__description-full h3 { font-size: 19px !important; margin: 1.75rem 0 0.875rem !important; }
+                                                                                                    .product-main__description-full table {
+                                                                                                        width: 100% !important;
+                                                                                                            font-size: 14px !important;
+                                                                                                                display: block !important;
+                                                                                                                    overflow-x: auto !important;
+                                                                                                                        -webkit-overflow-scrolling: touch !important;
+                                                                                                                          }
+                                                                                                                          }
+```
+
+### T68 [REVIEW] Old blog-page leftovers: .container, .page-title (h1/span/p), .featured, .featured-img, .featured-body
+- **File:** `assets/toylvia.css` | baseline lines 2537-2551 | kind: orphan selectors (no markup uses these classes)
+- **Why it is dead:** These are part of the same pasted blog-page stylesheet as q-4. The classes container, page-title, featured, featured-img and featured-body are not output by any theme markup or script; the word matches are only JS variable names, alt text and prose. None appears in any Shopify page, article, collection or product body. 2552 (.badge) is live, which is why this range stops at 2551. Keep 2516-2521 (*, :root vars) and 2533 (a{}) too, because they are global and live.
+- **Proof:** Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): container, page-title, featured, featured-img, featured-body (0 class usages theme; 0 in Shopify content); placeholder only matched as an input attribute Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .container { max-width: 1280px; margin: 0px auto; padding: 2rem 1.5rem; position: relative; z-index: 1; } /   - removed: .page-title { text-align: center; margin-bottom: 2.5rem; } /   - removed: .page-title h1 { font-size: 2.5rem; font-weight: 800; letter-spacing: 3px; } /   - removed: .page-title h1 span { color: var(--pink); } /   - removed: .page-title p { color: var(--text-muted); font-size: 0.8rem; letter-spacing: 1.5px; margin-top: 0.5rem; } /   - removed: .featured { position: relative; border-radius: var(--radius); overflow: hidden; background: var(--card); border: 1px solid var(--border); margin-bottom: 3rem; display: grid; grid-template-columns: 1fr 1fr; min-height: 420px; transition: border-color 0.4s, box-shadow 0.4s; } /   - removed: .featured:hover { border-color: var(--pink); box-shadow: rgba(255, 66, 161, 0.12) 0px 0px 20px; } /   - removed: .featured-img { background: linear-gradient(135deg, rgba(255, 66, 161, 0.15), rgba(33, 213, 237, 0.15)); display: flex; align-items: center; justify-content: center; min-height: 300px; position: relative; overflow: hidden; } /   - removed: .featured-img .placeholder { color: var(--text-muted); font-size: 0.75rem; letter-spacing: 2px; } /   - removed: .featured-body { padding: 2.5rem; display: flex; flex-direction: column; justify-content: center; }**
+- **Visual change if removed:** None expected (markup-based, hence REVIEW).
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 2537-2551). Manual anchor: from `/* Container */` to `.featured-body{padding:2.5rem;display:flex;flex-direction:column;justify-content:center}`.
+Delete:
+```css
+/* Container */
+.container{max-width:1280px;margin:0 auto;padding:2rem 1.5rem;position:relative;z-index:1}
+
+/* Page Title */
+.page-title{text-align:center;margin-bottom:2.5rem}
+.page-title h1{font-size:2.5rem;font-weight:800;letter-spacing:3px}
+.page-title h1 span{color:var(--pink)}
+.page-title p{color:var(--text-muted);font-size:.8rem;letter-spacing:1.5px;margin-top:.5rem}
+
+/* Featured Article */
+.featured{position:relative;border-radius:var(--radius);overflow:hidden;background:var(--card);border:1px solid var(--border);margin-bottom:3rem;display:grid;grid-template-columns:1fr 1fr;min-height:420px;transition:border-color .4s,box-shadow .4s}
+.featured:hover{border-color:var(--pink);box-shadow:0 0 20px hsla(330,100%,63%,.12)}
+.featured-img{background:linear-gradient(135deg,hsla(330,100%,63%,.15),hsla(187,85%,53%,.15));display:flex;align-items:center;justify-content:center;min-height:300px;position:relative;overflow:hidden}
+.featured-img .placeholder{color:var(--text-muted);font-size:.75rem;letter-spacing:2px}
+.featured-body{padding:2.5rem;display:flex;flex-direction:column;justify-content:center}
+```
+
+### T69 [REVIEW] Rotating neon .launch-btn feature (@property --btn-angle, .launch-btn rules, @keyframes btn-spin)
+- **File:** `assets/toylvia.css` | baseline lines 4817-4867 | kind: orphan selectors (no markup uses these classes)
+- **Why it is dead:** No markup or script anywhere outputs launch-btn, so .launch-btn, .launch-btn::before and .launch-btn .arrow can never match. I searched layout/sections/snippets/templates/settings_data/assets/*.js for 'launch-btn', 'btn-spin' and 'btn-angle', and the only hits are inside this block. The @property --btn-angle and @keyframes btn-spin exist only for .launch-btn::before (conic-gradient from var(--btn-angle), animation btn-spin), so they become dead along with it. The range is depth 0, before the unclosed @media, and brace-balanced; it ends on one trailing blank line before the V14 header at 4869.
+- **Proof:** Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): .launch-btn (0 markup/JS hits), .arrow (only as a descendant of .launch-btn), btn-spin keyframe name (0 uses outside the block), --btn-angle custom property (0 uses outside the block) Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: @property --btn-angle { syntax: "<angle>"; inherits: false; initial-value: 0deg; } /   - removed: .launch-btn { position: relative; display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; border-radius: 999px; background: transparent; color: rgb(255, 255, 255); font-weight: 600; font-size: 16px; text-decoration: none; border: none; isolation: isolate; cursor: pointer; } /   - removed: .launch-btn::before { content: ""; position: absolute; inset: -2px; border-radius: inherit; padding: 2px; background: conic-gradient( /     from var(--btn-angle), /     #00e5ff, /     #ff00d4, /     #00e5ff /   ); mask: linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 0px) content-box exclude, linear-gradient(r /   - removed: .launch-btn .arrow { color: rgb(0, 229, 255); } /   - removed: @keyframes btn-spin { 100% { --btn-angle: 360deg; } }**
+- **Visual change if removed:** None expected (markup-based, hence REVIEW).
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 4817-4867). Manual anchor: from `@property --btn-angle {` to `}`.
+Delete:
+```css
+@property --btn-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.launch-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: 999px;
+  background: transparent;          /* was #000 — now see-through */
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+  border: none;
+  isolation: isolate;
+  cursor: pointer;
+}
+
+/* The rotating neon ring — drawn OUTSIDE the button, nothing fills the center */
+.launch-btn::before {
+  content: "";
+  position: absolute;
+  inset: -2px;                      /* border thickness */
+  border-radius: inherit;
+  padding: 2px;
+  background: conic-gradient(
+    from var(--btn-angle),
+    #00e5ff,
+    #ff00d4,
+    #00e5ff
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  animation: btn-spin 3s linear infinite;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.launch-btn .arrow { color: #00e5ff; }
+
+@keyframes btn-spin {
+  to { --btn-angle: 360deg; }
+}
+```
+
+### T70 [REVIEW] Old newsletter social icons (.newsletter__socials / .newsletter__social-link)
+- **File:** `assets/toylvia.css` | baseline lines 5932-5973 | kind: orphan selectors (no markup uses these classes)
+- **Why it is dead:** sections/newsletter.liquid now renders its social links as .nl-socials / .nl-social-btn and styles them inline. No markup or JS outputs newsletter__socials or newsletter__social-link. The only other occurrences are CSS inside the <style> block of templates/page.liquid (lines 61-71), which does not count. All 4 rules require one of these classes. This is the whole comment-delimited block, at depth 1 inside the unclosed max-width:1024px @media, and it is balanced. The next line (5974) is the .tlv-lede comment, which stays.
+- **Proof:** Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): .newsletter__socials (CSS-only, page.liquid <style>), .newsletter__social-link (CSS-only), .newsletter (used, but every selector also requires .newsletter__socials) Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: @media (max-width: 1024px) > html body .newsletter .newsletter__socials { display: flex !important; gap: 14px !important; justify-content: center !important; align-items: center !important; margin: 1.2rem 0px 1.6rem !important; flex-wrap: nowrap !important; } /   - removed: @media (max-width: 1024px) > html body .newsletter .newsletter__socials a.newsletter__social-link { width: 46px !important; height: 46px !important; min-width: 46px !important; min-height: 46px !important; display: inline-flex !important; align-items: center !important; justify-content: center !impo /   - removed: @media (max-width: 1024px) > html body .newsletter .newsletter__socials a.newsletter__social-link svg { width: 22px !important; height: 22px !important; fill: none !important; stroke: currentcolor !important; stroke-width: 2 !important; display: block !important; flex-shrink: 0 !important; } /   - removed: @media (max-width: 1024px) > html body .newsletter .newsletter__socials a.newsletter__social-link:hover { background: rgba(255, 66, 161, 0.12) !important; border-color: rgb(255, 66, 161) !important; color: rgb(255, 66, 161) !important; }**
+- **Visual change if removed:** None expected (markup-based, hence REVIEW).
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 5932-5973). Manual anchor: from `/* === SOCIAL ICONS: DEFINITIVE FINAL OVERRIDE — must stay last in file === */` to `}`.
+Delete:
+```css
+/* === SOCIAL ICONS: DEFINITIVE FINAL OVERRIDE — must stay last in file === */
+html body .newsletter .newsletter__socials {
+  display: flex !important;
+  gap: 14px !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin: 1.2rem 0 1.6rem !important;
+  flex-wrap: nowrap !important;
+}
+html body .newsletter .newsletter__socials a.newsletter__social-link {
+  width: 46px !important;
+  height: 46px !important;
+  min-width: 46px !important;
+  min-height: 46px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
+  background: transparent !important;
+  border: 1.5px solid rgba(255,66,161,0.35) !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  color: #ff42a1 !important;
+  flex-shrink: 0 !important;
+  transition: background 0.2s, border-color 0.2s !important;
+  text-decoration: none !important;
+}
+html body .newsletter .newsletter__socials a.newsletter__social-link svg {
+  width: 22px !important;
+  height: 22px !important;
+  fill: none !important;
+  stroke: currentColor !important;
+  stroke-width: 2 !important;
+  display: block !important;
+  flex-shrink: 0 !important;
+}
+html body .newsletter .newsletter__socials a.newsletter__social-link:hover {
+  background: rgba(255,66,161,0.12) !important;
+  border-color: #ff42a1 !important;
+  color: #ff42a1 !important;
+}
+```
+
+### T71 [REVIEW] Product card star ratings (.pc-stars / .pc-stars__count) incl. its two @media blocks
+- **File:** `assets/toylvia.css` | baseline lines 6027-6054 | kind: orphan selectors (no markup uses these classes)
+- **Why it is dead:** The cards (snippets/shared-product-card.liquid) render ratings as .cr-card__stars / .cr-card__stars__count. No file outputs pc-stars or pc-stars__count, and nothing builds 'pc-' + something dynamically; the only pc- classes in markup are pc-heart and pc-vcount*. Every rule in the block, including those in the nested min-width:768px and max-width:767px media queries, needs .pc-stars or .pc-stars__count. This is the whole comment-delimited feature, balanced at depth 1, with one trailing blank line before the SOLD OUT header.
+- **Proof:** Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): .pc-stars (0 hits), .pc-stars__count (0 hits); other pc-* in markup: pc-heart, pc-vcount, pc-vcount--inline, pc-vcount__label, pc-vcount__separator only Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: @media (max-width: 1024px) > @media (max-width: 767px) [group] /   - removed: @media (max-width: 1024px) > .pc-stars { display: flex; align-items: center; gap: 2px; margin-bottom: 5px; position: relative; z-index: 2; flex-wrap: nowrap; } /   - removed: @media (max-width: 1024px) > .pc-stars svg { flex-shrink: 0; display: block; } /   - removed: @media (max-width: 1024px) > .pc-stars__count { font-size: 11px; font-weight: 600; color: rgba(255, 255, 255, 0.65); margin-left: 4px; line-height: 1; white-space: nowrap; } /   - removed: @media (max-width: 1024px) > @media (min-width: 768px) [group] /   - removed: @media (max-width: 1024px) > @media (min-width: 768px) > .pc-stars svg { width: 13px; height: 13px; } /   - removed: @media (max-width: 1024px) > @media (min-width: 768px) > .pc-stars__count { font-size: 11.5px; } /   - removed: @media (max-width: 1024px) > @media (max-width: 767px) > .pc-stars { gap: 1.5px; margin-bottom: 4px; } /   - removed: @media (max-width: 1024px) > @media (max-width: 767px) > .pc-stars svg { width: 11px; height: 11px; } /   - removed: @media (max-width: 1024px) > @media (max-width: 767px) > .pc-stars__count { font-size: 10px; margin-left: 3px; }**
+- **Visual change if removed:** None expected (markup-based, hence REVIEW).
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 6027-6054). Manual anchor: from `/* ===== PRODUCT CARD STAR RATINGS ===== */` to `}`.
+Delete:
+```css
+/* ===== PRODUCT CARD STAR RATINGS ===== */
+.pc-stars {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-bottom: 5px;
+  position: relative;
+  z-index: 2;
+  flex-wrap: nowrap;
+}
+.pc-stars svg { flex-shrink: 0; display: block; }
+.pc-stars__count {
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.65);
+  margin-left: 4px;
+  line-height: 1;
+  white-space: nowrap;
+}
+@media (min-width: 768px) {
+  .pc-stars svg { width: 13px; height: 13px; }
+  .pc-stars__count { font-size: 11.5px; }
+}
+@media (max-width: 767px) {
+  .pc-stars { gap: 1.5px; margin-bottom: 4px; }
+  .pc-stars svg { width: 11px; height: 11px; }
+  .pc-stars__count { font-size: 10px; margin-left: 3px; }
+}
+```
+
+### T72 [REVIEW] Category sphere label centering (.category-sphere__label)
+- **File:** `assets/toylvia.css` | baseline lines 4681-4705 | kind: orphan selectors (no markup uses these classes)
+- **Why it is dead:** Both rules (4681-4700 and 4702-4705) require .category-sphere__label in every selector. That class appears in no markup and no script. toylvia.js only queries .category-sphere, .category-sphere__ball and .category-sphere__icon, and sections/category-arc.liquid now outputs .cat-card* markup. The range sits between the live 'html body .category-arc' rule (4677-4680) and the 'Align nav items' header (4706), at depth 0, and is balanced. It does not overlap the logged 4568-4649.
+- **Proof:** Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): .category-sphere__label (0 markup/JS hits); .category-sphere, .category-sphere__ball, .category-arc (treated as used via JS querySelector or section type), but the selectors also require __label Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: html body .category-arc .category-sphere .category-sphere__ball .category-sphere__label, html body .category-sphere .category-sphere__ball .category-sphere__label { position: absolute !important; inset: 0px !important; width: 100% !important; height: 100% !important; margin: 0px !important; padding: /   - removed: html body .category-arc .category-sphere:hover .category-sphere__ball .category-sphere__label, html body .category-sphere:hover .category-sphere__ball .category-sphere__label { transform: none !important; }**
+- **Visual change if removed:** None expected (markup-based, hence REVIEW).
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 4681-4705). Manual anchor: from `html body .category-arc .category-sphere .category-sphere__ball .category-sphere__label,` to `}`.
+Delete:
+```css
+html body .category-arc .category-sphere .category-sphere__ball .category-sphere__label,
+html body .category-sphere .category-sphere__ball .category-sphere__label {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 4px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  line-height: 1 !important;
+  transform: none !important;
+  box-sizing: border-box !important;
+}
+
+html body .category-arc .category-sphere:hover .category-sphere__ball .category-sphere__label,
+html body .category-sphere:hover .category-sphere__ball .category-sphere__label {
+  transform: none !important;
+}
+```
+
+### T73 [REVIEW] V14 legacy CLG hero pill grid (.clg-bg-blob, .clg-grid, .clg-pill, .clg-bend/face/edge, .clg-icon, .clg-text/title/slogan, #clg-tech-grid)
+- **File:** `assets/toylvia.css` | baseline lines 4902-4920 | kind: orphan selectors (no markup uses these classes)
+- **Why it is dead:** sections/clg-hero.liquid (Hero Drift) contains no clg-* classes. Across all markup and JS the only clg strings are the 'clg-hero' section type, the href '/#clg-hero' and getElementById('clg-hero'). None of clg-bg-blob, clg-grid, clg-pill, clg-bend, clg-face, clg-edge, clg-icon, clg-text, clg-title, clg-slogan or the id clg-tech-grid is output anywhere. The live line 4901 '#clg-hero, .clg-hero' is kept. The range covers 18 single-line rules plus the '/* scale now handled dynamically by JS */' comment at 4914, at depth 0, balanced. It is outside the logged 4900 and 4992-4997. The duplicate .clg-* lines inside the 4934-4963 media queries are mixed with live rules and are not included.
+- **Proof:** Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): .clg-bg-blob, .clg-bg-blob--pink, .clg-bg-blob--cyan, .clg-grid, .clg-pill, .clg-bend, .clg-face, .clg-edge, .clg-icon, .clg-text, .clg-title, .clg-slogan, #clg-tech-grid: all 0 markup/JS hits Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .clg-bg-blob { position: absolute; border-radius: 50%; filter: blur(110px); opacity: 0.01; pointer-events: none; z-index: 0; } /   - removed: .clg-bg-blob--pink { width: 520px; height: 520px; background: rgb(255, 90, 168); top: -120px; left: -120px; } /   - removed: .clg-bg-blob--cyan { width: 520px; height: 520px; background: rgb(34, 211, 238); bottom: -160px; right: -120px; } /   - removed: .clg-grid { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1000px; margin: 0px auto; } /   - removed: .clg-pill { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; height: 280px; border-radius: 40px; text-decoration: none; color: rgb(17, 17, 17); overflow: hidden; isolation: isolate; transition: transform 0.35s, box-shadow /   - removed: .clg-pill:hover { transform: translateY(-10px); box-shadow: rgba(34, 211, 238, 0.35) 0px 20px 50px; } /   - removed: .clg-bend, .clg-face, .clg-edge { position: absolute; inset: 0px; border-radius: inherit; pointer-events: none; } /   - removed: .clg-bend { backdrop-filter: blur(3px) url("#clg-glass-blur"); z-index: 0; } /   - removed: .clg-face { background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.08)); box-shadow: rgba(0, 0, 0, 0.08) 0px 8px 8px; z-index: 1; } /   - removed: .clg-edge { border: 1px solid rgba(255, 255, 255, 0.6); box-shadow: rgba(255, 255, 255, 0.9) 0px 1px 0px inset, rgba(255, 255, 255, 0.25) 0px -1px 0px inset; z-index: 2; } /   - removed: .clg-icon { position: relative; z-index: 3; width: 110px; height: 110px; border-radius: 24px; display: flex; align-items: center; justify-content: center; box-shadow: rgba(0, 0, 0, 0.5) 0px 25px 24px; transition: transform 0.7s; } /   - removed: .clg-icon img { width: 82%; height: 82%; object-fit: contain; transition: transform 0.35s; } /   - removed: .clg-text { position: relative; z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 4px; } /   - removed: .clg-title { font-size: 18px; font-weight: 800; letter-spacing: 1.5px; transition: color 0.25s; } /   - removed: .clg-slogan { font-size: 13px; color: rgb(85, 85, 85); font-weight: 500; } /   - removed: .clg-pill:hover .clg-title { color: rgb(255, 90, 168); } /   - removed: #clg-tech-grid { position: absolute; inset: 0px; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0.25; transition: opacity 0.4s; mask-image: linear-gradient(to right, transparent, black 25%, black 75%, transparent), linear-gradient(transparent, black 25%, black 75%, transparent /   - removed: #clg-hero:hover #clg-tech-grid, .clg-hero:hover #clg-tech-grid { opacity: 0.25; }**
+- **Visual change if removed:** None expected (markup-based, hence REVIEW).
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 4902-4920). Manual anchor: from `.clg-bg-blob { position: absolute; border-radius: 50%; filter: blur(110px); opacity: 0....` to `#clg-hero:hover #clg-tech-grid, .clg-hero:hover #clg-tech-grid { opacity: 0.25; }`.
+Delete:
+```css
+.clg-bg-blob { position: absolute; border-radius: 50%; filter: blur(110px); opacity: 0.01; pointer-events: none; z-index: 0; }
+.clg-bg-blob--pink { width: 520px; height: 520px; background: #ff5aa8; top: -120px; left: -120px; }
+.clg-bg-blob--cyan { width: 520px; height: 520px; background: #22d3ee; bottom: -160px; right: -120px; }
+.clg-grid { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1000px; margin: 0 auto; }
+.clg-pill { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; height: 280px; border-radius: 40px; text-decoration: none; color: #111; overflow: hidden; isolation: isolate; transition: transform .35s ease, box-shadow .35s ease; }
+.clg-pill:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(34,211,238,0.35); }
+.clg-bend, .clg-face, .clg-edge { position: absolute; inset: 0; border-radius: inherit; pointer-events: none; }
+.clg-bend { backdrop-filter: blur(3px) url(#clg-glass-blur); -webkit-backdrop-filter: blur(3px); z-index: 0; }
+.clg-face { background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.08)); box-shadow: 0 8px 8px rgba(0,0,0,0.08); z-index: 1; }
+.clg-edge { border: 1px solid rgba(255,255,255,0.6); box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), inset 0 -1px 0 rgba(255,255,255,0.25); z-index: 2; }
+.clg-icon { position: relative; z-index: 3; width: 110px; height: 110px; border-radius: 24px; display: flex; align-items: center; justify-content: center; box-shadow: 0 25px 24px rgba(0,0,0,0.5); transition: transform 0.7s ease; }
+.clg-icon img { width: 82%; height: 82%; object-fit: contain; transition: transform .35s ease; }
+/* scale now handled dynamically by JS */
+.clg-text { position: relative; z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.clg-title { font-size: 18px; font-weight: 800; letter-spacing: 1.5px; transition: color .25s ease; }
+.clg-slogan { font-size: 13px; color: #555; font-weight: 500; }
+.clg-pill:hover .clg-title { color: #ff5aa8; }
+#clg-tech-grid { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0.25; transition: opacity 0.4s ease; -webkit-mask-image: linear-gradient(to right, transparent, black 25%, black 75%, transparent), linear-gradient(to bottom, transparent, black 25%, black 75%, transparent); -webkit-mask-composite: destination-in; mask-image: linear-gradient(to right, transparent, black 25%, black 75%, transparent), linear-gradient(to bottom, transparent, black 25%, black 75%, transparent); mask-composite: intersect; }
+#clg-hero:hover #clg-tech-grid, .clg-hero:hover #clg-tech-grid { opacity: 0.25; }
+```
+
+### T74 [REVIEW] 'Smooth Hover Animation Fix' for legacy .clg-pill cards
+- **File:** `assets/toylvia.css` | baseline lines 6002-6017 | kind: orphan selectors (no markup uses these classes)
+- **Why it is dead:** All 3 rules require .clg-pill, plus .clg-prod-img or .clg-card-inner for two of them. None of these classes is output by any markup or script; the clg-hero section has no clg-* markup. This is the whole comment-delimited block with its numbered sub-comments, at depth 1 inside the unclosed @media, balanced, ending on one blank line. It sits directly before the logged 6019-6025 (also clg-pill) and does not overlap it.
+- **Proof:** Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): .clg-pill, .clg-prod-img, .clg-card-inner (0 markup/JS hits); #clg-hero is only used via getElementById, but every selector also requires .clg-pill Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: @media (max-width: 1024px) > #clg-hero a.clg-pill { transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s !important; } /   - removed: @media (max-width: 1024px) > #clg-hero .clg-pill img.clg-prod-img { transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.4s !important; } /   - removed: @media (max-width: 1024px) > #clg-hero .clg-pill .clg-card-inner { transition: box-shadow 0.4s !important; }**
+- **Visual change if removed:** None expected (markup-based, hence REVIEW).
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 6002-6017). Manual anchor: from `/* Smooth Hover Animation Fix */` to `}`.
+Delete:
+```css
+/* Smooth Hover Animation Fix */
+
+/* 1. Animate the main card container */
+#clg-hero a.clg-pill {
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease !important;
+}
+
+/* 2. Animate the product image scaling */
+#clg-hero .clg-pill img.clg-prod-img {
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.4s ease !important;
+}
+
+/* 3. Ensure internal shadow also transitions smoothly */
+#clg-hero .clg-pill .clg-card-inner {
+    transition: box-shadow 0.4s ease !important;
+}
+```
+
+### T75 [REVIEW] Dead .product-card__image-wrap wishlist-heart styling (4 rules, base/svg/hover/is-on)
+- **File:** `assets/live-card-fixes.css` | baseline lines 158-161 | kind: orphan selectors (no markup uses these classes)
+- **Why it is dead:** Each of the 4 rules is a single selector that needs .product-card__image-wrap. No markup outputs that class: snippets/product-card.liquid just renders shared-product-card with card_context 'collection', which outputs <a class="cr-card product-card"> and an image wrapper of <div class="cr-card__img-wrap">. The class shows up only in CSS (snippets/product-card-styles.liquid, cr-card-styles.liquid and card-secondary-image-styles.liquid <style> blocks, and the CSS strings in layout/theme.liquid line 1885). No JS querySelector, className or string concatenation produces it. The working cr-card twins at lines 154-157 stay. The shared comment header at line 153 stays because it also covers 154-157. The range is brace-balanced (4 open, 4 close) and lines 158-161 hold no other rule.
+- **Proof:** Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): .product-card__image-wrap: 0 hits in layout/sections/snippets/templates/settings_data/assets JS outside CSS (also 0 after blanking CSS-in-JS strings and comments). No dynamic prefix (product-card__{{, product-card__'+, product-card__${) exists. .product-card, .pc-heart and .is-on are used but don't matter because the required class is missing. Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card.product-card .product-card__image-wrap > .pc-heart.pc-heart { display: flex !important; visibility: visible !important /   - removed: html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card.product-card .product-card__image-wrap > .pc-heart.pc-heart svg { width: 16px !important; height: 16px !important; min /   - removed: html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card.product-card .product-card__image-wrap > .pc-heart.pc-heart:hover { transform: scale(1.2) !important; } /   - removed: html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card.product-card .product-card__image-wrap > .pc-heart.pc-heart.is-on svg { fill: rgb(255, 66, 161) !important; stroke: rg**
+- **Visual change if removed:** None expected (markup-based, hence REVIEW).
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 158-161). Manual anchor: from `html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#Main...` to `html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#Main...`.
+Delete:
+```css
+html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card.product-card .product-card__image-wrap>.pc-heart.pc-heart{display:flex!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important;position:absolute!important;top:7px!important;left:7px!important;right:auto!important;bottom:auto!important;width:22px!important;height:22px!important;min-width:22px!important;min-height:22px!important;flex:0 0 22px!important;margin:0!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;border-radius:0!important;z-index:15!important;cursor:pointer!important;align-items:center!important;justify-content:center!important;transition:transform .15s ease!important}
+html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card.product-card .product-card__image-wrap>.pc-heart.pc-heart svg{width:16px!important;height:16px!important;min-width:16px!important;min-height:16px!important;stroke:#e0457f!important;stroke-width:2!important;filter:drop-shadow(0 0 2px rgba(255,255,255,.95))!important;transition:fill .15s ease,transform .15s ease!important}
+html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card.product-card .product-card__image-wrap>.pc-heart.pc-heart:hover{transform:scale(1.2)!important}
+html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card.product-card .product-card__image-wrap>.pc-heart.pc-heart.is-on svg{fill:#ff42a1!important;stroke:#ff42a1!important}
+```
+
+### T76 [REVIEW] Dead .product-card__image-wrap heart resize overrides (3 rules)
+- **File:** `assets/live-card-fixes.css` | baseline lines 182-184 | kind: orphan selectors (no markup uses these classes)
+- **Why it is dead:** Same dead feature as s-1: the 'Heart 5% bigger' copies aimed at .product-card__image-wrap>.pc-heart, a wrapper no markup or script outputs. Collection cards use cr-card__img-wrap from shared-product-card.liquid. Lines 179-181 (cr-card versions) and 185-186 (drift-heart) stay, and so does the shared header at line 178. Each line is exactly one single-selector rule, and the range is brace-balanced (3/3).
+- **Proof:** Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): .product-card__image-wrap: unused, as in s-1. The other classes (.product-card, .pc-heart, .is-on) are used but not enough to match. Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card.product-card .product-card__image-wrap > .pc-heart.pc-heart { width: 23px !important; height:  /   - removed: html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card.product-card .product-card__image-wrap > .pc-heart.pc-heart svg { width: 22.5px !important; he /   - removed: html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card.product-card .product-card__image-wrap > .pc-heart.pc-heart.is-on svg { fill: rgb(255, 66, 161**
+- **Visual change if removed:** None expected (markup-based, hence REVIEW).
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 182-184). Manual anchor: from `html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#Main...` to `html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#Main...`.
+Delete:
+```css
+html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card.product-card .product-card__image-wrap>.pc-heart.pc-heart{width:23px!important;height:23px!important;min-width:23px!important;min-height:23px!important;flex:0 0 23px!important}
+html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card.product-card .product-card__image-wrap>.pc-heart.pc-heart svg{width:22.5px!important;height:22.5px!important;min-width:22.5px!important;min-height:22.5px!important;fill:none!important;stroke:#111!important}
+html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card.product-card .product-card__image-wrap>.pc-heart.pc-heart.is-on svg{fill:#ff42a1!important;stroke:#ff42a1!important}
+```
+
+### T77 [REVIEW] Dead variant-count-line / cr-card__meta-row centering (2 rules)
+- **File:** `assets/card-markers.css` | baseline lines 192-201 | kind: orphan selectors (no markup uses these classes)
+- **Why it is dead:** Rule 192-198 has 3 selectors. They need .cr-card__variant-count-line, .product-card__variant-count-line, and .cr-card__meta-row (the 3rd is '.cr-card .cr-card__meta-row .cr-card__variation-count', and .cr-card__meta-row is required even though .cr-card__variation-count shows up in a JS querySelector). Rule 199-201 needs .cr-card__meta-row. None of these classes is output by any markup or script. The shared-product-card.liquid body is card-category-name, cr-card__name, cr-card__stars and cr-card__footer, with no meta-row and no variant-count-line. The comment header at line 187 stays because it also covers the live .var-dot rule at 188-191. The range is brace-balanced (2/2) and ends right before the 'Card hearts stay removed' comment on line 202.
+- **Proof:** Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): .cr-card__variant-count-line: 0 hits. .product-card__variant-count-line: 0. .cr-card__meta-row: 0 outside CSS (only in snippets/cr-card-styles.liquid <style>). There is no 'variant-count', 'meta-row' or dynamic prefix anywhere in markup or JS. Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: html body #MainContent#MainContent#MainContent#MainContent .cr-card .cr-card__variant-count-line, html body #MainContent#MainContent#MainContent#MainContent .product-card .product-card__variant-count-line, html body #MainContent#MainContent#MainContent#MainContent .cr-card .cr-card__meta-row .cr-car /   - removed: html body #MainContent#MainContent#MainContent#MainContent .cr-card .cr-card__meta-row { display: block !important; width: 100% !important; min-height: 0px !important; height: auto !important; margin: 0px !important; padding: 0px !important; text-align: center !important; }**
+- **Visual change if removed:** None expected (markup-based, hence REVIEW).
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 192-201). Manual anchor: from `html body #MainContent#MainContent#MainContent#MainContent .cr-card .cr-card__variant-c...` to `}`.
+Delete:
+```css
+html body #MainContent#MainContent#MainContent#MainContent .cr-card .cr-card__variant-count-line,
+html body #MainContent#MainContent#MainContent#MainContent .product-card .product-card__variant-count-line,
+html body #MainContent#MainContent#MainContent#MainContent .cr-card .cr-card__meta-row .cr-card__variation-count{
+  display:block!important;flex:0 0 auto!important;width:100%!important;height:auto!important;min-height:12.5px!important;margin:0 auto 4px!important;padding:0!important;
+  color:#707783!important;text-align:center!important;font:600 10px/12.5px Nunito,system-ui,sans-serif!important;
+  white-space:nowrap!important
+}
+html body #MainContent#MainContent#MainContent#MainContent .cr-card .cr-card__meta-row{
+  display:block!important;width:100%!important;min-height:0!important;height:auto!important;margin:0!important;padding:0!important;text-align:center!important
+}
+```
+
+### T78 [REVIEW] Dead meta-row heart button + hit-area rules
+- **File:** `assets/card-markers.css` | baseline lines 69-70 | kind: orphan selectors (no markup uses these classes)
+- **Why it is dead:** Both selectors in each rule need .product-card__meta-row or .cr-card__meta-row, and no markup or JS outputs either one. The card hearts live in .cr-card__img-wrap (shared-product-card.liquid), not in a meta row. These rules belong to the stale 'Card meta + compact outlined cart action' block at lines 64-81. Neighbouring rules there stay: line 68 (.cr-card__variation-count, which a querySelector in card-shop-action.js counts as used) and line 71 onward (.cr-card__footer .cr-card__buy, which is used). The same dead meta-row feature also appears at 66-67 (s-6), 74, 84-85 and 125-126, each verified dead but left out of this list because of the 6-candidate limit.
+- **Proof:** Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): .product-card__meta-row: 0 hits. .cr-card__meta-row: 0 hits outside CSS. .pc-heart is used but not enough. Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: #MainContent .product-card__meta-row .pc-heart, #MainContent .cr-card__meta-row .pc-heart { display: flex !important; align-items: center !important; justify-content: center !important; width: 36px !important; height: 36px !important; min-width: 36px !important; min-height: 36px !important; margin:  /   - removed: #MainContent .product-card__meta-row .pc-heart::after, #MainContent .cr-card__meta-row .pc-heart::after { content: "" !important; position: absolute !important; inset: -3px !important; background: transparent !important; border: 0px !important; pointer-events: auto !important; }**
+- **Visual change if removed:** None expected (markup-based, hence REVIEW).
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 69-70). Manual anchor: from `#MainContent .product-card__meta-row .pc-heart,#MainContent .cr-card__meta-row .pc-hear...` to `#MainContent .product-card__meta-row .pc-heart::after,#MainContent .cr-card__meta-row ....`.
+Delete:
+```css
+#MainContent .product-card__meta-row .pc-heart,#MainContent .cr-card__meta-row .pc-heart{display:flex!important;align-items:center!important;justify-content:center!important;width:36px!important;height:36px!important;min-width:36px!important;min-height:36px!important;margin:0!important;flex:0 0 36px!important;position:relative!important;color:#59796a!important;z-index:12!important;cursor:pointer!important;pointer-events:auto!important;touch-action:manipulation!important}
+#MainContent .product-card__meta-row .pc-heart::after,#MainContent .cr-card__meta-row .pc-heart::after{content:""!important;position:absolute!important;inset:-3px!important;background:transparent!important;border:0!important;pointer-events:auto!important}
+```
+
+### T79 [REVIEW] Dead .var-dot__count / .var-dot__label typography (2 rules)
+- **File:** `assets/card-markers.css` | baseline lines 95-98 | kind: orphan selectors (no markup uses these classes)
+- **Why it is dead:** Every selector needs .var-dot__count or .var-dot__label. Those child classes show up only in CSS (product-card-styles.liquid and cr-card-styles.liquid <style> blocks, and home-palette.css). No markup creates a .var-dot element with those children, and no JS builds them: the only script mention of 'var-dot' is the querySelector('.var-dot,...') in card-shop-action.js, with no __count or __label and no var-dot__ concatenation. Lines 86-94 (.var-dot itself) and 99-100 stay. home-palette.css 207-208 is the same dead pair (.cat-rows .cr-card__img-wrap > .var-dot .var-dot__count/.var-dot__label). It was also verified dead (cssom: 90 -> 89, only that rule removed) and can be cut together with this one.
+- **Proof:** Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): .var-dot__count: 0 hits outside CSS. .var-dot__label: 0 hits outside CSS. .var-dot is treated as used (querySelector string in card-shop-action.js). .product-card__image-wrap is unused. Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: html body #MainContent#MainContent .cr-card.cr-card.cr-card .cr-card__img-wrap > .var-dot .var-dot__count, html body #MainContent#MainContent .product-card.product-card .product-card__image-wrap > .var-dot .var-dot__count { font: 600 9px / 1.2 Nunito, system-ui, sans-serif !important; } /   - removed: html body #MainContent#MainContent .cr-card.cr-card.cr-card .cr-card__img-wrap > .var-dot .var-dot__label, html body #MainContent#MainContent .product-card.product-card .product-card__image-wrap > .var-dot .var-dot__label { font: 600 9px / 1.2 Nunito, system-ui, sans-serif !important; text-transform**
+- **Visual change if removed:** None expected (markup-based, hence REVIEW).
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 95-98). Manual anchor: from `html body #MainContent#MainContent .cr-card.cr-card.cr-card .cr-card__img-wrap>.var-dot...` to `html body #MainContent#MainContent .product-card.product-card .product-card__image-wrap...`.
+Delete:
+```css
+html body #MainContent#MainContent .cr-card.cr-card.cr-card .cr-card__img-wrap>.var-dot .var-dot__count,
+html body #MainContent#MainContent .product-card.product-card .product-card__image-wrap>.var-dot .var-dot__count{font:600 9px/1.2 Nunito,system-ui,sans-serif!important}
+html body #MainContent#MainContent .cr-card.cr-card.cr-card .cr-card__img-wrap>.var-dot .var-dot__label,
+html body #MainContent#MainContent .product-card.product-card .product-card__image-wrap>.var-dot .var-dot__label{font:600 9px/1.2 Nunito,system-ui,sans-serif!important;text-transform:none!important}
+```
+
+### T80 [REVIEW] Dead meta-row flex layout rules
+- **File:** `assets/card-markers.css` | baseline lines 66-67 | kind: orphan selectors (no markup uses these classes)
+- **Why it is dead:** Both rules only target .product-card__meta-row / .cr-card__meta-row, which no markup or script outputs (same dead meta-row feature as s-3 and s-4). Line 65 (.var-dot, used via querySelector) and line 68 (.cr-card__variation-count, used via querySelector) stay, so the 64-81 block can't be removed whole. Other meta-row-only rules verified dead in this file: line 74 (meta-row .pc-heart svg), 84-85 (meta-row variation-count hide, cssom 75->74) and 125-126 (__body meta-row hide, cssom 75->74). home-palette.css 207-208 is listed under s-5.
+- **Proof:** Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): .product-card__meta-row: 0 hits. .cr-card__meta-row: 0 hits outside CSS. The attribute selector [aria-hidden] doesn't matter because the meta-row ancestor is required. Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: #MainContent .product-card__meta-row, #MainContent .cr-card__meta-row { display: flex !important; align-items: center !important; justify-content: space-between !important; gap: 8px !important; min-height: 28px !important; margin: 0px 0px 4px !important; } /   - removed: #MainContent .product-card__meta-row > [aria-hidden="true"], #MainContent .cr-card__meta-row > [aria-hidden="true"] { flex: 1 1 auto !important; }**
+- **Visual change if removed:** None expected (markup-based, hence REVIEW).
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 66-67). Manual anchor: from `#MainContent .product-card__meta-row,#MainContent .cr-card__meta-row{display:flex!impor...` to `#MainContent .product-card__meta-row>[aria-hidden="true"],#MainContent .cr-card__meta-r...`.
+Delete:
+```css
+#MainContent .product-card__meta-row,#MainContent .cr-card__meta-row{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important;min-height:28px!important;margin:0 0 4px!important}
+#MainContent .product-card__meta-row>[aria-hidden="true"],#MainContent .cr-card__meta-row>[aria-hidden="true"]{flex:1 1 auto!important}
+```
+
+---
+
+## Deciding on REVIEW items
+
+- TODO items are proven from the CSS alone (Chrome rule list unchanged, or every removed rule provably overridden). They are safe without looking at the site.
+- Every REVIEW item rests on one claim: 'no template, snippet or script outputs these classes' (or the element is display:none). That was checked by a full-text search of all 119 theme files plus a skeptic agent, but an app or content in the Shopify admin (product descriptions, pages) could in theory use a class.
+- Simplest safe way to approve REVIEW items: apply them to a DUPLICATE of the live theme first (Online Store > Themes > Duplicate, then push with --theme <duplicate id>), preview the homepage, one product page, one collection page and the cart on desktop and mobile, then push to the live theme.
+- Supersede pairs: a few REVIEW items contain smaller TODO items. Approving the REVIEW item removes the TODO item's lines too; apply it instead of them.
+
+---
+
+## Not scanned yet (possible next step)
+
+- Inline <style> blocks inside .liquid files (layout/theme.liquid ~180 KB, sections/category-rows.liquid, snippets/collection-page.liquid, snippets/cr-card-styles.liquid, snippets/product-card-styles.liquid, ...). They hold a lot of CSS and very likely more dead code, but editing Liquid files needs a different verification setup.
+- assets/tlv-owner-overrides.css: deliberately excluded (owner-requested file; one proven duplicate there was left alone on purpose).
+- Declaration-level dead code inside live rules (single overridden properties). Only whole rules/blocks were logged.
 
 ---
 

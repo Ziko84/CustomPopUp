@@ -1,8 +1,8 @@
 {
   "scan": {
     "started": "2026-10-11T15:16:39Z",
-    "updated": "2026-10-11T16:04:48Z",
-    "rounds": 3,
+    "updated": "2026-10-11T16:13:58Z",
+    "rounds": 4,
     "branch": "claude/chrome-devtools-state-preservation-o47p8j",
     "theme_name": "lior's theme for toylvia",
     "theme_id": "209157554507",
@@ -1636,6 +1636,522 @@
         }
       ],
       "verify": "DIFFERENT /   - removed: html body #MainContent#MainContent#MainContent .cr-card.cr-card.cr-card .cr-card__footer { margin-top: 0px !important; }"
+    },
+    {
+      "id": "T57",
+      "status": "REVIEW",
+      "round": 4,
+      "file": "assets/toylvia.css",
+      "baseline_lines": "1979-2027",
+      "title": "Collection back button: back-arrow, wrapper and pink/yellow/cyan colour variants",
+      "kind": "orphan selectors (no markup uses these classes)",
+      "why": "No markup or script ever outputs .back-arrow, .collection-back-wrapper, .collection-back-btn--pink, --yellow or --cyan. Their only mentions are CSS text: the CSS string toylvia.js:1103 injects into a <style> element, and the custom_css array in settings_data.json line 60. Neither counts as usage. The base .collection-back-btn rule (1962-1978, kept with its header) counts as used because of the querySelector strings in toylvia.js:1113 and 1267. Nothing in the theme builds 'collection-back-btn--' dynamically. The range covers whole rules from .collection-back-btn .back-arrow through .collection-back-btn--cyan:hover, plus one trailing blank line.",
+      "proof": "Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): .back-arrow (only in toylvia.js:1103 CSS string); .collection-back-wrapper (only toylvia.js:1103 CSS string and settings_data custom_css); .collection-back-btn--pink/--yellow/--cyan (only toylvia.js:1103 CSS string); no 'collection-back-btn--' + / {{ }} construction anywhere Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.",
+      "visual_change": "None expected (markup-based, hence REVIEW).",
+      "parts": [
+        {
+          "lines": "1979-2027",
+          "context_before": "",
+          "exact_text": ".collection-back-btn .back-arrow {\n  width: 18px;\n  height: 18px;\n  flex-shrink: 0;\n  transition: transform 0.25s ease;\n  display: inline-block;\n}\n.collection-back-btn:hover .back-arrow {\n  transform: translateX(-3px);\n}\n.collection-back-wrapper {\n  margin-bottom: 0.5rem;\n}\n\n/* pink pages: building-blocks, toy-blasters, all-products */\n.collection-back-btn--pink {\n  border-color: hsl(var(--toylvia-pink));\n  color: hsl(var(--toylvia-pink));\n}\n.collection-back-btn--pink:hover {\n  background: hsl(var(--toylvia-pink));\n  color: #fff;\n  transform: translateX(-4px);\n  \n}\n\n/* yellow pages: collectibles, plush-toys */\n.collection-back-btn--yellow {\n  border-color: hsl(var(--toylvia-yellow));\n  color: hsl(44, 100%, 40%);\n}\n.collection-back-btn--yellow:hover {\n  background: hsl(var(--toylvia-yellow));\n  color: #1a1a1a;\n  transform: translateX(-4px);\n  box-shadow: 4px 4px 16px hsla(48, 100%, 62%, 0.4);\n}\n\n/* cyan pages: vehicles, puzzles-iq */\n.collection-back-btn--cyan {\n  border-color: hsl(var(--toylvia-cyan));\n  color: hsl(87, 85%, 38%);\n}\n.collection-back-btn--cyan:hover {\n  background: hsl(var(--toylvia-cyan));\n  color: #fff;\n  transform: translateX(-4px);\n  box-shadow: 4px 4px 16px hsla(187, 85%, 53%, 0.35);\n}\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: .collection-back-btn .back-arrow { width: 18px; height: 18px; flex-shrink: 0; transition: transform 0.25s; display: inline-block; } /   - removed: .collection-back-btn:hover .back-arrow { transform: translateX(-3px); } /   - removed: .collection-back-wrapper { margin-bottom: 0.5rem; } /   - removed: .collection-back-btn--pink { border-color: hsl(var(--toylvia-pink)); color: hsl(var(--toylvia-pink)); } /   - removed: .collection-back-btn--pink:hover { background: hsl(var(--toylvia-pink)); color: rgb(255, 255, 255); transform: translateX(-4px); } /   - removed: .collection-back-btn--yellow { border-color: hsl(var(--toylvia-yellow)); color: rgb(204, 150, 0); } /   - removed: .collection-back-btn--yellow:hover { background: hsl(var(--toylvia-yellow)); color: rgb(26, 26, 26); transform: translateX(-4px); box-shadow: rgba(255, 216, 61, 0.4) 4px 4px 16px; } /   - removed: .collection-back-btn--cyan { border-color: hsl(var(--toylvia-cyan)); color: rgb(105, 179, 15); } /   - removed: .collection-back-btn--cyan:hover { background: hsl(var(--toylvia-cyan)); color: rgb(255, 255, 255); transform: translateX(-4px); box-shadow: rgba(33, 213, 237, 0.35) 4px 4px 16px; }"
+    },
+    {
+      "id": "T58",
+      "status": "REVIEW",
+      "round": 4,
+      "file": "assets/toylvia.css",
+      "baseline_lines": "516-556",
+      "title": "Legacy product-card image tints, badge and like button",
+      "kind": "orphan selectors (no markup uses these classes)",
+      "why": "No markup or JS outputs product-card__image, product-card__image--cyan/pink/yellow/purple/green/orange, product-card__badge or product-card__like. The product-card class is only added to cr-card in shared-product-card.liquid:73. Its children are cr-card__*, and nothing builds product-card__ or __image-- names dynamically. Both rules inside the (hover:hover) media block need .product-card__image, so the whole media group goes. .product-card__price (558) and .product-card__cta (563) are used and stay outside the range.",
+      "proof": "Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): .product-card__image, .product-card__image--cyan/--pink/--yellow/--purple/--green/--orange, .product-card__badge, .product-card__like, .liked: 0 markup or script hits; .product-grid and .product-card are used, but every selector here also needs one of the missing classes Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.",
+      "visual_change": "None expected (markup-based, hence REVIEW).",
+      "parts": [
+        {
+          "lines": "516-556",
+          "context_before": "",
+          "exact_text": "@media (hover: hover) and (pointer: fine) {\n  .product-grid:hover .product-card__image img { filter: drop-shadow(0 8px 20px rgba(0,0,0,0.12)) grayscale(0.6) brightness(0.92); }\n  .product-grid:hover .product-card:hover .product-card__image img { filter: drop-shadow(0 8px 20px rgba(0,0,0,0.12)) grayscale(0); }\n}\n.product-card__image--cyan { background: linear-gradient(to bottom right, hsl(187,60%,93%), hsl(187,70%,88%)); }\n.product-card__image--pink { background: linear-gradient(to bottom right, hsl(330,60%,95%), hsl(330,60%,90%)); }\n.product-card__image--yellow { background: linear-gradient(to bottom right, hsl(48,80%,93%), hsl(48,80%,85%)); }\n.product-card__image--purple { background: linear-gradient(to bottom right, hsl(280,60%,93%), hsl(280,70%,88%)); }\n.product-card__image--green { background: linear-gradient(to bottom right, hsl(140,60%,93%), hsl(140,65%,88%)); }\n.product-card__image--orange { background: linear-gradient(to bottom right, hsl(25,80%,93%), hsl(25,100%,88%)); }\n\n.product-card__badge {\n  position: absolute;\n  top: 0.75rem;\n  left: 0.75rem;\n  padding: 0.22rem 0.55rem;\n  border-radius: 999px;\n  background: transparent;\n  font-size: 10px;\n  font-weight: 700;\n  letter-spacing: 0.08em;\n  z-index: 5;\n}\n\n.product-card__like {\n  position: absolute;\n  top: 0.75rem;\n  right: 0.75rem;\n  width: 32px;\n  height: 32px;\n  border-radius: 50%;\n  background: hsla(210, 20%, 98%, 0.8);\n  backdrop-filter: blur(8px);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);\n  z-index: 5;\n}\n.product-card__like:hover { transform: scale(1.1); }\n.product-card__like.liked svg { color: hsl(var(--destructive)); fill: hsl(var(--destructive)); }\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: @media (hover: hover) and (pointer: fine) [group] /   - removed: @media (hover: hover) and (pointer: fine) > .product-grid:hover .product-card__image img { filter: drop-shadow(rgba(0, 0, 0, 0.12) 0px 8px 20px) grayscale(0.6) brightness(0.92); } /   - removed: @media (hover: hover) and (pointer: fine) > .product-grid:hover .product-card:hover .product-card__image img { filter: drop-shadow(rgba(0, 0, 0, 0.12) 0px 8px 20px) grayscale(0); } /   - removed: .product-card__image--cyan { background: linear-gradient(to right bottom, rgb(226, 245, 248), rgb(203, 241, 246)); } /   - removed: .product-card__image--pink { background: linear-gradient(to right bottom, rgb(250, 235, 242), rgb(245, 214, 230)); } /   - removed: .product-card__image--yellow { background: linear-gradient(to right bottom, rgb(251, 246, 223), rgb(247, 235, 186)); } /   - removed: .product-card__image--purple { background: linear-gradient(to right bottom, rgb(241, 226, 248), rgb(232, 203, 246)); } /   - removed: .product-card__image--green { background: linear-gradient(to right bottom, rgb(226, 248, 234), rgb(205, 244, 218)); } /   - removed: .product-card__image--orange { background: linear-gradient(to right bottom, rgb(251, 235, 223), rgb(255, 219, 194)); } /   - removed: .product-card__badge { position: absolute; top: 0.75rem; left: 0.75rem; padding: 0.22rem 0.55rem; border-radius: 999px; background: transparent; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; z-index: 5; } /   - removed: .product-card__like { position: absolute; top: 0.75rem; right: 0.75rem; width: 32px; height: 32px; border-radius: 50%; background: rgba(249, 250, 251, 0.8); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; transition: transform 0.3s cubic-bezier(0.34, 1.56, 0. /   - removed: .product-card__like:hover { transform: scale(1.1); } /   - removed: .product-card__like.liked svg { color: hsl(var(--destructive)); fill: hsl(var(--destructive)); }"
+    },
+    {
+      "id": "T59",
+      "status": "REVIEW",
+      "round": 4,
+      "file": "assets/toylvia.css",
+      "baseline_lines": "1051-1089",
+      "title": "Border-shine animation: borderShine* keyframes and product-card--<color> rules",
+      "kind": "orphan selectors (no markup uses these classes)",
+      "why": "No markup or script outputs .product-card--cyan, --pink, --yellow, --purple, --green or --orange. shared-product-card.liquid takes no color parameter, and no 'product-card--' prefix is built with {{ }}, + or ${}. The only product-card--* occurrences outside toylvia.css are CSS in a <style> block in theme.liquid (lines 1339-1347). Searching the whole theme shows the six @keyframes borderShine* are referenced only by the six orphaned rules at 1084-1089. The comment at line 6108 is only text. The block is the complete dead feature: six keyframes, comment and six rules. 1031-1049 is already logged and 1050 is blank, so there is no overlap. The range ends with one trailing blank line.",
+      "proof": "Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): .product-card--cyan/--pink/--yellow/--purple/--green/--orange: no class attribute or JS usage (only theme.liquid <style> CSS); borderShineCyan/Pink/Yellow/Purple/Green/Orange: only referenced at toylvia.css 1084-1089 Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.",
+      "visual_change": "None expected (markup-based, hence REVIEW).",
+      "parts": [
+        {
+          "lines": "1051-1089",
+          "context_before": "",
+          "exact_text": "@keyframes borderShineCyan {\n  0% { border-color: hsla(187, 85%, 53%, 0.15); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }\n  50% { border-color: hsla(187, 85%, 53%, 0.5); box-shadow: 0 4px 16px rgba(0,0,0,0.06), 0 0 18px hsla(187, 85%, 53%, 0.15); }\n  100% { border-color: hsla(187, 85%, 53%, 0.15); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }\n}\n@keyframes borderShinePink {\n  0% { border-color: hsla(330, 100%, 63%, 0.15); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }\n  50% { border-color: hsla(330, 100%, 63%, 0.5); box-shadow: 0 4px 16px rgba(0,0,0,0.06), 0 0 18px hsla(330, 100%, 63%, 0.15); }\n  100% { border-color: hsla(330, 100%, 63%, 0.15); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }\n}\n@keyframes borderShineYellow {\n  0% { border-color: hsla(48, 100%, 62%, 0.15); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }\n  50% { border-color: hsla(48, 100%, 62%, 0.5); box-shadow: 0 4px 16px rgba(0,0,0,0.06), 0 0 18px hsla(48, 100%, 62%, 0.15); }\n  100% { border-color: hsla(48, 100%, 62%, 0.15); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }\n}\n@keyframes borderShinePurple {\n    0% { border-color: hsla(280, 70%, 55%, 0.15); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }\n      50% { border-color: hsla(280, 70%, 55%, 0.5); box-shadow: 0 4px 16px rgba(0,0,0,0.06), 0 0 18px hsla(280, 70%, 55%, 0.15); }\n        100% { border-color: hsla(280, 70%, 55%, 0.15); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }\n        }\n        @keyframes borderShineGreen {\n          0% { border-color: hsla(140, 65%, 42%, 0.15); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }\n            50% { border-color: hsla(140, 65%, 42%, 0.5); box-shadow: 0 4px 16px rgba(0,0,0,0.06), 0 0 18px hsla(140, 65%, 42%, 0.15); }\n              100% { border-color: hsla(140, 65%, 42%, 0.15); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }\n              }\n              @keyframes borderShineOrange {\n                0% { border-color: hsla(25, 100%, 55%, 0.15); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }\n                  50% { border-color: hsla(25, 100%, 55%, 0.5); box-shadow: 0 4px 16px rgba(0,0,0,0.06), 0 0 18px hsla(25, 100%, 55%, 0.15); }\n                    100% { border-color: hsla(25, 100%, 55%, 0.15); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }\n                    }\n\n\n/* Border shine animation defaults */\n.product-card--cyan { animation: borderShineCyan 8s ease infinite; }\n.product-card--pink { animation: borderShinePink 8s ease infinite; }\n.product-card--yellow { animation: borderShineYellow 8s ease infinite; }\n.product-card--purple { animation: borderShinePurple 8s ease infinite; }\n.product-card--green { animation: borderShineGreen 8s ease infinite; }\n.product-card--orange { animation: borderShineOrange 8s ease infinite; }\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: @keyframes borderShineCyan { 0% { border-color: rgba(33, 213, 237, 0.15); box-shadow: rgba(0, 0, 0, 0.06) 0px 4px 16px; } 50% { border-color: rgba(33, 213, 237, 0.5); box-shadow: rgba(0, 0, 0, 0.06) 0px 4px 16px, rgba(33, 213, 237, 0.15) 0px 0px 18px; } 100% { border-color: rgba(33, 213, 237, 0.15); /   - removed: @keyframes borderShinePink { 0% { border-color: rgba(255, 66, 161, 0.15); box-shadow: rgba(0, 0, 0, 0.06) 0px 4px 16px; } 50% { border-color: rgba(255, 66, 161, 0.5); box-shadow: rgba(0, 0, 0, 0.06) 0px 4px 16px, rgba(255, 66, 161, 0.15) 0px 0px 18px; } 100% { border-color: rgba(255, 66, 161, 0.15); /   - removed: @keyframes borderShineYellow { 0% { border-color: rgba(255, 216, 61, 0.15); box-shadow: rgba(0, 0, 0, 0.06) 0px 4px 16px; } 50% { border-color: rgba(255, 216, 61, 0.5); box-shadow: rgba(0, 0, 0, 0.06) 0px 4px 16px, rgba(255, 216, 61, 0.15) 0px 0px 18px; } 100% { border-color: rgba(255, 216, 61, 0.15 /   - removed: @keyframes borderShinePurple { 0% { border-color: rgba(167, 60, 221, 0.15); box-shadow: rgba(0, 0, 0, 0.06) 0px 4px 16px; } 50% { border-color: rgba(167, 60, 221, 0.5); box-shadow: rgba(0, 0, 0, 0.06) 0px 4px 16px, rgba(167, 60, 221, 0.15) 0px 0px 18px; } 100% { border-color: rgba(167, 60, 221, 0.15 /   - removed: @keyframes borderShineGreen { 0% { border-color: rgba(37, 177, 84, 0.15); box-shadow: rgba(0, 0, 0, 0.06) 0px 4px 16px; } 50% { border-color: rgba(37, 177, 84, 0.5); box-shadow: rgba(0, 0, 0, 0.06) 0px 4px 16px, rgba(37, 177, 84, 0.15) 0px 0px 18px; } 100% { border-color: rgba(37, 177, 84, 0.15); bo /   - removed: @keyframes borderShineOrange { 0% { border-color: rgba(255, 121, 26, 0.15); box-shadow: rgba(0, 0, 0, 0.06) 0px 4px 16px; } 50% { border-color: rgba(255, 121, 26, 0.5); box-shadow: rgba(0, 0, 0, 0.06) 0px 4px 16px, rgba(255, 121, 26, 0.15) 0px 0px 18px; } 100% { border-color: rgba(255, 121, 26, 0.15 /   - removed: .product-card--cyan { animation: 8s ease 0s infinite normal none running borderShineCyan; } /   - removed: .product-card--pink { animation: 8s ease 0s infinite normal none running borderShinePink; } /   - removed: .product-card--yellow { animation: 8s ease 0s infinite normal none running borderShineYellow; } /   - removed: .product-card--purple { animation: 8s ease 0s infinite normal none running borderShinePurple; } /   - removed: .product-card--green { animation: 8s ease 0s infinite normal none running borderShineGreen; } /   - removed: .product-card--orange { animation: 8s ease 0s infinite normal none running borderShineOrange; }"
+    },
+    {
+      "id": "T60",
+      "status": "REVIEW",
+      "round": 4,
+      "file": "assets/toylvia.css",
+      "baseline_lines": "990-990, 1010-1018",
+      "title": "Product page trust badges block",
+      "kind": "orphan selectors (no markup uses these classes)",
+      "why": "The .product-trust-badges class appears nowhere in layout, sections, snippets, templates, settings_data or assets JS. product-main.liquid does not output it. Every rule in the block requires it: the base rule, the .trust-badge and .trust-badge__icon descendants, and the max-width:639px media group. That makes the whole comment-delimited block dead. It ends right before the already-logged likeBurst keyframes at 1020.",
+      "proof": "Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): .product-trust-badges: 0 hits (.trust-badge and .trust-badge__icon only appear in toylvia.js querySelector strings, but every selector here is also scoped under .product-trust-badges) Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.",
+      "visual_change": "None expected (markup-based, hence REVIEW).",
+      "parts": [
+        {
+          "lines": "990-990",
+          "context_before": "",
+          "exact_text": "/* === PRODUCT PAGE TRUST BADGES === */\n",
+          "context_after": ""
+        },
+        {
+          "lines": "1010-1018",
+          "context_before": "",
+          "exact_text": "@media (max-width: 639px) {\n  .product-trust-badges {\n    justify-content: center;\n    gap: 0.6rem 1rem;\n    margin-top: 1rem;\n    padding-top: 1rem;\n    flex-wrap: nowrap !important;\n  }\n}\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: @media (max-width: 639px) [group] /   - removed: @media (max-width: 639px) > .product-trust-badges { justify-content: center; gap: 0.6rem 1rem; margin-top: 1rem; padding-top: 1rem; flex-wrap: nowrap !important; }"
+    },
+    {
+      "id": "T61",
+      "status": "REVIEW",
+      "round": 4,
+      "file": "assets/toylvia.css",
+      "baseline_lines": "711-714",
+      "title": "Newsletter social icon row",
+      "kind": "orphan selectors (no markup uses these classes)",
+      "why": "sections/newsletter.liquid outputs only newsletter__title, __subtitle, __form, __input and __btn. Neither .newsletter__socials nor .newsletter__social-link appears in any markup or script. Their only other mentions are CSS inside a <style> block in templates/page.liquid (lines 61-71). The range is directly followed by the already-logged 715-749, so the two can be cut together.",
+      "proof": "Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): .newsletter__socials, .newsletter__social-link: only in templates/page.liquid <style> CSS, no class attribute or JS usage Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.",
+      "visual_change": "None expected (markup-based, hence REVIEW).",
+      "parts": [
+        {
+          "lines": "711-714",
+          "context_before": "",
+          "exact_text": ".newsletter__social-link:hover {\n  color: hsl(var(--primary));\n  border-color: hsla(330,100%,63%,0.4);\n}\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: .newsletter__social-link:hover { color: hsl(var(--primary)); border-color: rgba(255, 66, 161, 0.4); }"
+    },
+    {
+      "id": "T62",
+      "status": "REVIEW",
+      "round": 4,
+      "file": "assets/toylvia.css",
+      "baseline_lines": "1120-1141",
+      "title": "Plexus canvas class and Tailwind-style utility classes",
+      "kind": "orphan selectors (no markup uses these classes)",
+      "why": "The plexus background is <canvas id=\"plexus-bg\"> in snippets/plexus-bg.liquid and is only accessed by id. No code ever gives it the .plexus-canvas class. None of the utilities appears in any class attribute, classList, className or selector string: .text-center, .flex, .items-center, .justify-center, .gap-4, .mt-8, .mb-8, .py-6, .space-y-4. Every hit for 'flex' is an inline-style or style-value string such as style=\"display:flex\" or el.style.display='flex', never a class. Both comment-delimited mini-blocks are fully dead. The range ends with one blank line, before the used max-width:639px media block at 1143.",
+      "proof": "Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): .plexus-canvas (0 hits; canvas uses id plexus-bg); .text-center, .items-center, .justify-center, .gap-4, .mt-8, .mb-8, .py-6, .space-y-4 (0 hits); .flex (all hits were inline-style values or style.display strings, no class usage) Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.",
+      "visual_change": "None expected (markup-based, hence REVIEW).",
+      "parts": [
+        {
+          "lines": "1120-1141",
+          "context_before": "",
+          "exact_text": "/* Plexus canvas */\n.plexus-canvas {\n  position: fixed;\n  inset: 0;\n  width: 100%;\n  height: 100%;\n  pointer-events: none;\n  z-index: 0;\n  filter: blur(2px);\n  opacity: 0.6;\n}\n\n/* Utility */\n.text-center { text-align: center; }\n.flex { display: flex; }\n.items-center { align-items: center; }\n.justify-center { justify-content: center; }\n.gap-4 { gap: 1rem; }\n.mt-8 { margin-top: 2rem; }\n.mb-8 { margin-bottom: 2rem; }\n.py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }\n.space-y-4 > * + * { margin-top: 1rem; }\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: .plexus-canvas { position: fixed; inset: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 0; filter: blur(2px); opacity: 0.6; } /   - removed: .text-center { text-align: center; } /   - removed: .flex { display: flex; } /   - removed: .items-center { align-items: center; } /   - removed: .justify-center { justify-content: center; } /   - removed: .gap-4 { gap: 1rem; } /   - removed: .mt-8 { margin-top: 2rem; } /   - removed: .mb-8 { margin-bottom: 2rem; } /   - removed: .py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; } /   - removed: .space-y-4 > * + * { margin-top: 1rem; }"
+    },
+    {
+      "id": "T63",
+      "status": "REVIEW",
+      "round": 4,
+      "file": "assets/toylvia.css",
+      "baseline_lines": "4171-4213",
+      "title": "Futuristic glitch-grid background for section.category-arc (rule, ::before, ::after)",
+      "kind": "orphan selectors (no markup uses these classes)",
+      "why": "All three rules need the class category-arc on a <section>. No markup or script outputs that class. sections/category-arc.liquid renders <section id=\"cat-section\" class=\"holo-section scroll-reveal\">, and no section schema sets a wrapper tag or class. The class has zero hits in layout/sections/snippets/templates/assets/*.js once <style> blocks are stripped. It appears only as CSS: settings_data custom_css 'section.category-arc {padding-top...}'. I also checked live Shopify content and found it in no page, article, collection or product body. The next rule, 4215-4219 (.category-arc__grid, .all-products-btn__wrapper), stays because all-products-btn__wrapper is used in category-arc.liquid:148. After this cut, @keyframes glitch-sweep (4221-4231) and glitch-flicker (4233-4242) are referenced by nothing, but they are not part of this range. The range runs past 4200 by 14 lines.",
+      "proof": "Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): category-arc (0 markup/JS hits; no section schema class/tag; 0 in Shopify page/article/collection/product bodies); all-products-btn__wrapper USED (kept, outside range) Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.",
+      "visual_change": "None expected (markup-based, hence REVIEW).",
+      "parts": [
+        {
+          "lines": "4171-4213",
+          "context_before": "",
+          "exact_text": "/* Futuristic glitchy grid background for category section */\nsection.category-arc {\n  position: relative !important;\n  overflow: hidden !important;\n  background:\n    repeating-linear-gradient(90deg,\n      rgba(0, 200, 255, 0.06) 0px, rgba(0, 200, 255, 0.06) 1px,\n      transparent 1px, transparent 80px),\n    repeating-linear-gradient(0deg,\n      rgba(0, 200, 255, 0.05) 0px, rgba(0, 200, 255, 0.05) 1px,\n      transparent 1px, transparent 80px),\n    repeating-linear-gradient(0deg,\n      rgba(255, 0, 180, 0.025) 0px, rgba(255, 0, 180, 0.025) 1px,\n      transparent 1px, transparent 4px),\n    radial-gradient(ellipse at center, rgba(10, 20, 40, 0.04), transparent 70%) !important;\n}\n\nsection.category-arc::before {\n  content: '' !important;\n  position: absolute !important;\n  inset: 0 !important;\n  pointer-events: none !important;\n  background:\n    linear-gradient(90deg, transparent 0%, rgba(0, 240, 255, 0.35) 15%, transparent 16%, transparent 30%, rgba(255, 0, 180, 0.25) 45%, transparent 46%, transparent 70%, rgba(0, 240, 255, 0.3) 82%, transparent 83%) 0 25% / 100% 1px no-repeat,\n    linear-gradient(90deg, transparent 0%, transparent 20%, rgba(0, 240, 255, 0.25) 40%, transparent 41%, transparent 60%, rgba(255, 255, 0, 0.2) 75%, transparent 76%) 0 68% / 100% 1px no-repeat,\n    linear-gradient(90deg, transparent 0%, rgba(255, 0, 180, 0.3) 10%, transparent 11%, transparent 55%, rgba(0, 240, 255, 0.3) 70%, transparent 71%) 0 88% / 100% 1px no-repeat !important;\n  z-index: 0 !important;\n  animation: glitch-sweep 5s steps(10) infinite !important;\n}\n\nsection.category-arc::after {\n  content: '' !important;\n  position: absolute !important;\n  inset: 0 !important;\n  pointer-events: none !important;\n  background:\n    linear-gradient(0deg, transparent 0%, rgba(0, 240, 255, 0.2) 30%, transparent 31%, transparent 60%, rgba(255, 0, 180, 0.18) 75%, transparent 76%) 8% 0 / 1px 100% no-repeat,\n    linear-gradient(0deg, transparent 0%, transparent 20%, rgba(0, 240, 255, 0.15) 40%, transparent 41%) 22% 0 / 1px 100% no-repeat,\n    linear-gradient(0deg, transparent 0%, rgba(255, 255, 0, 0.15) 15%, transparent 16%, transparent 70%, rgba(0, 240, 255, 0.2) 85%, transparent 86%) 66% 0 / 1px 100% no-repeat,\n    linear-gradient(0deg, transparent 0%, rgba(0, 240, 255, 0.2) 55%, transparent 56%) 93% 0 / 1px 100% no-repeat !important;\n  z-index: 0 !important;\n  animation: glitch-flicker 3.2s steps(8) infinite !important;\n}\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: section.category-arc { position: relative !important; overflow: hidden !important; background: repeating-linear-gradient(90deg, rgba(0, 200, 255, 0.06) 0px, rgba(0, 200, 255, 0.06) 1px, transparent 1px, transparent 80px), repeating-linear-gradient(0deg, rgba(0, 200, 255, 0.05) 0px, rgba(0, 200, 255, /   - removed: section.category-arc::before { content: \"\" !important; position: absolute !important; inset: 0px !important; pointer-events: none !important; background: linear-gradient(90deg, transparent 0%, rgba(0, 240, 255, 0.35) 15%, transparent 16%, transparent 30%, rgba(255, 0, 180, 0.25) 45%, transparent 46% /   - removed: section.category-arc::after { content: \"\" !important; position: absolute !important; inset: 0px !important; pointer-events: none !important; background: linear-gradient(0deg, transparent 0%, rgba(0, 240, 255, 0.2) 30%, transparent 31%, transparent 60%, rgba(255, 0, 180, 0.18) 75%, transparent 76%) 8"
+    },
+    {
+      "id": "T64",
+      "status": "REVIEW",
+      "round": 4,
+      "file": "assets/toylvia.css",
+      "baseline_lines": "3561-3571, 3575-3598",
+      "title": "Social icons block: .newsletter__social-link / .site-footer__social-icon styling and brand hover colours",
+      "kind": "orphan selectors (no markup uses these classes)",
+      "why": "Every selector needs newsletter__social-link or site-footer__social-icon, and no markup or script outputs either one. sections/newsletter.liquid uses nl-socials, and sections/footer.liquid uses site-footer__soc-icon. The only other mentions are CSS inside the <style> block in templates/page.liquid (lines 50-73). Neither class appears in any Shopify page, article or product body. The range ends on one blank line, and 3600 starts the live shopify-policy rule.",
+      "proof": "Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): newsletter__social-link (only in page.liquid <style>), site-footer__social-icon (0 hits; footer uses site-footer__soc-icon); none in Shopify content bodies Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.",
+      "visual_change": "None expected (markup-based, hence REVIEW).",
+      "parts": [
+        {
+          "lines": "3561-3571",
+          "context_before": "",
+          "exact_text": "/* Social Icons — clean default, brand fill on hover */\n.newsletter__social-link,\n.site-footer__social-icon {\n  background: transparent !important;\n  border: none !important;\n  box-shadow: none !important;\n  backdrop-filter: none !important;\n  -webkit-backdrop-filter: none !important;\n  color: rgba(255,255,255,0.55) !important;\n  transition: color 250ms ease, background 250ms ease, transform 250ms ease !important;\n}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "3575-3598",
+          "context_before": "",
+          "exact_text": ".newsletter__social-link::before,\n.site-footer__social-icon::before { display: none !important; }\n\n.newsletter__social-link svg,\n.site-footer__social-icon svg { opacity: 1; transition: fill 250ms ease, stroke 250ms ease; }\n\n/* Hover: fill with brand color */\n.newsletter__social-link[aria-label=\"Facebook\"]:hover,\n.site-footer__social-icon[aria-label=\"Facebook\"]:hover { color: #1877F2 !important; transform: translateY(-3px); }\n\n.newsletter__social-link[aria-label=\"Instagram\"]:hover,\n.site-footer__social-icon[aria-label=\"Instagram\"]:hover { color: #E1306C !important; transform: translateY(-3px); }\n\n.newsletter__social-link[aria-label=\"TikTok\"]:hover,\n.site-footer__social-icon[aria-label=\"TikTok\"]:hover { color: #ff42a1 !important; transform: translateY(-3px); }\n\n.newsletter__social-link[aria-label=\"Twitter\"]:hover,\n.site-footer__social-icon[aria-label=\"Twitter\"]:hover { color: #1DA1F2 !important; transform: translateY(-3px); }\n\n.newsletter__social-link[aria-label=\"YouTube\"]:hover,\n.site-footer__social-icon[aria-label=\"YouTube\"]:hover { color: #FF0000 !important; transform: translateY(-3px); }\n\n.newsletter__social-link:hover svg,\n.site-footer__social-icon:hover svg { fill: currentColor; stroke: currentColor; opacity: 1; }\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: .newsletter__social-link, .site-footer__social-icon { background: transparent !important; border: none !important; box-shadow: none !important; backdrop-filter: none !important; color: rgba(255, 255, 255, 0.55) !important; transition: color 250ms, background 250ms, transform 250ms !important; } /   - removed: .newsletter__social-link::before, .site-footer__social-icon::before { display: none !important; } /   - removed: .newsletter__social-link svg, .site-footer__social-icon svg { opacity: 1; transition: fill 250ms, stroke 250ms; } /   - removed: .newsletter__social-link[aria-label=\"Facebook\"]:hover, .site-footer__social-icon[aria-label=\"Facebook\"]:hover { color: rgb(24, 119, 242) !important; transform: translateY(-3px); } /   - removed: .newsletter__social-link[aria-label=\"Instagram\"]:hover, .site-footer__social-icon[aria-label=\"Instagram\"]:hover { color: rgb(225, 48, 108) !important; transform: translateY(-3px); } /   - removed: .newsletter__social-link[aria-label=\"TikTok\"]:hover, .site-footer__social-icon[aria-label=\"TikTok\"]:hover { color: rgb(255, 66, 161) !important; transform: translateY(-3px); } /   - removed: .newsletter__social-link[aria-label=\"Twitter\"]:hover, .site-footer__social-icon[aria-label=\"Twitter\"]:hover { color: rgb(29, 161, 242) !important; transform: translateY(-3px); } /   - removed: .newsletter__social-link[aria-label=\"YouTube\"]:hover, .site-footer__social-icon[aria-label=\"YouTube\"]:hover { color: rgb(255, 0, 0) !important; transform: translateY(-3px); } /   - removed: .newsletter__social-link:hover svg, .site-footer__social-icon:hover svg { fill: currentcolor; stroke: currentcolor; opacity: 1; }"
+    },
+    {
+      "id": "T65",
+      "status": "REVIEW",
+      "round": 4,
+      "file": "assets/toylvia.css",
+      "baseline_lines": "2931-2960",
+      "title": "Product-page trust badges neumorphic block (.product-trust-badges ...) incl. .announcement-bar__track animation kill",
+      "kind": "orphan selectors (no markup uses these classes)",
+      "why": "All four rules need product-trust-badges, or announcement-bar__track for the third selector of the third rule. Neither class is output anywhere. The announcement-bar section outputs only announcement-bar, __inner-emboss, __inner, __logo and __text, and there is no product-trust-badges markup. trust-badge itself counts as used because toylvia.js calls .closest('.trust-badge') and querySelectorAll('.trust-badge__icon'), so every rule here is compounded with an unused class. The next rule (2968: '.product-trust-badges .trust-badge, .trust-badge, ...') is live and stays.",
+      "proof": "Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): product-trust-badges (0 hits), announcement-bar__track (0 hits); trust-badge treated USED (JS querySelector) but every rule here also requires product-trust-badges Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.",
+      "visual_change": "None expected (markup-based, hence REVIEW).",
+      "parts": [
+        {
+          "lines": "2931-2960",
+          "context_before": "",
+          "exact_text": "/* 1. Neumorphic White Design & Layout */\n.product-trust-badges .trust-badge {\n  background-color: #f0f0f3 !important;\n  box-shadow: \n    9px 9px 16px rgba(163, 177, 198, 0.6), \n    -9px -9px 16px rgba(255, 255, 255, 1) !important;\n  border-radius: 50px !important;\n  padding: 8px 16px !important;\n  display: flex !important;\n  align-items: center !important;\n  gap: 8px !important;\n  border: none !important;\n}\n\n\n/* 3. Text Consistency (Stop thinning/color changes) */\n.product-trust-badges .trust-badge span {\n  font-weight: 700 !important;\n  color: #444 !important; /* Adjust to your preferred dark gray */\n  letter-spacing: 0.04em !important;\n  text-decoration: none !important;\n  font-variation-settings: \"wght\" 700 !important;\n}\n\n/* 4. Disable All Original Animations/Marquees */\n.product-trust-badges,\n.product-trust-badges *,\n.announcement-bar__track {\n  animation: none !important;\n}\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: .product-trust-badges .trust-badge { background-color: rgb(240, 240, 243) !important; box-shadow: rgba(163, 177, 198, 0.6) 9px 9px 16px, rgb(255, 255, 255) -9px -9px 16px !important; border-radius: 50px !important; padding: 8px 16px !important; display: flex !important; align-items: center !importan /   - removed: .product-trust-badges .trust-badge span { font-weight: 700 !important; color: rgb(68, 68, 68) !important; letter-spacing: 0.04em !important; text-decoration: none !important; font-variation-settings: \"wght\" 700 !important; } /   - removed: .product-trust-badges, .product-trust-badges *, .announcement-bar__track { animation: auto ease 0s 1 normal none running none !important; }"
+    },
+    {
+      "id": "T66",
+      "status": "REVIEW",
+      "round": 4,
+      "file": "assets/toylvia.css",
+      "baseline_lines": "2590-2617",
+      "title": "Old blog-page leftovers: .card-btn, .card:hover .card-btn, .card,.featured",
+      "kind": "orphan selectors (no markup uses these classes)",
+      "why": "These rules are leftovers from a pasted blog-page stylesheet (2516-2617). They need card-btn, card or featured. My robust class-attribute extraction, which handles Liquid and ${} in class=\"\" and className/classList/querySelector strings, found none of the three anywhere. None appears in any of the 10 pages, 65 articles, collection bodies or 740 product descriptions on Shopify. The same feature has more orphaned ranges, left out here only because of the 6-item limit: 2564-2576 (.card ... .footer span, 10 rules, cssom-confirmed), 2553-2561 (.badge.cyan/.yellow, .featured-body h2/.excerpt/.meta, .read-more x3, 8 rules, confirmed) and 2522-2532 (.toylvia-blog-wrapper and ::before, 2 rules, confirmed). Do NOT delete .grid (2562-2563, 2580-2588): the live Contact page body uses class=\"grid\". Do NOT delete .badge (2552): it is used in about-us.liquid:68 and the contact/return page bodies. Also ",
+      "proof": "Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): card-btn, card, featured: 0 class usages in theme markup/JS (only alt text/prose) and 0 in Shopify page/article/collection/product bodies; grid IS used in contact page body (excluded); badge USED (excluded) Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.",
+      "visual_change": "None expected (markup-based, hence REVIEW).",
+      "parts": [
+        {
+          "lines": "2590-2617",
+          "context_before": "",
+          "exact_text": ".card-btn {\n  display: inline-flex;\n  margin-top: 1.5rem;\n  padding: 0.924rem 2.464rem;\n  font-weight: 900;\n  font-size: 16px;\n  background: rgb(249,250,251);\n  color: rgb(255,42,148);\n  border: 2.5px solid transparent;\n  border-radius: 9999px;\n  box-shadow: -10px -8px 20px rgba(255,255,255,0.9), 10px 8px 20px rgba(148,150,176,0.45);\n  text-transform: uppercase;\n  transition: all 0.4s ease;\n}\n\n.card:hover .card-btn {\n  background: rgb(249,250,251);\n  color: rgb(255,42,148);\n  box-shadow: -10px -8px 20px rgba(255,255,255,0.6), \n              10px 8px 20px rgba(176, 148, 162, 0.4), \n              rgb(33, 213, 237) 0px 0px 45px;\n  transform: scale(1.05);\n}\n.card, .featured {\n  text-decoration: none !important;\n  color: inherit !important;\n  display: block;\n}\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: .card-btn { display: inline-flex; margin-top: 1.5rem; padding: 0.924rem 2.464rem; font-weight: 900; font-size: 16px; background: rgb(249, 250, 251); color: rgb(255, 42, 148); border: 2.5px solid transparent; border-radius: 9999px; box-shadow: rgba(255, 255, 255, 0.9) -10px -8px 20px, rgba(148, 150,  /   - removed: .card:hover .card-btn { background: rgb(249, 250, 251); color: rgb(255, 42, 148); box-shadow: rgba(255, 255, 255, 0.6) -10px -8px 20px, rgba(176, 148, 162, 0.4) 10px 8px 20px, rgb(33, 213, 237) 0px 0px 45px; transform: scale(1.05); } /   - removed: .card, .featured { display: block; text-decoration: none !important; color: inherit !important; }"
+    },
+    {
+      "id": "T67",
+      "status": "REVIEW",
+      "round": 4,
+      "file": "assets/toylvia.css",
+      "baseline_lines": "3299-3316",
+      "title": "Mobile PRODUCT DESCRIPTION @media block for .product-main__description-full",
+      "kind": "orphan selectors (no markup uses these classes)",
+      "why": "The whole @media (max-width: 640px) block holds only .product-main__description-full rules (base, h2/h3, table). That class has zero hits in theme markup or JS, and none in any of the 740 product descriptions on Shopify. product-main.liquid does not output it. The @media opener is part of the range and its closing brace is at 3316, so brace balance is kept. The range ends on one blank line. A separate one-line rule at 3397 inside the MOBILE FIX V2 @media is also orphaned but was not included.",
+      "proof": "Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): product-main__description-full (0 hits theme; 0 in Shopify product/page bodies) Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.",
+      "visual_change": "None expected (markup-based, hence REVIEW).",
+      "parts": [
+        {
+          "lines": "3299-3316",
+          "context_before": "",
+          "exact_text": "                                                                          /* ---- PRODUCT DESCRIPTION ---- */\n                                                                          @media (max-width: 640px) {\n                                                                            .product-main__description-full {\n                                                                                padding: 0 0.5rem !important;\n                                                                                    font-size: 15px !important;\n                                                                                        line-height: 1.7 !important;\n                                                                                            margin-top: 2rem !important;\n                                                                                              }\n                                                                                                .product-main__description-full h2,\n                                                                                                  .product-main__description-full h3 { font-size: 19px !important; margin: 1.75rem 0 0.875rem !important; }\n                                                                                                    .product-main__description-full table {\n                                                                                                        width: 100% !important;\n                                                                                                            font-size: 14px !important;\n                                                                                                                display: block !important;\n                                                                                                                    overflow-x: auto !important;\n                                                                                                                        -webkit-overflow-scrolling: touch !important;\n                                                                                                                          }\n                                                                                                                          }\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: @media (max-width: 640px) [group] /   - removed: @media (max-width: 640px) > .product-main__description-full { padding: 0px 0.5rem !important; font-size: 15px !important; line-height: 1.7 !important; margin-top: 2rem !important; } /   - removed: @media (max-width: 640px) > .product-main__description-full h2, .product-main__description-full h3 { font-size: 19px !important; margin: 1.75rem 0px 0.875rem !important; } /   - removed: @media (max-width: 640px) > .product-main__description-full table { width: 100% !important; font-size: 14px !important; display: block !important; overflow-x: auto !important; }"
+    },
+    {
+      "id": "T68",
+      "status": "REVIEW",
+      "round": 4,
+      "file": "assets/toylvia.css",
+      "baseline_lines": "2537-2551",
+      "title": "Old blog-page leftovers: .container, .page-title (h1/span/p), .featured, .featured-img, .featured-body",
+      "kind": "orphan selectors (no markup uses these classes)",
+      "why": "These are part of the same pasted blog-page stylesheet as q-4. The classes container, page-title, featured, featured-img and featured-body are not output by any theme markup or script; the word matches are only JS variable names, alt text and prose. None appears in any Shopify page, article, collection or product body. 2552 (.badge) is live, which is why this range stops at 2551. Keep 2516-2521 (*, :root vars) and 2533 (a{}) too, because they are global and live.",
+      "proof": "Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): container, page-title, featured, featured-img, featured-body (0 class usages theme; 0 in Shopify content); placeholder only matched as an input attribute Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.",
+      "visual_change": "None expected (markup-based, hence REVIEW).",
+      "parts": [
+        {
+          "lines": "2537-2551",
+          "context_before": "",
+          "exact_text": "/* Container */\n.container{max-width:1280px;margin:0 auto;padding:2rem 1.5rem;position:relative;z-index:1}\n\n/* Page Title */\n.page-title{text-align:center;margin-bottom:2.5rem}\n.page-title h1{font-size:2.5rem;font-weight:800;letter-spacing:3px}\n.page-title h1 span{color:var(--pink)}\n.page-title p{color:var(--text-muted);font-size:.8rem;letter-spacing:1.5px;margin-top:.5rem}\n\n/* Featured Article */\n.featured{position:relative;border-radius:var(--radius);overflow:hidden;background:var(--card);border:1px solid var(--border);margin-bottom:3rem;display:grid;grid-template-columns:1fr 1fr;min-height:420px;transition:border-color .4s,box-shadow .4s}\n.featured:hover{border-color:var(--pink);box-shadow:0 0 20px hsla(330,100%,63%,.12)}\n.featured-img{background:linear-gradient(135deg,hsla(330,100%,63%,.15),hsla(187,85%,53%,.15));display:flex;align-items:center;justify-content:center;min-height:300px;position:relative;overflow:hidden}\n.featured-img .placeholder{color:var(--text-muted);font-size:.75rem;letter-spacing:2px}\n.featured-body{padding:2.5rem;display:flex;flex-direction:column;justify-content:center}\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: .container { max-width: 1280px; margin: 0px auto; padding: 2rem 1.5rem; position: relative; z-index: 1; } /   - removed: .page-title { text-align: center; margin-bottom: 2.5rem; } /   - removed: .page-title h1 { font-size: 2.5rem; font-weight: 800; letter-spacing: 3px; } /   - removed: .page-title h1 span { color: var(--pink); } /   - removed: .page-title p { color: var(--text-muted); font-size: 0.8rem; letter-spacing: 1.5px; margin-top: 0.5rem; } /   - removed: .featured { position: relative; border-radius: var(--radius); overflow: hidden; background: var(--card); border: 1px solid var(--border); margin-bottom: 3rem; display: grid; grid-template-columns: 1fr 1fr; min-height: 420px; transition: border-color 0.4s, box-shadow 0.4s; } /   - removed: .featured:hover { border-color: var(--pink); box-shadow: rgba(255, 66, 161, 0.12) 0px 0px 20px; } /   - removed: .featured-img { background: linear-gradient(135deg, rgba(255, 66, 161, 0.15), rgba(33, 213, 237, 0.15)); display: flex; align-items: center; justify-content: center; min-height: 300px; position: relative; overflow: hidden; } /   - removed: .featured-img .placeholder { color: var(--text-muted); font-size: 0.75rem; letter-spacing: 2px; } /   - removed: .featured-body { padding: 2.5rem; display: flex; flex-direction: column; justify-content: center; }"
+    },
+    {
+      "id": "T69",
+      "status": "REVIEW",
+      "round": 4,
+      "file": "assets/toylvia.css",
+      "baseline_lines": "4817-4867",
+      "title": "Rotating neon .launch-btn feature (@property --btn-angle, .launch-btn rules, @keyframes btn-spin)",
+      "kind": "orphan selectors (no markup uses these classes)",
+      "why": "No markup or script anywhere outputs launch-btn, so .launch-btn, .launch-btn::before and .launch-btn .arrow can never match. I searched layout/sections/snippets/templates/settings_data/assets/*.js for 'launch-btn', 'btn-spin' and 'btn-angle', and the only hits are inside this block. The @property --btn-angle and @keyframes btn-spin exist only for .launch-btn::before (conic-gradient from var(--btn-angle), animation btn-spin), so they become dead along with it. The range is depth 0, before the unclosed @media, and brace-balanced; it ends on one trailing blank line before the V14 header at 4869.",
+      "proof": "Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): .launch-btn (0 markup/JS hits), .arrow (only as a descendant of .launch-btn), btn-spin keyframe name (0 uses outside the block), --btn-angle custom property (0 uses outside the block) Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.",
+      "visual_change": "None expected (markup-based, hence REVIEW).",
+      "parts": [
+        {
+          "lines": "4817-4867",
+          "context_before": "",
+          "exact_text": "@property --btn-angle {\n  syntax: '<angle>';\n  initial-value: 0deg;\n  inherits: false;\n}\n\n.launch-btn {\n  position: relative;\n  display: inline-flex;\n  align-items: center;\n  gap: 10px;\n  padding: 14px 28px;\n  border-radius: 999px;\n  background: transparent;          /* was #000 — now see-through */\n  color: #fff;\n  font-weight: 600;\n  font-size: 16px;\n  text-decoration: none;\n  border: none;\n  isolation: isolate;\n  cursor: pointer;\n}\n\n/* The rotating neon ring — drawn OUTSIDE the button, nothing fills the center */\n.launch-btn::before {\n  content: \"\";\n  position: absolute;\n  inset: -2px;                      /* border thickness */\n  border-radius: inherit;\n  padding: 2px;\n  background: conic-gradient(\n    from var(--btn-angle),\n    #00e5ff,\n    #ff00d4,\n    #00e5ff\n  );\n  -webkit-mask:\n    linear-gradient(#000 0 0) content-box,\n    linear-gradient(#000 0 0);\n  -webkit-mask-composite: xor;\n          mask-composite: exclude;\n  animation: btn-spin 3s linear infinite;\n  z-index: -1;\n  pointer-events: none;\n}\n\n.launch-btn .arrow { color: #00e5ff; }\n\n@keyframes btn-spin {\n  to { --btn-angle: 360deg; }\n}\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: @property --btn-angle { syntax: \"<angle>\"; inherits: false; initial-value: 0deg; } /   - removed: .launch-btn { position: relative; display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; border-radius: 999px; background: transparent; color: rgb(255, 255, 255); font-weight: 600; font-size: 16px; text-decoration: none; border: none; isolation: isolate; cursor: pointer; } /   - removed: .launch-btn::before { content: \"\"; position: absolute; inset: -2px; border-radius: inherit; padding: 2px; background: conic-gradient( /     from var(--btn-angle), /     #00e5ff, /     #ff00d4, /     #00e5ff /   ); mask: linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 0px) content-box exclude, linear-gradient(r /   - removed: .launch-btn .arrow { color: rgb(0, 229, 255); } /   - removed: @keyframes btn-spin { 100% { --btn-angle: 360deg; } }"
+    },
+    {
+      "id": "T70",
+      "status": "REVIEW",
+      "round": 4,
+      "file": "assets/toylvia.css",
+      "baseline_lines": "5932-5973",
+      "title": "Old newsletter social icons (.newsletter__socials / .newsletter__social-link)",
+      "kind": "orphan selectors (no markup uses these classes)",
+      "why": "sections/newsletter.liquid now renders its social links as .nl-socials / .nl-social-btn and styles them inline. No markup or JS outputs newsletter__socials or newsletter__social-link. The only other occurrences are CSS inside the <style> block of templates/page.liquid (lines 61-71), which does not count. All 4 rules require one of these classes. This is the whole comment-delimited block, at depth 1 inside the unclosed max-width:1024px @media, and it is balanced. The next line (5974) is the .tlv-lede comment, which stays.",
+      "proof": "Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): .newsletter__socials (CSS-only, page.liquid <style>), .newsletter__social-link (CSS-only), .newsletter (used, but every selector also requires .newsletter__socials) Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.",
+      "visual_change": "None expected (markup-based, hence REVIEW).",
+      "parts": [
+        {
+          "lines": "5932-5973",
+          "context_before": "",
+          "exact_text": "/* === SOCIAL ICONS: DEFINITIVE FINAL OVERRIDE — must stay last in file === */\nhtml body .newsletter .newsletter__socials {\n  display: flex !important;\n  gap: 14px !important;\n  justify-content: center !important;\n  align-items: center !important;\n  margin: 1.2rem 0 1.6rem !important;\n  flex-wrap: nowrap !important;\n}\nhtml body .newsletter .newsletter__socials a.newsletter__social-link {\n  width: 46px !important;\n  height: 46px !important;\n  min-width: 46px !important;\n  min-height: 46px !important;\n  display: inline-flex !important;\n  align-items: center !important;\n  justify-content: center !important;\n  border-radius: 50% !important;\n  background: transparent !important;\n  border: 1.5px solid rgba(255,66,161,0.35) !important;\n  box-shadow: none !important;\n  backdrop-filter: none !important;\n  -webkit-backdrop-filter: none !important;\n  color: #ff42a1 !important;\n  flex-shrink: 0 !important;\n  transition: background 0.2s, border-color 0.2s !important;\n  text-decoration: none !important;\n}\nhtml body .newsletter .newsletter__socials a.newsletter__social-link svg {\n  width: 22px !important;\n  height: 22px !important;\n  fill: none !important;\n  stroke: currentColor !important;\n  stroke-width: 2 !important;\n  display: block !important;\n  flex-shrink: 0 !important;\n}\nhtml body .newsletter .newsletter__socials a.newsletter__social-link:hover {\n  background: rgba(255,66,161,0.12) !important;\n  border-color: #ff42a1 !important;\n  color: #ff42a1 !important;\n}\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: @media (max-width: 1024px) > html body .newsletter .newsletter__socials { display: flex !important; gap: 14px !important; justify-content: center !important; align-items: center !important; margin: 1.2rem 0px 1.6rem !important; flex-wrap: nowrap !important; } /   - removed: @media (max-width: 1024px) > html body .newsletter .newsletter__socials a.newsletter__social-link { width: 46px !important; height: 46px !important; min-width: 46px !important; min-height: 46px !important; display: inline-flex !important; align-items: center !important; justify-content: center !impo /   - removed: @media (max-width: 1024px) > html body .newsletter .newsletter__socials a.newsletter__social-link svg { width: 22px !important; height: 22px !important; fill: none !important; stroke: currentcolor !important; stroke-width: 2 !important; display: block !important; flex-shrink: 0 !important; } /   - removed: @media (max-width: 1024px) > html body .newsletter .newsletter__socials a.newsletter__social-link:hover { background: rgba(255, 66, 161, 0.12) !important; border-color: rgb(255, 66, 161) !important; color: rgb(255, 66, 161) !important; }"
+    },
+    {
+      "id": "T71",
+      "status": "REVIEW",
+      "round": 4,
+      "file": "assets/toylvia.css",
+      "baseline_lines": "6027-6054",
+      "title": "Product card star ratings (.pc-stars / .pc-stars__count) incl. its two @media blocks",
+      "kind": "orphan selectors (no markup uses these classes)",
+      "why": "The cards (snippets/shared-product-card.liquid) render ratings as .cr-card__stars / .cr-card__stars__count. No file outputs pc-stars or pc-stars__count, and nothing builds 'pc-' + something dynamically; the only pc- classes in markup are pc-heart and pc-vcount*. Every rule in the block, including those in the nested min-width:768px and max-width:767px media queries, needs .pc-stars or .pc-stars__count. This is the whole comment-delimited feature, balanced at depth 1, with one trailing blank line before the SOLD OUT header.",
+      "proof": "Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): .pc-stars (0 hits), .pc-stars__count (0 hits); other pc-* in markup: pc-heart, pc-vcount, pc-vcount--inline, pc-vcount__label, pc-vcount__separator only Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.",
+      "visual_change": "None expected (markup-based, hence REVIEW).",
+      "parts": [
+        {
+          "lines": "6027-6054",
+          "context_before": "",
+          "exact_text": "/* ===== PRODUCT CARD STAR RATINGS ===== */\n.pc-stars {\n  display: flex;\n  align-items: center;\n  gap: 2px;\n  margin-bottom: 5px;\n  position: relative;\n  z-index: 2;\n  flex-wrap: nowrap;\n}\n.pc-stars svg { flex-shrink: 0; display: block; }\n.pc-stars__count {\n  font-size: 11px;\n  font-weight: 600;\n  color: rgba(255,255,255,0.65);\n  margin-left: 4px;\n  line-height: 1;\n  white-space: nowrap;\n}\n@media (min-width: 768px) {\n  .pc-stars svg { width: 13px; height: 13px; }\n  .pc-stars__count { font-size: 11.5px; }\n}\n@media (max-width: 767px) {\n  .pc-stars { gap: 1.5px; margin-bottom: 4px; }\n  .pc-stars svg { width: 11px; height: 11px; }\n  .pc-stars__count { font-size: 10px; margin-left: 3px; }\n}\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: @media (max-width: 1024px) > @media (max-width: 767px) [group] /   - removed: @media (max-width: 1024px) > .pc-stars { display: flex; align-items: center; gap: 2px; margin-bottom: 5px; position: relative; z-index: 2; flex-wrap: nowrap; } /   - removed: @media (max-width: 1024px) > .pc-stars svg { flex-shrink: 0; display: block; } /   - removed: @media (max-width: 1024px) > .pc-stars__count { font-size: 11px; font-weight: 600; color: rgba(255, 255, 255, 0.65); margin-left: 4px; line-height: 1; white-space: nowrap; } /   - removed: @media (max-width: 1024px) > @media (min-width: 768px) [group] /   - removed: @media (max-width: 1024px) > @media (min-width: 768px) > .pc-stars svg { width: 13px; height: 13px; } /   - removed: @media (max-width: 1024px) > @media (min-width: 768px) > .pc-stars__count { font-size: 11.5px; } /   - removed: @media (max-width: 1024px) > @media (max-width: 767px) > .pc-stars { gap: 1.5px; margin-bottom: 4px; } /   - removed: @media (max-width: 1024px) > @media (max-width: 767px) > .pc-stars svg { width: 11px; height: 11px; } /   - removed: @media (max-width: 1024px) > @media (max-width: 767px) > .pc-stars__count { font-size: 10px; margin-left: 3px; }"
+    },
+    {
+      "id": "T72",
+      "status": "REVIEW",
+      "round": 4,
+      "file": "assets/toylvia.css",
+      "baseline_lines": "4681-4705",
+      "title": "Category sphere label centering (.category-sphere__label)",
+      "kind": "orphan selectors (no markup uses these classes)",
+      "why": "Both rules (4681-4700 and 4702-4705) require .category-sphere__label in every selector. That class appears in no markup and no script. toylvia.js only queries .category-sphere, .category-sphere__ball and .category-sphere__icon, and sections/category-arc.liquid now outputs .cat-card* markup. The range sits between the live 'html body .category-arc' rule (4677-4680) and the 'Align nav items' header (4706), at depth 0, and is balanced. It does not overlap the logged 4568-4649.",
+      "proof": "Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): .category-sphere__label (0 markup/JS hits); .category-sphere, .category-sphere__ball, .category-arc (treated as used via JS querySelector or section type), but the selectors also require __label Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.",
+      "visual_change": "None expected (markup-based, hence REVIEW).",
+      "parts": [
+        {
+          "lines": "4681-4705",
+          "context_before": "",
+          "exact_text": "html body .category-arc .category-sphere .category-sphere__ball .category-sphere__label,\nhtml body .category-sphere .category-sphere__ball .category-sphere__label {\n  position: absolute !important;\n  top: 0 !important;\n  left: 0 !important;\n  right: 0 !important;\n  bottom: 0 !important;\n  inset: 0 !important;\n  width: 100% !important;\n  height: 100% !important;\n  margin: 0 !important;\n  padding: 0 4px !important;\n  display: flex !important;\n  align-items: center !important;\n  justify-content: center !important;\n  text-align: center !important;\n  line-height: 1 !important;\n  transform: none !important;\n  box-sizing: border-box !important;\n}\n\nhtml body .category-arc .category-sphere:hover .category-sphere__ball .category-sphere__label,\nhtml body .category-sphere:hover .category-sphere__ball .category-sphere__label {\n  transform: none !important;\n}\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: html body .category-arc .category-sphere .category-sphere__ball .category-sphere__label, html body .category-sphere .category-sphere__ball .category-sphere__label { position: absolute !important; inset: 0px !important; width: 100% !important; height: 100% !important; margin: 0px !important; padding: /   - removed: html body .category-arc .category-sphere:hover .category-sphere__ball .category-sphere__label, html body .category-sphere:hover .category-sphere__ball .category-sphere__label { transform: none !important; }"
+    },
+    {
+      "id": "T73",
+      "status": "REVIEW",
+      "round": 4,
+      "file": "assets/toylvia.css",
+      "baseline_lines": "4902-4920",
+      "title": "V14 legacy CLG hero pill grid (.clg-bg-blob, .clg-grid, .clg-pill, .clg-bend/face/edge, .clg-icon, .clg-text/title/slogan, #clg-tech-grid)",
+      "kind": "orphan selectors (no markup uses these classes)",
+      "why": "sections/clg-hero.liquid (Hero Drift) contains no clg-* classes. Across all markup and JS the only clg strings are the 'clg-hero' section type, the href '/#clg-hero' and getElementById('clg-hero'). None of clg-bg-blob, clg-grid, clg-pill, clg-bend, clg-face, clg-edge, clg-icon, clg-text, clg-title, clg-slogan or the id clg-tech-grid is output anywhere. The live line 4901 '#clg-hero, .clg-hero' is kept. The range covers 18 single-line rules plus the '/* scale now handled dynamically by JS */' comment at 4914, at depth 0, balanced. It is outside the logged 4900 and 4992-4997. The duplicate .clg-* lines inside the 4934-4963 media queries are mixed with live rules and are not included.",
+      "proof": "Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): .clg-bg-blob, .clg-bg-blob--pink, .clg-bg-blob--cyan, .clg-grid, .clg-pill, .clg-bend, .clg-face, .clg-edge, .clg-icon, .clg-text, .clg-title, .clg-slogan, #clg-tech-grid: all 0 markup/JS hits Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.",
+      "visual_change": "None expected (markup-based, hence REVIEW).",
+      "parts": [
+        {
+          "lines": "4902-4920",
+          "context_before": "",
+          "exact_text": ".clg-bg-blob { position: absolute; border-radius: 50%; filter: blur(110px); opacity: 0.01; pointer-events: none; z-index: 0; }\n.clg-bg-blob--pink { width: 520px; height: 520px; background: #ff5aa8; top: -120px; left: -120px; }\n.clg-bg-blob--cyan { width: 520px; height: 520px; background: #22d3ee; bottom: -160px; right: -120px; }\n.clg-grid { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1000px; margin: 0 auto; }\n.clg-pill { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; height: 280px; border-radius: 40px; text-decoration: none; color: #111; overflow: hidden; isolation: isolate; transition: transform .35s ease, box-shadow .35s ease; }\n.clg-pill:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(34,211,238,0.35); }\n.clg-bend, .clg-face, .clg-edge { position: absolute; inset: 0; border-radius: inherit; pointer-events: none; }\n.clg-bend { backdrop-filter: blur(3px) url(#clg-glass-blur); -webkit-backdrop-filter: blur(3px); z-index: 0; }\n.clg-face { background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.08)); box-shadow: 0 8px 8px rgba(0,0,0,0.08); z-index: 1; }\n.clg-edge { border: 1px solid rgba(255,255,255,0.6); box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), inset 0 -1px 0 rgba(255,255,255,0.25); z-index: 2; }\n.clg-icon { position: relative; z-index: 3; width: 110px; height: 110px; border-radius: 24px; display: flex; align-items: center; justify-content: center; box-shadow: 0 25px 24px rgba(0,0,0,0.5); transition: transform 0.7s ease; }\n.clg-icon img { width: 82%; height: 82%; object-fit: contain; transition: transform .35s ease; }\n/* scale now handled dynamically by JS */\n.clg-text { position: relative; z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 4px; }\n.clg-title { font-size: 18px; font-weight: 800; letter-spacing: 1.5px; transition: color .25s ease; }\n.clg-slogan { font-size: 13px; color: #555; font-weight: 500; }\n.clg-pill:hover .clg-title { color: #ff5aa8; }\n#clg-tech-grid { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0.25; transition: opacity 0.4s ease; -webkit-mask-image: linear-gradient(to right, transparent, black 25%, black 75%, transparent), linear-gradient(to bottom, transparent, black 25%, black 75%, transparent); -webkit-mask-composite: destination-in; mask-image: linear-gradient(to right, transparent, black 25%, black 75%, transparent), linear-gradient(to bottom, transparent, black 25%, black 75%, transparent); mask-composite: intersect; }\n#clg-hero:hover #clg-tech-grid, .clg-hero:hover #clg-tech-grid { opacity: 0.25; }\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: .clg-bg-blob { position: absolute; border-radius: 50%; filter: blur(110px); opacity: 0.01; pointer-events: none; z-index: 0; } /   - removed: .clg-bg-blob--pink { width: 520px; height: 520px; background: rgb(255, 90, 168); top: -120px; left: -120px; } /   - removed: .clg-bg-blob--cyan { width: 520px; height: 520px; background: rgb(34, 211, 238); bottom: -160px; right: -120px; } /   - removed: .clg-grid { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1000px; margin: 0px auto; } /   - removed: .clg-pill { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; height: 280px; border-radius: 40px; text-decoration: none; color: rgb(17, 17, 17); overflow: hidden; isolation: isolate; transition: transform 0.35s, box-shadow /   - removed: .clg-pill:hover { transform: translateY(-10px); box-shadow: rgba(34, 211, 238, 0.35) 0px 20px 50px; } /   - removed: .clg-bend, .clg-face, .clg-edge { position: absolute; inset: 0px; border-radius: inherit; pointer-events: none; } /   - removed: .clg-bend { backdrop-filter: blur(3px) url(\"#clg-glass-blur\"); z-index: 0; } /   - removed: .clg-face { background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.08)); box-shadow: rgba(0, 0, 0, 0.08) 0px 8px 8px; z-index: 1; } /   - removed: .clg-edge { border: 1px solid rgba(255, 255, 255, 0.6); box-shadow: rgba(255, 255, 255, 0.9) 0px 1px 0px inset, rgba(255, 255, 255, 0.25) 0px -1px 0px inset; z-index: 2; } /   - removed: .clg-icon { position: relative; z-index: 3; width: 110px; height: 110px; border-radius: 24px; display: flex; align-items: center; justify-content: center; box-shadow: rgba(0, 0, 0, 0.5) 0px 25px 24px; transition: transform 0.7s; } /   - removed: .clg-icon img { width: 82%; height: 82%; object-fit: contain; transition: transform 0.35s; } /   - removed: .clg-text { position: relative; z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 4px; } /   - removed: .clg-title { font-size: 18px; font-weight: 800; letter-spacing: 1.5px; transition: color 0.25s; } /   - removed: .clg-slogan { font-size: 13px; color: rgb(85, 85, 85); font-weight: 500; } /   - removed: .clg-pill:hover .clg-title { color: rgb(255, 90, 168); } /   - removed: #clg-tech-grid { position: absolute; inset: 0px; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0.25; transition: opacity 0.4s; mask-image: linear-gradient(to right, transparent, black 25%, black 75%, transparent), linear-gradient(transparent, black 25%, black 75%, transparent /   - removed: #clg-hero:hover #clg-tech-grid, .clg-hero:hover #clg-tech-grid { opacity: 0.25; }"
+    },
+    {
+      "id": "T74",
+      "status": "REVIEW",
+      "round": 4,
+      "file": "assets/toylvia.css",
+      "baseline_lines": "6002-6017",
+      "title": "'Smooth Hover Animation Fix' for legacy .clg-pill cards",
+      "kind": "orphan selectors (no markup uses these classes)",
+      "why": "All 3 rules require .clg-pill, plus .clg-prod-img or .clg-card-inner for two of them. None of these classes is output by any markup or script; the clg-hero section has no clg-* markup. This is the whole comment-delimited block with its numbered sub-comments, at depth 1 inside the unclosed @media, balanced, ending on one blank line. It sits directly before the logged 6019-6025 (also clg-pill) and does not overlap it.",
+      "proof": "Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): .clg-pill, .clg-prod-img, .clg-card-inner (0 markup/JS hits); #clg-hero is only used via getElementById, but every selector also requires .clg-pill Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.",
+      "visual_change": "None expected (markup-based, hence REVIEW).",
+      "parts": [
+        {
+          "lines": "6002-6017",
+          "context_before": "",
+          "exact_text": "/* Smooth Hover Animation Fix */\n\n/* 1. Animate the main card container */\n#clg-hero a.clg-pill {\n    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease !important;\n}\n\n/* 2. Animate the product image scaling */\n#clg-hero .clg-pill img.clg-prod-img {\n    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.4s ease !important;\n}\n\n/* 3. Ensure internal shadow also transitions smoothly */\n#clg-hero .clg-pill .clg-card-inner {\n    transition: box-shadow 0.4s ease !important;\n}\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: @media (max-width: 1024px) > #clg-hero a.clg-pill { transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s !important; } /   - removed: @media (max-width: 1024px) > #clg-hero .clg-pill img.clg-prod-img { transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.4s !important; } /   - removed: @media (max-width: 1024px) > #clg-hero .clg-pill .clg-card-inner { transition: box-shadow 0.4s !important; }"
+    },
+    {
+      "id": "T75",
+      "status": "REVIEW",
+      "round": 4,
+      "file": "assets/live-card-fixes.css",
+      "baseline_lines": "158-161",
+      "title": "Dead .product-card__image-wrap wishlist-heart styling (4 rules, base/svg/hover/is-on)",
+      "kind": "orphan selectors (no markup uses these classes)",
+      "why": "Each of the 4 rules is a single selector that needs .product-card__image-wrap. No markup outputs that class: snippets/product-card.liquid just renders shared-product-card with card_context 'collection', which outputs <a class=\"cr-card product-card\"> and an image wrapper of <div class=\"cr-card__img-wrap\">. The class shows up only in CSS (snippets/product-card-styles.liquid, cr-card-styles.liquid and card-secondary-image-styles.liquid <style> blocks, and the CSS strings in layout/theme.liquid line 1885). No JS querySelector, className or string concatenation produces it. The working cr-card twins at lines 154-157 stay. The shared comment header at line 153 stays because it also covers 154-157. The range is brace-balanced (4 open, 4 close) and lines 158-161 hold no other rule.",
+      "proof": "Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): .product-card__image-wrap: 0 hits in layout/sections/snippets/templates/settings_data/assets JS outside CSS (also 0 after blanking CSS-in-JS strings and comments). No dynamic prefix (product-card__{{, product-card__'+, product-card__${) exists. .product-card, .pc-heart and .is-on are used but don't matter because the required class is missing. Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.",
+      "visual_change": "None expected (markup-based, hence REVIEW).",
+      "parts": [
+        {
+          "lines": "158-161",
+          "context_before": "",
+          "exact_text": "html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card.product-card .product-card__image-wrap>.pc-heart.pc-heart{display:flex!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important;position:absolute!important;top:7px!important;left:7px!important;right:auto!important;bottom:auto!important;width:22px!important;height:22px!important;min-width:22px!important;min-height:22px!important;flex:0 0 22px!important;margin:0!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;border-radius:0!important;z-index:15!important;cursor:pointer!important;align-items:center!important;justify-content:center!important;transition:transform .15s ease!important}\nhtml body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card.product-card .product-card__image-wrap>.pc-heart.pc-heart svg{width:16px!important;height:16px!important;min-width:16px!important;min-height:16px!important;stroke:#e0457f!important;stroke-width:2!important;filter:drop-shadow(0 0 2px rgba(255,255,255,.95))!important;transition:fill .15s ease,transform .15s ease!important}\nhtml body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card.product-card .product-card__image-wrap>.pc-heart.pc-heart:hover{transform:scale(1.2)!important}\nhtml body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card.product-card .product-card__image-wrap>.pc-heart.pc-heart.is-on svg{fill:#ff42a1!important;stroke:#ff42a1!important}\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card.product-card .product-card__image-wrap > .pc-heart.pc-heart { display: flex !important; visibility: visible !important /   - removed: html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card.product-card .product-card__image-wrap > .pc-heart.pc-heart svg { width: 16px !important; height: 16px !important; min /   - removed: html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card.product-card .product-card__image-wrap > .pc-heart.pc-heart:hover { transform: scale(1.2) !important; } /   - removed: html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card.product-card .product-card__image-wrap > .pc-heart.pc-heart.is-on svg { fill: rgb(255, 66, 161) !important; stroke: rg"
+    },
+    {
+      "id": "T76",
+      "status": "REVIEW",
+      "round": 4,
+      "file": "assets/live-card-fixes.css",
+      "baseline_lines": "182-184",
+      "title": "Dead .product-card__image-wrap heart resize overrides (3 rules)",
+      "kind": "orphan selectors (no markup uses these classes)",
+      "why": "Same dead feature as s-1: the 'Heart 5% bigger' copies aimed at .product-card__image-wrap>.pc-heart, a wrapper no markup or script outputs. Collection cards use cr-card__img-wrap from shared-product-card.liquid. Lines 179-181 (cr-card versions) and 185-186 (drift-heart) stay, and so does the shared header at line 178. Each line is exactly one single-selector rule, and the range is brace-balanced (3/3).",
+      "proof": "Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): .product-card__image-wrap: unused, as in s-1. The other classes (.product-card, .pc-heart, .is-on) are used but not enough to match. Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.",
+      "visual_change": "None expected (markup-based, hence REVIEW).",
+      "parts": [
+        {
+          "lines": "182-184",
+          "context_before": "",
+          "exact_text": "html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card.product-card .product-card__image-wrap>.pc-heart.pc-heart{width:23px!important;height:23px!important;min-width:23px!important;min-height:23px!important;flex:0 0 23px!important}\nhtml body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card.product-card .product-card__image-wrap>.pc-heart.pc-heart svg{width:22.5px!important;height:22.5px!important;min-width:22.5px!important;min-height:22.5px!important;fill:none!important;stroke:#111!important}\nhtml body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card.product-card .product-card__image-wrap>.pc-heart.pc-heart.is-on svg{fill:#ff42a1!important;stroke:#ff42a1!important}\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card.product-card .product-card__image-wrap > .pc-heart.pc-heart { width: 23px !important; height:  /   - removed: html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card.product-card .product-card__image-wrap > .pc-heart.pc-heart svg { width: 22.5px !important; he /   - removed: html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card.product-card .product-card__image-wrap > .pc-heart.pc-heart.is-on svg { fill: rgb(255, 66, 161"
+    },
+    {
+      "id": "T77",
+      "status": "REVIEW",
+      "round": 4,
+      "file": "assets/card-markers.css",
+      "baseline_lines": "192-201",
+      "title": "Dead variant-count-line / cr-card__meta-row centering (2 rules)",
+      "kind": "orphan selectors (no markup uses these classes)",
+      "why": "Rule 192-198 has 3 selectors. They need .cr-card__variant-count-line, .product-card__variant-count-line, and .cr-card__meta-row (the 3rd is '.cr-card .cr-card__meta-row .cr-card__variation-count', and .cr-card__meta-row is required even though .cr-card__variation-count shows up in a JS querySelector). Rule 199-201 needs .cr-card__meta-row. None of these classes is output by any markup or script. The shared-product-card.liquid body is card-category-name, cr-card__name, cr-card__stars and cr-card__footer, with no meta-row and no variant-count-line. The comment header at line 187 stays because it also covers the live .var-dot rule at 188-191. The range is brace-balanced (2/2) and ends right before the 'Card hearts stay removed' comment on line 202.",
+      "proof": "Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): .cr-card__variant-count-line: 0 hits. .product-card__variant-count-line: 0. .cr-card__meta-row: 0 outside CSS (only in snippets/cr-card-styles.liquid <style>). There is no 'variant-count', 'meta-row' or dynamic prefix anywhere in markup or JS. Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.",
+      "visual_change": "None expected (markup-based, hence REVIEW).",
+      "parts": [
+        {
+          "lines": "192-201",
+          "context_before": "",
+          "exact_text": "html body #MainContent#MainContent#MainContent#MainContent .cr-card .cr-card__variant-count-line,\r\nhtml body #MainContent#MainContent#MainContent#MainContent .product-card .product-card__variant-count-line,\r\nhtml body #MainContent#MainContent#MainContent#MainContent .cr-card .cr-card__meta-row .cr-card__variation-count{\r\n  display:block!important;flex:0 0 auto!important;width:100%!important;height:auto!important;min-height:12.5px!important;margin:0 auto 4px!important;padding:0!important;\r\n  color:#707783!important;text-align:center!important;font:600 10px/12.5px Nunito,system-ui,sans-serif!important;\r\n  white-space:nowrap!important\r\n}\r\nhtml body #MainContent#MainContent#MainContent#MainContent .cr-card .cr-card__meta-row{\r\n  display:block!important;width:100%!important;min-height:0!important;height:auto!important;margin:0!important;padding:0!important;text-align:center!important\r\n}\r\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: html body #MainContent#MainContent#MainContent#MainContent .cr-card .cr-card__variant-count-line, html body #MainContent#MainContent#MainContent#MainContent .product-card .product-card__variant-count-line, html body #MainContent#MainContent#MainContent#MainContent .cr-card .cr-card__meta-row .cr-car /   - removed: html body #MainContent#MainContent#MainContent#MainContent .cr-card .cr-card__meta-row { display: block !important; width: 100% !important; min-height: 0px !important; height: auto !important; margin: 0px !important; padding: 0px !important; text-align: center !important; }"
+    },
+    {
+      "id": "T78",
+      "status": "REVIEW",
+      "round": 4,
+      "file": "assets/card-markers.css",
+      "baseline_lines": "69-70",
+      "title": "Dead meta-row heart button + hit-area rules",
+      "kind": "orphan selectors (no markup uses these classes)",
+      "why": "Both selectors in each rule need .product-card__meta-row or .cr-card__meta-row, and no markup or JS outputs either one. The card hearts live in .cr-card__img-wrap (shared-product-card.liquid), not in a meta row. These rules belong to the stale 'Card meta + compact outlined cart action' block at lines 64-81. Neighbouring rules there stay: line 68 (.cr-card__variation-count, which a querySelector in card-shop-action.js counts as used) and line 71 onward (.cr-card__footer .cr-card__buy, which is used). The same dead meta-row feature also appears at 66-67 (s-6), 74, 84-85 and 125-126, each verified dead but left out of this list because of the 6-candidate limit.",
+      "proof": "Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): .product-card__meta-row: 0 hits. .cr-card__meta-row: 0 hits outside CSS. .pc-heart is used but not enough. Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.",
+      "visual_change": "None expected (markup-based, hence REVIEW).",
+      "parts": [
+        {
+          "lines": "69-70",
+          "context_before": "",
+          "exact_text": "#MainContent .product-card__meta-row .pc-heart,#MainContent .cr-card__meta-row .pc-heart{display:flex!important;align-items:center!important;justify-content:center!important;width:36px!important;height:36px!important;min-width:36px!important;min-height:36px!important;margin:0!important;flex:0 0 36px!important;position:relative!important;color:#59796a!important;z-index:12!important;cursor:pointer!important;pointer-events:auto!important;touch-action:manipulation!important}\r\n#MainContent .product-card__meta-row .pc-heart::after,#MainContent .cr-card__meta-row .pc-heart::after{content:\"\"!important;position:absolute!important;inset:-3px!important;background:transparent!important;border:0!important;pointer-events:auto!important}\r\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: #MainContent .product-card__meta-row .pc-heart, #MainContent .cr-card__meta-row .pc-heart { display: flex !important; align-items: center !important; justify-content: center !important; width: 36px !important; height: 36px !important; min-width: 36px !important; min-height: 36px !important; margin:  /   - removed: #MainContent .product-card__meta-row .pc-heart::after, #MainContent .cr-card__meta-row .pc-heart::after { content: \"\" !important; position: absolute !important; inset: -3px !important; background: transparent !important; border: 0px !important; pointer-events: auto !important; }"
+    },
+    {
+      "id": "T79",
+      "status": "REVIEW",
+      "round": 4,
+      "file": "assets/card-markers.css",
+      "baseline_lines": "95-98",
+      "title": "Dead .var-dot__count / .var-dot__label typography (2 rules)",
+      "kind": "orphan selectors (no markup uses these classes)",
+      "why": "Every selector needs .var-dot__count or .var-dot__label. Those child classes show up only in CSS (product-card-styles.liquid and cr-card-styles.liquid <style> blocks, and home-palette.css). No markup creates a .var-dot element with those children, and no JS builds them: the only script mention of 'var-dot' is the querySelector('.var-dot,...') in card-shop-action.js, with no __count or __label and no var-dot__ concatenation. Lines 86-94 (.var-dot itself) and 99-100 stay. home-palette.css 207-208 is the same dead pair (.cat-rows .cr-card__img-wrap > .var-dot .var-dot__count/.var-dot__label). It was also verified dead (cssom: 90 -> 89, only that rule removed) and can be cut together with this one.",
+      "proof": "Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): .var-dot__count: 0 hits outside CSS. .var-dot__label: 0 hits outside CSS. .var-dot is treated as used (querySelector string in card-shop-action.js). .product-card__image-wrap is unused. Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.",
+      "visual_change": "None expected (markup-based, hence REVIEW).",
+      "parts": [
+        {
+          "lines": "95-98",
+          "context_before": "",
+          "exact_text": "html body #MainContent#MainContent .cr-card.cr-card.cr-card .cr-card__img-wrap>.var-dot .var-dot__count,\r\nhtml body #MainContent#MainContent .product-card.product-card .product-card__image-wrap>.var-dot .var-dot__count{font:600 9px/1.2 Nunito,system-ui,sans-serif!important}\r\nhtml body #MainContent#MainContent .cr-card.cr-card.cr-card .cr-card__img-wrap>.var-dot .var-dot__label,\r\nhtml body #MainContent#MainContent .product-card.product-card .product-card__image-wrap>.var-dot .var-dot__label{font:600 9px/1.2 Nunito,system-ui,sans-serif!important;text-transform:none!important}\r\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: html body #MainContent#MainContent .cr-card.cr-card.cr-card .cr-card__img-wrap > .var-dot .var-dot__count, html body #MainContent#MainContent .product-card.product-card .product-card__image-wrap > .var-dot .var-dot__count { font: 600 9px / 1.2 Nunito, system-ui, sans-serif !important; } /   - removed: html body #MainContent#MainContent .cr-card.cr-card.cr-card .cr-card__img-wrap > .var-dot .var-dot__label, html body #MainContent#MainContent .product-card.product-card .product-card__image-wrap > .var-dot .var-dot__label { font: 600 9px / 1.2 Nunito, system-ui, sans-serif !important; text-transform"
+    },
+    {
+      "id": "T80",
+      "status": "REVIEW",
+      "round": 4,
+      "file": "assets/card-markers.css",
+      "baseline_lines": "66-67",
+      "title": "Dead meta-row flex layout rules",
+      "kind": "orphan selectors (no markup uses these classes)",
+      "why": "Both rules only target .product-card__meta-row / .cr-card__meta-row, which no markup or script outputs (same dead meta-row feature as s-3 and s-4). Line 65 (.var-dot, used via querySelector) and line 68 (.cr-card__variation-count, used via querySelector) stay, so the 64-81 block can't be removed whole. Other meta-row-only rules verified dead in this file: line 74 (meta-row .pc-heart svg), 84-85 (meta-row variation-count hide, cssom 75->74) and 125-126 (__body meta-row hide, cssom 75->74). home-palette.css 207-208 is listed under s-5.",
+      "proof": "Class search over all layout/sections/snippets/templates/settings_data and JS (class attributes, classList, className, querySelector strings, template literals, Liquid-built names; CSS-only mentions do not count): .product-card__meta-row: 0 hits. .cr-card__meta-row: 0 hits outside CSS. The attribute selector [aria-hidden] doesn't matter because the meta-row ancestor is required. Independently re-checked by a skeptic agent; Chrome CSSOM: only these rules removed.",
+      "visual_change": "None expected (markup-based, hence REVIEW).",
+      "parts": [
+        {
+          "lines": "66-67",
+          "context_before": "",
+          "exact_text": "#MainContent .product-card__meta-row,#MainContent .cr-card__meta-row{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important;min-height:28px!important;margin:0 0 4px!important}\r\n#MainContent .product-card__meta-row>[aria-hidden=\"true\"],#MainContent .cr-card__meta-row>[aria-hidden=\"true\"]{flex:1 1 auto!important}\r\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: #MainContent .product-card__meta-row, #MainContent .cr-card__meta-row { display: flex !important; align-items: center !important; justify-content: space-between !important; gap: 8px !important; min-height: 28px !important; margin: 0px 0px 4px !important; } /   - removed: #MainContent .product-card__meta-row > [aria-hidden=\"true\"], #MainContent .cr-card__meta-row > [aria-hidden=\"true\"] { flex: 1 1 auto !important; }"
     }
   ],
   "do_not_apply": [
@@ -1647,5 +2163,16 @@
       "title": "Ziko's DevTools edits to homepage product rows (pending his decision)",
       "text": "Earlier in the cloud session Ziko unticked declarations at mobile width in assets/tlv-owner-overrides.css (tlv-row-header-gap translateY(18px); tlv-row-spacing row margins/paddings, the clamp() row gap and header padding/margin; tlv-header-shift translateY(9px); tlv-header-no-padding mobile block; tlv-row-unite mobile block) and in assets/home-palette.css (.cat-rows__row margin 0 1.25rem 0 and padding 0). Several are not inside a media query, so applying them as-is also changes desktop. Recommendation given: apply them inside @media(max-width:767px) only. He has not decided yet. Do not apply without asking."
     }
+  ],
+  "review_advice": [
+    "TODO items are proven from the CSS alone (Chrome rule list unchanged, or every removed rule provably overridden). They are safe without looking at the site.",
+    "Every REVIEW item rests on one claim: 'no template, snippet or script outputs these classes' (or the element is display:none). That was checked by a full-text search of all 119 theme files plus a skeptic agent, but an app or content in the Shopify admin (product descriptions, pages) could in theory use a class.",
+    "Simplest safe way to approve REVIEW items: apply them to a DUPLICATE of the live theme first (Online Store > Themes > Duplicate, then push with --theme <duplicate id>), preview the homepage, one product page, one collection page and the cart on desktop and mobile, then push to the live theme.",
+    "Supersede pairs: a few REVIEW items contain smaller TODO items. Approving the REVIEW item removes the TODO item's lines too; apply it instead of them."
+  ],
+  "not_scanned": [
+    "Inline <style> blocks inside .liquid files (layout/theme.liquid ~180 KB, sections/category-rows.liquid, snippets/collection-page.liquid, snippets/cr-card-styles.liquid, snippets/product-card-styles.liquid, ...). They hold a lot of CSS and very likely more dead code, but editing Liquid files needs a different verification setup.",
+    "assets/tlv-owner-overrides.css: deliberately excluded (owner-requested file; one proven duplicate there was left alone on purpose).",
+    "Declaration-level dead code inside live rules (single overridden properties). Only whole rules/blocks were logged."
   ]
 }
