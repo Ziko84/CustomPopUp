@@ -3,9 +3,9 @@
 Dead and commented-out CSS found in the live theme of https://toylvia.com by a cloud Claude scan.
 Every item was found by one agent and then attacked by a separate skeptic agent that tried to prove it still affects the page. Only items that survived are listed.
 
-- Scan started: 2026-10-11T15:16:39Z | last update: 2026-10-11T16:52:33Z | rounds: 5
-- Items: **88** total, **46 TODO** (proven safe), **42 REVIEW** (very likely safe, ask Ziko first)
-- Lines removed if every item is applied (superseding items instead of the ones they contain): 2592 | TODO items only: 806
+- Scan started: 2026-10-11T15:16:39Z | last update: 2026-10-11T16:59:31Z | rounds: 6
+- Items: **106** total, **46 TODO** (proven safe), **60 REVIEW** (very likely safe, ask Ziko first)
+- Lines removed if every item is applied (superseding items instead of the ones they contain): 3032 | TODO items only: 806
 - Status legend: `TODO` apply | `REVIEW` apply only if Ziko says yes | `DONE` applied and verified | `SKIPPED: reason`
 
 ---
@@ -39,7 +39,7 @@ You are applying a cleanup that was already researched and verified. Do not re-r
 
 **Store / theme**
 - Live theme: "lior's theme for toylvia", id `209157554507` (gid://shopify/OnlineStoreTheme/209157554507).
-- Files touched: `assets/toylvia.css`, `assets/tlv-owner-overrides.css`, `assets/home-palette.css`, `assets/card-look.css`, `assets/live-card-fixes.css`, `assets/card-markers.css`, `sections/category-rows.liquid`, `sections/clg-hero.liquid`, `sections/collections-showcase.liquid`, `sections/story-pair.liquid`, `snippets/cr-card-styles.liquid`, `snippets/product-card-styles.liquid`, `snippets/product-recommendations.liquid`, `snippets/tlv-orbs.liquid`.
+- Files touched: `assets/toylvia.css`, `assets/tlv-owner-overrides.css`, `assets/home-palette.css`, `assets/card-look.css`, `assets/live-card-fixes.css`, `assets/card-markers.css`, `sections/category-rows.liquid`, `sections/clg-hero.liquid`, `sections/collections-showcase.liquid`, `sections/story-pair.liquid`, `snippets/cr-card-styles.liquid`, `snippets/product-card-styles.liquid`, `snippets/product-recommendations.liquid`, `snippets/tlv-orbs.liquid`, `layout/theme.liquid`, `sections/about-us.liquid`, `sections/auth-drawer.liquid`, `sections/footer.liquid`, `sections/newsletter.liquid`, `sections/product-main.liquid`, `snippets/cart-drawer.liquid`, `snippets/collection-discovery-banners.liquid`, `snippets/collection-page.liquid`, `snippets/heart-js.liquid`, `snippets/product-description-card.liquid`, `templates/page.liquid`, `templates/page.wishlist.liquid`.
 - Baseline md5 of each file when the scan read it:
 
   - `assets/toylvia.css`: `efc069df951128a76ac1adb542f17234`
@@ -56,6 +56,19 @@ You are applying a cleanup that was already researched and verified. Do not re-r
   - `snippets/product-card-styles.liquid`: `a60975a8ed5af29e8213a5bd3d7f9016`
   - `snippets/product-recommendations.liquid`: `c67ce07f996cf2a3e53cbc865e4912ab`
   - `snippets/tlv-orbs.liquid`: `e34d6462a4f66ef79af21365bc84de89`
+  - `layout/theme.liquid`: `e14a6630c3e8b81d3daaca6d74e109d4`
+  - `sections/about-us.liquid`: `b7aa85c9aa5b63b878aab6f4e502fb8a`
+  - `sections/auth-drawer.liquid`: `3a0b0dcfac22a6029223c9d8244b4000`
+  - `sections/footer.liquid`: `fb7316ff5bbdeb1efe36ed02697df487`
+  - `sections/newsletter.liquid`: `29b596d35351601c42e57980c5cdba52`
+  - `sections/product-main.liquid`: `b1331d1f588dd6ece20379dc05d455f8`
+  - `snippets/cart-drawer.liquid`: `3a9fc36e07af326c813d0c47a5ca9f1b`
+  - `snippets/collection-discovery-banners.liquid`: `78c39ea9ba6ecab900a9574ad605c9ec`
+  - `snippets/collection-page.liquid`: `94f2bf45e94598f0aea8bb08c70ede03`
+  - `snippets/heart-js.liquid`: `5135fc3e5bb97a6843fc925e7473cbeb`
+  - `snippets/product-description-card.liquid`: `060e2019b0ae50d0241fc632e631cb4e`
+  - `templates/page.liquid`: `f9e800dd30cfeeada661b6ef57d71c08`
+  - `templates/page.wishlist.liquid`: `6cb086aa507ac627e805af3d860ee3f9`
 
 **Rules (non-negotiable)**
 1. Get the CURRENT live file first. Never edit an old copy (assets/tlv-owner-overrides.css warns that a stale save already destroyed owner work once).
@@ -4000,6 +4013,1533 @@ Delete:
 Delete:
 ```css
 .tlv-orb__glow::before{transition-delay:1.15s!important}
+```
+
+### T89 [REVIEW] 9 orphaned rule(s) inside <style> blocks of layout/theme.liquid (classes no markup or script uses)
+- **File:** `layout/theme.liquid` | baseline lines 1339-1339, 1343-1343, 1347-1347, 1403-1403, 1419-1419, 1717-1717, 1721-1721, 1729-1729, 1733-1733 | kind: orphan selectors in inline CSS (scripted, conservative)
+- **Why it is dead:** Every selector of each rule needs a class or ID that appears nowhere in the theme outside CSS: not in any HTML/Liquid markup, JS file, inline script or JSON (any mention, even in a string, counts as used; prefix-built names like x--{{ }} count as used; Shopify/app prefixes count as used; classes inside :not()/:is()/:where()/:has() are ignored). Selectors: .product-card--cyan:hover; .product-card--pink:hover; .product-card--yellow:hover; .tlv-sb-logo-letter; .tlv-sb-social-icon; .tlv-sb-social-icon svg; .tlv-sb-social-icon:active; .tlv-sb-social-icon:active svg; .tlv-sb-socials
+- **Proof:** Scripted full-text search over all 119 theme files with <style> CSS removed. Only rules on lines of pure CSS without Liquid were considered. Joint Chrome check per file (CSS views): exactly these rules removed, nothing added. Not proven from CSS alone (an app or admin content could use a class), hence REVIEW.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .product-card--cyan:hover { outline-color: rgba(33, 213, 237, 0.7); } /   - removed: .product-card--pink:hover { outline-color: transparent; } /   - removed: .product-card--yellow:hover { outline-color: rgba(255, 216, 61, 0.7); } /   - removed: .tlv-sb-socials { display: none; } /   - removed: .tlv-sb-logo-letter { font-size: 1.15rem; font-weight: 900; color: rgb(255, 66, 161); font-family: Nunito, sans-serif; line-height: 1; } /   - removed: .tlv-sb-social-icon { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 1px solid rgba(255, 66, 161, 0.35); background: transparent; cursor: pointer; text-decoration: none; -webkit-tap-highlight-color: transparent; flex-shrink: 0; tra /   - removed: .tlv-sb-social-icon svg { width: 16px; height: 16px; fill: none; stroke: rgb(255, 66, 161); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; display: block; } /   - removed: .tlv-sb-social-icon:active { background: rgb(255, 66, 161); border-color: rgb(255, 66, 161); } /   - removed: .tlv-sb-social-icon:active svg { stroke: rgb(255, 255, 255); }**
+- **Visual change if removed:** None expected.
+- **Parts:** 9 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 1339-1339). Manual anchor: from `.product-card--cyan:hover { outline-color: hsla(187,85%,53%,0.7); }` to `.product-card--cyan:hover { outline-color: hsla(187,85%,53%,0.7); }`.
+Delete:
+```css
+.product-card--cyan:hover { outline-color: hsla(187,85%,53%,0.7); }
+```
+
+**Part 2** (baseline lines 1343-1343). Manual anchor: from `.product-card--pink:hover { outline-color: transparent; }` to `.product-card--pink:hover { outline-color: transparent; }`.
+Delete:
+```css
+.product-card--pink:hover { outline-color: transparent; }
+```
+
+**Part 3** (baseline lines 1347-1347). Manual anchor: from `.product-card--yellow:hover { outline-color: hsla(48,100%,62%,0.7); }` to `.product-card--yellow:hover { outline-color: hsla(48,100%,62%,0.7); }`.
+Delete:
+```css
+.product-card--yellow:hover { outline-color: hsla(48,100%,62%,0.7); }
+```
+
+**Part 4** (baseline lines 1403-1403). Manual anchor: from `.tlv-sb-socials{display:none;}` to `.tlv-sb-socials{display:none;}`.
+Delete:
+```css
+.tlv-sb-socials{display:none;}
+```
+
+**Part 5** (baseline lines 1419-1419). Manual anchor: from `.tlv-sb-logo-letter{font-size:1.15rem;font-weight:900;color:#ff42a1;font-family:'Nunito...` to `.tlv-sb-logo-letter{font-size:1.15rem;font-weight:900;color:#ff42a1;font-family:'Nunito...`.
+Delete:
+```css
+.tlv-sb-logo-letter{font-size:1.15rem;font-weight:900;color:#ff42a1;font-family:'Nunito',sans-serif;line-height:1;}
+```
+
+**Part 6** (baseline lines 1717-1717). Manual anchor: from `.tlv-sb-social-icon{width:36px;height:36px;display:flex;align-items:center;justify-cont...` to `.tlv-sb-social-icon{width:36px;height:36px;display:flex;align-items:center;justify-cont...`.
+Delete:
+```css
+.tlv-sb-social-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;border:1px solid rgba(255,66,161,0.35);background:transparent;cursor:pointer;text-decoration:none;-webkit-tap-highlight-color:transparent;flex-shrink:0;transition:background 0.18s,border-color 0.18s;}
+```
+
+**Part 7** (baseline lines 1721-1721). Manual anchor: from `.tlv-sb-social-icon svg{width:16px;height:16px;fill:none;stroke:#ff42a1;stroke-width:2;...` to `.tlv-sb-social-icon svg{width:16px;height:16px;fill:none;stroke:#ff42a1;stroke-width:2;...`.
+Delete:
+```css
+.tlv-sb-social-icon svg{width:16px;height:16px;fill:none;stroke:#ff42a1;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;display:block;}
+```
+
+**Part 8** (baseline lines 1729-1729). Manual anchor: from `.tlv-sb-social-icon:active{background:#ff42a1;border-color:#ff42a1;}` to `.tlv-sb-social-icon:active{background:#ff42a1;border-color:#ff42a1;}`.
+Delete:
+```css
+.tlv-sb-social-icon:active{background:#ff42a1;border-color:#ff42a1;}
+```
+
+**Part 9** (baseline lines 1733-1733). Manual anchor: from `.tlv-sb-social-icon:active svg{stroke:#fff;}` to `.tlv-sb-social-icon:active svg{stroke:#fff;}`.
+Delete:
+```css
+.tlv-sb-social-icon:active svg{stroke:#fff;}
+```
+
+### T90 [REVIEW] 10 orphaned rule(s) inside <style> blocks of sections/about-us.liquid (classes no markup or script uses)
+- **File:** `sections/about-us.liquid` | baseline lines 9-9, 30-30, 40-40, 46-46, 47-47, 49-49, 50-50, 51-51, 52-52, 53-53 | kind: orphan selectors in inline CSS (scripted, conservative)
+- **Why it is dead:** Every selector of each rule needs a class or ID that appears nowhere in the theme outside CSS: not in any HTML/Liquid markup, JS file, inline script or JSON (any mention, even in a string, counts as used; prefix-built names like x--{{ }} count as used; Shopify/app prefixes count as used; classes inside :not()/:is()/:where()/:has() are ignored). Selectors: .about-reveal-delay-5; .about-tcard; .about-tcard .author; .about-tcard .stars; .about-tcard blockquote; .about-tcard:hover; .about-testimonials; .about-testimonials h2; .hl-green; .icon-cyan
+- **Proof:** Scripted full-text search over all 119 theme files with <style> CSS removed. Only rules on lines of pure CSS without Liquid were considered. Joint Chrome check per file (CSS views): exactly these rules removed, nothing added. Not proven from CSS alone (an app or admin content could use a class), hence REVIEW.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .about-reveal-delay-5 { transition-delay: 0.35s; } /   - removed: .icon-cyan { background: rgba(33, 213, 237, 0.08); color: rgb(33, 213, 237); } /   - removed: .hl-green { background: rgba(46, 184, 115, 0.06); color: rgb(36, 143, 89); } /   - removed: .about-testimonials { margin-bottom: 48px; } /   - removed: .about-testimonials h2 { font-size: 24px; font-weight: 900; text-align: center; margin-bottom: 24px; color: rgb(255, 66, 161); } /   - removed: .about-tcard { background: rgb(255, 255, 255); border: 1px solid rgb(228, 228, 231); border-radius: 0.75rem; padding: 28px 32px; transition: border-color 0.4s, box-shadow 0.4s, transform 0.4s; } /   - removed: .about-tcard:hover { border-color: rgba(255, 66, 161, 0.2); box-shadow: rgba(0, 0, 0, 0.04) 0px 4px 16px; transform: translateY(-2px); } /   - removed: .about-tcard .stars { color: rgb(255, 66, 161); font-size: 18px; margin-bottom: 10px; letter-spacing: 2px; } /   - removed: .about-tcard blockquote { text-transform: none; font-size: 15px; color: rgb(100, 116, 139); line-height: 1.8; font-style: italic; margin-bottom: 12px; } /   - removed: .about-tcard .author { font-size: 13px; font-weight: 700; color: rgb(30, 41, 59); }**
+- **Visual change if removed:** None expected.
+- **Parts:** 10 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 9-9). Manual anchor: from `.about-reveal-delay-5{transition-delay:0.35s}` to `.about-reveal-delay-5{transition-delay:0.35s}`.
+Delete:
+```css
+.about-reveal-delay-5{transition-delay:0.35s}
+```
+
+**Part 2** (baseline lines 30-30). Manual anchor: from `.icon-cyan{background:hsla(187,85%,53%,.08);color:hsl(187,85%,53%)}` to `.icon-cyan{background:hsla(187,85%,53%,.08);color:hsl(187,85%,53%)}`.
+Delete:
+```css
+.icon-cyan{background:hsla(187,85%,53%,.08);color:hsl(187,85%,53%)}
+```
+
+**Part 3** (baseline lines 40-40). Manual anchor: from `.hl-green{background:hsla(150,60%,45%,.06);color:hsl(150,60%,35%)}` to `.hl-green{background:hsla(150,60%,45%,.06);color:hsl(150,60%,35%)}`.
+Delete:
+```css
+.hl-green{background:hsla(150,60%,45%,.06);color:hsl(150,60%,35%)}
+```
+
+**Part 4** (baseline lines 46-46). Manual anchor: from `.about-testimonials{margin-bottom:48px}` to `.about-testimonials{margin-bottom:48px}`.
+Delete:
+```css
+.about-testimonials{margin-bottom:48px}
+```
+
+**Part 5** (baseline lines 47-47). Manual anchor: from `.about-testimonials h2{font-size:24px;font-weight:900;text-align:center;margin-bottom:2...` to `.about-testimonials h2{font-size:24px;font-weight:900;text-align:center;margin-bottom:2...`.
+Delete:
+```css
+.about-testimonials h2{font-size:24px;font-weight:900;text-align:center;margin-bottom:24px;color:hsl(330,100%,63%)}
+```
+
+**Part 6** (baseline lines 49-49). Manual anchor: from `.about-tcard{background:#ffffff;border:1px solid #e4e4e7;border-radius:0.75rem;padding:...` to `.about-tcard{background:#ffffff;border:1px solid #e4e4e7;border-radius:0.75rem;padding:...`.
+Delete:
+```css
+.about-tcard{background:#ffffff;border:1px solid #e4e4e7;border-radius:0.75rem;padding:28px 32px;transition:border-color 0.4s ease,box-shadow 0.4s ease,transform 0.4s ease}
+```
+
+**Part 7** (baseline lines 50-50). Manual anchor: from `.about-tcard:hover{border-color:hsla(330,100%,63%,.2);box-shadow:0 4px 16px rgba(0,0,0,...` to `.about-tcard:hover{border-color:hsla(330,100%,63%,.2);box-shadow:0 4px 16px rgba(0,0,0,...`.
+Delete:
+```css
+.about-tcard:hover{border-color:hsla(330,100%,63%,.2);box-shadow:0 4px 16px rgba(0,0,0,.04);transform:translateY(-2px)}
+```
+
+**Part 8** (baseline lines 51-51). Manual anchor: from `.about-tcard .stars{color:#ff42a1;font-size:18px;margin-bottom:10px;letter-spacing:2px}` to `.about-tcard .stars{color:#ff42a1;font-size:18px;margin-bottom:10px;letter-spacing:2px}`.
+Delete:
+```css
+.about-tcard .stars{color:#ff42a1;font-size:18px;margin-bottom:10px;letter-spacing:2px}
+```
+
+**Part 9** (baseline lines 52-52). Manual anchor: from `.about-tcard blockquote{text-transform:none;font-size:15px;color:#64748b;line-height:1....` to `.about-tcard blockquote{text-transform:none;font-size:15px;color:#64748b;line-height:1....`.
+Delete:
+```css
+.about-tcard blockquote{text-transform:none;font-size:15px;color:#64748b;line-height:1.8;font-style:italic;margin-bottom:12px}
+```
+
+**Part 10** (baseline lines 53-53). Manual anchor: from `.about-tcard .author{font-size:13px;font-weight:700;color:#1e293b}` to `.about-tcard .author{font-size:13px;font-weight:700;color:#1e293b}`.
+Delete:
+```css
+.about-tcard .author{font-size:13px;font-weight:700;color:#1e293b}
+```
+
+### T91 [REVIEW] 24 orphaned rule(s) inside <style> blocks of sections/auth-drawer.liquid (classes no markup or script uses)
+- **File:** `sections/auth-drawer.liquid` | baseline lines 56-58, 59-64, 65-67, 69-74, 75-75, 77-80, 81-83, 85-85, 86-89, 90-94, 95-98, 100-107, 108-108, 109-109, 116-118, 119-119, 120-120, 182-193, 194-194, 195-195, 197-203, 204-208, 237-244, 245-248 | kind: orphan selectors in inline CSS (scripted, conservative)
+- **Why it is dead:** Every selector of each rule needs a class or ID that appears nowhere in the theme outside CSS: not in any HTML/Liquid markup, JS file, inline script or JSON (any mention, even in a string, counts as used; prefix-built names like x--{{ }} count as used; Shopify/app prefixes count as used; classes inside :not()/:is()/:where()/:has() are ignored). Selectors: .tv-auth-drawer .tv-auth-tab; .tv-auth-drawer .tv-auth-tab[aria-selected="true"]; .tv-auth-drawer .tv-field input; .tv-auth-drawer .tv-field input:focus; .tv-auth-drawer .tv-submit; .tv-auth-drawer .tv-submit:active; .tv-auth-drawer .tv-submit:hover; .tv-auth-tab; .tv-auth-tab[aria-selected="true"]; .tv-auth-tabs; .tv-divider; .tv-divider::before,.tv-divider::after; .tv-field; .tv-field input; .tv-field input:focus; .tv-field label; .tv-form-msg; .tv-form-msg.error; .tv-form-msg.success; .tv-shop-login-btn; .tv-shop-login-btn:hover; .tv-submit; .tv-submit:active; .tv-submit:hover
+- **Proof:** Scripted full-text search over all 119 theme files with <style> CSS removed. Only rules on lines of pure CSS without Liquid were considered. Joint Chrome check per file (CSS views): exactly these rules removed, nothing added. Not proven from CSS alone (an app or admin content could use a class), hence REVIEW.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .tv-auth-tabs { display: flex; background: rgb(244, 244, 245); border-radius: 9999px; padding: 0.25rem; } /   - removed: .tv-auth-tab { flex: 1 1 0%; padding: 0.6rem 1rem; border: none; background: transparent; border-radius: 9999px; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; color: rgb(113, 113, 122); transition: 0.2s; } /   - removed: .tv-auth-tab[aria-selected="true"] { background: rgb(255, 255, 255); color: rgb(24, 24, 27); box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 3px; } /   - removed: .tv-shop-login-btn { display: flex; align-items: center; justify-content: center; gap: 0.6rem; width: 100%; height: 48px; background: rgb(90, 49, 244); color: rgb(255, 255, 255); border: none; border-radius: 8px; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: background 0.2s; text /   - removed: .tv-shop-login-btn:hover { background: rgb(72, 35, 212); } /   - removed: .tv-divider { display: flex; align-items: center; gap: 0.75rem; color: rgb(161, 161, 170); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; } /   - removed: .tv-divider::before, .tv-divider::after { content: ""; flex: 1 1 0%; height: 1px; background: rgb(228, 228, 231); } /   - removed: .tv-field { display: flex; flex-direction: column; gap: 0.4rem; } /   - removed: .tv-field label { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: rgb(63, 63, 70); } /   - removed: .tv-field input { height: 44px; padding: 0px 0.9rem; border: 1px solid rgb(228, 228, 231); border-radius: 8px; font-size: 0.95rem; transition: border-color 0.2s; background: rgb(255, 255, 255); } /   - removed: .tv-field input:focus { outline: none; border-color: rgb(236, 72, 153); box-shadow: rgba(236, 72, 153, 0.12) 0px 0px 0px 3px; } /   - removed: .tv-submit { height: 48px; border: none; border-radius: 9999px; cursor: pointer; background: linear-gradient(90deg, rgb(236, 72, 153), rgb(6, 182, 212), rgb(250, 204, 21)) 0% 50% / 200% 100%; color: rgb(255, 255, 255); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing:  /   - removed: .tv-submit:hover { background-position: 100% 50%; transform: scale(1.02); } /   - removed: .tv-submit:active { transform: scale(0.98); } /   - removed: .tv-form-msg { font-size: 0.8rem; padding: 0.6rem 0.8rem; border-radius: 6px; } /   - removed: .tv-form-msg.error { background: rgb(254, 226, 226); color: rgb(153, 27, 27); } /   - removed: .tv-form-msg.success { background: rgb(220, 252, 231); color: rgb(22, 101, 52); } /   - removed: .tv-auth-drawer .tv-submit { background: linear-gradient(90deg, rgb(236, 72, 153), rgb(6, 182, 212), rgb(250, 204, 21)) 0% 50% / 200% 100% !important; color: rgb(255, 255, 255) !important; font-weight: 700 !important; border-radius: 9999px !important; height: 48px !important; border: none !important /   - removed: .tv-auth-drawer .tv-submit:hover { background-position: 100% 50% !important; transform: scale(1.02) !important; } /   - removed: .tv-auth-drawer .tv-submit:active { transform: scale(0.98) !important; } /   - removed: .tv-auth-drawer .tv-auth-tab { background: transparent !important; box-shadow: none !important; color: rgb(113, 113, 122) !important; border-radius: 9999px !important; font-weight: 700 !important; } /   - removed: .tv-auth-drawer .tv-auth-tab[aria-selected="true"] { background: rgb(255, 255, 255) !important; color: rgb(24, 24, 27) !important; box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 3px !important; } /   - removed: .tv-auth-drawer .tv-field input { background: rgb(255, 255, 255) !important; border: 1px solid rgb(228, 228, 231) !important; border-radius: 8px !important; box-shadow: none !important; height: 44px !important; color: rgb(24, 24, 27) !important; } /   - removed: .tv-auth-drawer .tv-field input:focus { border-color: rgb(236, 72, 153) !important; box-shadow: rgba(236, 72, 153, 0.12) 0px 0px 0px 3px !important; }**
+- **Visual change if removed:** None expected.
+- **Parts:** 24 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 56-58). Manual anchor: from `.tv-auth-tabs{` to `}`.
+Delete:
+```css
+  .tv-auth-tabs{
+    display:flex; background:#f4f4f5; border-radius:9999px; padding:.25rem;
+  }
+```
+
+**Part 2** (baseline lines 59-64). Manual anchor: from `.tv-auth-tab{` to `}`.
+Delete:
+```css
+  .tv-auth-tab{
+    flex:1; padding:.6rem 1rem; border:none; background:transparent;
+    border-radius:9999px; font-size:.78rem; font-weight:700;
+    text-transform:uppercase; letter-spacing:.08em; cursor:pointer;
+    color:#71717a; transition:all .2s;
+  }
+```
+
+**Part 3** (baseline lines 65-67). Manual anchor: from `.tv-auth-tab[aria-selected="true"]{` to `}`.
+Delete:
+```css
+  .tv-auth-tab[aria-selected="true"]{
+    background:#fff; color:#18181b; box-shadow:0 1px 3px rgba(0,0,0,.08);
+  }
+```
+
+**Part 4** (baseline lines 69-74). Manual anchor: from `.tv-shop-login-btn{` to `}`.
+Delete:
+```css
+  .tv-shop-login-btn{
+    display:flex; align-items:center; justify-content:center; gap:.6rem;
+    width:100%; height:48px; background:#5A31F4; color:#fff;
+    border:none; border-radius:8px; font-weight:600; font-size:.9rem;
+    cursor:pointer; transition:background .2s; text-decoration:none;
+  }
+```
+
+**Part 5** (baseline lines 75-75). Manual anchor: from `.tv-shop-login-btn:hover{ background:#4823d4; }` to `.tv-shop-login-btn:hover{ background:#4823d4; }`.
+Delete:
+```css
+  .tv-shop-login-btn:hover{ background:#4823d4; }
+```
+
+**Part 6** (baseline lines 77-80). Manual anchor: from `.tv-divider{` to `}`.
+Delete:
+```css
+  .tv-divider{
+    display:flex; align-items:center; gap:.75rem; color:#a1a1aa;
+    font-size:.7rem; text-transform:uppercase; letter-spacing:.1em;
+  }
+```
+
+**Part 7** (baseline lines 81-83). Manual anchor: from `.tv-divider::before,.tv-divider::after{` to `}`.
+Delete:
+```css
+  .tv-divider::before,.tv-divider::after{
+    content:""; flex:1; height:1px; background:#e4e4e7;
+  }
+```
+
+**Part 8** (baseline lines 85-85). Manual anchor: from `.tv-field{ display:flex; flex-direction:column; gap:.4rem; }` to `.tv-field{ display:flex; flex-direction:column; gap:.4rem; }`.
+Delete:
+```css
+  .tv-field{ display:flex; flex-direction:column; gap:.4rem; }
+```
+
+**Part 9** (baseline lines 86-89). Manual anchor: from `.tv-field label{` to `}`.
+Delete:
+```css
+  .tv-field label{
+    font-size:.78rem; font-weight:600; text-transform:uppercase;
+    letter-spacing:.06em; color:#3f3f46;
+  }
+```
+
+**Part 10** (baseline lines 90-94). Manual anchor: from `.tv-field input{` to `}`.
+Delete:
+```css
+  .tv-field input{
+    height:44px; padding:0 .9rem; border:1px solid #e4e4e7;
+    border-radius:8px; font-size:.95rem; transition:border-color .2s;
+    background:#fff;
+  }
+```
+
+**Part 11** (baseline lines 95-98). Manual anchor: from `.tv-field input:focus{` to `}`.
+Delete:
+```css
+  .tv-field input:focus{
+    outline:none; border-color:#ec4899;
+    box-shadow:0 0 0 3px rgba(236,72,153,.12);
+  }
+```
+
+**Part 12** (baseline lines 100-107). Manual anchor: from `.tv-submit{` to `}`.
+Delete:
+```css
+  .tv-submit{
+    height:48px; border:none; border-radius:9999px; cursor:pointer;
+    background:linear-gradient(90deg,#ec4899,#06b6d4,#facc15);
+    background-size:200% 100%; background-position:0% 50%;
+    color:#fff; font-weight:700; font-size:.85rem;
+    text-transform:uppercase; letter-spacing:.08em;
+    transition:background-position .4s, transform .15s;
+  }
+```
+
+**Part 13** (baseline lines 108-108). Manual anchor: from `.tv-submit:hover{ background-position:100% 50%; transform:scale(1.02); }` to `.tv-submit:hover{ background-position:100% 50%; transform:scale(1.02); }`.
+Delete:
+```css
+  .tv-submit:hover{ background-position:100% 50%; transform:scale(1.02); }
+```
+
+**Part 14** (baseline lines 109-109). Manual anchor: from `.tv-submit:active{ transform:scale(.98); }` to `.tv-submit:active{ transform:scale(.98); }`.
+Delete:
+```css
+  .tv-submit:active{ transform:scale(.98); }
+```
+
+**Part 15** (baseline lines 116-118). Manual anchor: from `.tv-form-msg{` to `}`.
+Delete:
+```css
+  .tv-form-msg{
+    font-size:.8rem; padding:.6rem .8rem; border-radius:6px;
+  }
+```
+
+**Part 16** (baseline lines 119-119). Manual anchor: from `.tv-form-msg.error{ background:#fee2e2; color:#991b1b; }` to `.tv-form-msg.error{ background:#fee2e2; color:#991b1b; }`.
+Delete:
+```css
+  .tv-form-msg.error{ background:#fee2e2; color:#991b1b; }
+```
+
+**Part 17** (baseline lines 120-120). Manual anchor: from `.tv-form-msg.success{ background:#dcfce7; color:#166534; }` to `.tv-form-msg.success{ background:#dcfce7; color:#166534; }`.
+Delete:
+```css
+  .tv-form-msg.success{ background:#dcfce7; color:#166534; }
+```
+
+**Part 18** (baseline lines 182-193). Manual anchor: from `.tv-auth-drawer .tv-submit {` to `}`.
+Delete:
+```css
+  .tv-auth-drawer .tv-submit {
+    background: linear-gradient(90deg,#ec4899,#06b6d4,#facc15) !important;
+    background-size: 200% 100% !important;
+    background-position: 0% 50% !important;
+    color: #fff !important;
+    font-weight: 700 !important;
+    border-radius: 9999px !important;
+    height: 48px !important;
+    border: none !important;
+    letter-spacing: .08em !important;
+    text-transform: uppercase !important;
+  }
+```
+
+**Part 19** (baseline lines 194-194). Manual anchor: from `.tv-auth-drawer .tv-submit:hover { background-position: 100% 50% !important; transform:...` to `.tv-auth-drawer .tv-submit:hover { background-position: 100% 50% !important; transform:...`.
+Delete:
+```css
+  .tv-auth-drawer .tv-submit:hover { background-position: 100% 50% !important; transform: scale(1.02) !important; }
+```
+
+**Part 20** (baseline lines 195-195). Manual anchor: from `.tv-auth-drawer .tv-submit:active { transform: scale(.98) !important; }` to `.tv-auth-drawer .tv-submit:active { transform: scale(.98) !important; }`.
+Delete:
+```css
+  .tv-auth-drawer .tv-submit:active { transform: scale(.98) !important; }
+```
+
+**Part 21** (baseline lines 197-203). Manual anchor: from `.tv-auth-drawer .tv-auth-tab {` to `}`.
+Delete:
+```css
+  .tv-auth-drawer .tv-auth-tab {
+    background: transparent !important;
+    box-shadow: none !important;
+    color: #71717a !important;
+    border-radius: 9999px !important;
+    font-weight: 700 !important;
+  }
+```
+
+**Part 22** (baseline lines 204-208). Manual anchor: from `.tv-auth-drawer .tv-auth-tab[aria-selected="true"] {` to `}`.
+Delete:
+```css
+  .tv-auth-drawer .tv-auth-tab[aria-selected="true"] {
+    background: #fff !important;
+    color: #18181b !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,.08) !important;
+  }
+```
+
+**Part 23** (baseline lines 237-244). Manual anchor: from `.tv-auth-drawer .tv-field input {` to `}`.
+Delete:
+```css
+  .tv-auth-drawer .tv-field input {
+    background: #fff !important;
+    border: 1px solid #e4e4e7 !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+    height: 44px !important;
+    color: #18181b !important;
+  }
+```
+
+**Part 24** (baseline lines 245-248). Manual anchor: from `.tv-auth-drawer .tv-field input:focus {` to `}`.
+Delete:
+```css
+  .tv-auth-drawer .tv-field input:focus {
+    border-color: #ec4899 !important;
+    box-shadow: 0 0 0 3px rgba(236,72,153,.12) !important;
+  }
+```
+
+### T92 [REVIEW] 6 orphaned rule(s) inside <style> blocks of sections/category-rows.liquid (classes no markup or script uses)
+- **File:** `sections/category-rows.liquid` | baseline lines 2331-2331, 2337-2337, 7893-7893, 7905-7905, 9342-9342, 9352-9352 | kind: orphan selectors in inline CSS (scripted, conservative)
+- **Why it is dead:** Every selector of each rule needs a class or ID that appears nowhere in the theme outside CSS: not in any HTML/Liquid markup, JS file, inline script or JSON (any mention, even in a string, counts as used; prefix-built names like x--{{ }} count as used; Shopify/app prefixes count as used; classes inside :not()/:is()/:where()/:has() are ignored). Selectors: .hw-glitch; .hw-glitch::after; html body #MainContent #tlv-fidget-pair-title; html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent #tlv-fidget-pair-title
+- **Proof:** Scripted full-text search over all 119 theme files with <style> CSS removed. Only rules on lines of pure CSS without Liquid were considered. Joint Chrome check per file (CSS views): exactly these rules removed, nothing added. Not proven from CSS alone (an app or admin content could use a class), hence REVIEW.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent #tlv-fidget-pair-title { padding-left: 40px !important; padding-right: 40px !important; box-sizing: border-box !important; } /   - removed: @media (max-width: 767px) > html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent #tlv-fidget-pair-title { padding-left: 22px !important; padding-right: 22px !important; } /   - removed: .hw-glitch { position: relative; display: inline-block; isolation: isolate; color: rgb(17, 17, 17); animation: 6s ease-in-out 0s infinite normal none running hwNeon; } /   - removed: .hw-glitch::after { content: ""; position: absolute; inset: -120% -40%; z-index: -1; pointer-events: none; background: radial-gradient(closest-side, rgba(255, 66, 161, 0.22), rgba(255, 66, 161, 0.12) 35%, rgba(255, 66, 161, 0.05) 65%, rgba(255, 66, 161, 0) 100%); opacity: 0; animation: 6s ease-in-ou /   - removed: html body #MainContent #tlv-fidget-pair-title { padding-left: 40px !important; padding-right: 40px !important; box-sizing: border-box !important; } /   - removed: @media (max-width: 767px) > html body #MainContent #tlv-fidget-pair-title { padding-left: 22px !important; padding-right: 22px !important; }**
+- **Visual change if removed:** None expected.
+- **Parts:** 6 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 2331-2331). Manual anchor: from `html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#Main...` to `html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#Main...`.
+Delete:
+```css
+html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent #tlv-fidget-pair-title{padding-left:40px!important;padding-right:40px!important;box-sizing:border-box!important}
+```
+
+**Part 2** (baseline lines 2337-2337). Manual anchor: from `html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#Main...` to `html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#Main...`.
+Delete:
+```css
+  html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent #tlv-fidget-pair-title{padding-left:22px!important;padding-right:22px!important}
+```
+
+**Part 3** (baseline lines 7893-7893). Manual anchor: from `.hw-glitch{position:relative;display:inline-block;isolation:isolate;color:#111;animatio...` to `.hw-glitch{position:relative;display:inline-block;isolation:isolate;color:#111;animatio...`.
+Delete:
+```css
+.hw-glitch{position:relative;display:inline-block;isolation:isolate;color:#111;animation:hwNeon 6s ease-in-out infinite}
+```
+
+**Part 4** (baseline lines 7905-7905). Manual anchor: from `.hw-glitch::after{content:"";position:absolute;left:-40%;right:-40%;top:-120%;bottom:-1...` to `.hw-glitch::after{content:"";position:absolute;left:-40%;right:-40%;top:-120%;bottom:-1...`.
+Delete:
+```css
+.hw-glitch::after{content:"";position:absolute;left:-40%;right:-40%;top:-120%;bottom:-120%;z-index:-1;pointer-events:none;background:radial-gradient(closest-side,rgba(255,66,161,.22),rgba(255,66,161,.12) 35%,rgba(255,66,161,.05) 65%,rgba(255,66,161,0) 100%);opacity:0;animation:hwHalo 6s ease-in-out infinite}
+```
+
+**Part 5** (baseline lines 9342-9342). Manual anchor: from `html body #MainContent #tlv-fidget-pair-title{padding-left:40px!important;padding-right...` to `html body #MainContent #tlv-fidget-pair-title{padding-left:40px!important;padding-right...`.
+Delete:
+```css
+html body #MainContent #tlv-fidget-pair-title{padding-left:40px!important;padding-right:40px!important;box-sizing:border-box!important}
+```
+
+**Part 6** (baseline lines 9352-9352). Manual anchor: from `html body #MainContent #tlv-fidget-pair-title{padding-left:22px!important;padding-right...` to `html body #MainContent #tlv-fidget-pair-title{padding-left:22px!important;padding-right...`.
+Delete:
+```css
+  html body #MainContent #tlv-fidget-pair-title{padding-left:22px!important;padding-right:22px!important}
+```
+
+### T93 [REVIEW] 5 orphaned rule(s) inside <style> blocks of sections/clg-hero.liquid (classes no markup or script uses)
+- **File:** `sections/clg-hero.liquid` | baseline lines 495-527, 531-575, 1334-1334, 1338-1350, 1484-1521 | kind: orphan selectors in inline CSS (scripted, conservative)
+- **Why it is dead:** Every selector of each rule needs a class or ID that appears nowhere in the theme outside CSS: not in any HTML/Liquid markup, JS file, inline script or JSON (any mention, even in a string, counts as used; prefix-built names like x--{{ }} count as used; Shopify/app prefixes count as used; classes inside :not()/:is()/:where()/:has() are ignored). Selectors: .cat-pill--accent; .cat-pill--accent:hover; .cat-pill__icon; .dc-rating; .drift-card__footer
+- **Proof:** Scripted full-text search over all 119 theme files with <style> CSS removed. Only rules on lines of pure CSS without Liquid were considered. Joint Chrome check per file (CSS views): exactly these rules removed, nothing added. Not proven from CSS alone (an app or admin content could use a class), hence REVIEW.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .drift-card__footer { height: 82px; overflow: hidden; background: rgb(255, 255, 255); border-radius: 0px 0px 18px 18px; } /   - removed: .dc-rating { position: absolute; bottom: 0px; left: 0px; right: 0px; height: 26px; background: rgba(255, 255, 255, 0.93); display: flex; align-items: center; padding: 0px 7px; gap: 9px; } /   - removed: .cat-pill--accent { border: 1px solid rgba(255, 66, 161, 0.34) !important; } /   - removed: .cat-pill--accent:hover { border-color: rgb(255, 66, 161) !important; box-shadow: 0 0 12px color-mix(in srgb, var(--glow, #ff42a1) 60%, transparent), 0 0 26px color-mix(in srgb, var(--glow, #ff42a1) 35%, transparent) !important; } /   - removed: .cat-pill__icon { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; line-height: 1; }**
+- **Visual change if removed:** None expected.
+- **Parts:** 5 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 495-527). Manual anchor: from `.drift-card__footer {` to `}`.
+Delete:
+```css
+.drift-card__footer {
+
+
+
+  height: 82px;
+
+
+
+  overflow: hidden;
+
+
+
+  /* Opaque — otherwise leftover space below a short name/no-rating
+
+
+
+     card is transparent and the next rotated card underneath shows
+
+
+
+     through, reading as a stray line of someone else's text. */
+
+
+
+  background: #fff;
+
+
+
+  border-radius: 0 0 18px 18px;
+
+
+
+}
+```
+
+**Part 2** (baseline lines 531-575). Manual anchor: from `.dc-rating {` to `}`.
+Delete:
+```css
+.dc-rating {
+
+
+
+  position: absolute;
+
+
+
+  bottom: 0;
+
+
+
+  left: 0;
+
+
+
+  right: 0;
+
+
+
+  height: 26px;
+
+
+
+  background: rgba(255,255,255,0.93);
+
+
+
+  display: flex;
+
+
+
+  align-items: center;
+
+
+
+  padding: 0 7px;
+
+
+
+  gap: 9px;
+
+
+
+}
+```
+
+**Part 3** (baseline lines 1334-1334). Manual anchor: from `.cat-pill--accent { border: 1px solid rgba(255, 66, 161, 0.34) !important; }` to `.cat-pill--accent { border: 1px solid rgba(255, 66, 161, 0.34) !important; }`.
+Delete:
+```css
+.cat-pill--accent { border: 1px solid rgba(255, 66, 161, 0.34) !important; }
+```
+
+**Part 4** (baseline lines 1338-1350). Manual anchor: from `.cat-pill--accent:hover {` to `}`.
+Delete:
+```css
+.cat-pill--accent:hover {
+
+
+
+  border-color: #ff42a1 !important;
+
+
+
+  box-shadow: 0 0 12px color-mix(in srgb, var(--glow, #ff42a1) 60%, transparent), 0 0 26px color-mix(in srgb, var(--glow, #ff42a1) 35%, transparent) !important;
+
+
+
+}
+```
+
+**Part 5** (baseline lines 1484-1521). Manual anchor: from `.cat-pill__icon {` to `}`.
+Delete:
+```css
+.cat-pill__icon {
+  width: 32px;
+
+
+
+  height: 32px;
+
+
+
+  border-radius: 50%;
+
+
+
+  display: flex;
+
+
+
+  align-items: center;
+
+
+
+  justify-content: center;
+
+
+
+  font-size: 15px;
+
+
+
+  flex-shrink: 0;
+
+
+
+  line-height: 1;
+
+
+
+}
+```
+
+### T94 [REVIEW] 2 orphaned rule(s) inside <style> blocks of sections/footer.liquid (classes no markup or script uses)
+- **File:** `sections/footer.liquid` | baseline lines 118-126, 127-127 | kind: orphan selectors in inline CSS (scripted, conservative)
+- **Why it is dead:** Every selector of each rule needs a class or ID that appears nowhere in the theme outside CSS: not in any HTML/Liquid markup, JS file, inline script or JSON (any mention, even in a string, counts as used; prefix-built names like x--{{ }} count as used; Shopify/app prefixes count as used; classes inside :not()/:is()/:where()/:has() are ignored). Selectors: .site-footer__logo; .site-footer__logo sup
+- **Proof:** Scripted full-text search over all 119 theme files with <style> CSS removed. Only rules on lines of pure CSS without Liquid were considered. Joint Chrome check per file (CSS views): exactly these rules removed, nothing added. Not proven from CSS alone (an app or admin content could use a class), hence REVIEW.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .site-footer__logo { display: inline-block; font-size: 1.8rem; font-weight: 800; color: rgb(17, 17, 17); text-decoration: none; letter-spacing: -0.03em; font-family: Nunito, system-ui, sans-serif; } /   - removed: .site-footer__logo sup { font-size: 0.5em; font-weight: 700; vertical-align: super; }**
+- **Visual change if removed:** None expected.
+- **Parts:** 2 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 118-126). Manual anchor: from `.site-footer__logo {` to `}`.
+Delete:
+```css
+.site-footer__logo {
+  display: inline-block;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #111;
+  text-decoration: none;
+  letter-spacing: -0.03em;
+  font-family: 'Nunito', system-ui, sans-serif;
+}
+```
+
+**Part 2** (baseline lines 127-127). Manual anchor: from `.site-footer__logo sup { font-size: 0.5em; font-weight: 700; vertical-align: super; }` to `.site-footer__logo sup { font-size: 0.5em; font-weight: 700; vertical-align: super; }`.
+Delete:
+```css
+.site-footer__logo sup { font-size: 0.5em; font-weight: 700; vertical-align: super; }
+```
+
+### T95 [REVIEW] 5 orphaned rule(s) inside <style> blocks of sections/newsletter.liquid (classes no markup or script uses)
+- **File:** `sections/newsletter.liquid` | baseline lines 2-2, 3-3, 4-4, 5-5, 6-6 | kind: orphan selectors in inline CSS (scripted, conservative)
+- **Why it is dead:** Every selector of each rule needs a class or ID that appears nowhere in the theme outside CSS: not in any HTML/Liquid markup, JS file, inline script or JSON (any mention, even in a string, counts as used; prefix-built names like x--{{ }} count as used; Shopify/app prefixes count as used; classes inside :not()/:is()/:where()/:has() are ignored). Selectors: .nl-social-btn; .nl-social-btn svg; .nl-social-btn svg *; .nl-social-btn:hover; .nl-socials
+- **Proof:** Scripted full-text search over all 119 theme files with <style> CSS removed. Only rules on lines of pure CSS without Liquid were considered. Joint Chrome check per file (CSS views): exactly these rules removed, nothing added. Not proven from CSS alone (an app or admin content could use a class), hence REVIEW.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .nl-socials { display: flex !important; gap: 16px !important; justify-content: center !important; align-items: center !important; margin: 1.4rem 0px 1.8rem !important; flex-wrap: nowrap !important; } /   - removed: .nl-social-btn { display: inline-flex !important; align-items: center !important; justify-content: center !important; width: 48px !important; height: 48px !important; min-width: 48px !important; min-height: 48px !important; border-radius: 50% !important; border: 1.5px solid rgba(255, 66, 161, 0.4) ! /   - removed: .nl-social-btn:hover { background: rgba(255, 66, 161, 0.12) !important; border-color: rgb(255, 66, 161) !important; } /   - removed: .nl-social-btn svg { width: 22px !important; height: 22px !important; fill: none !important; stroke: rgb(255, 66, 161) !important; stroke-width: 2 !important; display: block !important; flex-shrink: 0 !important; } /   - removed: .nl-social-btn svg * { stroke: rgb(255, 66, 161) !important; fill: none !important; }**
+- **Visual change if removed:** None expected.
+- **Parts:** 5 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 2-2). Manual anchor: from `.nl-socials{display:flex !important;gap:16px !important;justify-content:center !importa...` to `.nl-socials{display:flex !important;gap:16px !important;justify-content:center !importa...`.
+Delete:
+```css
+.nl-socials{display:flex !important;gap:16px !important;justify-content:center !important;align-items:center !important;margin:1.4rem 0 1.8rem !important;flex-wrap:nowrap !important;}
+```
+
+**Part 2** (baseline lines 3-3). Manual anchor: from `.nl-social-btn{display:inline-flex !important;align-items:center !important;justify-con...` to `.nl-social-btn{display:inline-flex !important;align-items:center !important;justify-con...`.
+Delete:
+```css
+.nl-social-btn{display:inline-flex !important;align-items:center !important;justify-content:center !important;width:48px !important;height:48px !important;min-width:48px !important;min-height:48px !important;border-radius:50% !important;border:1.5px solid rgba(255,66,161,0.4) !important;background:transparent !important;color:#ff42a1 !important;text-decoration:none !important;flex-shrink:0 !important;box-shadow:none !important;padding:0 !important;outline:none !important;}
+```
+
+**Part 3** (baseline lines 4-4). Manual anchor: from `.nl-social-btn:hover{background:rgba(255,66,161,0.12) !important;border-color:#ff42a1 !...` to `.nl-social-btn:hover{background:rgba(255,66,161,0.12) !important;border-color:#ff42a1 !...`.
+Delete:
+```css
+.nl-social-btn:hover{background:rgba(255,66,161,0.12) !important;border-color:#ff42a1 !important;}
+```
+
+**Part 4** (baseline lines 5-5). Manual anchor: from `.nl-social-btn svg{width:22px !important;height:22px !important;fill:none !important;st...` to `.nl-social-btn svg{width:22px !important;height:22px !important;fill:none !important;st...`.
+Delete:
+```css
+.nl-social-btn svg{width:22px !important;height:22px !important;fill:none !important;stroke:#ff42a1 !important;stroke-width:2 !important;display:block !important;flex-shrink:0 !important;}
+```
+
+**Part 5** (baseline lines 6-6). Manual anchor: from `.nl-social-btn svg *{stroke:#ff42a1 !important;fill:none !important;}` to `.nl-social-btn svg *{stroke:#ff42a1 !important;fill:none !important;}`.
+Delete:
+```css
+.nl-social-btn svg *{stroke:#ff42a1 !important;fill:none !important;}
+```
+
+### T96 [REVIEW] 2 orphaned rule(s) inside <style> blocks of sections/product-main.liquid (classes no markup or script uses)
+- **File:** `sections/product-main.liquid` | baseline lines 2407-2407, 2563-2563 | kind: orphan selectors in inline CSS (scripted, conservative)
+- **Why it is dead:** Every selector of each rule needs a class or ID that appears nowhere in the theme outside CSS: not in any HTML/Liquid markup, JS file, inline script or JSON (any mention, even in a string, counts as used; prefix-built names like x--{{ }} count as used; Shopify/app prefixes count as used; classes inside :not()/:is()/:where()/:has() are ignored). Selectors: #trust-bar; .product-stars, .product-stars *
+- **Proof:** Scripted full-text search over all 119 theme files with <style> CSS removed. Only rules on lines of pure CSS without Liquid were considered. Joint Chrome check per file (CSS views): exactly these rules removed, nothing added. Not proven from CSS alone (an app or admin content could use a class), hence REVIEW.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: #trust-bar { height: 82px !important; } /   - removed: .product-stars, .product-stars * { filter: none !important; box-shadow: none !important; text-shadow: none !important; }**
+- **Visual change if removed:** None expected.
+- **Parts:** 2 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 2407-2407). Manual anchor: from `#trust-bar { height:82px !important; }` to `#trust-bar { height:82px !important; }`.
+Delete:
+```css
+    #trust-bar { height:82px !important; }
+```
+
+**Part 2** (baseline lines 2563-2563). Manual anchor: from `.product-stars, .product-stars * { filter: none !important; box-shadow: none !important...` to `.product-stars, .product-stars * { filter: none !important; box-shadow: none !important...`.
+Delete:
+```css
+    .product-stars, .product-stars * { filter: none !important; box-shadow: none !important; text-shadow: none !important; }
+```
+
+### T97 [REVIEW] 1 orphaned rule(s) inside <style> blocks of snippets/cart-drawer.liquid (classes no markup or script uses)
+- **File:** `snippets/cart-drawer.liquid` | baseline lines 118-118 | kind: orphan selectors in inline CSS (scripted, conservative)
+- **Why it is dead:** Every selector of each rule needs a class or ID that appears nowhere in the theme outside CSS: not in any HTML/Liquid markup, JS file, inline script or JSON (any mention, even in a string, counts as used; prefix-built names like x--{{ }} count as used; Shopify/app prefixes count as used; classes inside :not()/:is()/:where()/:has() are ignored). Selectors: #tvCartDrawer .cart-bundle__discount
+- **Proof:** Scripted full-text search over all 119 theme files with <style> CSS removed. Only rules on lines of pure CSS without Liquid were considered. Joint Chrome check per file (CSS views): exactly these rules removed, nothing added. Not proven from CSS alone (an app or admin content could use a class), hence REVIEW.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: #tvCartDrawer .cart-bundle__discount { font-size: 11px !important; color: rgb(22, 163, 74) !important; font-weight: 700 !important; margin-top: 6px !important; text-align: center !important; display: block !important; }**
+- **Visual change if removed:** None expected.
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 118-118). Manual anchor: from `#tvCartDrawer .cart-bundle__discount { font-size:11px !important; color:#16a34a !import...` to `#tvCartDrawer .cart-bundle__discount { font-size:11px !important; color:#16a34a !import...`.
+Delete:
+```css
+  #tvCartDrawer .cart-bundle__discount { font-size:11px !important; color:#16a34a !important; font-weight:700 !important; margin-top:6px !important; text-align:center !important; display:block !important; }
+```
+
+### T98 [REVIEW] 1 orphaned rule(s) inside <style> blocks of snippets/collection-discovery-banners.liquid (classes no markup or script uses)
+- **File:** `snippets/collection-discovery-banners.liquid` | baseline lines 3-3 | kind: orphan selectors in inline CSS (scripted, conservative)
+- **Why it is dead:** Every selector of each rule needs a class or ID that appears nowhere in the theme outside CSS: not in any HTML/Liquid markup, JS file, inline script or JSON (any mention, even in a string, counts as used; prefix-built names like x--{{ }} count as used; Shopify/app prefixes count as used; classes inside :not()/:is()/:where()/:has() are ignored). Selectors: .collection-discovery--three
+- **Proof:** Scripted full-text search over all 119 theme files with <style> CSS removed. Only rules on lines of pure CSS without Liquid were considered. Joint Chrome check per file (CSS views): exactly these rules removed, nothing added. Not proven from CSS alone (an app or admin content could use a class), hence REVIEW.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .collection-discovery--three { grid-template-columns: repeat(3, minmax(0px, 1fr)); }**
+- **Visual change if removed:** None expected.
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 3-3). Manual anchor: from `.collection-discovery--three{grid-template-columns:repeat(3,minmax(0,1fr))}` to `.collection-discovery--three{grid-template-columns:repeat(3,minmax(0,1fr))}`.
+Delete:
+```css
+.collection-discovery--three{grid-template-columns:repeat(3,minmax(0,1fr))}
+```
+
+### T99 [REVIEW] 48 orphaned rule(s) inside <style> blocks of snippets/collection-page.liquid (classes no markup or script uses)
+- **File:** `snippets/collection-page.liquid` | baseline lines 85-85, 86-86, 87-87, 88-88, 89-89, 103-103, 104-104, 106-106, 117-117, 126-138, 148-148, 149-149, 150-150, 151-151, 152-152, 153-153, 181-181, 185-185, 186-186, 187-187, 188-188, 189-189, 190-190, 191-191, 192-192, 193-193, 197-197, 202-202, 203-203, 204-204, 205-205, 206-206, 207-207, 211-211, 212-212, 230-230, 231-231, 232-232, 233-233, 234-234, 235-235, 236-236, 347-347, 348-348, 349-349, 350-350, 351-351, 352-352 | kind: orphan selectors in inline CSS (scripted, conservative)
+- **Why it is dead:** Every selector of each rule needs a class or ID that appears nowhere in the theme outside CSS: not in any HTML/Liquid markup, JS file, inline script or JSON (any mention, even in a string, counts as used; prefix-built names like x--{{ }} count as used; Shopify/app prefixes count as used; classes inside :not()/:is()/:where()/:has() are ignored). Selectors: #tvFilters .tv-tc-label; #tvFilters .tv-theme-more; #tvFilters .tv-theme-more:hover; #tvFilters .tv-type-card; #tvFilters .tv-type-card.tv-type-card--active; #tvFilters .tv-type-card.tv-type-card--active .tv-tc-label; .coll-af-badge; .coll-af-badge--on; .coll-allfilters; .coll-allfilters--active; .coll-allfilters:hover; .coll-intro--collapsible .coll-intro__body; .coll-intro--collapsible.coll-intro--expanded .coll-intro__body; .coll-intro--has-overflow .coll-intro__fade; .coll-intro--has-overflow.coll-intro--expanded .coll-intro__fade; .coll-intro__badge; .coll-intro__body; .coll-intro__fade; .coll-vbtn; .coll-vbtn:hover:not(.coll-vbtn--on); .coll-view-toggle; .tv-tc-label; .tv-theme-more; .tv-theme-more:hover; .tv-theme-row--center; .tv-trust-bar; .tv-trust-icon; .tv-trust-icon--blue; .tv
+- **Proof:** Scripted full-text search over all 119 theme files with <style> CSS removed. Only rules on lines of pure CSS without Liquid were considered. Joint Chrome check per file (CSS views): exactly these rules removed, nothing added. Not proven from CSS alone (an app or admin content could use a class), hence REVIEW.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .coll-allfilters { display: inline-flex; align-items: center; gap: 6px; padding: 0.65rem 1.2rem; border-radius: 9999px; border: 1.5px solid rgb(229, 231, 235); background: rgb(255, 255, 255); font-size: 13.5px; font-weight: 600; font-family: inherit; cursor: pointer; white-space: nowrap; box-shadow: /   - removed: .coll-allfilters:hover { border-color: rgb(255, 66, 161); color: rgb(255, 66, 161) !important; } /   - removed: .coll-allfilters--active { background: rgb(255, 66, 161) !important; border-color: rgb(255, 66, 161) !important; color: rgb(255, 255, 255) !important; } /   - removed: .coll-af-badge { display: none; align-items: center; justify-content: center; min-width: 18px; height: 18px; border-radius: 50%; background: rgb(255, 66, 161); font-size: 10px; font-weight: 800; padding: 0px 3px; color: rgb(255, 255, 255) !important; } /   - removed: .coll-af-badge--on { display: inline-flex !important; } /   - removed: .coll-view-toggle { display: inline-flex; align-items: center; border: 1.5px solid rgb(229, 231, 235); border-radius: 9999px; overflow: hidden; background: rgb(255, 255, 255); box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 4px; flex-shrink: 0; } /   - removed: .coll-vbtn { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: none; background: transparent; cursor: pointer; color: rgb(136, 136, 136); transition: background 0.15s, color 0.15s; font-family: inherit; } /   - removed: .coll-vbtn:hover:not(.coll-vbtn--on) { color: rgb(255, 66, 161); } /   - removed: @media (max-width: 767px) > .coll-view-toggle { display: none; } /   - removed: .coll-intro__badge { display: inline-flex; align-items: center; color: var(--ci-accent, #ff42a1); background: var(--ci-badge-bg, rgba(255,66,161,0.08)); font-size: 13px; font-weight: 600; letter-spacing: 0.6px; border-radius: 999px; padding: 8px 22px; margin-bottom: 1.1rem; font-family: inherit; } /   - removed: .coll-intro__body { position: relative; } /   - removed: .coll-intro--collapsible .coll-intro__body { max-height: 92px; overflow: hidden; transition: max-height 0.3s; } /   - removed: .coll-intro--collapsible.coll-intro--expanded .coll-intro__body { max-height: 2000px; } /   - removed: .coll-intro__fade { position: absolute; bottom: 0px; left: 0px; right: 0px; height: 42px; background: linear-gradient(rgba(255, 255, 255, 0), rgb(255, 255, 255)); pointer-events: none; opacity: 0; transition: opacity 0.2s; } /   - removed: .coll-intro--has-overflow .coll-intro__fade { opacity: 1; } /   - removed: .coll-intro--has-overflow.coll-intro--expanded .coll-intro__fade { opacity: 0; } /   - removed: @media (max-width: 767px) > .coll-intro__badge { font-size: 12px; padding: 7px 18px; } /   - removed: .tv-trust-bar { display: flex; align-items: stretch; background: rgb(255, 245, 249); border-radius: 16px; padding: 1.25rem 2rem; margin-bottom: 2.5rem; gap: 0px; } /   - removed: .tv-trust-item { display: flex; align-items: center; gap: 1rem; flex: 1 1 0%; justify-content: center; padding: 0px 1rem; } /   - removed: .tv-trust-sep { width: 1px; background: rgb(240, 200, 221); flex-shrink: 0; align-self: stretch; } /   - removed: .tv-trust-icon { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; } /   - removed: .tv-trust-icon--pink { background: rgba(255, 66, 161, 0.15) !important; color: rgb(255, 66, 161) !important; } /   - removed: .tv-trust-icon--blue { background: rgba(59, 130, 246, 0.15) !important; color: rgb(59, 130, 246) !important; } /   - removed: .tv-trust-icon--green { background: rgba(34, 197, 94, 0.15) !important; color: rgb(34, 197, 94) !important; } /   - removed: .tv-trust-title { font-size: 15px; font-weight: 800; line-height: 1.3; color: rgb(17, 17, 17) !important; } /   - removed: .tv-trust-sub { font-size: 12.5px; margin-top: 3px; color: rgb(119, 119, 119) !important; } /   - removed: .tv-theme-row--center { justify-content: center !important; } /   - removed: .tv-type-card { transition: border-color 0.15s, box-shadow 0.15s; display: flex !important; flex-direction: column !important; align-items: center !important; justify-content: flex-start !important; width: 115px !important; padding: 0.85rem 0.5rem 0.7rem !important; border-radius: 14px !important; b /   - removed: .tv-type-card img { pointer-events: none; width: 72px !important; height: 72px !important; object-fit: cover !important; border-radius: 10px !important; } /   - removed: .tv-tc-label { pointer-events: none; font-size: 12px !important; font-weight: 600 !important; color: rgb(51, 51, 51) !important; text-align: center !important; line-height: 1.3 !important; } /   - removed: .tv-type-card:hover { border-color: rgb(255, 66, 161) !important; box-shadow: rgb(255, 66, 161) 0px 0px 0px 2px !important; } /   - removed: .tv-type-card--active { border-color: rgb(255, 66, 161) !important; box-shadow: rgb(255, 66, 161) 0px 0px 0px 2px !important; background: rgba(255, 66, 161, 0.04) !important; } /   - removed: .tv-type-card--active .tv-tc-label { color: rgb(255, 66, 161) !important; } /   - removed: .tv-theme-more { transition: border-color 0.15s, color 0.15s; display: inline-flex !important; align-items: center !important; gap: 5px !important; padding: 0.52rem 1.1rem !important; border-radius: 9999px !important; border: 1.5px solid rgb(226, 232, 240) !important; background: rgb(255, 255, 255)  /   - removed: .tv-theme-more:hover { border-color: rgb(255, 66, 161) !important; color: rgb(255, 66, 161) !important; } /   - removed: @media (max-width: 767px) > .tv-trust-bar { padding: 1rem; } /   - removed: @media (max-width: 767px) > .tv-trust-item { gap: 0.65rem; padding: 0px 0.25rem; } /   - removed: @media (max-width: 767px) > .tv-trust-icon { width: 40px; height: 40px; } /   - removed: @media (max-width: 767px) > .tv-trust-title { font-size: 12.5px; } /   - removed: @media (max-width: 767px) > .tv-trust-sub { font-size: 11px; } /   - removed: @media (max-width: 767px) > .tv-type-card { width: 90px !important; } /   - removed: @media (max-width: 767px) > .tv-type-card img { width: 58px !important; height: 58px !important; } /   - removed: #tvFilters .tv-theme-more { color: rgb(68, 68, 68) !important; background: rgb(255, 255, 255) !important; border: 1.5px solid rgb(226, 232, 240) !important; box-shadow: rgba(0, 0, 0, 0.06) 0px 1px 3px !important; } /   - removed: #tvFilters .tv-theme-more:hover { color: rgb(255, 66, 161) !important; background: rgb(255, 255, 255) !important; border-color: rgb(255, 66, 161) !important; } /   - removed: #tvFilters .tv-type-card { background: rgb(255, 255, 255) !important; border: 1.5px solid rgb(229, 231, 235) !important; box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 5px !important; } /   - removed: #tvFilters .tv-tc-label { color: rgb(51, 51, 51) !important; font-weight: 600 !important; } /   - removed: #tvFilters .tv-type-card.tv-type-card--active .tv-tc-label { color: rgb(255, 66, 161) !important; } /   - removed: #tvFilters .tv-type-card.tv-type-card--active { border-color: rgb(255, 66, 161) !important; box-shadow: rgb(255, 66, 161) 0px 0px 0px 2px !important; background: rgba(255, 66, 161, 0.04) !important; }**
+- **Visual change if removed:** None expected.
+- **Parts:** 48 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 85-85). Manual anchor: from `.coll-allfilters { display:inline-flex; align-items:center; gap:6px; padding:0.65rem 1....` to `.coll-allfilters { display:inline-flex; align-items:center; gap:6px; padding:0.65rem 1....`.
+Delete:
+```css
+.coll-allfilters { display:inline-flex; align-items:center; gap:6px; padding:0.65rem 1.2rem; border-radius:9999px; border:1.5px solid #e5e7eb; background:#fff; color:#111 !important; font-size:13.5px; font-weight:600; font-family:inherit; cursor:pointer; white-space:nowrap; box-shadow:0 1px 4px rgba(0,0,0,0.07); transition:border-color 0.15s,color 0.15s; flex-shrink:0; }
+```
+
+**Part 2** (baseline lines 86-86). Manual anchor: from `.coll-allfilters:hover { border-color:#ff42a1; color:#ff42a1 !important; }` to `.coll-allfilters:hover { border-color:#ff42a1; color:#ff42a1 !important; }`.
+Delete:
+```css
+.coll-allfilters:hover { border-color:#ff42a1; color:#ff42a1 !important; }
+```
+
+**Part 3** (baseline lines 87-87). Manual anchor: from `.coll-allfilters--active { background:#ff42a1 !important; border-color:#ff42a1 !importa...` to `.coll-allfilters--active { background:#ff42a1 !important; border-color:#ff42a1 !importa...`.
+Delete:
+```css
+.coll-allfilters--active { background:#ff42a1 !important; border-color:#ff42a1 !important; color:#fff !important; }
+```
+
+**Part 4** (baseline lines 88-88). Manual anchor: from `.coll-af-badge { display:none; align-items:center; justify-content:center; min-width:18...` to `.coll-af-badge { display:none; align-items:center; justify-content:center; min-width:18...`.
+Delete:
+```css
+.coll-af-badge { display:none; align-items:center; justify-content:center; min-width:18px; height:18px; border-radius:50%; background:#ff42a1; color:#fff !important; font-size:10px; font-weight:800; padding:0 3px; }
+```
+
+**Part 5** (baseline lines 89-89). Manual anchor: from `.coll-af-badge--on { display:inline-flex !important; }` to `.coll-af-badge--on { display:inline-flex !important; }`.
+Delete:
+```css
+.coll-af-badge--on { display:inline-flex !important; }
+```
+
+**Part 6** (baseline lines 103-103). Manual anchor: from `.coll-view-toggle { display:inline-flex; align-items:center; border:1.5px solid #e5e7eb...` to `.coll-view-toggle { display:inline-flex; align-items:center; border:1.5px solid #e5e7eb...`.
+Delete:
+```css
+.coll-view-toggle { display:inline-flex; align-items:center; border:1.5px solid #e5e7eb; border-radius:9999px; overflow:hidden; background:#fff; box-shadow:0 1px 4px rgba(0,0,0,0.07); flex-shrink:0; }
+```
+
+**Part 7** (baseline lines 104-104). Manual anchor: from `.coll-vbtn { display:flex; align-items:center; justify-content:center; width:40px; heig...` to `.coll-vbtn { display:flex; align-items:center; justify-content:center; width:40px; heig...`.
+Delete:
+```css
+.coll-vbtn { display:flex; align-items:center; justify-content:center; width:40px; height:40px; border:none; background:transparent; cursor:pointer; color:#888; transition:background 0.15s,color 0.15s; font-family:inherit; }
+```
+
+**Part 8** (baseline lines 106-106). Manual anchor: from `.coll-vbtn:hover:not(.coll-vbtn--on) { color:#ff42a1; }` to `.coll-vbtn:hover:not(.coll-vbtn--on) { color:#ff42a1; }`.
+Delete:
+```css
+.coll-vbtn:hover:not(.coll-vbtn--on) { color:#ff42a1; }
+```
+
+**Part 9** (baseline lines 117-117). Manual anchor: from `.coll-view-toggle { display:none; }` to `.coll-view-toggle { display:none; }`.
+Delete:
+```css
+  .coll-view-toggle { display:none; }
+```
+
+**Part 10** (baseline lines 126-138). Manual anchor: from `.coll-intro__badge {` to `}`.
+Delete:
+```css
+.coll-intro__badge {
+  display: inline-flex;
+  align-items: center;
+  color: var(--ci-accent, #ff42a1);
+  background: var(--ci-badge-bg, rgba(255,66,161,0.08));
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  border-radius: 999px;
+  padding: 8px 22px;
+  margin-bottom: 1.1rem;
+  font-family: inherit;
+}
+```
+
+**Part 11** (baseline lines 148-148). Manual anchor: from `.coll-intro__body { position: relative; }` to `.coll-intro__body { position: relative; }`.
+Delete:
+```css
+.coll-intro__body { position: relative; }
+```
+
+**Part 12** (baseline lines 149-149). Manual anchor: from `.coll-intro--collapsible .coll-intro__body { max-height: 92px; overflow: hidden; transi...` to `.coll-intro--collapsible .coll-intro__body { max-height: 92px; overflow: hidden; transi...`.
+Delete:
+```css
+.coll-intro--collapsible .coll-intro__body { max-height: 92px; overflow: hidden; transition: max-height 0.3s ease; }
+```
+
+**Part 13** (baseline lines 150-150). Manual anchor: from `.coll-intro--collapsible.coll-intro--expanded .coll-intro__body { max-height: 2000px; }` to `.coll-intro--collapsible.coll-intro--expanded .coll-intro__body { max-height: 2000px; }`.
+Delete:
+```css
+.coll-intro--collapsible.coll-intro--expanded .coll-intro__body { max-height: 2000px; }
+```
+
+**Part 14** (baseline lines 151-151). Manual anchor: from `.coll-intro__fade { position: absolute; bottom: 0; left: 0; right: 0; height: 42px; bac...` to `.coll-intro__fade { position: absolute; bottom: 0; left: 0; right: 0; height: 42px; bac...`.
+Delete:
+```css
+.coll-intro__fade { position: absolute; bottom: 0; left: 0; right: 0; height: 42px; background: linear-gradient(to bottom, rgba(255,255,255,0), #fff); pointer-events: none; opacity: 0; transition: opacity 0.2s; }
+```
+
+**Part 15** (baseline lines 152-152). Manual anchor: from `.coll-intro--has-overflow .coll-intro__fade { opacity: 1; }` to `.coll-intro--has-overflow .coll-intro__fade { opacity: 1; }`.
+Delete:
+```css
+.coll-intro--has-overflow .coll-intro__fade { opacity: 1; }
+```
+
+**Part 16** (baseline lines 153-153). Manual anchor: from `.coll-intro--has-overflow.coll-intro--expanded .coll-intro__fade { opacity: 0; }` to `.coll-intro--has-overflow.coll-intro--expanded .coll-intro__fade { opacity: 0; }`.
+Delete:
+```css
+.coll-intro--has-overflow.coll-intro--expanded .coll-intro__fade { opacity: 0; }
+```
+
+**Part 17** (baseline lines 181-181). Manual anchor: from `.coll-intro__badge { font-size: 12px; padding: 7px 18px; }` to `.coll-intro__badge { font-size: 12px; padding: 7px 18px; }`.
+Delete:
+```css
+  .coll-intro__badge { font-size: 12px; padding: 7px 18px; }
+```
+
+**Part 18** (baseline lines 185-185). Manual anchor: from `.tv-trust-bar { display:flex; align-items:stretch; background:#fff5f9; border-radius:16...` to `.tv-trust-bar { display:flex; align-items:stretch; background:#fff5f9; border-radius:16...`.
+Delete:
+```css
+.tv-trust-bar { display:flex; align-items:stretch; background:#fff5f9; border-radius:16px; padding:1.25rem 2rem; margin-bottom:2.5rem; gap:0; }
+```
+
+**Part 19** (baseline lines 186-186). Manual anchor: from `.tv-trust-item { display:flex; align-items:center; gap:1rem; flex:1; justify-content:ce...` to `.tv-trust-item { display:flex; align-items:center; gap:1rem; flex:1; justify-content:ce...`.
+Delete:
+```css
+.tv-trust-item { display:flex; align-items:center; gap:1rem; flex:1; justify-content:center; padding:0 1rem; }
+```
+
+**Part 20** (baseline lines 187-187). Manual anchor: from `.tv-trust-sep { width:1px; background:#f0c8dd; flex-shrink:0; align-self:stretch; }` to `.tv-trust-sep { width:1px; background:#f0c8dd; flex-shrink:0; align-self:stretch; }`.
+Delete:
+```css
+.tv-trust-sep { width:1px; background:#f0c8dd; flex-shrink:0; align-self:stretch; }
+```
+
+**Part 21** (baseline lines 188-188). Manual anchor: from `.tv-trust-icon { width:52px; height:52px; border-radius:50%; display:flex; align-items:...` to `.tv-trust-icon { width:52px; height:52px; border-radius:50%; display:flex; align-items:...`.
+Delete:
+```css
+.tv-trust-icon { width:52px; height:52px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+```
+
+**Part 22** (baseline lines 189-189). Manual anchor: from `.tv-trust-icon--pink { background:rgba(255,66,161,0.15) !important; color:#ff42a1 !impo...` to `.tv-trust-icon--pink { background:rgba(255,66,161,0.15) !important; color:#ff42a1 !impo...`.
+Delete:
+```css
+.tv-trust-icon--pink { background:rgba(255,66,161,0.15) !important; color:#ff42a1 !important; }
+```
+
+**Part 23** (baseline lines 190-190). Manual anchor: from `.tv-trust-icon--blue { background:rgba(59,130,246,0.15) !important; color:#3b82f6 !impo...` to `.tv-trust-icon--blue { background:rgba(59,130,246,0.15) !important; color:#3b82f6 !impo...`.
+Delete:
+```css
+.tv-trust-icon--blue { background:rgba(59,130,246,0.15) !important; color:#3b82f6 !important; }
+```
+
+**Part 24** (baseline lines 191-191). Manual anchor: from `.tv-trust-icon--green { background:rgba(34,197,94,0.15) !important; color:#22c55e !impo...` to `.tv-trust-icon--green { background:rgba(34,197,94,0.15) !important; color:#22c55e !impo...`.
+Delete:
+```css
+.tv-trust-icon--green { background:rgba(34,197,94,0.15) !important; color:#22c55e !important; }
+```
+
+**Part 25** (baseline lines 192-192). Manual anchor: from `.tv-trust-title { font-size:15px; font-weight:800; color:#111 !important; line-height:1...` to `.tv-trust-title { font-size:15px; font-weight:800; color:#111 !important; line-height:1...`.
+Delete:
+```css
+.tv-trust-title { font-size:15px; font-weight:800; color:#111 !important; line-height:1.3; }
+```
+
+**Part 26** (baseline lines 193-193). Manual anchor: from `.tv-trust-sub { font-size:12.5px; color:#777 !important; margin-top:3px; }` to `.tv-trust-sub { font-size:12.5px; color:#777 !important; margin-top:3px; }`.
+Delete:
+```css
+.tv-trust-sub { font-size:12.5px; color:#777 !important; margin-top:3px; }
+```
+
+**Part 27** (baseline lines 197-197). Manual anchor: from `.tv-theme-row--center { justify-content:center !important; }` to `.tv-theme-row--center { justify-content:center !important; }`.
+Delete:
+```css
+.tv-theme-row--center { justify-content:center !important; }
+```
+
+**Part 28** (baseline lines 202-202). Manual anchor: from `.tv-type-card { display:flex !important; flex-direction:column !important; align-items:...` to `.tv-type-card { display:flex !important; flex-direction:column !important; align-items:...`.
+Delete:
+```css
+.tv-type-card { display:flex !important; flex-direction:column !important; align-items:center !important; justify-content:flex-start !important; width:115px !important; padding:0.85rem 0.5rem 0.7rem !important; border-radius:14px !important; border:1.5px solid #e5e7eb !important; background:#fff !important; cursor:pointer !important; gap:0.5rem !important; font-family:inherit !important; transition:border-color 0.15s,box-shadow 0.15s; box-shadow:0 1px 5px rgba(0,0,0,0.07) !important; }
+```
+
+**Part 29** (baseline lines 203-203). Manual anchor: from `.tv-type-card img { width:72px !important; height:72px !important; object-fit:cover !im...` to `.tv-type-card img { width:72px !important; height:72px !important; object-fit:cover !im...`.
+Delete:
+```css
+.tv-type-card img { width:72px !important; height:72px !important; object-fit:cover !important; border-radius:10px !important; pointer-events:none; }
+```
+
+**Part 30** (baseline lines 204-204). Manual anchor: from `.tv-tc-label { font-size:12px !important; font-weight:600 !important; color:#333 !impor...` to `.tv-tc-label { font-size:12px !important; font-weight:600 !important; color:#333 !impor...`.
+Delete:
+```css
+.tv-tc-label { font-size:12px !important; font-weight:600 !important; color:#333 !important; text-align:center !important; line-height:1.3 !important; pointer-events:none; }
+```
+
+**Part 31** (baseline lines 205-205). Manual anchor: from `.tv-type-card:hover { border-color:#ff42a1 !important; box-shadow:0 0 0 2px #ff42a1 !im...` to `.tv-type-card:hover { border-color:#ff42a1 !important; box-shadow:0 0 0 2px #ff42a1 !im...`.
+Delete:
+```css
+.tv-type-card:hover { border-color:#ff42a1 !important; box-shadow:0 0 0 2px #ff42a1 !important; }
+```
+
+**Part 32** (baseline lines 206-206). Manual anchor: from `.tv-type-card--active { border-color:#ff42a1 !important; box-shadow:0 0 0 2px #ff42a1 !...` to `.tv-type-card--active { border-color:#ff42a1 !important; box-shadow:0 0 0 2px #ff42a1 !...`.
+This text also exists elsewhere in the file, so it is located by the neighbouring lines (kept, not deleted): before = `(none)`, after = `.tv-type-card--active .tv-tc-label { color:#ff42a1 !important; }`.
+Delete:
+```css
+.tv-type-card--active { border-color:#ff42a1 !important; box-shadow:0 0 0 2px #ff42a1 !important; background:rgba(255,66,161,0.04) !important; }
+```
+
+**Part 33** (baseline lines 207-207). Manual anchor: from `.tv-type-card--active .tv-tc-label { color:#ff42a1 !important; }` to `.tv-type-card--active .tv-tc-label { color:#ff42a1 !important; }`.
+This text also exists elsewhere in the file, so it is located by the neighbouring lines (kept, not deleted): before = `(none)`, after = `.tv-theme-pill { display:inline-flex !important; align-items:center !important; padding...`.
+Delete:
+```css
+.tv-type-card--active .tv-tc-label { color:#ff42a1 !important; }
+```
+
+**Part 34** (baseline lines 211-211). Manual anchor: from `.tv-theme-more { display:inline-flex !important; align-items:center !important; gap:5px...` to `.tv-theme-more { display:inline-flex !important; align-items:center !important; gap:5px...`.
+Delete:
+```css
+.tv-theme-more { display:inline-flex !important; align-items:center !important; gap:5px !important; padding:0.52rem 1.1rem !important; border-radius:9999px !important; border:1.5px solid #e2e8f0 !important; background:#fff !important; color:#444 !important; font-size:13.5px !important; font-weight:400 !important; font-family:inherit !important; cursor:pointer !important; transition:border-color 0.15s,color 0.15s; box-shadow:0 1px 3px rgba(0,0,0,0.06) !important; }
+```
+
+**Part 35** (baseline lines 212-212). Manual anchor: from `.tv-theme-more:hover { border-color:#ff42a1 !important; color:#ff42a1 !important; }` to `.tv-theme-more:hover { border-color:#ff42a1 !important; color:#ff42a1 !important; }`.
+Delete:
+```css
+.tv-theme-more:hover { border-color:#ff42a1 !important; color:#ff42a1 !important; }
+```
+
+**Part 36** (baseline lines 230-230). Manual anchor: from `.tv-trust-bar { padding:1rem; }` to `.tv-trust-bar { padding:1rem; }`.
+Delete:
+```css
+  .tv-trust-bar { padding:1rem; }
+```
+
+**Part 37** (baseline lines 231-231). Manual anchor: from `.tv-trust-item { gap:0.65rem; padding:0 0.25rem; }` to `.tv-trust-item { gap:0.65rem; padding:0 0.25rem; }`.
+Delete:
+```css
+  .tv-trust-item { gap:0.65rem; padding:0 0.25rem; }
+```
+
+**Part 38** (baseline lines 232-232). Manual anchor: from `.tv-trust-icon { width:40px; height:40px; }` to `.tv-trust-icon { width:40px; height:40px; }`.
+Delete:
+```css
+  .tv-trust-icon { width:40px; height:40px; }
+```
+
+**Part 39** (baseline lines 233-233). Manual anchor: from `.tv-trust-title { font-size:12.5px; }` to `.tv-trust-title { font-size:12.5px; }`.
+Delete:
+```css
+  .tv-trust-title { font-size:12.5px; }
+```
+
+**Part 40** (baseline lines 234-234). Manual anchor: from `.tv-trust-sub { font-size:11px; }` to `.tv-trust-sub { font-size:11px; }`.
+Delete:
+```css
+  .tv-trust-sub { font-size:11px; }
+```
+
+**Part 41** (baseline lines 235-235). Manual anchor: from `.tv-type-card { width:90px !important; }` to `.tv-type-card { width:90px !important; }`.
+Delete:
+```css
+  .tv-type-card { width:90px !important; }
+```
+
+**Part 42** (baseline lines 236-236). Manual anchor: from `.tv-type-card img { width:58px !important; height:58px !important; }` to `.tv-type-card img { width:58px !important; height:58px !important; }`.
+Delete:
+```css
+  .tv-type-card img { width:58px !important; height:58px !important; }
+```
+
+**Part 43** (baseline lines 347-347). Manual anchor: from `#tvFilters .tv-theme-more { color:#444 !important; background:#fff !important; border:1...` to `#tvFilters .tv-theme-more { color:#444 !important; background:#fff !important; border:1...`.
+Delete:
+```css
+      #tvFilters .tv-theme-more { color:#444 !important; background:#fff !important; border:1.5px solid #e2e8f0 !important; box-shadow:0 1px 3px rgba(0,0,0,0.06) !important; }
+```
+
+**Part 44** (baseline lines 348-348). Manual anchor: from `#tvFilters .tv-theme-more:hover { color:#ff42a1 !important; background:#fff !important;...` to `#tvFilters .tv-theme-more:hover { color:#ff42a1 !important; background:#fff !important;...`.
+Delete:
+```css
+      #tvFilters .tv-theme-more:hover { color:#ff42a1 !important; background:#fff !important; border-color:#ff42a1 !important; }
+```
+
+**Part 45** (baseline lines 349-349). Manual anchor: from `#tvFilters .tv-type-card { background:#fff !important; border:1.5px solid #e5e7eb !impo...` to `#tvFilters .tv-type-card { background:#fff !important; border:1.5px solid #e5e7eb !impo...`.
+Delete:
+```css
+      #tvFilters .tv-type-card { background:#fff !important; border:1.5px solid #e5e7eb !important; box-shadow:0 1px 5px rgba(0,0,0,0.07) !important; }
+```
+
+**Part 46** (baseline lines 350-350). Manual anchor: from `#tvFilters .tv-tc-label { color:#333 !important; font-weight:600 !important; }` to `#tvFilters .tv-tc-label { color:#333 !important; font-weight:600 !important; }`.
+Delete:
+```css
+      #tvFilters .tv-tc-label { color:#333 !important; font-weight:600 !important; }
+```
+
+**Part 47** (baseline lines 351-351). Manual anchor: from `#tvFilters .tv-type-card.tv-type-card--active .tv-tc-label { color:#ff42a1 !important; }` to `#tvFilters .tv-type-card.tv-type-card--active .tv-tc-label { color:#ff42a1 !important; }`.
+Delete:
+```css
+      #tvFilters .tv-type-card.tv-type-card--active .tv-tc-label { color:#ff42a1 !important; }
+```
+
+**Part 48** (baseline lines 352-352). Manual anchor: from `#tvFilters .tv-type-card.tv-type-card--active { border-color:#ff42a1 !important; box-sh...` to `#tvFilters .tv-type-card.tv-type-card--active { border-color:#ff42a1 !important; box-sh...`.
+Delete:
+```css
+      #tvFilters .tv-type-card.tv-type-card--active { border-color:#ff42a1 !important; box-shadow:0 0 0 2px #ff42a1 !important; background:rgba(255,66,161,0.04) !important; }
+```
+
+### T100 [REVIEW] 19 orphaned rule(s) inside <style> blocks of snippets/cr-card-styles.liquid (classes no markup or script uses)
+- **File:** `snippets/cr-card-styles.liquid` | baseline lines 47-60, 61-61, 62-62, 63-63, 64-64, 65-65, 66-66, 67-67, 196-202, 203-203, 204-204, 205-205, 206-206, 224-228, 233-238, 239-243, 284-284, 312-312, 313-313 | kind: orphan selectors in inline CSS (scripted, conservative)
+- **Why it is dead:** Every selector of each rule needs a class or ID that appears nowhere in the theme outside CSS: not in any HTML/Liquid markup, JS file, inline script or JSON (any mention, even in a string, counts as used; prefix-built names like x--{{ }} count as used; Shopify/app prefixes count as used; classes inside :not()/:is()/:where()/:has() are ignored). Selectors: .cr-card__badge; .cr-card__badge--award; .cr-card__badge--bestseller; .cr-card__badge--hot; .cr-card__badge--new; .cr-card__badge--sale; .cr-card__badge--toppick; .cr-card__badge--trending; .cr-card__jdgm; .cr-card__jdgm .jdgm-prev-badge; .cr-card__jdgm .jdgm-prev-badge__count; .cr-card__jdgm .jdgm-prev-badge__stars; .cr-card__soldout; .pc-vcount__plus; .var-dot__count; .var-dot__label; html body #MainContent#MainContent .cr-card.cr-card .cr-card__meta-row .pc-heart.pc-heart; html body #MainContent#MainContent .cr-card.cr-card .cr-card__meta-row .pc-heart.pc-heart svg; html body #MainContent#MainContent .cr-card.cr-card .cr-card__meta-row.cr-card__meta-row
+- **Proof:** Scripted full-text search over all 119 theme files with <style> CSS removed. Only rules on lines of pure CSS without Liquid were considered. Joint Chrome check per file (CSS views): exactly these rules removed, nothing added. Not proven from CSS alone (an app or admin content could use a class), hence REVIEW.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .cr-card__badge { position: absolute; top: 7px; left: 7px; font-size: 10px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; padding: 0.24rem 0.6rem; border-radius: 999px; color: rgb(255, 255, 255); pointer-events: none; background: transparent; } /   - removed: .cr-card__badge--new { background: transparent; border: 1.5px solid rgb(22, 163, 74); color: rgb(22, 163, 74); } /   - removed: .cr-card__badge--hot { background: transparent; border: 1.5px solid rgb(249, 115, 22); color: rgb(249, 115, 22); } /   - removed: .cr-card__badge--sale { background: transparent; border: 1.5px solid rgb(220, 38, 38); color: rgb(220, 38, 38); } /   - removed: .cr-card__badge--bestseller { background: transparent; border: 1.5px solid rgb(124, 58, 237); color: rgb(124, 58, 237); } /   - removed: .cr-card__badge--trending { background: transparent; border: 1.5px solid rgb(14, 165, 233); color: rgb(14, 165, 233); } /   - removed: .cr-card__badge--award { background: transparent; border: 1.5px solid rgb(202, 138, 4); color: rgb(202, 138, 4); } /   - removed: .cr-card__badge--toppick { background: transparent; border: 1.5px solid rgb(219, 39, 119); color: rgb(219, 39, 119); } /   - removed: .cr-card__soldout { font-size: 0.68rem; font-weight: 700; color: rgb(170, 170, 170); white-space: nowrap; flex-shrink: 0; } /   - removed: .cr-card__jdgm { line-height: 1; overflow: hidden; } /   - removed: .cr-card__jdgm .jdgm-prev-badge { display: inline-flex !important; align-items: center !important; gap: 1px !important; font-size: 0px !important; } /   - removed: .cr-card__jdgm .jdgm-prev-badge__stars { font-size: 11px !important; letter-spacing: 0px !important; } /   - removed: .cr-card__jdgm .jdgm-prev-badge__count { font-size: 10px !important; color: rgb(156, 163, 175) !important; margin-left: 3px !important; } /   - removed: html body #MainContent#MainContent .cr-card.cr-card .cr-card__meta-row.cr-card__meta-row { display: flex !important; visibility: visible !important; align-items: center !important; justify-content: space-between !important; gap: 8px !important; min-height: 32px !important; height: 32px !important; m /   - removed: html body #MainContent#MainContent .cr-card.cr-card .cr-card__meta-row .pc-heart.pc-heart { display: flex !important; visibility: visible !important; flex: 0 0 36px !important; width: 36px !important; height: 36px !important; min-width: 36px !important; min-height: 36px !important; opacity: 1 !impor /   - removed: html body #MainContent#MainContent .cr-card.cr-card .cr-card__meta-row .pc-heart.pc-heart svg { display: block !important; width: 27px !important; height: 27px !important; min-width: 27px !important; min-height: 27px !important; stroke: currentcolor !important; stroke-width: 1.9 !important; fill: no /   - removed: .pc-vcount__plus { display: none !important; } /   - removed: .var-dot__count { font-size: 9px; font-weight: 800; line-height: 1; letter-spacing: 0px; } /   - removed: .var-dot__label { font-size: 5px; font-weight: 700; line-height: 1; letter-spacing: 0px; text-transform: lowercase; }**
+- **Visual change if removed:** None expected.
+- **Parts:** 19 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 47-60). Manual anchor: from `.cr-card__badge {` to `}`.
+Delete:
+```css
+.cr-card__badge {
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.24rem 0.6rem;
+  border-radius: 999px;
+  color: #fff;
+  pointer-events: none;
+  background: transparent;
+}
+```
+
+**Part 2** (baseline lines 61-61). Manual anchor: from `.cr-card__badge--new { background: transparent; border: 1.5px solid #16a34a; color: #16...` to `.cr-card__badge--new { background: transparent; border: 1.5px solid #16a34a; color: #16...`.
+Delete:
+```css
+.cr-card__badge--new        { background: transparent; border: 1.5px solid #16a34a; color: #16a34a; }
+```
+
+**Part 3** (baseline lines 62-62). Manual anchor: from `.cr-card__badge--hot { background: transparent; border: 1.5px solid #f97316; color: #f9...` to `.cr-card__badge--hot { background: transparent; border: 1.5px solid #f97316; color: #f9...`.
+Delete:
+```css
+.cr-card__badge--hot        { background: transparent; border: 1.5px solid #f97316; color: #f97316; }
+```
+
+**Part 4** (baseline lines 63-63). Manual anchor: from `.cr-card__badge--sale { background: transparent; border: 1.5px solid #dc2626; color: #d...` to `.cr-card__badge--sale { background: transparent; border: 1.5px solid #dc2626; color: #d...`.
+Delete:
+```css
+.cr-card__badge--sale       { background: transparent; border: 1.5px solid #dc2626; color: #dc2626; }
+```
+
+**Part 5** (baseline lines 64-64). Manual anchor: from `.cr-card__badge--bestseller { background: transparent; border: 1.5px solid #7c3aed; col...` to `.cr-card__badge--bestseller { background: transparent; border: 1.5px solid #7c3aed; col...`.
+Delete:
+```css
+.cr-card__badge--bestseller { background: transparent; border: 1.5px solid #7c3aed; color: #7c3aed; }
+```
+
+**Part 6** (baseline lines 65-65). Manual anchor: from `.cr-card__badge--trending { background: transparent; border: 1.5px solid #0ea5e9; color...` to `.cr-card__badge--trending { background: transparent; border: 1.5px solid #0ea5e9; color...`.
+Delete:
+```css
+.cr-card__badge--trending   { background: transparent; border: 1.5px solid #0ea5e9; color: #0ea5e9; }
+```
+
+**Part 7** (baseline lines 66-66). Manual anchor: from `.cr-card__badge--award { background: transparent; border: 1.5px solid #ca8a04; color: #...` to `.cr-card__badge--award { background: transparent; border: 1.5px solid #ca8a04; color: #...`.
+Delete:
+```css
+.cr-card__badge--award      { background: transparent; border: 1.5px solid #ca8a04; color: #ca8a04; }
+```
+
+**Part 8** (baseline lines 67-67). Manual anchor: from `.cr-card__badge--toppick { background: transparent; border: 1.5px solid #db2777; color:...` to `.cr-card__badge--toppick { background: transparent; border: 1.5px solid #db2777; color:...`.
+Delete:
+```css
+.cr-card__badge--toppick    { background: transparent; border: 1.5px solid #db2777; color: #db2777; }
+```
+
+**Part 9** (baseline lines 196-202). Manual anchor: from `.cr-card__soldout {` to `}`.
+Delete:
+```css
+.cr-card__soldout {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #aaa;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+```
+
+**Part 10** (baseline lines 203-203). Manual anchor: from `.cr-card__jdgm { line-height: 1; overflow: hidden; }` to `.cr-card__jdgm { line-height: 1; overflow: hidden; }`.
+Delete:
+```css
+.cr-card__jdgm { line-height: 1; overflow: hidden; }
+```
+
+**Part 11** (baseline lines 204-204). Manual anchor: from `.cr-card__jdgm .jdgm-prev-badge { display: inline-flex !important; align-items: center ...` to `.cr-card__jdgm .jdgm-prev-badge { display: inline-flex !important; align-items: center ...`.
+Delete:
+```css
+.cr-card__jdgm .jdgm-prev-badge { display: inline-flex !important; align-items: center !important; gap: 1px !important; font-size: 0 !important; }
+```
+
+**Part 12** (baseline lines 205-205). Manual anchor: from `.cr-card__jdgm .jdgm-prev-badge__stars { font-size: 11px !important; letter-spacing: 0 ...` to `.cr-card__jdgm .jdgm-prev-badge__stars { font-size: 11px !important; letter-spacing: 0 ...`.
+Delete:
+```css
+.cr-card__jdgm .jdgm-prev-badge__stars { font-size: 11px !important; letter-spacing: 0 !important; }
+```
+
+**Part 13** (baseline lines 206-206). Manual anchor: from `.cr-card__jdgm .jdgm-prev-badge__count { font-size: 10px !important; color: #9ca3af !im...` to `.cr-card__jdgm .jdgm-prev-badge__count { font-size: 10px !important; color: #9ca3af !im...`.
+Delete:
+```css
+.cr-card__jdgm .jdgm-prev-badge__count { font-size: 10px !important; color: #9ca3af !important; margin-left: 3px !important; }
+```
+
+**Part 14** (baseline lines 224-228). Manual anchor: from `html body #MainContent#MainContent .cr-card.cr-card .cr-card__meta-row.cr-card__meta-row{` to `}`.
+Delete:
+```css
+html body #MainContent#MainContent .cr-card.cr-card .cr-card__meta-row.cr-card__meta-row{
+  display:flex!important;visibility:visible!important;align-items:center!important;
+  justify-content:space-between!important;gap:8px!important;min-height:32px!important;
+  height:32px!important;margin:0!important;overflow:visible!important;
+}
+```
+
+**Part 15** (baseline lines 233-238). Manual anchor: from `html body #MainContent#MainContent .cr-card.cr-card .cr-card__meta-row .pc-heart.pc-heart{` to `}`.
+Delete:
+```css
+html body #MainContent#MainContent .cr-card.cr-card .cr-card__meta-row .pc-heart.pc-heart{
+  display:flex!important;visibility:visible!important;flex:0 0 36px!important;width:36px!important;
+  height:36px!important;min-width:36px!important;min-height:36px!important;opacity:1!important;
+  align-items:center!important;justify-content:center!important;pointer-events:auto!important;
+  cursor:pointer!important;touch-action:manipulation!important;
+}
+```
+
+**Part 16** (baseline lines 239-243). Manual anchor: from `html body #MainContent#MainContent .cr-card.cr-card .cr-card__meta-row .pc-heart.pc-hea...` to `}`.
+Delete:
+```css
+html body #MainContent#MainContent .cr-card.cr-card .cr-card__meta-row .pc-heart.pc-heart svg{
+  display:block!important;width:27px!important;height:27px!important;min-width:27px!important;
+  min-height:27px!important;stroke:currentColor!important;stroke-width:1.9!important;fill:none!important;
+  pointer-events:none!important;
+}
+```
+
+**Part 17** (baseline lines 284-284). Manual anchor: from `.pc-vcount__plus{display:none!important}` to `.pc-vcount__plus{display:none!important}`.
+Delete:
+```css
+.pc-vcount__plus{display:none!important}
+```
+
+**Part 18** (baseline lines 312-312). Manual anchor: from `.var-dot__count { font-size:9px; font-weight:800; line-height:1; letter-spacing:0; }` to `.var-dot__count { font-size:9px; font-weight:800; line-height:1; letter-spacing:0; }`.
+Delete:
+```css
+.var-dot__count { font-size:9px; font-weight:800; line-height:1; letter-spacing:0; }
+```
+
+**Part 19** (baseline lines 313-313). Manual anchor: from `.var-dot__label { font-size:5px; font-weight:700; line-height:1; letter-spacing:0; text...` to `.var-dot__label { font-size:5px; font-weight:700; line-height:1; letter-spacing:0; text...`.
+Delete:
+```css
+.var-dot__label { font-size:5px; font-weight:700; line-height:1; letter-spacing:0; text-transform:lowercase; }
+```
+
+### T101 [REVIEW] 1 orphaned rule(s) inside <style> blocks of snippets/heart-js.liquid (classes no markup or script uses)
+- **File:** `snippets/heart-js.liquid` | baseline lines 27-27 | kind: orphan selectors in inline CSS (scripted, conservative)
+- **Why it is dead:** Every selector of each rule needs a class or ID that appears nowhere in the theme outside CSS: not in any HTML/Liquid markup, JS file, inline script or JSON (any mention, even in a string, counts as used; prefix-built names like x--{{ }} count as used; Shopify/app prefixes count as used; classes inside :not()/:is()/:where()/:has() are ignored). Selectors: .tlv-sc-count
+- **Proof:** Scripted full-text search over all 119 theme files with <style> CSS removed. Only rules on lines of pure CSS without Liquid were considered. Joint Chrome check per file (CSS views): exactly these rules removed, nothing added. Not proven from CSS alone (an app or admin content could use a class), hence REVIEW.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .tlv-sc-count { white-space: nowrap; font: 700 2cqw / 1 Nunito, sans-serif; color: rgb(169, 169, 178); margin: 0.9cqw 0px 4.8cqw !important; }**
+- **Visual change if removed:** None expected.
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 27-27). Manual anchor: from `.tlv-sc-count{white-space:nowrap;margin:.9cqw 0 4.8cqw!important;font:700 2cqw/1 'Nunit...` to `.tlv-sc-count{white-space:nowrap;margin:.9cqw 0 4.8cqw!important;font:700 2cqw/1 'Nunit...`.
+Delete:
+```css
+.tlv-sc-count{white-space:nowrap;margin:.9cqw 0 4.8cqw!important;font:700 2cqw/1 'Nunito',sans-serif;color:#a9a9b2}
+```
+
+### T102 [REVIEW] 38 orphaned rule(s) inside <style> blocks of snippets/product-card-styles.liquid (classes no markup or script uses)
+- **File:** `snippets/product-card-styles.liquid` | baseline lines 8-8, 9-9, 10-10, 13-13, 14-14, 18-18, 19-19, 20-20, 21-21, 22-22, 23-23, 24-24, 26-26, 27-27, 28-28, 29-29, 30-30, 31-31, 38-38, 45-45, 46-46, 47-47, 49-49, 51-51, 55-55, 59-59, 60-60, 61-61, 66-66, 68-68, 70-70, 72-72, 74-74, 75-75, 76-76, 80-86, 117-117, 118-118 | kind: orphan selectors in inline CSS (scripted, conservative)
+- **Why it is dead:** Every selector of each rule needs a class or ID that appears nowhere in the theme outside CSS: not in any HTML/Liquid markup, JS file, inline script or JSON (any mention, even in a string, counts as used; prefix-built names like x--{{ }} count as used; Shopify/app prefixes count as used; classes inside :not()/:is()/:where()/:has() are ignored). Selectors: .collection-page-wrap .product-card .product-card__img; .collection-page-wrap .product-card:hover .product-card__img; .product-card:hover .product-card__img; .product-card:hover .product-card__quickview; .product-card__image-wrap; .product-card__img; .product-card__jdgm .jdgm-prev-badge; .product-card__jdgm .jdgm-prev-badge__count; .product-card__jdgm .jdgm-prev-badge__stars; .product-card__link; .product-card__quickview; .product-card__sold-badge; .product-card__stars; .product-card__tag; .product-card__tag--blaster; .product-card__tag--building; .product-card__tag--building::before; .product-card__tag--collectible; .product-card__tag--fidget; .product-card__tag--halloween; .product-card__tag--keychain; .product-card__tag--plush; .product-card__tag--puzzle; .product-card__tag--puzzle::bef
+- **Proof:** Scripted full-text search over all 119 theme files with <style> CSS removed. Only rules on lines of pure CSS without Liquid were considered. Joint Chrome check per file (CSS views): exactly these rules removed, nothing added. Not proven from CSS alone (an app or admin content could use a class), hence REVIEW.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .product-card__image-wrap { position: relative; width: 100%; aspect-ratio: 1 / 1; overflow: hidden; background: rgb(240, 240, 240); flex-shrink: 0; } /   - removed: .product-card__img { position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; } /   - removed: .product-card:hover .product-card__img { transform: scale(1.04); } /   - removed: @media (hover: hover) and (pointer: fine) > .collection-page-wrap .product-card .product-card__img { transition: transform 0.32s !important; } /   - removed: @media (hover: hover) and (pointer: fine) > .collection-page-wrap .product-card:hover .product-card__img { transform: scale(1.06) !important; } /   - removed: .product-card__link { position: absolute; inset: 0px; z-index: 2; display: block; } /   - removed: .product-card__quickview { position: absolute; bottom: 10px; right: 10px; width: 30px; height: 30px; background: rgba(255, 255, 255, 0.92); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgb(68, 68, 68); text-decoration: none; opacity: 0; transition: opacity  /   - removed: .product-card:hover .product-card__quickview { opacity: 1; } /   - removed: .product-card__tag { position: absolute; top: 13px; left: 13px; z-index: 3; font-family: Nunito, system-ui, sans-serif; font-size: 4.7px; font-weight: 700; line-height: 1; letter-spacing: 0.03em; padding: 5px 11px; border: 1px solid rgb(234, 88, 12); border-radius: 999px; color: rgb(234, 88, 12); ba /   - removed: .product-card__tag--collectible { border-color: rgb(13, 148, 136); color: rgb(13, 148, 136); } /   - removed: .product-card__tag--keychain { border-color: rgb(22, 163, 74); color: rgb(22, 163, 74); } /   - removed: .product-card__tag--blaster { border-color: rgb(220, 38, 38); color: rgb(220, 38, 38); } /   - removed: .product-card__tag--plush { border-color: rgb(255, 66, 161); color: rgb(255, 66, 161); } /   - removed: .product-card__tag--fidget { border-color: rgb(79, 110, 247); color: rgb(79, 110, 247); } /   - removed: .product-card__tag--rc { position: absolute; border-color: transparent !important; color: transparent !important; background: linear-gradient(90deg, rgb(14, 165, 233), rgb(249, 115, 22)) text !important; } /   - removed: .product-card__tag--rc::before { content: ""; position: absolute; inset: 0px; border-radius: 999px; padding: 1px; background: linear-gradient(90deg, rgb(14, 165, 233), rgb(249, 115, 22)); mask: linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 0px) content-box exclude, linear-gradient(rgb(0, 0, 0) 0px, /   - removed: .product-card__tag--building { position: absolute; border-color: transparent !important; color: transparent !important; background: linear-gradient(90deg, rgb(79, 70, 229), rgb(236, 72, 153)) text !important; } /   - removed: .product-card__tag--building::before { content: ""; position: absolute; inset: 0px; border-radius: 999px; padding: 1px; background: linear-gradient(90deg, rgb(79, 70, 229), rgb(236, 72, 153)); mask: linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 0px) content-box exclude, linear-gradient(rgb(0, 0, 0) /   - removed: .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag, .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag:hover { border-radius: 10px !important; } /   - removed: .product-card__tag--puzzle { position: absolute; border-color: transparent !important; color: transparent !important; background: linear-gradient(90deg, rgb(6, 182, 212), rgb(244, 63, 94)) text !important; } /   - removed: .product-card__tag--puzzle::before { content: ""; position: absolute; inset: 0px; border-radius: 999px; padding: 1px; background: linear-gradient(90deg, rgb(6, 182, 212), rgb(244, 63, 94)); mask: linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 0px) content-box exclude, linear-gradient(rgb(0, 0, 0) 0p /   - removed: .product-card__tag--halloween { border-color: rgb(17, 17, 17); color: rgb(17, 17, 17); } /   - removed: .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag::before { content: "" !important; display: block !important; position: absolute !important; inset: 50% auto auto 100% !important; width: 11px !important; height: 1px !import /   - removed: html body .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag { right: 1px !important; } /   - removed: .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag::before { transform-origin: right center !important; transition: transform 0.26s cubic-bezier(0.4, 0, 1, 1) 0.12s, opacity 0.2s linear 0.12s !important; } /   - removed: @media (hover: hover) > .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag:hover { right: -9px !important; transition: right 0.42s cubic-bezier(0.22, 1, 0.36, 1) 0.04s !important; } /   - removed: @media (hover: hover) > .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag:hover::before { transform: translateY(-50%) scaleX(0) !important; opacity: 0 !important; transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1) 0 /   - removed: @media (hover: hover) > .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag:hover::after { transform: translateY(-50%) translateX(-10px) !important; transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1) 0.2s, opacity 0.2s /   - removed: .product-card__sold-badge { position: absolute; top: 10px; left: 10px; background: rgba(0, 0, 0, 0.65); color: rgb(255, 255, 255); font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 20px; z-index: 3; } /   - removed: .product-card__vendor { font-size: 11px; color: rgb(153, 153, 153); font-weight: 400; line-height: 1.2; } /   - removed: .product-card__title--two { white-space: normal !important; height: 36px !important; overflow: hidden !important; text-overflow: clip !important; } /   - removed: .product-card__stars { display: flex; align-items: center; gap: 1px; height: 16px; flex-shrink: 0; } /   - removed: .product-card__jdgm .jdgm-prev-badge { display: inline-flex !important; align-items: center !important; gap: 1px !important; font-size: 0px !important; } /   - removed: .product-card__jdgm .jdgm-prev-badge__stars { font-size: 11px !important; } /   - removed: .product-card__jdgm .jdgm-prev-badge__count { font-size: 11px !important; color: rgb(153, 153, 153) !important; margin-left: 3px !important; } /   - removed: .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag { width: 24.15px !important; min-width: 24.15px !important; max-width: 24.15px !important; height: 24.15px !important; right: 2px !important; } /   - removed: .var-dot__count { font-size: 9px; font-weight: 800; line-height: 1; letter-spacing: 0px; } /   - removed: .var-dot__label { font-size: 5px; font-weight: 700; line-height: 1; letter-spacing: 0px; text-transform: lowercase; }**
+- **Visual change if removed:** None expected.
+- **Parts:** 38 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 8-8). Manual anchor: from `.product-card__image-wrap{position:relative;width:100%;aspect-ratio:1/1;overflow:hidden...` to `.product-card__image-wrap{position:relative;width:100%;aspect-ratio:1/1;overflow:hidden...`.
+Delete:
+```css
+.product-card__image-wrap{position:relative;width:100%;aspect-ratio:1/1;overflow:hidden;background:#f0f0f0;flex-shrink:0}
+```
+
+**Part 2** (baseline lines 9-9). Manual anchor: from `.product-card__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;di...` to `.product-card__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;di...`.
+Delete:
+```css
+.product-card__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s ease}
+```
+
+**Part 3** (baseline lines 10-10). Manual anchor: from `.product-card:hover .product-card__img{transform:scale(1.04)}` to `.product-card:hover .product-card__img{transform:scale(1.04)}`.
+Delete:
+```css
+.product-card:hover .product-card__img{transform:scale(1.04)}
+```
+
+**Part 4** (baseline lines 13-13). Manual anchor: from `.collection-page-wrap .product-card .product-card__img{transition:transform .32s ease!i...` to `.collection-page-wrap .product-card .product-card__img{transition:transform .32s ease!i...`.
+Delete:
+```css
+  .collection-page-wrap .product-card .product-card__img{transition:transform .32s ease!important}
+```
+
+**Part 5** (baseline lines 14-14). Manual anchor: from `.collection-page-wrap .product-card:hover .product-card__img{transform:scale(1.06)!impo...` to `.collection-page-wrap .product-card:hover .product-card__img{transform:scale(1.06)!impo...`.
+Delete:
+```css
+  .collection-page-wrap .product-card:hover .product-card__img{transform:scale(1.06)!important}
+```
+
+**Part 6** (baseline lines 18-18). Manual anchor: from `.product-card__link{position:absolute;inset:0;z-index:2;display:block}` to `.product-card__link{position:absolute;inset:0;z-index:2;display:block}`.
+Delete:
+```css
+.product-card__link{position:absolute;inset:0;z-index:2;display:block}
+```
+
+**Part 7** (baseline lines 19-19). Manual anchor: from `.product-card__quickview{position:absolute;bottom:10px;right:10px;width:30px;height:30p...` to `.product-card__quickview{position:absolute;bottom:10px;right:10px;width:30px;height:30p...`.
+Delete:
+```css
+.product-card__quickview{position:absolute;bottom:10px;right:10px;width:30px;height:30px;background:rgba(255,255,255,0.92);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#444;text-decoration:none;opacity:0;transition:opacity 0.2s;z-index:3}
+```
+
+**Part 8** (baseline lines 20-20). Manual anchor: from `.product-card:hover .product-card__quickview{opacity:1}` to `.product-card:hover .product-card__quickview{opacity:1}`.
+Delete:
+```css
+.product-card:hover .product-card__quickview{opacity:1}
+```
+
+**Part 9** (baseline lines 21-21). Manual anchor: from `.product-card__tag{position:absolute;top:13px;left:13px;z-index:3;font-family:'Nunito',...` to `.product-card__tag{position:absolute;top:13px;left:13px;z-index:3;font-family:'Nunito',...`.
+Delete:
+```css
+.product-card__tag{position:absolute;top:13px;left:13px;z-index:3;font-family:'Nunito',system-ui,sans-serif;font-size:4.7px;font-weight:700;line-height:1;letter-spacing:0.03em;padding:5px 11px;border:1px solid #ea580c;border-radius:999px;color:#ea580c;background:transparent;pointer-events:none}
+```
+
+**Part 10** (baseline lines 22-22). Manual anchor: from `.product-card__tag--collectible{border-color:#0d9488;color:#0d9488}` to `.product-card__tag--collectible{border-color:#0d9488;color:#0d9488}`.
+Delete:
+```css
+.product-card__tag--collectible{border-color:#0d9488;color:#0d9488}
+```
+
+**Part 11** (baseline lines 23-23). Manual anchor: from `.product-card__tag--keychain{border-color:#16a34a;color:#16a34a}` to `.product-card__tag--keychain{border-color:#16a34a;color:#16a34a}`.
+Delete:
+```css
+.product-card__tag--keychain{border-color:#16a34a;color:#16a34a}
+```
+
+**Part 12** (baseline lines 24-24). Manual anchor: from `.product-card__tag--blaster{border-color:#dc2626;color:#dc2626}` to `.product-card__tag--blaster{border-color:#dc2626;color:#dc2626}`.
+Delete:
+```css
+.product-card__tag--blaster{border-color:#dc2626;color:#dc2626}
+```
+
+**Part 13** (baseline lines 26-26). Manual anchor: from `.product-card__tag--plush{border-color:#ff42a1;color:#ff42a1}` to `.product-card__tag--plush{border-color:#ff42a1;color:#ff42a1}`.
+Delete:
+```css
+.product-card__tag--plush{border-color:#ff42a1;color:#ff42a1}
+```
+
+**Part 14** (baseline lines 27-27). Manual anchor: from `.product-card__tag--fidget{border-color:#4f6ef7;color:#4f6ef7}` to `.product-card__tag--fidget{border-color:#4f6ef7;color:#4f6ef7}`.
+Delete:
+```css
+.product-card__tag--fidget{border-color:#4f6ef7;color:#4f6ef7}
+```
+
+**Part 15** (baseline lines 28-28). Manual anchor: from `.product-card__tag--rc{border-color:transparent!important;color:transparent!important;b...` to `.product-card__tag--rc{border-color:transparent!important;color:transparent!important;b...`.
+Delete:
+```css
+.product-card__tag--rc{border-color:transparent!important;color:transparent!important;background:linear-gradient(90deg,#0ea5e9,#f97316)!important;-webkit-background-clip:text!important;background-clip:text!important;position:absolute}
+```
+
+**Part 16** (baseline lines 29-29). Manual anchor: from `.product-card__tag--rc::before{content:"";position:absolute;inset:0;border-radius:999px...` to `.product-card__tag--rc::before{content:"";position:absolute;inset:0;border-radius:999px...`.
+Delete:
+```css
+.product-card__tag--rc::before{content:"";position:absolute;inset:0;border-radius:999px;padding:1px;background:linear-gradient(90deg,#0ea5e9,#f97316);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+```
+
+**Part 17** (baseline lines 30-30). Manual anchor: from `.product-card__tag--building{border-color:transparent!important;color:transparent!impor...` to `.product-card__tag--building{border-color:transparent!important;color:transparent!impor...`.
+Delete:
+```css
+.product-card__tag--building{border-color:transparent!important;color:transparent!important;background:linear-gradient(90deg,#4f46e5,#ec4899)!important;-webkit-background-clip:text!important;background-clip:text!important;position:absolute}
+```
+
+**Part 18** (baseline lines 31-31). Manual anchor: from `.product-card__tag--building::before{content:"";position:absolute;inset:0;border-radius...` to `.product-card__tag--building::before{content:"";position:absolute;inset:0;border-radius...`.
+Delete:
+```css
+.product-card__tag--building::before{content:"";position:absolute;inset:0;border-radius:999px;padding:1px;background:linear-gradient(90deg,#4f46e5,#ec4899);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+```
+
+**Part 19** (baseline lines 38-38). Manual anchor: from `.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__...` to `.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__...`.
+Delete:
+```css
+.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag,.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag:hover{border-radius:10px!important}
+```
+
+**Part 20** (baseline lines 45-45). Manual anchor: from `.product-card__tag--puzzle{border-color:transparent!important;color:transparent!importa...` to `.product-card__tag--puzzle{border-color:transparent!important;color:transparent!importa...`.
+Delete:
+```css
+.product-card__tag--puzzle{border-color:transparent!important;color:transparent!important;background:linear-gradient(90deg,#06b6d4,#f43f5e)!important;-webkit-background-clip:text!important;background-clip:text!important;position:absolute}
+```
+
+**Part 21** (baseline lines 46-46). Manual anchor: from `.product-card__tag--puzzle::before{content:"";position:absolute;inset:0;border-radius:9...` to `.product-card__tag--puzzle::before{content:"";position:absolute;inset:0;border-radius:9...`.
+Delete:
+```css
+.product-card__tag--puzzle::before{content:"";position:absolute;inset:0;border-radius:999px;padding:1px;background:linear-gradient(90deg,#06b6d4,#f43f5e);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+```
+
+**Part 22** (baseline lines 47-47). Manual anchor: from `.product-card__tag--halloween{border-color:#111111;color:#111111}` to `.product-card__tag--halloween{border-color:#111111;color:#111111}`.
+Delete:
+```css
+.product-card__tag--halloween{border-color:#111111;color:#111111}
+```
+
+**Part 23** (baseline lines 49-49). Manual anchor: from `.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__...` to `.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__...`.
+Delete:
+```css
+.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag::before{content:""!important;display:block!important;position:absolute!important;inset:auto!important;left:100%!important;top:50%!important;width:11px!important;height:1px!important;padding:0!important;border:0!important;border-radius:0!important;box-sizing:border-box!important;background:color-mix(in srgb,var(--dot) 58%,#d8dde5)!important;-webkit-mask:none!important;mask:none!important;clip-path:none!important;transform:translateY(-50%)!important;pointer-events:none!important;z-index:0!important}
+```
+
+**Part 24** (baseline lines 51-51). Manual anchor: from `html body .product-card__tag.product-card__tag.product-card__tag.product-card__tag.prod...` to `html body .product-card__tag.product-card__tag.product-card__tag.product-card__tag.prod...`.
+Delete:
+```css
+html body .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag{right:1px!important}
+```
+
+**Part 25** (baseline lines 55-55). Manual anchor: from `.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__...` to `.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__...`.
+Delete:
+```css
+.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag::before{transform-origin:right center!important;transition:transform .26s cubic-bezier(.4,0,1,1) .12s,opacity .2s linear .12s!important}
+```
+
+**Part 26** (baseline lines 59-59). Manual anchor: from `.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__...` to `.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__...`.
+Delete:
+```css
+  .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag:hover{right:-9px!important;transition:right .42s cubic-bezier(.22,1,.36,1) .04s!important}
+```
+
+**Part 27** (baseline lines 60-60). Manual anchor: from `.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__...` to `.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__...`.
+Delete:
+```css
+  .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag:hover::before{transform:translateY(-50%) scaleX(0)!important;opacity:0!important;transition:transform .42s cubic-bezier(.22,1,.36,1) .04s,opacity .2s ease-out .04s!important}
+```
+
+**Part 28** (baseline lines 61-61). Manual anchor: from `.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__...` to `.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__...`.
+Delete:
+```css
+  .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag:hover::after{transform:translateY(-50%) translateX(-10px)!important;transition:transform .2s cubic-bezier(.22,1,.36,1) .2s,opacity .2s ease-out .2s!important}
+```
+
+**Part 29** (baseline lines 66-66). Manual anchor: from `.product-card__sold-badge{position:absolute;top:10px;left:10px;background:rgba(0,0,0,0....` to `.product-card__sold-badge{position:absolute;top:10px;left:10px;background:rgba(0,0,0,0....`.
+Delete:
+```css
+.product-card__sold-badge{position:absolute;top:10px;left:10px;background:rgba(0,0,0,0.65);color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:20px;z-index:3}
+```
+
+**Part 30** (baseline lines 68-68). Manual anchor: from `.product-card__vendor{font-size:11px;color:#999;font-weight:400;line-height:1.2}` to `.product-card__vendor{font-size:11px;color:#999;font-weight:400;line-height:1.2}`.
+Delete:
+```css
+.product-card__vendor{font-size:11px;color:#999;font-weight:400;line-height:1.2}
+```
+
+**Part 31** (baseline lines 70-70). Manual anchor: from `.product-card__title--two{white-space:normal!important;height:36px!important;overflow:h...` to `.product-card__title--two{white-space:normal!important;height:36px!important;overflow:h...`.
+Delete:
+```css
+.product-card__title--two{white-space:normal!important;height:36px!important;overflow:hidden!important;text-overflow:clip!important}
+```
+
+**Part 32** (baseline lines 72-72). Manual anchor: from `.product-card__stars{display:flex;align-items:center;gap:1px;height:16px;flex-shrink:0}` to `.product-card__stars{display:flex;align-items:center;gap:1px;height:16px;flex-shrink:0}`.
+Delete:
+```css
+.product-card__stars{display:flex;align-items:center;gap:1px;height:16px;flex-shrink:0}
+```
+
+**Part 33** (baseline lines 74-74). Manual anchor: from `.product-card__jdgm .jdgm-prev-badge{display:inline-flex !important;align-items:center ...` to `.product-card__jdgm .jdgm-prev-badge{display:inline-flex !important;align-items:center ...`.
+Delete:
+```css
+.product-card__jdgm .jdgm-prev-badge{display:inline-flex !important;align-items:center !important;gap:1px !important;font-size:0 !important;}
+```
+
+**Part 34** (baseline lines 75-75). Manual anchor: from `.product-card__jdgm .jdgm-prev-badge__stars{font-size:11px !important;}` to `.product-card__jdgm .jdgm-prev-badge__stars{font-size:11px !important;}`.
+Delete:
+```css
+.product-card__jdgm .jdgm-prev-badge__stars{font-size:11px !important;}
+```
+
+**Part 35** (baseline lines 76-76). Manual anchor: from `.product-card__jdgm .jdgm-prev-badge__count{font-size:11px !important;color:#999 !impor...` to `.product-card__jdgm .jdgm-prev-badge__count{font-size:11px !important;color:#999 !impor...`.
+Delete:
+```css
+.product-card__jdgm .jdgm-prev-badge__count{font-size:11px !important;color:#999 !important;margin-left:3px !important;}
+```
+
+**Part 36** (baseline lines 80-86). Manual anchor: from `.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__...` to `}`.
+Delete:
+```css
+.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag {
+  width: 24.15px !important;
+  min-width: 24.15px !important;
+  max-width: 24.15px !important;
+  height: 24.15px !important;
+  right: 2px !important;
+}
+```
+
+**Part 37** (baseline lines 117-117). Manual anchor: from `.var-dot__count { font-size:9px; font-weight:800; line-height:1; letter-spacing:0; }` to `.var-dot__count { font-size:9px; font-weight:800; line-height:1; letter-spacing:0; }`.
+Delete:
+```css
+.var-dot__count { font-size:9px; font-weight:800; line-height:1; letter-spacing:0; }
+```
+
+**Part 38** (baseline lines 118-118). Manual anchor: from `.var-dot__label { font-size:5px; font-weight:700; line-height:1; letter-spacing:0; text...` to `.var-dot__label { font-size:5px; font-weight:700; line-height:1; letter-spacing:0; text...`.
+Delete:
+```css
+.var-dot__label { font-size:5px; font-weight:700; line-height:1; letter-spacing:0; text-transform:lowercase; }
+```
+
+### T103 [REVIEW] 1 orphaned rule(s) inside <style> blocks of snippets/product-description-card.liquid (classes no markup or script uses)
+- **File:** `snippets/product-description-card.liquid` | baseline lines 32-32 | kind: orphan selectors in inline CSS (scripted, conservative)
+- **Why it is dead:** Every selector of each rule needs a class or ID that appears nowhere in the theme outside CSS: not in any HTML/Liquid markup, JS file, inline script or JSON (any mention, even in a string, counts as used; prefix-built names like x--{{ }} count as used; Shopify/app prefixes count as used; classes inside :not()/:is()/:where()/:has() are ignored). Selectors: .pdc__label
+- **Proof:** Scripted full-text search over all 119 theme files with <style> CSS removed. Only rules on lines of pure CSS without Liquid were considered. Joint Chrome check per file (CSS views): exactly these rules removed, nothing added. Not proven from CSS alone (an app or admin content could use a class), hence REVIEW.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .pdc__label { display: none !important; }**
+- **Visual change if removed:** None expected.
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 32-32). Manual anchor: from `.pdc__label { display:none !important; }` to `.pdc__label { display:none !important; }`.
+Delete:
+```css
+  .pdc__label { display:none !important; }
+```
+
+### T104 [REVIEW] 2 orphaned rule(s) inside <style> blocks of snippets/product-recommendations.liquid (classes no markup or script uses)
+- **File:** `snippets/product-recommendations.liquid` | baseline lines 18-18, 19-19 | kind: orphan selectors in inline CSS (scripted, conservative)
+- **Why it is dead:** Every selector of each rule needs a class or ID that appears nowhere in the theme outside CSS: not in any HTML/Liquid markup, JS file, inline script or JSON (any mention, even in a string, counts as used; prefix-built names like x--{{ }} count as used; Shopify/app prefixes count as used; classes inside :not()/:is()/:where()/:has() are ignored). Selectors: #product-recs-grid .rec-card__kicker; #product-recs-grid .rec-card__read
+- **Proof:** Scripted full-text search over all 119 theme files with <style> CSS removed. Only rules on lines of pure CSS without Liquid were considered. Joint Chrome check per file (CSS views): exactly these rules removed, nothing added. Not proven from CSS alone (an app or admin content could use a class), hence REVIEW.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: #product-recs-grid .rec-card__kicker { font-size: 0.72rem; font-weight: 600; color: rgb(138, 138, 153); } /   - removed: #product-recs-grid .rec-card__read { font-size: 0.78rem; font-weight: 600; color: rgb(107, 107, 123); text-decoration: none; }**
+- **Visual change if removed:** None expected.
+- **Parts:** 2 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 18-18). Manual anchor: from `#product-recs-grid .rec-card__kicker { font-size:0.72rem; font-weight:600; color:#8a8a9...` to `#product-recs-grid .rec-card__kicker { font-size:0.72rem; font-weight:600; color:#8a8a9...`.
+Delete:
+```css
+#product-recs-grid .rec-card__kicker { font-size:0.72rem; font-weight:600; color:#8a8a99; }
+```
+
+**Part 2** (baseline lines 19-19). Manual anchor: from `#product-recs-grid .rec-card__read { font-size:0.78rem; font-weight:600; color:#6b6b7b;...` to `#product-recs-grid .rec-card__read { font-size:0.78rem; font-weight:600; color:#6b6b7b;...`.
+Delete:
+```css
+#product-recs-grid .rec-card__read { font-size:0.78rem; font-weight:600; color:#6b6b7b; text-decoration:none; }
+```
+
+### T105 [REVIEW] 8 orphaned rule(s) inside <style> blocks of templates/page.liquid (classes no markup or script uses)
+- **File:** `templates/page.liquid` | baseline lines 17-17, 18-18, 61-61, 62-62, 63-63, 69-69, 70-70, 71-71 | kind: orphan selectors in inline CSS (scripted, conservative)
+- **Why it is dead:** Every selector of each rule needs a class or ID that appears nowhere in the theme outside CSS: not in any HTML/Liquid markup, JS file, inline script or JSON (any mention, even in a string, counts as used; prefix-built names like x--{{ }} count as used; Shopify/app prefixes count as used; classes inside :not()/:is()/:where()/:has() are ignored). Selectors: .contact-hero__title; .newsletter__social-link; .newsletter__social-link svg; .newsletter__socials; h1.contact-hero__title
+- **Proof:** Scripted full-text search over all 119 theme files with <style> CSS removed. Only rules on lines of pure CSS without Liquid were considered. Joint Chrome check per file (CSS views): exactly these rules removed, nothing added. Not proven from CSS alone (an app or admin content could use a class), hence REVIEW.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .contact-hero__title { text-align: center !important; } /   - removed: h1.contact-hero__title { text-align: center !important; } /   - removed: .newsletter__socials { gap: 20px !important; margin-bottom: 0px !important; } /   - removed: .newsletter__social-link { width: 68px !important; height: 68px !important; border-radius: 50% !important; display: flex !important; align-items: center !important; justify-content: center !important; } /   - removed: .newsletter__social-link svg { width: 36px !important; height: 36px !important; } /   - removed: @media (max-width: 767px) > .newsletter__social-link { width: 56px !important; height: 56px !important; } /   - removed: @media (max-width: 767px) > .newsletter__social-link svg { width: 28px !important; height: 28px !important; } /   - removed: @media (max-width: 767px) > .newsletter__socials { gap: 12px !important; }**
+- **Visual change if removed:** None expected.
+- **Parts:** 8 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 17-17). Manual anchor: from `.contact-hero__title { text-align: center !important; }` to `.contact-hero__title { text-align: center !important; }`.
+This text also exists elsewhere in the file, so it is located by the neighbouring lines (kept, not deleted): before = `(none)`, after = `h1.contact-hero__title { text-align: center !important; }`.
+Delete:
+```css
+.contact-hero__title { text-align: center !important; }
+```
+
+**Part 2** (baseline lines 18-18). Manual anchor: from `h1.contact-hero__title { text-align: center !important; }` to `h1.contact-hero__title { text-align: center !important; }`.
+Delete:
+```css
+h1.contact-hero__title { text-align: center !important; }
+```
+
+**Part 3** (baseline lines 61-61). Manual anchor: from `.newsletter__socials { gap: 20px !important; margin-bottom: 0 !important; }` to `.newsletter__socials { gap: 20px !important; margin-bottom: 0 !important; }`.
+Delete:
+```css
+.newsletter__socials { gap: 20px !important; margin-bottom: 0 !important; }
+```
+
+**Part 4** (baseline lines 62-62). Manual anchor: from `.newsletter__social-link { width: 68px !important; height: 68px !important; border-radi...` to `.newsletter__social-link { width: 68px !important; height: 68px !important; border-radi...`.
+Delete:
+```css
+.newsletter__social-link { width: 68px !important; height: 68px !important; border-radius: 50% !important; display: flex !important; align-items: center !important; justify-content: center !important; }
+```
+
+**Part 5** (baseline lines 63-63). Manual anchor: from `.newsletter__social-link svg { width: 36px !important; height: 36px !important; }` to `.newsletter__social-link svg { width: 36px !important; height: 36px !important; }`.
+Delete:
+```css
+.newsletter__social-link svg { width: 36px !important; height: 36px !important; }
+```
+
+**Part 6** (baseline lines 69-69). Manual anchor: from `.newsletter__social-link { width: 56px !important; height: 56px !important; }` to `.newsletter__social-link { width: 56px !important; height: 56px !important; }`.
+Delete:
+```css
+  .newsletter__social-link { width: 56px !important; height: 56px !important; }
+```
+
+**Part 7** (baseline lines 70-70). Manual anchor: from `.newsletter__social-link svg { width: 28px !important; height: 28px !important; }` to `.newsletter__social-link svg { width: 28px !important; height: 28px !important; }`.
+Delete:
+```css
+  .newsletter__social-link svg { width: 28px !important; height: 28px !important; }
+```
+
+**Part 8** (baseline lines 71-71). Manual anchor: from `.newsletter__socials { gap: 12px !important; }` to `.newsletter__socials { gap: 12px !important; }`.
+Delete:
+```css
+  .newsletter__socials { gap: 12px !important; }
+```
+
+### T106 [REVIEW] 6 orphaned rule(s) inside <style> blocks of templates/page.wishlist.liquid (classes no markup or script uses)
+- **File:** `templates/page.wishlist.liquid` | baseline lines 10-10, 13-13, 14-14, 15-15, 16-16, 20-20 | kind: orphan selectors in inline CSS (scripted, conservative)
+- **Why it is dead:** Every selector of each rule needs a class or ID that appears nowhere in the theme outside CSS: not in any HTML/Liquid markup, JS file, inline script or JSON (any mention, even in a string, counts as used; prefix-built names like x--{{ }} count as used; Shopify/app prefixes count as used; classes inside :not()/:is()/:where()/:has() are ignored). Selectors: #tlv-wlp .tlv-wlp__card a.tlv-wlp__t,#tlv-wlp .tlv-wlp__card a.tlv-wlp__t:visited; .tlv-wlp__b; .tlv-wlp__card .pc-price-row; .tlv-wlp__card img; .tlv-wlp__grid; .tlv-wlp__t
+- **Proof:** Scripted full-text search over all 119 theme files with <style> CSS removed. Only rules on lines of pure CSS without Liquid were considered. Joint Chrome check per file (CSS views): exactly these rules removed, nothing added. Not proven from CSS alone (an app or admin content could use a class), hence REVIEW.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .tlv-wlp__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; } /   - removed: .tlv-wlp__card img { width: 100%; aspect-ratio: 1 / 1; object-fit: contain; background: rgb(247, 247, 249); display: block; } /   - removed: .tlv-wlp__b { padding: 9px 11px 12px; } /   - removed: .tlv-wlp__t { font-size: 13px; font-weight: 600; color: rgb(26, 26, 46); text-decoration: none; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 34px; } /   - removed: .tlv-wlp__card .pc-price-row { margin-top: 4px; } /   - removed: #tlv-wlp .tlv-wlp__card a.tlv-wlp__t, #tlv-wlp .tlv-wlp__card a.tlv-wlp__t:visited { color: rgb(26, 26, 46) !important; -webkit-text-fill-color: rgb(26, 26, 46) !important; }**
+- **Visual change if removed:** None expected.
+- **Parts:** 6 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 10-10). Manual anchor: from `.tlv-wlp__grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}` to `.tlv-wlp__grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}`.
+Delete:
+```css
+.tlv-wlp__grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+```
+
+**Part 2** (baseline lines 13-13). Manual anchor: from `.tlv-wlp__card img{width:100%;aspect-ratio:1;object-fit:contain;background:#f7f7f9;disp...` to `.tlv-wlp__card img{width:100%;aspect-ratio:1;object-fit:contain;background:#f7f7f9;disp...`.
+Delete:
+```css
+.tlv-wlp__card img{width:100%;aspect-ratio:1;object-fit:contain;background:#f7f7f9;display:block}
+```
+
+**Part 3** (baseline lines 14-14). Manual anchor: from `.tlv-wlp__b{padding:9px 11px 12px}` to `.tlv-wlp__b{padding:9px 11px 12px}`.
+Delete:
+```css
+.tlv-wlp__b{padding:9px 11px 12px}
+```
+
+**Part 4** (baseline lines 15-15). Manual anchor: from `.tlv-wlp__t{font-size:13px;font-weight:600;color:#1a1a2e;text-decoration:none;display:-...` to `.tlv-wlp__t{font-size:13px;font-weight:600;color:#1a1a2e;text-decoration:none;display:-...`.
+Delete:
+```css
+.tlv-wlp__t{font-size:13px;font-weight:600;color:#1a1a2e;text-decoration:none;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:34px}
+```
+
+**Part 5** (baseline lines 16-16). Manual anchor: from `.tlv-wlp__card .pc-price-row{margin-top:4px}` to `.tlv-wlp__card .pc-price-row{margin-top:4px}`.
+Delete:
+```css
+.tlv-wlp__card .pc-price-row{margin-top:4px}
+```
+
+**Part 6** (baseline lines 20-20). Manual anchor: from `#tlv-wlp .tlv-wlp__card a.tlv-wlp__t,#tlv-wlp .tlv-wlp__card a.tlv-wlp__t:visited{color...` to `#tlv-wlp .tlv-wlp__card a.tlv-wlp__t,#tlv-wlp .tlv-wlp__card a.tlv-wlp__t:visited{color...`.
+Delete:
+```css
+#tlv-wlp .tlv-wlp__card a.tlv-wlp__t,#tlv-wlp .tlv-wlp__card a.tlv-wlp__t:visited{color:#1a1a2e!important;-webkit-text-fill-color:#1a1a2e!important}
 ```
 
 ---

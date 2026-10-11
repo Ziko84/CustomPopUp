@@ -1,8 +1,8 @@
 {
   "scan": {
     "started": "2026-10-11T15:16:39Z",
-    "updated": "2026-10-11T16:52:33Z",
-    "rounds": 5,
+    "updated": "2026-10-11T16:59:31Z",
+    "rounds": 6,
     "branch": "claude/chrome-devtools-state-preservation-o47p8j",
     "theme_name": "lior's theme for toylvia",
     "theme_id": "209157554507",
@@ -20,7 +20,20 @@
       "snippets/cr-card-styles.liquid": "b22ac5b7f2202ba5229f284573497e40",
       "snippets/product-card-styles.liquid": "a60975a8ed5af29e8213a5bd3d7f9016",
       "snippets/product-recommendations.liquid": "c67ce07f996cf2a3e53cbc865e4912ab",
-      "snippets/tlv-orbs.liquid": "e34d6462a4f66ef79af21365bc84de89"
+      "snippets/tlv-orbs.liquid": "e34d6462a4f66ef79af21365bc84de89",
+      "layout/theme.liquid": "e14a6630c3e8b81d3daaca6d74e109d4",
+      "sections/about-us.liquid": "b7aa85c9aa5b63b878aab6f4e502fb8a",
+      "sections/auth-drawer.liquid": "3a0b0dcfac22a6029223c9d8244b4000",
+      "sections/footer.liquid": "fb7316ff5bbdeb1efe36ed02697df487",
+      "sections/newsletter.liquid": "29b596d35351601c42e57980c5cdba52",
+      "sections/product-main.liquid": "b1331d1f588dd6ece20379dc05d455f8",
+      "snippets/cart-drawer.liquid": "3a9fc36e07af326c813d0c47a5ca9f1b",
+      "snippets/collection-discovery-banners.liquid": "78c39ea9ba6ecab900a9574ad605c9ec",
+      "snippets/collection-page.liquid": "94f2bf45e94598f0aea8bb08c70ede03",
+      "snippets/heart-js.liquid": "5135fc3e5bb97a6843fc925e7473cbeb",
+      "snippets/product-description-card.liquid": "060e2019b0ae50d0241fc632e631cb4e",
+      "templates/page.liquid": "f9e800dd30cfeeada661b6ef57d71c08",
+      "templates/page.wishlist.liquid": "6cb086aa507ac627e805af3d860ee3f9"
     }
   },
   "items": [
@@ -2820,6 +2833,1404 @@
         }
       ],
       "verify": "DIFFERENT /   - removed: .tlv-orb__glow { display: none; } /   - removed: .tlv-orb--has-subs .tlv-orb__subs span { opacity: 0; transform: translate3d(-8px, 0px, 0px); transition: opacity 0.28s, transform 0.42s cubic-bezier(0.22, 0.8, 0.2, 1); } /   - removed: @media (hover: hover) > .tlv-orb--has-subs:hover .tlv-orb__wrap, .tlv-orb--has-subs:focus-within .tlv-orb__wrap { transform: translate3d(-34px, -3px, 0px); } /   - removed: @media (hover: hover) > .tlv-orb--has-subs:hover .tlv-orb__subs span, .tlv-orb--has-subs:focus-within .tlv-orb__subs span { opacity: 1; transform: translate3d(0px, 0px, 0px); } /   - removed: .tlv-orb--has-subs .tlv-orb__subs span::before { height: 1px; width: 34px; background: color-mix(in srgb,var(--c) 42%,#b7bec9); opacity: 0.55; } /   - removed: .tlv-orb--has-subs .tlv-orb__subs span:nth-child(1) { left: -92px; top: -70px; } /   - removed: .tlv-orb--has-subs .tlv-orb__subs span:nth-child(2) { left: 0px; top: 102px; } /   - removed: .tlv-orb--has-subs .tlv-orb__subs span:nth-child(3) { left: 92px; top: -70px; } /   - removed: .tlv-orb--has-subs .tlv-orb__subs span { min-width: 76px; padding: 0px; background: transparent; box-shadow: none; display: flex; flex-direction: column; align-items: center; gap: 5px; font-size: 10px; } /   - removed: .tlv-orb--has-subs .tlv-orb__subs span::before { left: 50%; top: 50%; width: 1px; height: 42px; background: color-mix(in srgb,var(--c) 42%,#b7bec9); } /   - removed: .tlv-orb--has-subs .tlv-orb__subs span::before { content: \"\"; position: absolute; z-index: -1; height: 1px; background: color-mix(in srgb,var(--c) 48%,#9aa3b5); transform-origin: left center; left: 50%; top: 50%; width: 36px; opacity: 0.7; } /   - removed: .tlv-orb--has-subs .tlv-orb__subs span:nth-child(1) { left: -82px; top: -62px; } /   - removed: .tlv-orb--has-subs .tlv-orb__subs span:nth-child(1)::before { transform: rotate(42deg); } /   - removed: .tlv-orb--has-subs .tlv-orb__subs span:nth-child(2) { left: 0px; top: 88px; } /   - removed: .tlv-orb--has-subs .tlv-orb__subs span:nth-child(2)::before { transform: rotate(-90deg); } /   - removed: .tlv-orb--has-subs .tlv-orb__subs span:nth-child(3) { left: 82px; top: -62px; } /   - removed: .tlv-orb--has-subs .tlv-orb__subs span:nth-child(3)::before { transform: rotate(138deg); } /   - removed: @media (hover: hover) > .tlv-orb--has-subs:hover .tlv-orb__wrap, .tlv-orb--has-subs:focus-within .tlv-orb__wrap { transform: translate3d(0px, 0px, 0px); } /   - removed: @media (hover: hover) > .tlv-orb--has-subs:hover .tlv-orb__subs span, .tlv-orb--has-subs:focus-within .tlv-orb__subs span { opacity: 1; transform: translate3d(-50%, -50%, 0px) scale(1); } /   - removed: .tlv-orb--has-subs .tlv-orb__subs span:nth-child(1)::before { transform: rotate(42deg) scaleX(0.15); } /   - removed: .tlv-orb--has-subs .tlv-orb__subs span:nth-child(2)::before { transform: rotate(-90deg) scaleX(0.15); } /   - removed: .tlv-orb--has-subs .tlv-orb__subs span:nth-child(3)::before { transform: rotate(138deg) scaleX(0.15); } /   - removed: .tlv-orb__glow::before { content: \"\"; position: absolute; left: 50%; top: -28px; width: 1px; height: 24px; border-left: 1px dotted color-mix(in srgb,var(--c) 62%,#aeb7c5); transform: translateX(-50%); opacity: 0; transition: opacity 0.2s 0.05s; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__glow, .tlv-orb:focus-visible .tlv-orb__glow { opacity: 1; transform: translate(-50%, 0px) scale(1); } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__glow::before, .tlv-orb:focus-visible .tlv-orb__glow::before { opacity: 1; } /   - removed: .tlv-orb__glow::before { top: -92px !important; height: 88px !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__glow::after, .tlv-orb:focus-visible .tlv-orb__glow::after { opacity: 0.82; transform: scale(1); } /   - removed: .tlv-orb__glow::before { display: none !important; } /   - removed: .tlv-orb__glow { top: calc(50% - 73px) !important; } /   - removed: .tlv-orb__wrap { width: clamp(64px, 19vw, 110px); flex: 0 0 auto; } /   - removed: .tlv-orb__glow { left: calc(50% + 57px) !important; top: calc(50% - 40px) !important; } /   - removed: .tlv-orb__wrap::before { transform: translateX(-50%) rotate(60deg) !important; transform-origin: center bottom !important; opacity: 0 !important; transition: opacity 0.25s !important; } /   - removed: .tlv-orb__wrap::after { transform: translateX(-50%) rotate(-60deg) !important; transform-origin: center bottom !important; opacity: 0 !important; transition: opacity 0.25s !important; } /   - removed: .tlv-orb__wrap::after { width: 2px !important; border: 0px !important; background: repeating-linear-gradient(to bottom,color-mix(in srgb,var(--c) 68%,#aeb7c5) 0 2px,transparent 2px 5px) !important; transform: translateX(-50%) rotate(-60deg) !important; transform-origin: center bottom !important; } /   - removed: .tlv-orb__wrap::before { transform: translateX(-50%) rotate(-120deg) !important; } /   - removed: .tlv-orb__wrap::after { transform: translateX(-50%) rotate(120deg) !important; } /   - removed: .tlv-orb__wrap::before, .tlv-orb__wrap::after { height: 86px !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__glow, .tlv-orb:focus-visible .tlv-orb__glow { opacity: 1 !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__glow::before, .tlv-orb:focus-visible .tlv-orb__glow::before, .tlv-orb:hover .tlv-orb__glow::after, .tlv-orb:focus-visible .tlv-orb__glow::after { opacity: 1 !important; } /   - removed: .tlv-orb__wrap::before, .tlv-orb__wrap::after { background: repeating-linear-gradient(to bottom,color-mix(in srgb,var(--c) 72%,#aeb7c5) 0 2px,transparent 2px 5px) !important; } /   - removed: .tlv-orb__glow::before { transition: opacity 0.25s 0.18s !important; } /   - removed: .tlv-orb__glow::after { transition: opacity 0.25s, transform 0.42s cubic-bezier(0.22, 0.8, 0.2, 1) !important; } /   - removed: .tlv-orb__wrap::before, .tlv-orb__wrap::after { transition: opacity 0.8s, transform 0.8s cubic-bezier(0.22, 0.8, 0.2, 1) !important; } /   - removed: .tlv-orb__glow::after { transition: opacity 0.3s 0.82s, transform 0.42s cubic-bezier(0.22, 0.8, 0.2, 1) 0.82s !important; } /   - removed: .tlv-orb__glow::before { transition: opacity 0.3s 1s !important; } /   - removed: .tlv-orb__glow::before { transition: opacity 0.3s 0.48s !important; } /   - removed: .tlv-orb__glow::before, .tlv-orb__glow::after { transition-delay: 0.48s !important; } /   - removed: .tlv-orb__wrap::before, .tlv-orb__wrap::after { transition: transform 0.8s linear, opacity 0.8s linear !important; } /   - removed: .tlv-orb__glow::before, .tlv-orb__glow::after { transition-delay: 0.85s !important; } /   - removed: .tlv-orb__glow { opacity: 0 !important; transition: opacity 0.3s 0.85s !important; } /   - removed: .tlv-orb__glow, .tlv-orb__glow::before, .tlv-orb__glow::after { transition: opacity 0.3s !important; } /   - removed: .tlv-orb__wrap::before, .tlv-orb__wrap::after { transition: opacity 0.8s 0.3s, transform 0.8s 0.3s !important; } /   - removed: .tlv-orb__glow { opacity: 0 !important; transition: opacity 0.25s 1.82s !important; } /   - removed: .tlv-orb__glow::before, .tlv-orb__glow::after { opacity: 0 !important; transition: opacity 0.25s 1.82s !important; } /   - removed: .tlv-orb__wrap::before, .tlv-orb__wrap::after { transform-origin: center top !important; opacity: 0 !important; } /   - removed: .tlv-orb__glow, .tlv-orb__glow::before, .tlv-orb__glow::after { opacity: 0 !important; transition: opacity 0.22s 1.86s !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__wrap::before, .tlv-orb:focus-visible .tlv-orb__wrap::before { animation: 1.8s cubic-bezier(0.22, 0.8, 0.2, 1) 0s 1 normal both running tlv-arm-draw-right !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__wrap::after, .tlv-orb:focus-visible .tlv-orb__wrap::after { animation: 1.8s cubic-bezier(0.22, 0.8, 0.2, 1) 0s 1 normal both running tlv-arm-draw-left !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__glow, .tlv-orb:focus-visible .tlv-orb__glow, .tlv-orb:hover .tlv-orb__glow::before, .tlv-orb:focus-visible .tlv-orb__glow::before, .tlv-orb:hover .tlv-orb__glow::after, .tlv-orb:focus-visible .tlv-orb__glow::after { opacity: 1 !important; } /   - removed: .tlv-orb__glow, .tlv-orb__glow::before, .tlv-orb__glow::after { display: none !important; opacity: 0 !important; } /   - removed: .tlv-orb__wrap::before, .tlv-orb__wrap::after { clip-path: inset(0px 0px 100%) !important; opacity: 0 !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__wrap::before, .tlv-orb:focus-visible .tlv-orb__wrap::before { animation: 1.15s cubic-bezier(0.22, 0.8, 0.2, 1) 0s 1 normal both running tlv-line-grow-right !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__wrap::after, .tlv-orb:focus-visible .tlv-orb__wrap::after { animation: 1.15s cubic-bezier(0.22, 0.8, 0.2, 1) 0s 1 normal both running tlv-line-grow-left !important; } /   - removed: .tlv-orb__wrap::before, .tlv-orb__wrap::after { clip-path: none !important; height: 0px !important; opacity: 0 !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__wrap::before, .tlv-orb:focus-visible .tlv-orb__wrap::before { animation: 1.15s cubic-bezier(0.22, 0.8, 0.2, 1) 0s 1 normal both running tlv-line-height-right !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__wrap::after, .tlv-orb:focus-visible .tlv-orb__wrap::after { animation: 1.15s cubic-bezier(0.22, 0.8, 0.2, 1) 0s 1 normal both running tlv-line-height-left !important; } /   - removed: .tlv-orb__glow::before { transition-delay: 1.15s !important; }"
+    },
+    {
+      "id": "T89",
+      "status": "REVIEW",
+      "round": 6,
+      "file": "layout/theme.liquid",
+      "baseline_lines": "1339-1339, 1343-1343, 1347-1347, 1403-1403, 1419-1419, 1717-1717, 1721-1721, 1729-1729, 1733-1733",
+      "title": "9 orphaned rule(s) inside <style> blocks of layout/theme.liquid (classes no markup or script uses)",
+      "kind": "orphan selectors in inline CSS (scripted, conservative)",
+      "why": "Every selector of each rule needs a class or ID that appears nowhere in the theme outside CSS: not in any HTML/Liquid markup, JS file, inline script or JSON (any mention, even in a string, counts as used; prefix-built names like x--{{ }} count as used; Shopify/app prefixes count as used; classes inside :not()/:is()/:where()/:has() are ignored). Selectors: .product-card--cyan:hover; .product-card--pink:hover; .product-card--yellow:hover; .tlv-sb-logo-letter; .tlv-sb-social-icon; .tlv-sb-social-icon svg; .tlv-sb-social-icon:active; .tlv-sb-social-icon:active svg; .tlv-sb-socials",
+      "proof": "Scripted full-text search over all 119 theme files with <style> CSS removed. Only rules on lines of pure CSS without Liquid were considered. Joint Chrome check per file (CSS views): exactly these rules removed, nothing added. Not proven from CSS alone (an app or admin content could use a class), hence REVIEW.",
+      "visual_change": "None expected.",
+      "parts": [
+        {
+          "lines": "1339-1339",
+          "context_before": "",
+          "exact_text": ".product-card--cyan:hover { outline-color: hsla(187,85%,53%,0.7); }\n",
+          "context_after": ""
+        },
+        {
+          "lines": "1343-1343",
+          "context_before": "",
+          "exact_text": ".product-card--pink:hover { outline-color: transparent; }\n",
+          "context_after": ""
+        },
+        {
+          "lines": "1347-1347",
+          "context_before": "",
+          "exact_text": ".product-card--yellow:hover { outline-color: hsla(48,100%,62%,0.7); }\n",
+          "context_after": ""
+        },
+        {
+          "lines": "1403-1403",
+          "context_before": "",
+          "exact_text": ".tlv-sb-socials{display:none;}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "1419-1419",
+          "context_before": "",
+          "exact_text": ".tlv-sb-logo-letter{font-size:1.15rem;font-weight:900;color:#ff42a1;font-family:'Nunito',sans-serif;line-height:1;}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "1717-1717",
+          "context_before": "",
+          "exact_text": ".tlv-sb-social-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;border:1px solid rgba(255,66,161,0.35);background:transparent;cursor:pointer;text-decoration:none;-webkit-tap-highlight-color:transparent;flex-shrink:0;transition:background 0.18s,border-color 0.18s;}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "1721-1721",
+          "context_before": "",
+          "exact_text": ".tlv-sb-social-icon svg{width:16px;height:16px;fill:none;stroke:#ff42a1;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;display:block;}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "1729-1729",
+          "context_before": "",
+          "exact_text": ".tlv-sb-social-icon:active{background:#ff42a1;border-color:#ff42a1;}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "1733-1733",
+          "context_before": "",
+          "exact_text": ".tlv-sb-social-icon:active svg{stroke:#fff;}\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: .product-card--cyan:hover { outline-color: rgba(33, 213, 237, 0.7); } /   - removed: .product-card--pink:hover { outline-color: transparent; } /   - removed: .product-card--yellow:hover { outline-color: rgba(255, 216, 61, 0.7); } /   - removed: .tlv-sb-socials { display: none; } /   - removed: .tlv-sb-logo-letter { font-size: 1.15rem; font-weight: 900; color: rgb(255, 66, 161); font-family: Nunito, sans-serif; line-height: 1; } /   - removed: .tlv-sb-social-icon { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 1px solid rgba(255, 66, 161, 0.35); background: transparent; cursor: pointer; text-decoration: none; -webkit-tap-highlight-color: transparent; flex-shrink: 0; tra /   - removed: .tlv-sb-social-icon svg { width: 16px; height: 16px; fill: none; stroke: rgb(255, 66, 161); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; display: block; } /   - removed: .tlv-sb-social-icon:active { background: rgb(255, 66, 161); border-color: rgb(255, 66, 161); } /   - removed: .tlv-sb-social-icon:active svg { stroke: rgb(255, 255, 255); }"
+    },
+    {
+      "id": "T90",
+      "status": "REVIEW",
+      "round": 6,
+      "file": "sections/about-us.liquid",
+      "baseline_lines": "9-9, 30-30, 40-40, 46-46, 47-47, 49-49, 50-50, 51-51, 52-52, 53-53",
+      "title": "10 orphaned rule(s) inside <style> blocks of sections/about-us.liquid (classes no markup or script uses)",
+      "kind": "orphan selectors in inline CSS (scripted, conservative)",
+      "why": "Every selector of each rule needs a class or ID that appears nowhere in the theme outside CSS: not in any HTML/Liquid markup, JS file, inline script or JSON (any mention, even in a string, counts as used; prefix-built names like x--{{ }} count as used; Shopify/app prefixes count as used; classes inside :not()/:is()/:where()/:has() are ignored). Selectors: .about-reveal-delay-5; .about-tcard; .about-tcard .author; .about-tcard .stars; .about-tcard blockquote; .about-tcard:hover; .about-testimonials; .about-testimonials h2; .hl-green; .icon-cyan",
+      "proof": "Scripted full-text search over all 119 theme files with <style> CSS removed. Only rules on lines of pure CSS without Liquid were considered. Joint Chrome check per file (CSS views): exactly these rules removed, nothing added. Not proven from CSS alone (an app or admin content could use a class), hence REVIEW.",
+      "visual_change": "None expected.",
+      "parts": [
+        {
+          "lines": "9-9",
+          "context_before": "",
+          "exact_text": ".about-reveal-delay-5{transition-delay:0.35s}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "30-30",
+          "context_before": "",
+          "exact_text": ".icon-cyan{background:hsla(187,85%,53%,.08);color:hsl(187,85%,53%)}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "40-40",
+          "context_before": "",
+          "exact_text": ".hl-green{background:hsla(150,60%,45%,.06);color:hsl(150,60%,35%)}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "46-46",
+          "context_before": "",
+          "exact_text": ".about-testimonials{margin-bottom:48px}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "47-47",
+          "context_before": "",
+          "exact_text": ".about-testimonials h2{font-size:24px;font-weight:900;text-align:center;margin-bottom:24px;color:hsl(330,100%,63%)}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "49-49",
+          "context_before": "",
+          "exact_text": ".about-tcard{background:#ffffff;border:1px solid #e4e4e7;border-radius:0.75rem;padding:28px 32px;transition:border-color 0.4s ease,box-shadow 0.4s ease,transform 0.4s ease}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "50-50",
+          "context_before": "",
+          "exact_text": ".about-tcard:hover{border-color:hsla(330,100%,63%,.2);box-shadow:0 4px 16px rgba(0,0,0,.04);transform:translateY(-2px)}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "51-51",
+          "context_before": "",
+          "exact_text": ".about-tcard .stars{color:#ff42a1;font-size:18px;margin-bottom:10px;letter-spacing:2px}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "52-52",
+          "context_before": "",
+          "exact_text": ".about-tcard blockquote{text-transform:none;font-size:15px;color:#64748b;line-height:1.8;font-style:italic;margin-bottom:12px}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "53-53",
+          "context_before": "",
+          "exact_text": ".about-tcard .author{font-size:13px;font-weight:700;color:#1e293b}\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: .about-reveal-delay-5 { transition-delay: 0.35s; } /   - removed: .icon-cyan { background: rgba(33, 213, 237, 0.08); color: rgb(33, 213, 237); } /   - removed: .hl-green { background: rgba(46, 184, 115, 0.06); color: rgb(36, 143, 89); } /   - removed: .about-testimonials { margin-bottom: 48px; } /   - removed: .about-testimonials h2 { font-size: 24px; font-weight: 900; text-align: center; margin-bottom: 24px; color: rgb(255, 66, 161); } /   - removed: .about-tcard { background: rgb(255, 255, 255); border: 1px solid rgb(228, 228, 231); border-radius: 0.75rem; padding: 28px 32px; transition: border-color 0.4s, box-shadow 0.4s, transform 0.4s; } /   - removed: .about-tcard:hover { border-color: rgba(255, 66, 161, 0.2); box-shadow: rgba(0, 0, 0, 0.04) 0px 4px 16px; transform: translateY(-2px); } /   - removed: .about-tcard .stars { color: rgb(255, 66, 161); font-size: 18px; margin-bottom: 10px; letter-spacing: 2px; } /   - removed: .about-tcard blockquote { text-transform: none; font-size: 15px; color: rgb(100, 116, 139); line-height: 1.8; font-style: italic; margin-bottom: 12px; } /   - removed: .about-tcard .author { font-size: 13px; font-weight: 700; color: rgb(30, 41, 59); }"
+    },
+    {
+      "id": "T91",
+      "status": "REVIEW",
+      "round": 6,
+      "file": "sections/auth-drawer.liquid",
+      "baseline_lines": "56-58, 59-64, 65-67, 69-74, 75-75, 77-80, 81-83, 85-85, 86-89, 90-94, 95-98, 100-107, 108-108, 109-109, 116-118, 119-119, 120-120, 182-193, 194-194, 195-195, 197-203, 204-208, 237-244, 245-248",
+      "title": "24 orphaned rule(s) inside <style> blocks of sections/auth-drawer.liquid (classes no markup or script uses)",
+      "kind": "orphan selectors in inline CSS (scripted, conservative)",
+      "why": "Every selector of each rule needs a class or ID that appears nowhere in the theme outside CSS: not in any HTML/Liquid markup, JS file, inline script or JSON (any mention, even in a string, counts as used; prefix-built names like x--{{ }} count as used; Shopify/app prefixes count as used; classes inside :not()/:is()/:where()/:has() are ignored). Selectors: .tv-auth-drawer .tv-auth-tab; .tv-auth-drawer .tv-auth-tab[aria-selected=\"true\"]; .tv-auth-drawer .tv-field input; .tv-auth-drawer .tv-field input:focus; .tv-auth-drawer .tv-submit; .tv-auth-drawer .tv-submit:active; .tv-auth-drawer .tv-submit:hover; .tv-auth-tab; .tv-auth-tab[aria-selected=\"true\"]; .tv-auth-tabs; .tv-divider; .tv-divider::before,.tv-divider::after; .tv-field; .tv-field input; .tv-field input:focus; .tv-field label; .tv-form-msg; .tv-form-msg.error; .tv-form-msg.success; .tv-shop-login-btn; .tv-shop-login-btn:hover; .tv-submit; .tv-submit:active; .tv-submit:hover",
+      "proof": "Scripted full-text search over all 119 theme files with <style> CSS removed. Only rules on lines of pure CSS without Liquid were considered. Joint Chrome check per file (CSS views): exactly these rules removed, nothing added. Not proven from CSS alone (an app or admin content could use a class), hence REVIEW.",
+      "visual_change": "None expected.",
+      "parts": [
+        {
+          "lines": "56-58",
+          "context_before": "",
+          "exact_text": "  .tv-auth-tabs{\n    display:flex; background:#f4f4f5; border-radius:9999px; padding:.25rem;\n  }\n",
+          "context_after": ""
+        },
+        {
+          "lines": "59-64",
+          "context_before": "",
+          "exact_text": "  .tv-auth-tab{\n    flex:1; padding:.6rem 1rem; border:none; background:transparent;\n    border-radius:9999px; font-size:.78rem; font-weight:700;\n    text-transform:uppercase; letter-spacing:.08em; cursor:pointer;\n    color:#71717a; transition:all .2s;\n  }\n",
+          "context_after": ""
+        },
+        {
+          "lines": "65-67",
+          "context_before": "",
+          "exact_text": "  .tv-auth-tab[aria-selected=\"true\"]{\n    background:#fff; color:#18181b; box-shadow:0 1px 3px rgba(0,0,0,.08);\n  }\n",
+          "context_after": ""
+        },
+        {
+          "lines": "69-74",
+          "context_before": "",
+          "exact_text": "  .tv-shop-login-btn{\n    display:flex; align-items:center; justify-content:center; gap:.6rem;\n    width:100%; height:48px; background:#5A31F4; color:#fff;\n    border:none; border-radius:8px; font-weight:600; font-size:.9rem;\n    cursor:pointer; transition:background .2s; text-decoration:none;\n  }\n",
+          "context_after": ""
+        },
+        {
+          "lines": "75-75",
+          "context_before": "",
+          "exact_text": "  .tv-shop-login-btn:hover{ background:#4823d4; }\n",
+          "context_after": ""
+        },
+        {
+          "lines": "77-80",
+          "context_before": "",
+          "exact_text": "  .tv-divider{\n    display:flex; align-items:center; gap:.75rem; color:#a1a1aa;\n    font-size:.7rem; text-transform:uppercase; letter-spacing:.1em;\n  }\n",
+          "context_after": ""
+        },
+        {
+          "lines": "81-83",
+          "context_before": "",
+          "exact_text": "  .tv-divider::before,.tv-divider::after{\n    content:\"\"; flex:1; height:1px; background:#e4e4e7;\n  }\n",
+          "context_after": ""
+        },
+        {
+          "lines": "85-85",
+          "context_before": "",
+          "exact_text": "  .tv-field{ display:flex; flex-direction:column; gap:.4rem; }\n",
+          "context_after": ""
+        },
+        {
+          "lines": "86-89",
+          "context_before": "",
+          "exact_text": "  .tv-field label{\n    font-size:.78rem; font-weight:600; text-transform:uppercase;\n    letter-spacing:.06em; color:#3f3f46;\n  }\n",
+          "context_after": ""
+        },
+        {
+          "lines": "90-94",
+          "context_before": "",
+          "exact_text": "  .tv-field input{\n    height:44px; padding:0 .9rem; border:1px solid #e4e4e7;\n    border-radius:8px; font-size:.95rem; transition:border-color .2s;\n    background:#fff;\n  }\n",
+          "context_after": ""
+        },
+        {
+          "lines": "95-98",
+          "context_before": "",
+          "exact_text": "  .tv-field input:focus{\n    outline:none; border-color:#ec4899;\n    box-shadow:0 0 0 3px rgba(236,72,153,.12);\n  }\n",
+          "context_after": ""
+        },
+        {
+          "lines": "100-107",
+          "context_before": "",
+          "exact_text": "  .tv-submit{\n    height:48px; border:none; border-radius:9999px; cursor:pointer;\n    background:linear-gradient(90deg,#ec4899,#06b6d4,#facc15);\n    background-size:200% 100%; background-position:0% 50%;\n    color:#fff; font-weight:700; font-size:.85rem;\n    text-transform:uppercase; letter-spacing:.08em;\n    transition:background-position .4s, transform .15s;\n  }\n",
+          "context_after": ""
+        },
+        {
+          "lines": "108-108",
+          "context_before": "",
+          "exact_text": "  .tv-submit:hover{ background-position:100% 50%; transform:scale(1.02); }\n",
+          "context_after": ""
+        },
+        {
+          "lines": "109-109",
+          "context_before": "",
+          "exact_text": "  .tv-submit:active{ transform:scale(.98); }\n",
+          "context_after": ""
+        },
+        {
+          "lines": "116-118",
+          "context_before": "",
+          "exact_text": "  .tv-form-msg{\n    font-size:.8rem; padding:.6rem .8rem; border-radius:6px;\n  }\n",
+          "context_after": ""
+        },
+        {
+          "lines": "119-119",
+          "context_before": "",
+          "exact_text": "  .tv-form-msg.error{ background:#fee2e2; color:#991b1b; }\n",
+          "context_after": ""
+        },
+        {
+          "lines": "120-120",
+          "context_before": "",
+          "exact_text": "  .tv-form-msg.success{ background:#dcfce7; color:#166534; }\n",
+          "context_after": ""
+        },
+        {
+          "lines": "182-193",
+          "context_before": "",
+          "exact_text": "  .tv-auth-drawer .tv-submit {\n    background: linear-gradient(90deg,#ec4899,#06b6d4,#facc15) !important;\n    background-size: 200% 100% !important;\n    background-position: 0% 50% !important;\n    color: #fff !important;\n    font-weight: 700 !important;\n    border-radius: 9999px !important;\n    height: 48px !important;\n    border: none !important;\n    letter-spacing: .08em !important;\n    text-transform: uppercase !important;\n  }\n",
+          "context_after": ""
+        },
+        {
+          "lines": "194-194",
+          "context_before": "",
+          "exact_text": "  .tv-auth-drawer .tv-submit:hover { background-position: 100% 50% !important; transform: scale(1.02) !important; }\n",
+          "context_after": ""
+        },
+        {
+          "lines": "195-195",
+          "context_before": "",
+          "exact_text": "  .tv-auth-drawer .tv-submit:active { transform: scale(.98) !important; }\n",
+          "context_after": ""
+        },
+        {
+          "lines": "197-203",
+          "context_before": "",
+          "exact_text": "  .tv-auth-drawer .tv-auth-tab {\n    background: transparent !important;\n    box-shadow: none !important;\n    color: #71717a !important;\n    border-radius: 9999px !important;\n    font-weight: 700 !important;\n  }\n",
+          "context_after": ""
+        },
+        {
+          "lines": "204-208",
+          "context_before": "",
+          "exact_text": "  .tv-auth-drawer .tv-auth-tab[aria-selected=\"true\"] {\n    background: #fff !important;\n    color: #18181b !important;\n    box-shadow: 0 1px 3px rgba(0,0,0,.08) !important;\n  }\n",
+          "context_after": ""
+        },
+        {
+          "lines": "237-244",
+          "context_before": "",
+          "exact_text": "  .tv-auth-drawer .tv-field input {\n    background: #fff !important;\n    border: 1px solid #e4e4e7 !important;\n    border-radius: 8px !important;\n    box-shadow: none !important;\n    height: 44px !important;\n    color: #18181b !important;\n  }\n",
+          "context_after": ""
+        },
+        {
+          "lines": "245-248",
+          "context_before": "",
+          "exact_text": "  .tv-auth-drawer .tv-field input:focus {\n    border-color: #ec4899 !important;\n    box-shadow: 0 0 0 3px rgba(236,72,153,.12) !important;\n  }\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: .tv-auth-tabs { display: flex; background: rgb(244, 244, 245); border-radius: 9999px; padding: 0.25rem; } /   - removed: .tv-auth-tab { flex: 1 1 0%; padding: 0.6rem 1rem; border: none; background: transparent; border-radius: 9999px; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; color: rgb(113, 113, 122); transition: 0.2s; } /   - removed: .tv-auth-tab[aria-selected=\"true\"] { background: rgb(255, 255, 255); color: rgb(24, 24, 27); box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 3px; } /   - removed: .tv-shop-login-btn { display: flex; align-items: center; justify-content: center; gap: 0.6rem; width: 100%; height: 48px; background: rgb(90, 49, 244); color: rgb(255, 255, 255); border: none; border-radius: 8px; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: background 0.2s; text /   - removed: .tv-shop-login-btn:hover { background: rgb(72, 35, 212); } /   - removed: .tv-divider { display: flex; align-items: center; gap: 0.75rem; color: rgb(161, 161, 170); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; } /   - removed: .tv-divider::before, .tv-divider::after { content: \"\"; flex: 1 1 0%; height: 1px; background: rgb(228, 228, 231); } /   - removed: .tv-field { display: flex; flex-direction: column; gap: 0.4rem; } /   - removed: .tv-field label { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: rgb(63, 63, 70); } /   - removed: .tv-field input { height: 44px; padding: 0px 0.9rem; border: 1px solid rgb(228, 228, 231); border-radius: 8px; font-size: 0.95rem; transition: border-color 0.2s; background: rgb(255, 255, 255); } /   - removed: .tv-field input:focus { outline: none; border-color: rgb(236, 72, 153); box-shadow: rgba(236, 72, 153, 0.12) 0px 0px 0px 3px; } /   - removed: .tv-submit { height: 48px; border: none; border-radius: 9999px; cursor: pointer; background: linear-gradient(90deg, rgb(236, 72, 153), rgb(6, 182, 212), rgb(250, 204, 21)) 0% 50% / 200% 100%; color: rgb(255, 255, 255); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing:  /   - removed: .tv-submit:hover { background-position: 100% 50%; transform: scale(1.02); } /   - removed: .tv-submit:active { transform: scale(0.98); } /   - removed: .tv-form-msg { font-size: 0.8rem; padding: 0.6rem 0.8rem; border-radius: 6px; } /   - removed: .tv-form-msg.error { background: rgb(254, 226, 226); color: rgb(153, 27, 27); } /   - removed: .tv-form-msg.success { background: rgb(220, 252, 231); color: rgb(22, 101, 52); } /   - removed: .tv-auth-drawer .tv-submit { background: linear-gradient(90deg, rgb(236, 72, 153), rgb(6, 182, 212), rgb(250, 204, 21)) 0% 50% / 200% 100% !important; color: rgb(255, 255, 255) !important; font-weight: 700 !important; border-radius: 9999px !important; height: 48px !important; border: none !important /   - removed: .tv-auth-drawer .tv-submit:hover { background-position: 100% 50% !important; transform: scale(1.02) !important; } /   - removed: .tv-auth-drawer .tv-submit:active { transform: scale(0.98) !important; } /   - removed: .tv-auth-drawer .tv-auth-tab { background: transparent !important; box-shadow: none !important; color: rgb(113, 113, 122) !important; border-radius: 9999px !important; font-weight: 700 !important; } /   - removed: .tv-auth-drawer .tv-auth-tab[aria-selected=\"true\"] { background: rgb(255, 255, 255) !important; color: rgb(24, 24, 27) !important; box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 3px !important; } /   - removed: .tv-auth-drawer .tv-field input { background: rgb(255, 255, 255) !important; border: 1px solid rgb(228, 228, 231) !important; border-radius: 8px !important; box-shadow: none !important; height: 44px !important; color: rgb(24, 24, 27) !important; } /   - removed: .tv-auth-drawer .tv-field input:focus { border-color: rgb(236, 72, 153) !important; box-shadow: rgba(236, 72, 153, 0.12) 0px 0px 0px 3px !important; }"
+    },
+    {
+      "id": "T92",
+      "status": "REVIEW",
+      "round": 6,
+      "file": "sections/category-rows.liquid",
+      "baseline_lines": "2331-2331, 2337-2337, 7893-7893, 7905-7905, 9342-9342, 9352-9352",
+      "title": "6 orphaned rule(s) inside <style> blocks of sections/category-rows.liquid (classes no markup or script uses)",
+      "kind": "orphan selectors in inline CSS (scripted, conservative)",
+      "why": "Every selector of each rule needs a class or ID that appears nowhere in the theme outside CSS: not in any HTML/Liquid markup, JS file, inline script or JSON (any mention, even in a string, counts as used; prefix-built names like x--{{ }} count as used; Shopify/app prefixes count as used; classes inside :not()/:is()/:where()/:has() are ignored). Selectors: .hw-glitch; .hw-glitch::after; html body #MainContent #tlv-fidget-pair-title; html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent #tlv-fidget-pair-title",
+      "proof": "Scripted full-text search over all 119 theme files with <style> CSS removed. Only rules on lines of pure CSS without Liquid were considered. Joint Chrome check per file (CSS views): exactly these rules removed, nothing added. Not proven from CSS alone (an app or admin content could use a class), hence REVIEW.",
+      "visual_change": "None expected.",
+      "parts": [
+        {
+          "lines": "2331-2331",
+          "context_before": "",
+          "exact_text": "html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent #tlv-fidget-pair-title{padding-left:40px!important;padding-right:40px!important;box-sizing:border-box!important}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "2337-2337",
+          "context_before": "",
+          "exact_text": "  html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent #tlv-fidget-pair-title{padding-left:22px!important;padding-right:22px!important}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "7893-7893",
+          "context_before": "",
+          "exact_text": ".hw-glitch{position:relative;display:inline-block;isolation:isolate;color:#111;animation:hwNeon 6s ease-in-out infinite}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "7905-7905",
+          "context_before": "",
+          "exact_text": ".hw-glitch::after{content:\"\";position:absolute;left:-40%;right:-40%;top:-120%;bottom:-120%;z-index:-1;pointer-events:none;background:radial-gradient(closest-side,rgba(255,66,161,.22),rgba(255,66,161,.12) 35%,rgba(255,66,161,.05) 65%,rgba(255,66,161,0) 100%);opacity:0;animation:hwHalo 6s ease-in-out infinite}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "9342-9342",
+          "context_before": "",
+          "exact_text": "html body #MainContent #tlv-fidget-pair-title{padding-left:40px!important;padding-right:40px!important;box-sizing:border-box!important}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "9352-9352",
+          "context_before": "",
+          "exact_text": "  html body #MainContent #tlv-fidget-pair-title{padding-left:22px!important;padding-right:22px!important}\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent #tlv-fidget-pair-title { padding-left: 40px !important; padding-right: 40px !important; box-sizing: border-box !important; } /   - removed: @media (max-width: 767px) > html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent #tlv-fidget-pair-title { padding-left: 22px !important; padding-right: 22px !important; } /   - removed: .hw-glitch { position: relative; display: inline-block; isolation: isolate; color: rgb(17, 17, 17); animation: 6s ease-in-out 0s infinite normal none running hwNeon; } /   - removed: .hw-glitch::after { content: \"\"; position: absolute; inset: -120% -40%; z-index: -1; pointer-events: none; background: radial-gradient(closest-side, rgba(255, 66, 161, 0.22), rgba(255, 66, 161, 0.12) 35%, rgba(255, 66, 161, 0.05) 65%, rgba(255, 66, 161, 0) 100%); opacity: 0; animation: 6s ease-in-ou /   - removed: html body #MainContent #tlv-fidget-pair-title { padding-left: 40px !important; padding-right: 40px !important; box-sizing: border-box !important; } /   - removed: @media (max-width: 767px) > html body #MainContent #tlv-fidget-pair-title { padding-left: 22px !important; padding-right: 22px !important; }"
+    },
+    {
+      "id": "T93",
+      "status": "REVIEW",
+      "round": 6,
+      "file": "sections/clg-hero.liquid",
+      "baseline_lines": "495-527, 531-575, 1334-1334, 1338-1350, 1484-1521",
+      "title": "5 orphaned rule(s) inside <style> blocks of sections/clg-hero.liquid (classes no markup or script uses)",
+      "kind": "orphan selectors in inline CSS (scripted, conservative)",
+      "why": "Every selector of each rule needs a class or ID that appears nowhere in the theme outside CSS: not in any HTML/Liquid markup, JS file, inline script or JSON (any mention, even in a string, counts as used; prefix-built names like x--{{ }} count as used; Shopify/app prefixes count as used; classes inside :not()/:is()/:where()/:has() are ignored). Selectors: .cat-pill--accent; .cat-pill--accent:hover; .cat-pill__icon; .dc-rating; .drift-card__footer",
+      "proof": "Scripted full-text search over all 119 theme files with <style> CSS removed. Only rules on lines of pure CSS without Liquid were considered. Joint Chrome check per file (CSS views): exactly these rules removed, nothing added. Not proven from CSS alone (an app or admin content could use a class), hence REVIEW.",
+      "visual_change": "None expected.",
+      "parts": [
+        {
+          "lines": "495-527",
+          "context_before": "",
+          "exact_text": ".drift-card__footer {\n\n\n\n  height: 82px;\n\n\n\n  overflow: hidden;\n\n\n\n  /* Opaque — otherwise leftover space below a short name/no-rating\n\n\n\n     card is transparent and the next rotated card underneath shows\n\n\n\n     through, reading as a stray line of someone else's text. */\n\n\n\n  background: #fff;\n\n\n\n  border-radius: 0 0 18px 18px;\n\n\n\n}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "531-575",
+          "context_before": "",
+          "exact_text": ".dc-rating {\n\n\n\n  position: absolute;\n\n\n\n  bottom: 0;\n\n\n\n  left: 0;\n\n\n\n  right: 0;\n\n\n\n  height: 26px;\n\n\n\n  background: rgba(255,255,255,0.93);\n\n\n\n  display: flex;\n\n\n\n  align-items: center;\n\n\n\n  padding: 0 7px;\n\n\n\n  gap: 9px;\n\n\n\n}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "1334-1334",
+          "context_before": "",
+          "exact_text": ".cat-pill--accent { border: 1px solid rgba(255, 66, 161, 0.34) !important; }\n",
+          "context_after": ""
+        },
+        {
+          "lines": "1338-1350",
+          "context_before": "",
+          "exact_text": ".cat-pill--accent:hover {\n\n\n\n  border-color: #ff42a1 !important;\n\n\n\n  box-shadow: 0 0 12px color-mix(in srgb, var(--glow, #ff42a1) 60%, transparent), 0 0 26px color-mix(in srgb, var(--glow, #ff42a1) 35%, transparent) !important;\n\n\n\n}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "1484-1521",
+          "context_before": "",
+          "exact_text": ".cat-pill__icon {\n  width: 32px;\n\n\n\n  height: 32px;\n\n\n\n  border-radius: 50%;\n\n\n\n  display: flex;\n\n\n\n  align-items: center;\n\n\n\n  justify-content: center;\n\n\n\n  font-size: 15px;\n\n\n\n  flex-shrink: 0;\n\n\n\n  line-height: 1;\n\n\n\n}\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: .drift-card__footer { height: 82px; overflow: hidden; background: rgb(255, 255, 255); border-radius: 0px 0px 18px 18px; } /   - removed: .dc-rating { position: absolute; bottom: 0px; left: 0px; right: 0px; height: 26px; background: rgba(255, 255, 255, 0.93); display: flex; align-items: center; padding: 0px 7px; gap: 9px; } /   - removed: .cat-pill--accent { border: 1px solid rgba(255, 66, 161, 0.34) !important; } /   - removed: .cat-pill--accent:hover { border-color: rgb(255, 66, 161) !important; box-shadow: 0 0 12px color-mix(in srgb, var(--glow, #ff42a1) 60%, transparent), 0 0 26px color-mix(in srgb, var(--glow, #ff42a1) 35%, transparent) !important; } /   - removed: .cat-pill__icon { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; line-height: 1; }"
+    },
+    {
+      "id": "T94",
+      "status": "REVIEW",
+      "round": 6,
+      "file": "sections/footer.liquid",
+      "baseline_lines": "118-126, 127-127",
+      "title": "2 orphaned rule(s) inside <style> blocks of sections/footer.liquid (classes no markup or script uses)",
+      "kind": "orphan selectors in inline CSS (scripted, conservative)",
+      "why": "Every selector of each rule needs a class or ID that appears nowhere in the theme outside CSS: not in any HTML/Liquid markup, JS file, inline script or JSON (any mention, even in a string, counts as used; prefix-built names like x--{{ }} count as used; Shopify/app prefixes count as used; classes inside :not()/:is()/:where()/:has() are ignored). Selectors: .site-footer__logo; .site-footer__logo sup",
+      "proof": "Scripted full-text search over all 119 theme files with <style> CSS removed. Only rules on lines of pure CSS without Liquid were considered. Joint Chrome check per file (CSS views): exactly these rules removed, nothing added. Not proven from CSS alone (an app or admin content could use a class), hence REVIEW.",
+      "visual_change": "None expected.",
+      "parts": [
+        {
+          "lines": "118-126",
+          "context_before": "",
+          "exact_text": ".site-footer__logo {\n  display: inline-block;\n  font-size: 1.8rem;\n  font-weight: 800;\n  color: #111;\n  text-decoration: none;\n  letter-spacing: -0.03em;\n  font-family: 'Nunito', system-ui, sans-serif;\n}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "127-127",
+          "context_before": "",
+          "exact_text": ".site-footer__logo sup { font-size: 0.5em; font-weight: 700; vertical-align: super; }\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: .site-footer__logo { display: inline-block; font-size: 1.8rem; font-weight: 800; color: rgb(17, 17, 17); text-decoration: none; letter-spacing: -0.03em; font-family: Nunito, system-ui, sans-serif; } /   - removed: .site-footer__logo sup { font-size: 0.5em; font-weight: 700; vertical-align: super; }"
+    },
+    {
+      "id": "T95",
+      "status": "REVIEW",
+      "round": 6,
+      "file": "sections/newsletter.liquid",
+      "baseline_lines": "2-2, 3-3, 4-4, 5-5, 6-6",
+      "title": "5 orphaned rule(s) inside <style> blocks of sections/newsletter.liquid (classes no markup or script uses)",
+      "kind": "orphan selectors in inline CSS (scripted, conservative)",
+      "why": "Every selector of each rule needs a class or ID that appears nowhere in the theme outside CSS: not in any HTML/Liquid markup, JS file, inline script or JSON (any mention, even in a string, counts as used; prefix-built names like x--{{ }} count as used; Shopify/app prefixes count as used; classes inside :not()/:is()/:where()/:has() are ignored). Selectors: .nl-social-btn; .nl-social-btn svg; .nl-social-btn svg *; .nl-social-btn:hover; .nl-socials",
+      "proof": "Scripted full-text search over all 119 theme files with <style> CSS removed. Only rules on lines of pure CSS without Liquid were considered. Joint Chrome check per file (CSS views): exactly these rules removed, nothing added. Not proven from CSS alone (an app or admin content could use a class), hence REVIEW.",
+      "visual_change": "None expected.",
+      "parts": [
+        {
+          "lines": "2-2",
+          "context_before": "",
+          "exact_text": ".nl-socials{display:flex !important;gap:16px !important;justify-content:center !important;align-items:center !important;margin:1.4rem 0 1.8rem !important;flex-wrap:nowrap !important;}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "3-3",
+          "context_before": "",
+          "exact_text": ".nl-social-btn{display:inline-flex !important;align-items:center !important;justify-content:center !important;width:48px !important;height:48px !important;min-width:48px !important;min-height:48px !important;border-radius:50% !important;border:1.5px solid rgba(255,66,161,0.4) !important;background:transparent !important;color:#ff42a1 !important;text-decoration:none !important;flex-shrink:0 !important;box-shadow:none !important;padding:0 !important;outline:none !important;}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "4-4",
+          "context_before": "",
+          "exact_text": ".nl-social-btn:hover{background:rgba(255,66,161,0.12) !important;border-color:#ff42a1 !important;}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "5-5",
+          "context_before": "",
+          "exact_text": ".nl-social-btn svg{width:22px !important;height:22px !important;fill:none !important;stroke:#ff42a1 !important;stroke-width:2 !important;display:block !important;flex-shrink:0 !important;}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "6-6",
+          "context_before": "",
+          "exact_text": ".nl-social-btn svg *{stroke:#ff42a1 !important;fill:none !important;}\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: .nl-socials { display: flex !important; gap: 16px !important; justify-content: center !important; align-items: center !important; margin: 1.4rem 0px 1.8rem !important; flex-wrap: nowrap !important; } /   - removed: .nl-social-btn { display: inline-flex !important; align-items: center !important; justify-content: center !important; width: 48px !important; height: 48px !important; min-width: 48px !important; min-height: 48px !important; border-radius: 50% !important; border: 1.5px solid rgba(255, 66, 161, 0.4) ! /   - removed: .nl-social-btn:hover { background: rgba(255, 66, 161, 0.12) !important; border-color: rgb(255, 66, 161) !important; } /   - removed: .nl-social-btn svg { width: 22px !important; height: 22px !important; fill: none !important; stroke: rgb(255, 66, 161) !important; stroke-width: 2 !important; display: block !important; flex-shrink: 0 !important; } /   - removed: .nl-social-btn svg * { stroke: rgb(255, 66, 161) !important; fill: none !important; }"
+    },
+    {
+      "id": "T96",
+      "status": "REVIEW",
+      "round": 6,
+      "file": "sections/product-main.liquid",
+      "baseline_lines": "2407-2407, 2563-2563",
+      "title": "2 orphaned rule(s) inside <style> blocks of sections/product-main.liquid (classes no markup or script uses)",
+      "kind": "orphan selectors in inline CSS (scripted, conservative)",
+      "why": "Every selector of each rule needs a class or ID that appears nowhere in the theme outside CSS: not in any HTML/Liquid markup, JS file, inline script or JSON (any mention, even in a string, counts as used; prefix-built names like x--{{ }} count as used; Shopify/app prefixes count as used; classes inside :not()/:is()/:where()/:has() are ignored). Selectors: #trust-bar; .product-stars, .product-stars *",
+      "proof": "Scripted full-text search over all 119 theme files with <style> CSS removed. Only rules on lines of pure CSS without Liquid were considered. Joint Chrome check per file (CSS views): exactly these rules removed, nothing added. Not proven from CSS alone (an app or admin content could use a class), hence REVIEW.",
+      "visual_change": "None expected.",
+      "parts": [
+        {
+          "lines": "2407-2407",
+          "context_before": "",
+          "exact_text": "    #trust-bar { height:82px !important; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "2563-2563",
+          "context_before": "",
+          "exact_text": "    .product-stars, .product-stars * { filter: none !important; box-shadow: none !important; text-shadow: none !important; }\r\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: #trust-bar { height: 82px !important; } /   - removed: .product-stars, .product-stars * { filter: none !important; box-shadow: none !important; text-shadow: none !important; }"
+    },
+    {
+      "id": "T97",
+      "status": "REVIEW",
+      "round": 6,
+      "file": "snippets/cart-drawer.liquid",
+      "baseline_lines": "118-118",
+      "title": "1 orphaned rule(s) inside <style> blocks of snippets/cart-drawer.liquid (classes no markup or script uses)",
+      "kind": "orphan selectors in inline CSS (scripted, conservative)",
+      "why": "Every selector of each rule needs a class or ID that appears nowhere in the theme outside CSS: not in any HTML/Liquid markup, JS file, inline script or JSON (any mention, even in a string, counts as used; prefix-built names like x--{{ }} count as used; Shopify/app prefixes count as used; classes inside :not()/:is()/:where()/:has() are ignored). Selectors: #tvCartDrawer .cart-bundle__discount",
+      "proof": "Scripted full-text search over all 119 theme files with <style> CSS removed. Only rules on lines of pure CSS without Liquid were considered. Joint Chrome check per file (CSS views): exactly these rules removed, nothing added. Not proven from CSS alone (an app or admin content could use a class), hence REVIEW.",
+      "visual_change": "None expected.",
+      "parts": [
+        {
+          "lines": "118-118",
+          "context_before": "",
+          "exact_text": "  #tvCartDrawer .cart-bundle__discount { font-size:11px !important; color:#16a34a !important; font-weight:700 !important; margin-top:6px !important; text-align:center !important; display:block !important; }\r\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: #tvCartDrawer .cart-bundle__discount { font-size: 11px !important; color: rgb(22, 163, 74) !important; font-weight: 700 !important; margin-top: 6px !important; text-align: center !important; display: block !important; }"
+    },
+    {
+      "id": "T98",
+      "status": "REVIEW",
+      "round": 6,
+      "file": "snippets/collection-discovery-banners.liquid",
+      "baseline_lines": "3-3",
+      "title": "1 orphaned rule(s) inside <style> blocks of snippets/collection-discovery-banners.liquid (classes no markup or script uses)",
+      "kind": "orphan selectors in inline CSS (scripted, conservative)",
+      "why": "Every selector of each rule needs a class or ID that appears nowhere in the theme outside CSS: not in any HTML/Liquid markup, JS file, inline script or JSON (any mention, even in a string, counts as used; prefix-built names like x--{{ }} count as used; Shopify/app prefixes count as used; classes inside :not()/:is()/:where()/:has() are ignored). Selectors: .collection-discovery--three",
+      "proof": "Scripted full-text search over all 119 theme files with <style> CSS removed. Only rules on lines of pure CSS without Liquid were considered. Joint Chrome check per file (CSS views): exactly these rules removed, nothing added. Not proven from CSS alone (an app or admin content could use a class), hence REVIEW.",
+      "visual_change": "None expected.",
+      "parts": [
+        {
+          "lines": "3-3",
+          "context_before": "",
+          "exact_text": ".collection-discovery--three{grid-template-columns:repeat(3,minmax(0,1fr))}\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: .collection-discovery--three { grid-template-columns: repeat(3, minmax(0px, 1fr)); }"
+    },
+    {
+      "id": "T99",
+      "status": "REVIEW",
+      "round": 6,
+      "file": "snippets/collection-page.liquid",
+      "baseline_lines": "85-85, 86-86, 87-87, 88-88, 89-89, 103-103, 104-104, 106-106, 117-117, 126-138, 148-148, 149-149, 150-150, 151-151, 152-152, 153-153, 181-181, 185-185, 186-186, 187-187, 188-188, 189-189, 190-190, 191-191, 192-192, 193-193, 197-197, 202-202, 203-203, 204-204, 205-205, 206-206, 207-207, 211-211, 212-212, 230-230, 231-231, 232-232, 233-233, 234-234, 235-235, 236-236, 347-347, 348-348, 349-349, 350-350, 351-351, 352-352",
+      "title": "48 orphaned rule(s) inside <style> blocks of snippets/collection-page.liquid (classes no markup or script uses)",
+      "kind": "orphan selectors in inline CSS (scripted, conservative)",
+      "why": "Every selector of each rule needs a class or ID that appears nowhere in the theme outside CSS: not in any HTML/Liquid markup, JS file, inline script or JSON (any mention, even in a string, counts as used; prefix-built names like x--{{ }} count as used; Shopify/app prefixes count as used; classes inside :not()/:is()/:where()/:has() are ignored). Selectors: #tvFilters .tv-tc-label; #tvFilters .tv-theme-more; #tvFilters .tv-theme-more:hover; #tvFilters .tv-type-card; #tvFilters .tv-type-card.tv-type-card--active; #tvFilters .tv-type-card.tv-type-card--active .tv-tc-label; .coll-af-badge; .coll-af-badge--on; .coll-allfilters; .coll-allfilters--active; .coll-allfilters:hover; .coll-intro--collapsible .coll-intro__body; .coll-intro--collapsible.coll-intro--expanded .coll-intro__body; .coll-intro--has-overflow .coll-intro__fade; .coll-intro--has-overflow.coll-intro--expanded .coll-intro__fade; .coll-intro__badge; .coll-intro__body; .coll-intro__fade; .coll-vbtn; .coll-vbtn:hover:not(.coll-vbtn--on); .coll-view-toggle; .tv-tc-label; .tv-theme-more; .tv-theme-more:hover; .tv-theme-row--center; .tv-trust-bar; .tv-trust-icon; .tv-trust-icon--blue; .tv",
+      "proof": "Scripted full-text search over all 119 theme files with <style> CSS removed. Only rules on lines of pure CSS without Liquid were considered. Joint Chrome check per file (CSS views): exactly these rules removed, nothing added. Not proven from CSS alone (an app or admin content could use a class), hence REVIEW.",
+      "visual_change": "None expected.",
+      "parts": [
+        {
+          "lines": "85-85",
+          "context_before": "",
+          "exact_text": ".coll-allfilters { display:inline-flex; align-items:center; gap:6px; padding:0.65rem 1.2rem; border-radius:9999px; border:1.5px solid #e5e7eb; background:#fff; color:#111 !important; font-size:13.5px; font-weight:600; font-family:inherit; cursor:pointer; white-space:nowrap; box-shadow:0 1px 4px rgba(0,0,0,0.07); transition:border-color 0.15s,color 0.15s; flex-shrink:0; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "86-86",
+          "context_before": "",
+          "exact_text": ".coll-allfilters:hover { border-color:#ff42a1; color:#ff42a1 !important; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "87-87",
+          "context_before": "",
+          "exact_text": ".coll-allfilters--active { background:#ff42a1 !important; border-color:#ff42a1 !important; color:#fff !important; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "88-88",
+          "context_before": "",
+          "exact_text": ".coll-af-badge { display:none; align-items:center; justify-content:center; min-width:18px; height:18px; border-radius:50%; background:#ff42a1; color:#fff !important; font-size:10px; font-weight:800; padding:0 3px; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "89-89",
+          "context_before": "",
+          "exact_text": ".coll-af-badge--on { display:inline-flex !important; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "103-103",
+          "context_before": "",
+          "exact_text": ".coll-view-toggle { display:inline-flex; align-items:center; border:1.5px solid #e5e7eb; border-radius:9999px; overflow:hidden; background:#fff; box-shadow:0 1px 4px rgba(0,0,0,0.07); flex-shrink:0; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "104-104",
+          "context_before": "",
+          "exact_text": ".coll-vbtn { display:flex; align-items:center; justify-content:center; width:40px; height:40px; border:none; background:transparent; cursor:pointer; color:#888; transition:background 0.15s,color 0.15s; font-family:inherit; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "106-106",
+          "context_before": "",
+          "exact_text": ".coll-vbtn:hover:not(.coll-vbtn--on) { color:#ff42a1; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "117-117",
+          "context_before": "",
+          "exact_text": "  .coll-view-toggle { display:none; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "126-138",
+          "context_before": "",
+          "exact_text": ".coll-intro__badge {\r\n  display: inline-flex;\r\n  align-items: center;\r\n  color: var(--ci-accent, #ff42a1);\r\n  background: var(--ci-badge-bg, rgba(255,66,161,0.08));\r\n  font-size: 13px;\r\n  font-weight: 600;\r\n  letter-spacing: 0.6px;\r\n  border-radius: 999px;\r\n  padding: 8px 22px;\r\n  margin-bottom: 1.1rem;\r\n  font-family: inherit;\r\n}\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "148-148",
+          "context_before": "",
+          "exact_text": ".coll-intro__body { position: relative; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "149-149",
+          "context_before": "",
+          "exact_text": ".coll-intro--collapsible .coll-intro__body { max-height: 92px; overflow: hidden; transition: max-height 0.3s ease; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "150-150",
+          "context_before": "",
+          "exact_text": ".coll-intro--collapsible.coll-intro--expanded .coll-intro__body { max-height: 2000px; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "151-151",
+          "context_before": "",
+          "exact_text": ".coll-intro__fade { position: absolute; bottom: 0; left: 0; right: 0; height: 42px; background: linear-gradient(to bottom, rgba(255,255,255,0), #fff); pointer-events: none; opacity: 0; transition: opacity 0.2s; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "152-152",
+          "context_before": "",
+          "exact_text": ".coll-intro--has-overflow .coll-intro__fade { opacity: 1; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "153-153",
+          "context_before": "",
+          "exact_text": ".coll-intro--has-overflow.coll-intro--expanded .coll-intro__fade { opacity: 0; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "181-181",
+          "context_before": "",
+          "exact_text": "  .coll-intro__badge { font-size: 12px; padding: 7px 18px; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "185-185",
+          "context_before": "",
+          "exact_text": ".tv-trust-bar { display:flex; align-items:stretch; background:#fff5f9; border-radius:16px; padding:1.25rem 2rem; margin-bottom:2.5rem; gap:0; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "186-186",
+          "context_before": "",
+          "exact_text": ".tv-trust-item { display:flex; align-items:center; gap:1rem; flex:1; justify-content:center; padding:0 1rem; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "187-187",
+          "context_before": "",
+          "exact_text": ".tv-trust-sep { width:1px; background:#f0c8dd; flex-shrink:0; align-self:stretch; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "188-188",
+          "context_before": "",
+          "exact_text": ".tv-trust-icon { width:52px; height:52px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "189-189",
+          "context_before": "",
+          "exact_text": ".tv-trust-icon--pink { background:rgba(255,66,161,0.15) !important; color:#ff42a1 !important; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "190-190",
+          "context_before": "",
+          "exact_text": ".tv-trust-icon--blue { background:rgba(59,130,246,0.15) !important; color:#3b82f6 !important; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "191-191",
+          "context_before": "",
+          "exact_text": ".tv-trust-icon--green { background:rgba(34,197,94,0.15) !important; color:#22c55e !important; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "192-192",
+          "context_before": "",
+          "exact_text": ".tv-trust-title { font-size:15px; font-weight:800; color:#111 !important; line-height:1.3; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "193-193",
+          "context_before": "",
+          "exact_text": ".tv-trust-sub { font-size:12.5px; color:#777 !important; margin-top:3px; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "197-197",
+          "context_before": "",
+          "exact_text": ".tv-theme-row--center { justify-content:center !important; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "202-202",
+          "context_before": "",
+          "exact_text": ".tv-type-card { display:flex !important; flex-direction:column !important; align-items:center !important; justify-content:flex-start !important; width:115px !important; padding:0.85rem 0.5rem 0.7rem !important; border-radius:14px !important; border:1.5px solid #e5e7eb !important; background:#fff !important; cursor:pointer !important; gap:0.5rem !important; font-family:inherit !important; transition:border-color 0.15s,box-shadow 0.15s; box-shadow:0 1px 5px rgba(0,0,0,0.07) !important; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "203-203",
+          "context_before": "",
+          "exact_text": ".tv-type-card img { width:72px !important; height:72px !important; object-fit:cover !important; border-radius:10px !important; pointer-events:none; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "204-204",
+          "context_before": "",
+          "exact_text": ".tv-tc-label { font-size:12px !important; font-weight:600 !important; color:#333 !important; text-align:center !important; line-height:1.3 !important; pointer-events:none; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "205-205",
+          "context_before": "",
+          "exact_text": ".tv-type-card:hover { border-color:#ff42a1 !important; box-shadow:0 0 0 2px #ff42a1 !important; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "206-206",
+          "context_before": "",
+          "exact_text": ".tv-type-card--active { border-color:#ff42a1 !important; box-shadow:0 0 0 2px #ff42a1 !important; background:rgba(255,66,161,0.04) !important; }\r\n",
+          "context_after": ".tv-type-card--active .tv-tc-label { color:#ff42a1 !important; }\r\n"
+        },
+        {
+          "lines": "207-207",
+          "context_before": "",
+          "exact_text": ".tv-type-card--active .tv-tc-label { color:#ff42a1 !important; }\r\n",
+          "context_after": ".tv-theme-pill { display:inline-flex !important; align-items:center !important; padding:0.52rem 1.1rem !important; border-radius:9999px !important; border:1.5px solid #e2e8f0 !important; background:#fff !important; color:#444 !important; font-size:13.5px !important; font-weight:400 !important; font-family:inherit !important; cursor:pointer !important; transition:border-color 0.15s,background 0.15s,color 0.15s; box-shadow:0 1px 3px rgba(0,0,0,0.06) !important; }\r\n"
+        },
+        {
+          "lines": "211-211",
+          "context_before": "",
+          "exact_text": ".tv-theme-more { display:inline-flex !important; align-items:center !important; gap:5px !important; padding:0.52rem 1.1rem !important; border-radius:9999px !important; border:1.5px solid #e2e8f0 !important; background:#fff !important; color:#444 !important; font-size:13.5px !important; font-weight:400 !important; font-family:inherit !important; cursor:pointer !important; transition:border-color 0.15s,color 0.15s; box-shadow:0 1px 3px rgba(0,0,0,0.06) !important; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "212-212",
+          "context_before": "",
+          "exact_text": ".tv-theme-more:hover { border-color:#ff42a1 !important; color:#ff42a1 !important; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "230-230",
+          "context_before": "",
+          "exact_text": "  .tv-trust-bar { padding:1rem; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "231-231",
+          "context_before": "",
+          "exact_text": "  .tv-trust-item { gap:0.65rem; padding:0 0.25rem; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "232-232",
+          "context_before": "",
+          "exact_text": "  .tv-trust-icon { width:40px; height:40px; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "233-233",
+          "context_before": "",
+          "exact_text": "  .tv-trust-title { font-size:12.5px; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "234-234",
+          "context_before": "",
+          "exact_text": "  .tv-trust-sub { font-size:11px; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "235-235",
+          "context_before": "",
+          "exact_text": "  .tv-type-card { width:90px !important; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "236-236",
+          "context_before": "",
+          "exact_text": "  .tv-type-card img { width:58px !important; height:58px !important; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "347-347",
+          "context_before": "",
+          "exact_text": "      #tvFilters .tv-theme-more { color:#444 !important; background:#fff !important; border:1.5px solid #e2e8f0 !important; box-shadow:0 1px 3px rgba(0,0,0,0.06) !important; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "348-348",
+          "context_before": "",
+          "exact_text": "      #tvFilters .tv-theme-more:hover { color:#ff42a1 !important; background:#fff !important; border-color:#ff42a1 !important; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "349-349",
+          "context_before": "",
+          "exact_text": "      #tvFilters .tv-type-card { background:#fff !important; border:1.5px solid #e5e7eb !important; box-shadow:0 1px 5px rgba(0,0,0,0.07) !important; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "350-350",
+          "context_before": "",
+          "exact_text": "      #tvFilters .tv-tc-label { color:#333 !important; font-weight:600 !important; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "351-351",
+          "context_before": "",
+          "exact_text": "      #tvFilters .tv-type-card.tv-type-card--active .tv-tc-label { color:#ff42a1 !important; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "352-352",
+          "context_before": "",
+          "exact_text": "      #tvFilters .tv-type-card.tv-type-card--active { border-color:#ff42a1 !important; box-shadow:0 0 0 2px #ff42a1 !important; background:rgba(255,66,161,0.04) !important; }\r\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: .coll-allfilters { display: inline-flex; align-items: center; gap: 6px; padding: 0.65rem 1.2rem; border-radius: 9999px; border: 1.5px solid rgb(229, 231, 235); background: rgb(255, 255, 255); font-size: 13.5px; font-weight: 600; font-family: inherit; cursor: pointer; white-space: nowrap; box-shadow: /   - removed: .coll-allfilters:hover { border-color: rgb(255, 66, 161); color: rgb(255, 66, 161) !important; } /   - removed: .coll-allfilters--active { background: rgb(255, 66, 161) !important; border-color: rgb(255, 66, 161) !important; color: rgb(255, 255, 255) !important; } /   - removed: .coll-af-badge { display: none; align-items: center; justify-content: center; min-width: 18px; height: 18px; border-radius: 50%; background: rgb(255, 66, 161); font-size: 10px; font-weight: 800; padding: 0px 3px; color: rgb(255, 255, 255) !important; } /   - removed: .coll-af-badge--on { display: inline-flex !important; } /   - removed: .coll-view-toggle { display: inline-flex; align-items: center; border: 1.5px solid rgb(229, 231, 235); border-radius: 9999px; overflow: hidden; background: rgb(255, 255, 255); box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 4px; flex-shrink: 0; } /   - removed: .coll-vbtn { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: none; background: transparent; cursor: pointer; color: rgb(136, 136, 136); transition: background 0.15s, color 0.15s; font-family: inherit; } /   - removed: .coll-vbtn:hover:not(.coll-vbtn--on) { color: rgb(255, 66, 161); } /   - removed: @media (max-width: 767px) > .coll-view-toggle { display: none; } /   - removed: .coll-intro__badge { display: inline-flex; align-items: center; color: var(--ci-accent, #ff42a1); background: var(--ci-badge-bg, rgba(255,66,161,0.08)); font-size: 13px; font-weight: 600; letter-spacing: 0.6px; border-radius: 999px; padding: 8px 22px; margin-bottom: 1.1rem; font-family: inherit; } /   - removed: .coll-intro__body { position: relative; } /   - removed: .coll-intro--collapsible .coll-intro__body { max-height: 92px; overflow: hidden; transition: max-height 0.3s; } /   - removed: .coll-intro--collapsible.coll-intro--expanded .coll-intro__body { max-height: 2000px; } /   - removed: .coll-intro__fade { position: absolute; bottom: 0px; left: 0px; right: 0px; height: 42px; background: linear-gradient(rgba(255, 255, 255, 0), rgb(255, 255, 255)); pointer-events: none; opacity: 0; transition: opacity 0.2s; } /   - removed: .coll-intro--has-overflow .coll-intro__fade { opacity: 1; } /   - removed: .coll-intro--has-overflow.coll-intro--expanded .coll-intro__fade { opacity: 0; } /   - removed: @media (max-width: 767px) > .coll-intro__badge { font-size: 12px; padding: 7px 18px; } /   - removed: .tv-trust-bar { display: flex; align-items: stretch; background: rgb(255, 245, 249); border-radius: 16px; padding: 1.25rem 2rem; margin-bottom: 2.5rem; gap: 0px; } /   - removed: .tv-trust-item { display: flex; align-items: center; gap: 1rem; flex: 1 1 0%; justify-content: center; padding: 0px 1rem; } /   - removed: .tv-trust-sep { width: 1px; background: rgb(240, 200, 221); flex-shrink: 0; align-self: stretch; } /   - removed: .tv-trust-icon { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; } /   - removed: .tv-trust-icon--pink { background: rgba(255, 66, 161, 0.15) !important; color: rgb(255, 66, 161) !important; } /   - removed: .tv-trust-icon--blue { background: rgba(59, 130, 246, 0.15) !important; color: rgb(59, 130, 246) !important; } /   - removed: .tv-trust-icon--green { background: rgba(34, 197, 94, 0.15) !important; color: rgb(34, 197, 94) !important; } /   - removed: .tv-trust-title { font-size: 15px; font-weight: 800; line-height: 1.3; color: rgb(17, 17, 17) !important; } /   - removed: .tv-trust-sub { font-size: 12.5px; margin-top: 3px; color: rgb(119, 119, 119) !important; } /   - removed: .tv-theme-row--center { justify-content: center !important; } /   - removed: .tv-type-card { transition: border-color 0.15s, box-shadow 0.15s; display: flex !important; flex-direction: column !important; align-items: center !important; justify-content: flex-start !important; width: 115px !important; padding: 0.85rem 0.5rem 0.7rem !important; border-radius: 14px !important; b /   - removed: .tv-type-card img { pointer-events: none; width: 72px !important; height: 72px !important; object-fit: cover !important; border-radius: 10px !important; } /   - removed: .tv-tc-label { pointer-events: none; font-size: 12px !important; font-weight: 600 !important; color: rgb(51, 51, 51) !important; text-align: center !important; line-height: 1.3 !important; } /   - removed: .tv-type-card:hover { border-color: rgb(255, 66, 161) !important; box-shadow: rgb(255, 66, 161) 0px 0px 0px 2px !important; } /   - removed: .tv-type-card--active { border-color: rgb(255, 66, 161) !important; box-shadow: rgb(255, 66, 161) 0px 0px 0px 2px !important; background: rgba(255, 66, 161, 0.04) !important; } /   - removed: .tv-type-card--active .tv-tc-label { color: rgb(255, 66, 161) !important; } /   - removed: .tv-theme-more { transition: border-color 0.15s, color 0.15s; display: inline-flex !important; align-items: center !important; gap: 5px !important; padding: 0.52rem 1.1rem !important; border-radius: 9999px !important; border: 1.5px solid rgb(226, 232, 240) !important; background: rgb(255, 255, 255)  /   - removed: .tv-theme-more:hover { border-color: rgb(255, 66, 161) !important; color: rgb(255, 66, 161) !important; } /   - removed: @media (max-width: 767px) > .tv-trust-bar { padding: 1rem; } /   - removed: @media (max-width: 767px) > .tv-trust-item { gap: 0.65rem; padding: 0px 0.25rem; } /   - removed: @media (max-width: 767px) > .tv-trust-icon { width: 40px; height: 40px; } /   - removed: @media (max-width: 767px) > .tv-trust-title { font-size: 12.5px; } /   - removed: @media (max-width: 767px) > .tv-trust-sub { font-size: 11px; } /   - removed: @media (max-width: 767px) > .tv-type-card { width: 90px !important; } /   - removed: @media (max-width: 767px) > .tv-type-card img { width: 58px !important; height: 58px !important; } /   - removed: #tvFilters .tv-theme-more { color: rgb(68, 68, 68) !important; background: rgb(255, 255, 255) !important; border: 1.5px solid rgb(226, 232, 240) !important; box-shadow: rgba(0, 0, 0, 0.06) 0px 1px 3px !important; } /   - removed: #tvFilters .tv-theme-more:hover { color: rgb(255, 66, 161) !important; background: rgb(255, 255, 255) !important; border-color: rgb(255, 66, 161) !important; } /   - removed: #tvFilters .tv-type-card { background: rgb(255, 255, 255) !important; border: 1.5px solid rgb(229, 231, 235) !important; box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 5px !important; } /   - removed: #tvFilters .tv-tc-label { color: rgb(51, 51, 51) !important; font-weight: 600 !important; } /   - removed: #tvFilters .tv-type-card.tv-type-card--active .tv-tc-label { color: rgb(255, 66, 161) !important; } /   - removed: #tvFilters .tv-type-card.tv-type-card--active { border-color: rgb(255, 66, 161) !important; box-shadow: rgb(255, 66, 161) 0px 0px 0px 2px !important; background: rgba(255, 66, 161, 0.04) !important; }"
+    },
+    {
+      "id": "T100",
+      "status": "REVIEW",
+      "round": 6,
+      "file": "snippets/cr-card-styles.liquid",
+      "baseline_lines": "47-60, 61-61, 62-62, 63-63, 64-64, 65-65, 66-66, 67-67, 196-202, 203-203, 204-204, 205-205, 206-206, 224-228, 233-238, 239-243, 284-284, 312-312, 313-313",
+      "title": "19 orphaned rule(s) inside <style> blocks of snippets/cr-card-styles.liquid (classes no markup or script uses)",
+      "kind": "orphan selectors in inline CSS (scripted, conservative)",
+      "why": "Every selector of each rule needs a class or ID that appears nowhere in the theme outside CSS: not in any HTML/Liquid markup, JS file, inline script or JSON (any mention, even in a string, counts as used; prefix-built names like x--{{ }} count as used; Shopify/app prefixes count as used; classes inside :not()/:is()/:where()/:has() are ignored). Selectors: .cr-card__badge; .cr-card__badge--award; .cr-card__badge--bestseller; .cr-card__badge--hot; .cr-card__badge--new; .cr-card__badge--sale; .cr-card__badge--toppick; .cr-card__badge--trending; .cr-card__jdgm; .cr-card__jdgm .jdgm-prev-badge; .cr-card__jdgm .jdgm-prev-badge__count; .cr-card__jdgm .jdgm-prev-badge__stars; .cr-card__soldout; .pc-vcount__plus; .var-dot__count; .var-dot__label; html body #MainContent#MainContent .cr-card.cr-card .cr-card__meta-row .pc-heart.pc-heart; html body #MainContent#MainContent .cr-card.cr-card .cr-card__meta-row .pc-heart.pc-heart svg; html body #MainContent#MainContent .cr-card.cr-card .cr-card__meta-row.cr-card__meta-row",
+      "proof": "Scripted full-text search over all 119 theme files with <style> CSS removed. Only rules on lines of pure CSS without Liquid were considered. Joint Chrome check per file (CSS views): exactly these rules removed, nothing added. Not proven from CSS alone (an app or admin content could use a class), hence REVIEW.",
+      "visual_change": "None expected.",
+      "parts": [
+        {
+          "lines": "47-60",
+          "context_before": "",
+          "exact_text": ".cr-card__badge {\r\n  position: absolute;\r\n  top: 7px;\r\n  left: 7px;\r\n  font-size: 10px;\r\n  font-weight: 800;\r\n  letter-spacing: 0.05em;\r\n  text-transform: uppercase;\r\n  padding: 0.24rem 0.6rem;\r\n  border-radius: 999px;\r\n  color: #fff;\r\n  pointer-events: none;\r\n  background: transparent;\r\n}\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "61-61",
+          "context_before": "",
+          "exact_text": ".cr-card__badge--new        { background: transparent; border: 1.5px solid #16a34a; color: #16a34a; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "62-62",
+          "context_before": "",
+          "exact_text": ".cr-card__badge--hot        { background: transparent; border: 1.5px solid #f97316; color: #f97316; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "63-63",
+          "context_before": "",
+          "exact_text": ".cr-card__badge--sale       { background: transparent; border: 1.5px solid #dc2626; color: #dc2626; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "64-64",
+          "context_before": "",
+          "exact_text": ".cr-card__badge--bestseller { background: transparent; border: 1.5px solid #7c3aed; color: #7c3aed; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "65-65",
+          "context_before": "",
+          "exact_text": ".cr-card__badge--trending   { background: transparent; border: 1.5px solid #0ea5e9; color: #0ea5e9; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "66-66",
+          "context_before": "",
+          "exact_text": ".cr-card__badge--award      { background: transparent; border: 1.5px solid #ca8a04; color: #ca8a04; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "67-67",
+          "context_before": "",
+          "exact_text": ".cr-card__badge--toppick    { background: transparent; border: 1.5px solid #db2777; color: #db2777; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "196-202",
+          "context_before": "",
+          "exact_text": ".cr-card__soldout {\r\n  font-size: 0.68rem;\r\n  font-weight: 700;\r\n  color: #aaa;\r\n  white-space: nowrap;\r\n  flex-shrink: 0;\r\n}\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "203-203",
+          "context_before": "",
+          "exact_text": ".cr-card__jdgm { line-height: 1; overflow: hidden; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "204-204",
+          "context_before": "",
+          "exact_text": ".cr-card__jdgm .jdgm-prev-badge { display: inline-flex !important; align-items: center !important; gap: 1px !important; font-size: 0 !important; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "205-205",
+          "context_before": "",
+          "exact_text": ".cr-card__jdgm .jdgm-prev-badge__stars { font-size: 11px !important; letter-spacing: 0 !important; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "206-206",
+          "context_before": "",
+          "exact_text": ".cr-card__jdgm .jdgm-prev-badge__count { font-size: 10px !important; color: #9ca3af !important; margin-left: 3px !important; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "224-228",
+          "context_before": "",
+          "exact_text": "html body #MainContent#MainContent .cr-card.cr-card .cr-card__meta-row.cr-card__meta-row{\r\n  display:flex!important;visibility:visible!important;align-items:center!important;\r\n  justify-content:space-between!important;gap:8px!important;min-height:32px!important;\r\n  height:32px!important;margin:0!important;overflow:visible!important;\r\n}\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "233-238",
+          "context_before": "",
+          "exact_text": "html body #MainContent#MainContent .cr-card.cr-card .cr-card__meta-row .pc-heart.pc-heart{\r\n  display:flex!important;visibility:visible!important;flex:0 0 36px!important;width:36px!important;\r\n  height:36px!important;min-width:36px!important;min-height:36px!important;opacity:1!important;\r\n  align-items:center!important;justify-content:center!important;pointer-events:auto!important;\r\n  cursor:pointer!important;touch-action:manipulation!important;\r\n}\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "239-243",
+          "context_before": "",
+          "exact_text": "html body #MainContent#MainContent .cr-card.cr-card .cr-card__meta-row .pc-heart.pc-heart svg{\r\n  display:block!important;width:27px!important;height:27px!important;min-width:27px!important;\r\n  min-height:27px!important;stroke:currentColor!important;stroke-width:1.9!important;fill:none!important;\r\n  pointer-events:none!important;\r\n}\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "284-284",
+          "context_before": "",
+          "exact_text": ".pc-vcount__plus{display:none!important}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "312-312",
+          "context_before": "",
+          "exact_text": ".var-dot__count { font-size:9px; font-weight:800; line-height:1; letter-spacing:0; }\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "313-313",
+          "context_before": "",
+          "exact_text": ".var-dot__label { font-size:5px; font-weight:700; line-height:1; letter-spacing:0; text-transform:lowercase; }\r\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: .cr-card__badge { position: absolute; top: 7px; left: 7px; font-size: 10px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; padding: 0.24rem 0.6rem; border-radius: 999px; color: rgb(255, 255, 255); pointer-events: none; background: transparent; } /   - removed: .cr-card__badge--new { background: transparent; border: 1.5px solid rgb(22, 163, 74); color: rgb(22, 163, 74); } /   - removed: .cr-card__badge--hot { background: transparent; border: 1.5px solid rgb(249, 115, 22); color: rgb(249, 115, 22); } /   - removed: .cr-card__badge--sale { background: transparent; border: 1.5px solid rgb(220, 38, 38); color: rgb(220, 38, 38); } /   - removed: .cr-card__badge--bestseller { background: transparent; border: 1.5px solid rgb(124, 58, 237); color: rgb(124, 58, 237); } /   - removed: .cr-card__badge--trending { background: transparent; border: 1.5px solid rgb(14, 165, 233); color: rgb(14, 165, 233); } /   - removed: .cr-card__badge--award { background: transparent; border: 1.5px solid rgb(202, 138, 4); color: rgb(202, 138, 4); } /   - removed: .cr-card__badge--toppick { background: transparent; border: 1.5px solid rgb(219, 39, 119); color: rgb(219, 39, 119); } /   - removed: .cr-card__soldout { font-size: 0.68rem; font-weight: 700; color: rgb(170, 170, 170); white-space: nowrap; flex-shrink: 0; } /   - removed: .cr-card__jdgm { line-height: 1; overflow: hidden; } /   - removed: .cr-card__jdgm .jdgm-prev-badge { display: inline-flex !important; align-items: center !important; gap: 1px !important; font-size: 0px !important; } /   - removed: .cr-card__jdgm .jdgm-prev-badge__stars { font-size: 11px !important; letter-spacing: 0px !important; } /   - removed: .cr-card__jdgm .jdgm-prev-badge__count { font-size: 10px !important; color: rgb(156, 163, 175) !important; margin-left: 3px !important; } /   - removed: html body #MainContent#MainContent .cr-card.cr-card .cr-card__meta-row.cr-card__meta-row { display: flex !important; visibility: visible !important; align-items: center !important; justify-content: space-between !important; gap: 8px !important; min-height: 32px !important; height: 32px !important; m /   - removed: html body #MainContent#MainContent .cr-card.cr-card .cr-card__meta-row .pc-heart.pc-heart { display: flex !important; visibility: visible !important; flex: 0 0 36px !important; width: 36px !important; height: 36px !important; min-width: 36px !important; min-height: 36px !important; opacity: 1 !impor /   - removed: html body #MainContent#MainContent .cr-card.cr-card .cr-card__meta-row .pc-heart.pc-heart svg { display: block !important; width: 27px !important; height: 27px !important; min-width: 27px !important; min-height: 27px !important; stroke: currentcolor !important; stroke-width: 1.9 !important; fill: no /   - removed: .pc-vcount__plus { display: none !important; } /   - removed: .var-dot__count { font-size: 9px; font-weight: 800; line-height: 1; letter-spacing: 0px; } /   - removed: .var-dot__label { font-size: 5px; font-weight: 700; line-height: 1; letter-spacing: 0px; text-transform: lowercase; }"
+    },
+    {
+      "id": "T101",
+      "status": "REVIEW",
+      "round": 6,
+      "file": "snippets/heart-js.liquid",
+      "baseline_lines": "27-27",
+      "title": "1 orphaned rule(s) inside <style> blocks of snippets/heart-js.liquid (classes no markup or script uses)",
+      "kind": "orphan selectors in inline CSS (scripted, conservative)",
+      "why": "Every selector of each rule needs a class or ID that appears nowhere in the theme outside CSS: not in any HTML/Liquid markup, JS file, inline script or JSON (any mention, even in a string, counts as used; prefix-built names like x--{{ }} count as used; Shopify/app prefixes count as used; classes inside :not()/:is()/:where()/:has() are ignored). Selectors: .tlv-sc-count",
+      "proof": "Scripted full-text search over all 119 theme files with <style> CSS removed. Only rules on lines of pure CSS without Liquid were considered. Joint Chrome check per file (CSS views): exactly these rules removed, nothing added. Not proven from CSS alone (an app or admin content could use a class), hence REVIEW.",
+      "visual_change": "None expected.",
+      "parts": [
+        {
+          "lines": "27-27",
+          "context_before": "",
+          "exact_text": ".tlv-sc-count{white-space:nowrap;margin:.9cqw 0 4.8cqw!important;font:700 2cqw/1 'Nunito',sans-serif;color:#a9a9b2}\r\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: .tlv-sc-count { white-space: nowrap; font: 700 2cqw / 1 Nunito, sans-serif; color: rgb(169, 169, 178); margin: 0.9cqw 0px 4.8cqw !important; }"
+    },
+    {
+      "id": "T102",
+      "status": "REVIEW",
+      "round": 6,
+      "file": "snippets/product-card-styles.liquid",
+      "baseline_lines": "8-8, 9-9, 10-10, 13-13, 14-14, 18-18, 19-19, 20-20, 21-21, 22-22, 23-23, 24-24, 26-26, 27-27, 28-28, 29-29, 30-30, 31-31, 38-38, 45-45, 46-46, 47-47, 49-49, 51-51, 55-55, 59-59, 60-60, 61-61, 66-66, 68-68, 70-70, 72-72, 74-74, 75-75, 76-76, 80-86, 117-117, 118-118",
+      "title": "38 orphaned rule(s) inside <style> blocks of snippets/product-card-styles.liquid (classes no markup or script uses)",
+      "kind": "orphan selectors in inline CSS (scripted, conservative)",
+      "why": "Every selector of each rule needs a class or ID that appears nowhere in the theme outside CSS: not in any HTML/Liquid markup, JS file, inline script or JSON (any mention, even in a string, counts as used; prefix-built names like x--{{ }} count as used; Shopify/app prefixes count as used; classes inside :not()/:is()/:where()/:has() are ignored). Selectors: .collection-page-wrap .product-card .product-card__img; .collection-page-wrap .product-card:hover .product-card__img; .product-card:hover .product-card__img; .product-card:hover .product-card__quickview; .product-card__image-wrap; .product-card__img; .product-card__jdgm .jdgm-prev-badge; .product-card__jdgm .jdgm-prev-badge__count; .product-card__jdgm .jdgm-prev-badge__stars; .product-card__link; .product-card__quickview; .product-card__sold-badge; .product-card__stars; .product-card__tag; .product-card__tag--blaster; .product-card__tag--building; .product-card__tag--building::before; .product-card__tag--collectible; .product-card__tag--fidget; .product-card__tag--halloween; .product-card__tag--keychain; .product-card__tag--plush; .product-card__tag--puzzle; .product-card__tag--puzzle::bef",
+      "proof": "Scripted full-text search over all 119 theme files with <style> CSS removed. Only rules on lines of pure CSS without Liquid were considered. Joint Chrome check per file (CSS views): exactly these rules removed, nothing added. Not proven from CSS alone (an app or admin content could use a class), hence REVIEW.",
+      "visual_change": "None expected.",
+      "parts": [
+        {
+          "lines": "8-8",
+          "context_before": "",
+          "exact_text": ".product-card__image-wrap{position:relative;width:100%;aspect-ratio:1/1;overflow:hidden;background:#f0f0f0;flex-shrink:0}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "9-9",
+          "context_before": "",
+          "exact_text": ".product-card__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s ease}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "10-10",
+          "context_before": "",
+          "exact_text": ".product-card:hover .product-card__img{transform:scale(1.04)}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "13-13",
+          "context_before": "",
+          "exact_text": "  .collection-page-wrap .product-card .product-card__img{transition:transform .32s ease!important}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "14-14",
+          "context_before": "",
+          "exact_text": "  .collection-page-wrap .product-card:hover .product-card__img{transform:scale(1.06)!important}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "18-18",
+          "context_before": "",
+          "exact_text": ".product-card__link{position:absolute;inset:0;z-index:2;display:block}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "19-19",
+          "context_before": "",
+          "exact_text": ".product-card__quickview{position:absolute;bottom:10px;right:10px;width:30px;height:30px;background:rgba(255,255,255,0.92);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#444;text-decoration:none;opacity:0;transition:opacity 0.2s;z-index:3}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "20-20",
+          "context_before": "",
+          "exact_text": ".product-card:hover .product-card__quickview{opacity:1}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "21-21",
+          "context_before": "",
+          "exact_text": ".product-card__tag{position:absolute;top:13px;left:13px;z-index:3;font-family:'Nunito',system-ui,sans-serif;font-size:4.7px;font-weight:700;line-height:1;letter-spacing:0.03em;padding:5px 11px;border:1px solid #ea580c;border-radius:999px;color:#ea580c;background:transparent;pointer-events:none}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "22-22",
+          "context_before": "",
+          "exact_text": ".product-card__tag--collectible{border-color:#0d9488;color:#0d9488}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "23-23",
+          "context_before": "",
+          "exact_text": ".product-card__tag--keychain{border-color:#16a34a;color:#16a34a}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "24-24",
+          "context_before": "",
+          "exact_text": ".product-card__tag--blaster{border-color:#dc2626;color:#dc2626}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "26-26",
+          "context_before": "",
+          "exact_text": ".product-card__tag--plush{border-color:#ff42a1;color:#ff42a1}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "27-27",
+          "context_before": "",
+          "exact_text": ".product-card__tag--fidget{border-color:#4f6ef7;color:#4f6ef7}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "28-28",
+          "context_before": "",
+          "exact_text": ".product-card__tag--rc{border-color:transparent!important;color:transparent!important;background:linear-gradient(90deg,#0ea5e9,#f97316)!important;-webkit-background-clip:text!important;background-clip:text!important;position:absolute}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "29-29",
+          "context_before": "",
+          "exact_text": ".product-card__tag--rc::before{content:\"\";position:absolute;inset:0;border-radius:999px;padding:1px;background:linear-gradient(90deg,#0ea5e9,#f97316);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "30-30",
+          "context_before": "",
+          "exact_text": ".product-card__tag--building{border-color:transparent!important;color:transparent!important;background:linear-gradient(90deg,#4f46e5,#ec4899)!important;-webkit-background-clip:text!important;background-clip:text!important;position:absolute}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "31-31",
+          "context_before": "",
+          "exact_text": ".product-card__tag--building::before{content:\"\";position:absolute;inset:0;border-radius:999px;padding:1px;background:linear-gradient(90deg,#4f46e5,#ec4899);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "38-38",
+          "context_before": "",
+          "exact_text": ".product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag,.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag:hover{border-radius:10px!important}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "45-45",
+          "context_before": "",
+          "exact_text": ".product-card__tag--puzzle{border-color:transparent!important;color:transparent!important;background:linear-gradient(90deg,#06b6d4,#f43f5e)!important;-webkit-background-clip:text!important;background-clip:text!important;position:absolute}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "46-46",
+          "context_before": "",
+          "exact_text": ".product-card__tag--puzzle::before{content:\"\";position:absolute;inset:0;border-radius:999px;padding:1px;background:linear-gradient(90deg,#06b6d4,#f43f5e);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "47-47",
+          "context_before": "",
+          "exact_text": ".product-card__tag--halloween{border-color:#111111;color:#111111}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "49-49",
+          "context_before": "",
+          "exact_text": ".product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag::before{content:\"\"!important;display:block!important;position:absolute!important;inset:auto!important;left:100%!important;top:50%!important;width:11px!important;height:1px!important;padding:0!important;border:0!important;border-radius:0!important;box-sizing:border-box!important;background:color-mix(in srgb,var(--dot) 58%,#d8dde5)!important;-webkit-mask:none!important;mask:none!important;clip-path:none!important;transform:translateY(-50%)!important;pointer-events:none!important;z-index:0!important}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "51-51",
+          "context_before": "",
+          "exact_text": "html body .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag{right:1px!important}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "55-55",
+          "context_before": "",
+          "exact_text": ".product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag::before{transform-origin:right center!important;transition:transform .26s cubic-bezier(.4,0,1,1) .12s,opacity .2s linear .12s!important}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "59-59",
+          "context_before": "",
+          "exact_text": "  .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag:hover{right:-9px!important;transition:right .42s cubic-bezier(.22,1,.36,1) .04s!important}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "60-60",
+          "context_before": "",
+          "exact_text": "  .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag:hover::before{transform:translateY(-50%) scaleX(0)!important;opacity:0!important;transition:transform .42s cubic-bezier(.22,1,.36,1) .04s,opacity .2s ease-out .04s!important}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "61-61",
+          "context_before": "",
+          "exact_text": "  .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag:hover::after{transform:translateY(-50%) translateX(-10px)!important;transition:transform .2s cubic-bezier(.22,1,.36,1) .2s,opacity .2s ease-out .2s!important}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "66-66",
+          "context_before": "",
+          "exact_text": ".product-card__sold-badge{position:absolute;top:10px;left:10px;background:rgba(0,0,0,0.65);color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:20px;z-index:3}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "68-68",
+          "context_before": "",
+          "exact_text": ".product-card__vendor{font-size:11px;color:#999;font-weight:400;line-height:1.2}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "70-70",
+          "context_before": "",
+          "exact_text": ".product-card__title--two{white-space:normal!important;height:36px!important;overflow:hidden!important;text-overflow:clip!important}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "72-72",
+          "context_before": "",
+          "exact_text": ".product-card__stars{display:flex;align-items:center;gap:1px;height:16px;flex-shrink:0}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "74-74",
+          "context_before": "",
+          "exact_text": ".product-card__jdgm .jdgm-prev-badge{display:inline-flex !important;align-items:center !important;gap:1px !important;font-size:0 !important;}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "75-75",
+          "context_before": "",
+          "exact_text": ".product-card__jdgm .jdgm-prev-badge__stars{font-size:11px !important;}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "76-76",
+          "context_before": "",
+          "exact_text": ".product-card__jdgm .jdgm-prev-badge__count{font-size:11px !important;color:#999 !important;margin-left:3px !important;}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "80-86",
+          "context_before": "",
+          "exact_text": ".product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag {\n  width: 24.15px !important;\n  min-width: 24.15px !important;\n  max-width: 24.15px !important;\n  height: 24.15px !important;\n  right: 2px !important;\n}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "117-117",
+          "context_before": "",
+          "exact_text": ".var-dot__count { font-size:9px; font-weight:800; line-height:1; letter-spacing:0; }\n",
+          "context_after": ""
+        },
+        {
+          "lines": "118-118",
+          "context_before": "",
+          "exact_text": ".var-dot__label { font-size:5px; font-weight:700; line-height:1; letter-spacing:0; text-transform:lowercase; }\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: .product-card__image-wrap { position: relative; width: 100%; aspect-ratio: 1 / 1; overflow: hidden; background: rgb(240, 240, 240); flex-shrink: 0; } /   - removed: .product-card__img { position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; } /   - removed: .product-card:hover .product-card__img { transform: scale(1.04); } /   - removed: @media (hover: hover) and (pointer: fine) > .collection-page-wrap .product-card .product-card__img { transition: transform 0.32s !important; } /   - removed: @media (hover: hover) and (pointer: fine) > .collection-page-wrap .product-card:hover .product-card__img { transform: scale(1.06) !important; } /   - removed: .product-card__link { position: absolute; inset: 0px; z-index: 2; display: block; } /   - removed: .product-card__quickview { position: absolute; bottom: 10px; right: 10px; width: 30px; height: 30px; background: rgba(255, 255, 255, 0.92); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgb(68, 68, 68); text-decoration: none; opacity: 0; transition: opacity  /   - removed: .product-card:hover .product-card__quickview { opacity: 1; } /   - removed: .product-card__tag { position: absolute; top: 13px; left: 13px; z-index: 3; font-family: Nunito, system-ui, sans-serif; font-size: 4.7px; font-weight: 700; line-height: 1; letter-spacing: 0.03em; padding: 5px 11px; border: 1px solid rgb(234, 88, 12); border-radius: 999px; color: rgb(234, 88, 12); ba /   - removed: .product-card__tag--collectible { border-color: rgb(13, 148, 136); color: rgb(13, 148, 136); } /   - removed: .product-card__tag--keychain { border-color: rgb(22, 163, 74); color: rgb(22, 163, 74); } /   - removed: .product-card__tag--blaster { border-color: rgb(220, 38, 38); color: rgb(220, 38, 38); } /   - removed: .product-card__tag--plush { border-color: rgb(255, 66, 161); color: rgb(255, 66, 161); } /   - removed: .product-card__tag--fidget { border-color: rgb(79, 110, 247); color: rgb(79, 110, 247); } /   - removed: .product-card__tag--rc { position: absolute; border-color: transparent !important; color: transparent !important; background: linear-gradient(90deg, rgb(14, 165, 233), rgb(249, 115, 22)) text !important; } /   - removed: .product-card__tag--rc::before { content: \"\"; position: absolute; inset: 0px; border-radius: 999px; padding: 1px; background: linear-gradient(90deg, rgb(14, 165, 233), rgb(249, 115, 22)); mask: linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 0px) content-box exclude, linear-gradient(rgb(0, 0, 0) 0px, /   - removed: .product-card__tag--building { position: absolute; border-color: transparent !important; color: transparent !important; background: linear-gradient(90deg, rgb(79, 70, 229), rgb(236, 72, 153)) text !important; } /   - removed: .product-card__tag--building::before { content: \"\"; position: absolute; inset: 0px; border-radius: 999px; padding: 1px; background: linear-gradient(90deg, rgb(79, 70, 229), rgb(236, 72, 153)); mask: linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 0px) content-box exclude, linear-gradient(rgb(0, 0, 0) /   - removed: .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag, .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag:hover { border-radius: 10px !important; } /   - removed: .product-card__tag--puzzle { position: absolute; border-color: transparent !important; color: transparent !important; background: linear-gradient(90deg, rgb(6, 182, 212), rgb(244, 63, 94)) text !important; } /   - removed: .product-card__tag--puzzle::before { content: \"\"; position: absolute; inset: 0px; border-radius: 999px; padding: 1px; background: linear-gradient(90deg, rgb(6, 182, 212), rgb(244, 63, 94)); mask: linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 0px) content-box exclude, linear-gradient(rgb(0, 0, 0) 0p /   - removed: .product-card__tag--halloween { border-color: rgb(17, 17, 17); color: rgb(17, 17, 17); } /   - removed: .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag::before { content: \"\" !important; display: block !important; position: absolute !important; inset: 50% auto auto 100% !important; width: 11px !important; height: 1px !import /   - removed: html body .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag { right: 1px !important; } /   - removed: .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag::before { transform-origin: right center !important; transition: transform 0.26s cubic-bezier(0.4, 0, 1, 1) 0.12s, opacity 0.2s linear 0.12s !important; } /   - removed: @media (hover: hover) > .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag:hover { right: -9px !important; transition: right 0.42s cubic-bezier(0.22, 1, 0.36, 1) 0.04s !important; } /   - removed: @media (hover: hover) > .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag:hover::before { transform: translateY(-50%) scaleX(0) !important; opacity: 0 !important; transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1) 0 /   - removed: @media (hover: hover) > .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag:hover::after { transform: translateY(-50%) translateX(-10px) !important; transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1) 0.2s, opacity 0.2s /   - removed: .product-card__sold-badge { position: absolute; top: 10px; left: 10px; background: rgba(0, 0, 0, 0.65); color: rgb(255, 255, 255); font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 20px; z-index: 3; } /   - removed: .product-card__vendor { font-size: 11px; color: rgb(153, 153, 153); font-weight: 400; line-height: 1.2; } /   - removed: .product-card__title--two { white-space: normal !important; height: 36px !important; overflow: hidden !important; text-overflow: clip !important; } /   - removed: .product-card__stars { display: flex; align-items: center; gap: 1px; height: 16px; flex-shrink: 0; } /   - removed: .product-card__jdgm .jdgm-prev-badge { display: inline-flex !important; align-items: center !important; gap: 1px !important; font-size: 0px !important; } /   - removed: .product-card__jdgm .jdgm-prev-badge__stars { font-size: 11px !important; } /   - removed: .product-card__jdgm .jdgm-prev-badge__count { font-size: 11px !important; color: rgb(153, 153, 153) !important; margin-left: 3px !important; } /   - removed: .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag { width: 24.15px !important; min-width: 24.15px !important; max-width: 24.15px !important; height: 24.15px !important; right: 2px !important; } /   - removed: .var-dot__count { font-size: 9px; font-weight: 800; line-height: 1; letter-spacing: 0px; } /   - removed: .var-dot__label { font-size: 5px; font-weight: 700; line-height: 1; letter-spacing: 0px; text-transform: lowercase; }"
+    },
+    {
+      "id": "T103",
+      "status": "REVIEW",
+      "round": 6,
+      "file": "snippets/product-description-card.liquid",
+      "baseline_lines": "32-32",
+      "title": "1 orphaned rule(s) inside <style> blocks of snippets/product-description-card.liquid (classes no markup or script uses)",
+      "kind": "orphan selectors in inline CSS (scripted, conservative)",
+      "why": "Every selector of each rule needs a class or ID that appears nowhere in the theme outside CSS: not in any HTML/Liquid markup, JS file, inline script or JSON (any mention, even in a string, counts as used; prefix-built names like x--{{ }} count as used; Shopify/app prefixes count as used; classes inside :not()/:is()/:where()/:has() are ignored). Selectors: .pdc__label",
+      "proof": "Scripted full-text search over all 119 theme files with <style> CSS removed. Only rules on lines of pure CSS without Liquid were considered. Joint Chrome check per file (CSS views): exactly these rules removed, nothing added. Not proven from CSS alone (an app or admin content could use a class), hence REVIEW.",
+      "visual_change": "None expected.",
+      "parts": [
+        {
+          "lines": "32-32",
+          "context_before": "",
+          "exact_text": "  .pdc__label { display:none !important; }\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: .pdc__label { display: none !important; }"
+    },
+    {
+      "id": "T104",
+      "status": "REVIEW",
+      "round": 6,
+      "file": "snippets/product-recommendations.liquid",
+      "baseline_lines": "18-18, 19-19",
+      "title": "2 orphaned rule(s) inside <style> blocks of snippets/product-recommendations.liquid (classes no markup or script uses)",
+      "kind": "orphan selectors in inline CSS (scripted, conservative)",
+      "why": "Every selector of each rule needs a class or ID that appears nowhere in the theme outside CSS: not in any HTML/Liquid markup, JS file, inline script or JSON (any mention, even in a string, counts as used; prefix-built names like x--{{ }} count as used; Shopify/app prefixes count as used; classes inside :not()/:is()/:where()/:has() are ignored). Selectors: #product-recs-grid .rec-card__kicker; #product-recs-grid .rec-card__read",
+      "proof": "Scripted full-text search over all 119 theme files with <style> CSS removed. Only rules on lines of pure CSS without Liquid were considered. Joint Chrome check per file (CSS views): exactly these rules removed, nothing added. Not proven from CSS alone (an app or admin content could use a class), hence REVIEW.",
+      "visual_change": "None expected.",
+      "parts": [
+        {
+          "lines": "18-18",
+          "context_before": "",
+          "exact_text": "#product-recs-grid .rec-card__kicker { font-size:0.72rem; font-weight:600; color:#8a8a99; }\n",
+          "context_after": ""
+        },
+        {
+          "lines": "19-19",
+          "context_before": "",
+          "exact_text": "#product-recs-grid .rec-card__read { font-size:0.78rem; font-weight:600; color:#6b6b7b; text-decoration:none; }\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: #product-recs-grid .rec-card__kicker { font-size: 0.72rem; font-weight: 600; color: rgb(138, 138, 153); } /   - removed: #product-recs-grid .rec-card__read { font-size: 0.78rem; font-weight: 600; color: rgb(107, 107, 123); text-decoration: none; }"
+    },
+    {
+      "id": "T105",
+      "status": "REVIEW",
+      "round": 6,
+      "file": "templates/page.liquid",
+      "baseline_lines": "17-17, 18-18, 61-61, 62-62, 63-63, 69-69, 70-70, 71-71",
+      "title": "8 orphaned rule(s) inside <style> blocks of templates/page.liquid (classes no markup or script uses)",
+      "kind": "orphan selectors in inline CSS (scripted, conservative)",
+      "why": "Every selector of each rule needs a class or ID that appears nowhere in the theme outside CSS: not in any HTML/Liquid markup, JS file, inline script or JSON (any mention, even in a string, counts as used; prefix-built names like x--{{ }} count as used; Shopify/app prefixes count as used; classes inside :not()/:is()/:where()/:has() are ignored). Selectors: .contact-hero__title; .newsletter__social-link; .newsletter__social-link svg; .newsletter__socials; h1.contact-hero__title",
+      "proof": "Scripted full-text search over all 119 theme files with <style> CSS removed. Only rules on lines of pure CSS without Liquid were considered. Joint Chrome check per file (CSS views): exactly these rules removed, nothing added. Not proven from CSS alone (an app or admin content could use a class), hence REVIEW.",
+      "visual_change": "None expected.",
+      "parts": [
+        {
+          "lines": "17-17",
+          "context_before": "",
+          "exact_text": ".contact-hero__title { text-align: center !important; }\n",
+          "context_after": "h1.contact-hero__title { text-align: center !important; }\n"
+        },
+        {
+          "lines": "18-18",
+          "context_before": "",
+          "exact_text": "h1.contact-hero__title { text-align: center !important; }\n",
+          "context_after": ""
+        },
+        {
+          "lines": "61-61",
+          "context_before": "",
+          "exact_text": ".newsletter__socials { gap: 20px !important; margin-bottom: 0 !important; }\n",
+          "context_after": ""
+        },
+        {
+          "lines": "62-62",
+          "context_before": "",
+          "exact_text": ".newsletter__social-link { width: 68px !important; height: 68px !important; border-radius: 50% !important; display: flex !important; align-items: center !important; justify-content: center !important; }\n",
+          "context_after": ""
+        },
+        {
+          "lines": "63-63",
+          "context_before": "",
+          "exact_text": ".newsletter__social-link svg { width: 36px !important; height: 36px !important; }\n",
+          "context_after": ""
+        },
+        {
+          "lines": "69-69",
+          "context_before": "",
+          "exact_text": "  .newsletter__social-link { width: 56px !important; height: 56px !important; }\n",
+          "context_after": ""
+        },
+        {
+          "lines": "70-70",
+          "context_before": "",
+          "exact_text": "  .newsletter__social-link svg { width: 28px !important; height: 28px !important; }\n",
+          "context_after": ""
+        },
+        {
+          "lines": "71-71",
+          "context_before": "",
+          "exact_text": "  .newsletter__socials { gap: 12px !important; }\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: .contact-hero__title { text-align: center !important; } /   - removed: h1.contact-hero__title { text-align: center !important; } /   - removed: .newsletter__socials { gap: 20px !important; margin-bottom: 0px !important; } /   - removed: .newsletter__social-link { width: 68px !important; height: 68px !important; border-radius: 50% !important; display: flex !important; align-items: center !important; justify-content: center !important; } /   - removed: .newsletter__social-link svg { width: 36px !important; height: 36px !important; } /   - removed: @media (max-width: 767px) > .newsletter__social-link { width: 56px !important; height: 56px !important; } /   - removed: @media (max-width: 767px) > .newsletter__social-link svg { width: 28px !important; height: 28px !important; } /   - removed: @media (max-width: 767px) > .newsletter__socials { gap: 12px !important; }"
+    },
+    {
+      "id": "T106",
+      "status": "REVIEW",
+      "round": 6,
+      "file": "templates/page.wishlist.liquid",
+      "baseline_lines": "10-10, 13-13, 14-14, 15-15, 16-16, 20-20",
+      "title": "6 orphaned rule(s) inside <style> blocks of templates/page.wishlist.liquid (classes no markup or script uses)",
+      "kind": "orphan selectors in inline CSS (scripted, conservative)",
+      "why": "Every selector of each rule needs a class or ID that appears nowhere in the theme outside CSS: not in any HTML/Liquid markup, JS file, inline script or JSON (any mention, even in a string, counts as used; prefix-built names like x--{{ }} count as used; Shopify/app prefixes count as used; classes inside :not()/:is()/:where()/:has() are ignored). Selectors: #tlv-wlp .tlv-wlp__card a.tlv-wlp__t,#tlv-wlp .tlv-wlp__card a.tlv-wlp__t:visited; .tlv-wlp__b; .tlv-wlp__card .pc-price-row; .tlv-wlp__card img; .tlv-wlp__grid; .tlv-wlp__t",
+      "proof": "Scripted full-text search over all 119 theme files with <style> CSS removed. Only rules on lines of pure CSS without Liquid were considered. Joint Chrome check per file (CSS views): exactly these rules removed, nothing added. Not proven from CSS alone (an app or admin content could use a class), hence REVIEW.",
+      "visual_change": "None expected.",
+      "parts": [
+        {
+          "lines": "10-10",
+          "context_before": "",
+          "exact_text": ".tlv-wlp__grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "13-13",
+          "context_before": "",
+          "exact_text": ".tlv-wlp__card img{width:100%;aspect-ratio:1;object-fit:contain;background:#f7f7f9;display:block}\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "14-14",
+          "context_before": "",
+          "exact_text": ".tlv-wlp__b{padding:9px 11px 12px}\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "15-15",
+          "context_before": "",
+          "exact_text": ".tlv-wlp__t{font-size:13px;font-weight:600;color:#1a1a2e;text-decoration:none;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:34px}\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "16-16",
+          "context_before": "",
+          "exact_text": ".tlv-wlp__card .pc-price-row{margin-top:4px}\r\n",
+          "context_after": ""
+        },
+        {
+          "lines": "20-20",
+          "context_before": "",
+          "exact_text": "#tlv-wlp .tlv-wlp__card a.tlv-wlp__t,#tlv-wlp .tlv-wlp__card a.tlv-wlp__t:visited{color:#1a1a2e!important;-webkit-text-fill-color:#1a1a2e!important}\r\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: .tlv-wlp__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; } /   - removed: .tlv-wlp__card img { width: 100%; aspect-ratio: 1 / 1; object-fit: contain; background: rgb(247, 247, 249); display: block; } /   - removed: .tlv-wlp__b { padding: 9px 11px 12px; } /   - removed: .tlv-wlp__t { font-size: 13px; font-weight: 600; color: rgb(26, 26, 46); text-decoration: none; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 34px; } /   - removed: .tlv-wlp__card .pc-price-row { margin-top: 4px; } /   - removed: #tlv-wlp .tlv-wlp__card a.tlv-wlp__t, #tlv-wlp .tlv-wlp__card a.tlv-wlp__t:visited { color: rgb(26, 26, 46) !important; -webkit-text-fill-color: rgb(26, 26, 46) !important; }"
     }
   ],
   "do_not_apply": [
