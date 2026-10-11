@@ -1,8 +1,8 @@
 {
   "scan": {
     "started": "2026-10-11T15:16:39Z",
-    "updated": "2026-10-11T15:19:58Z",
-    "rounds": 0,
+    "updated": "2026-10-11T15:45:17Z",
+    "rounds": 1,
     "branch": "claude/chrome-devtools-state-preservation-o47p8j",
     "theme_name": "lior's theme for toylvia",
     "theme_id": "209157554507",
@@ -22,14 +22,19 @@
       "baseline_lines": "2438-2486",
       "title": "Cart quantity/remove button rules using :contains() (never valid CSS)",
       "kind": "parser-dropped rules",
-      "anchor_start": "/* 2. Neumorphic Quantity Buttons (+ and -) */",
-      "anchor_end": "}",
       "why": "All three rules (+/- quantity links, quantity number, REMOVE link) use `:contains()` in every selector. `:contains()` exists only in jQuery, no browser supports it in CSS, and one invalid selector invalidates the whole rule, so Chrome drops all three rules (33 !important declarations). They have never applied.",
       "proof": "grep shows `:contains(` only on baseline lines 2439-2441, 2458-2460, 2474. The rules are top level (brace depth 0). Headless Chrome keeps 881 top-level rules with or without this block, byte-identical. A control test (removing the live checkout rule right after it) is detected (880).",
       "verify": "IDENTICAL: Chrome keeps exactly the same rules in the same order. No visual change is possible.",
       "visual_change": "None. Keep the `/* 5. Neumorphic Checkout Button` rule that follows: it is live.",
-      "exact_text": "/* 2. Neumorphic Quantity Buttons (+ and -) */\n#MainContent a:contains(\"+\"), \n#MainContent a:contains(\"−\"), \n#MainContent a:contains(\"-\") {\n    display: inline-flex !important;\n    justify-content: center !important;\n    align-items: center !important;\n    width: 32px !important;\n    height: 32px !important;\n    background: #ffffff !important;\n    border-radius: 10px !important;\n    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.08), -4px -4px 8px rgba(255, 255, 255, 1) !important;\n    color: #000000 !important;\n    text-decoration: none !important;\n    font-weight: bold !important;\n    margin: 5px !important;\n    border: none !important;\n}\n\n/* 3. Neumorphic Quantity Number (Recessed look) */\n#MainContent span:has(+ a:contains(\"+\")),\n#MainContent a:contains(\"−\") + span,\n#MainContent a:contains(\"-\") + span {\n    display: inline-flex !important;\n    justify-content: center !important;\n    align-items: center !important;\n    width: 40px !important;\n    height: 32px !important;\n    background: #f8f8f8 !important;\n    border-radius: 8px !important;\n    box-shadow: inset 2px 2px 5px rgba(255, 255, 255, 0.05), inset -2px -2px 5px rgba(255, 255, 255, 1) !important;\n    color: #000000 !important;\n    font-weight: bold !important;\n}\n\n/* 4. Neumorphic Remove Button */\n#MainContent a:contains(\"REMOVE\") {\n    color: #000000 !important;\n    background: #ffffff !important;\n    padding: 6px 14px !important;\n    border-radius: 12px !important;\n    font-size: 11px !important;\n    text-decoration: none !important;\n    text-transform: uppercase !important;\n    display: inline-block !important;\n    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.06), -4px -4px 8px rgba(255, 255, 255, 0.9) !important;\n    margin-left: 15px !important;\n}\n\n",
-      "notes": "Ziko may already have deleted this manually in Shopify admin. If apply.py says the text is not found, check whether the block is already gone; if so mark DONE."
+      "notes": "Ziko may already have deleted this manually in Shopify admin. If apply.py says the text is not found, check whether the block is already gone; if so mark DONE.",
+      "parts": [
+        {
+          "lines": "2438-2486",
+          "context_before": "",
+          "exact_text": "/* 2. Neumorphic Quantity Buttons (+ and -) */\n#MainContent a:contains(\"+\"), \n#MainContent a:contains(\"−\"), \n#MainContent a:contains(\"-\") {\n    display: inline-flex !important;\n    justify-content: center !important;\n    align-items: center !important;\n    width: 32px !important;\n    height: 32px !important;\n    background: #ffffff !important;\n    border-radius: 10px !important;\n    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.08), -4px -4px 8px rgba(255, 255, 255, 1) !important;\n    color: #000000 !important;\n    text-decoration: none !important;\n    font-weight: bold !important;\n    margin: 5px !important;\n    border: none !important;\n}\n\n/* 3. Neumorphic Quantity Number (Recessed look) */\n#MainContent span:has(+ a:contains(\"+\")),\n#MainContent a:contains(\"−\") + span,\n#MainContent a:contains(\"-\") + span {\n    display: inline-flex !important;\n    justify-content: center !important;\n    align-items: center !important;\n    width: 40px !important;\n    height: 32px !important;\n    background: #f8f8f8 !important;\n    border-radius: 8px !important;\n    box-shadow: inset 2px 2px 5px rgba(255, 255, 255, 0.05), inset -2px -2px 5px rgba(255, 255, 255, 1) !important;\n    color: #000000 !important;\n    font-weight: bold !important;\n}\n\n/* 4. Neumorphic Remove Button */\n#MainContent a:contains(\"REMOVE\") {\n    color: #000000 !important;\n    background: #ffffff !important;\n    padding: 6px 14px !important;\n    border-radius: 12px !important;\n    font-size: 11px !important;\n    text-decoration: none !important;\n    text-transform: uppercase !important;\n    display: inline-block !important;\n    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.06), -4px -4px 8px rgba(255, 255, 255, 0.9) !important;\n    margin-left: 15px !important;\n}\n\n",
+          "context_after": ""
+        }
+      ]
     },
     {
       "id": "T02",
@@ -39,14 +44,19 @@
       "baseline_lines": "3482-3498",
       "title": ".site-header rule swallowed by a comment that lost its opening /*",
       "kind": "parser-dropped rule",
-      "anchor_start": "GLASSMORPHIC ADVANCED NAVIGATION SYSTEM — Toylvia",
-      "anchor_end": "}",
       "why": "The banner comment 'GLASSMORPHIC ADVANCED NAVIGATION SYSTEM' is missing its opening `/*`. Its text (`GLASSMORPHIC ... ==== */`) becomes part of the next selector, which is invalid, so Chrome drops the whole `.site-header { position: sticky; ... padding: 8px 18px; z-index: 50; }` rule.",
       "proof": "Verified by two agents and headless Chrome: the rule is absent from the parsed rule list; removing these lines leaves Chrome's rule list identical (see Verify).",
       "verify": "IDENTICAL: Chrome keeps exactly the same rules in the same order. No visual change is possible.",
       "visual_change": "None.",
-      "exact_text": "   GLASSMORPHIC ADVANCED NAVIGATION SYSTEM — Toylvia\n   ========================================================== */\n.site-header {\n  position: sticky;\n  top: 0;\n  margin: 0;\n  width: 100%;\n  max-width: 100%;\n  background: transparent !important;\n  backdrop-filter: none !important;\n  -webkit-backdrop-filter: none !important;\n  border: none !important;\n  border-radius: 0 !important;\n  box-shadow: none !important;\n  padding: 8px 18px;\n  z-index: 50;\n}\n",
-      "notes": "Do NOT fix it by adding the missing `/*`. That would switch on a .site-header rule that has never been live and change the header."
+      "notes": "Do NOT fix it by adding the missing `/*`. That would switch on a .site-header rule that has never been live and change the header.",
+      "parts": [
+        {
+          "lines": "3482-3498",
+          "context_before": "",
+          "exact_text": "   GLASSMORPHIC ADVANCED NAVIGATION SYSTEM — Toylvia\n   ========================================================== */\n.site-header {\n  position: sticky;\n  top: 0;\n  margin: 0;\n  width: 100%;\n  max-width: 100%;\n  background: transparent !important;\n  backdrop-filter: none !important;\n  -webkit-backdrop-filter: none !important;\n  border: none !important;\n  border-radius: 0 !important;\n  box-shadow: none !important;\n  padding: 8px 18px;\n  z-index: 50;\n}\n",
+          "context_after": ""
+        }
+      ]
     },
     {
       "id": "T03",
@@ -56,13 +66,18 @@
       "baseline_lines": "978-981",
       "title": "First of two identical @keyframes marquee definitions",
       "kind": "shadowed duplicate @keyframes",
-      "anchor_start": "@keyframes marquee {",
-      "anchor_end": "}",
       "why": "`@keyframes marquee` is defined twice at top level (baseline 978-981 and 3021-3028). When names repeat, only the last definition is used, so this one never runs. Both definitions are identical (translateX(0) to translateX(-50%)).",
       "proof": "Brace-depth scan: both at depth 0, before the unclosed @media. No @layer/@supports/@container in the file. Only consumer: `.announcement-bar .announcement-bar__track { animation: marquee 22s linear infinite !important }`.",
-      "verify": "DIFFERENT /   - removed: @keyframes marquee {  /   0% { transform: translateX(0px); } /   100% { transform: translateX(-50%); } / }",
+      "verify": "DIFFERENT /   - removed: @keyframes marquee { 0% { transform: translateX(0px); } 100% { transform: translateX(-50%); } }",
       "visual_change": "None. Keep the `/* === KEYFRAMES === */` comment and `@keyframes trustIconBounce` that follow.",
-      "exact_text": "@keyframes marquee {\n  0% { transform: translateX(0); }\n  100% { transform: translateX(-50%); }\n}\n"
+      "parts": [
+        {
+          "lines": "978-981",
+          "context_before": "",
+          "exact_text": "@keyframes marquee {\n  0% { transform: translateX(0); }\n  100% { transform: translateX(-50%); }\n}\n",
+          "context_after": ""
+        }
+      ]
     },
     {
       "id": "T04",
@@ -72,13 +87,18 @@
       "baseline_lines": "2109-2110",
       "title": "Empty rule `.category-sphere:hover .category-sphere__ball {  }` and its orphan comment",
       "kind": "empty rule",
-      "anchor_start": "/* === CATEGORY SPHERE HOVER GLOW === */",
-      "anchor_end": ".category-sphere:hover .category-sphere__ball { }",
       "why": "The rule has no declarations, so it cannot do anything. (Its target is also hidden: `.category-sphere { display: none !important }` in the V14 block.)",
       "proof": "Rule body is only whitespace. Top level, depth 0.",
-      "verify": "DIFFERENT /   - removed: .category-sphere:hover .category-sphere__ball { }",
+      "verify": "DIFFERENT /   - removed: .category-sphere:hover .category-sphere__ball {  }",
       "visual_change": "None. Keep line 2108 `/* === PRODUCT CARD BADGE COLORS === */`, it labels the badge rules below.",
-      "exact_text": "/* === CATEGORY SPHERE HOVER GLOW === */\n.category-sphere:hover .category-sphere__ball {  }\n"
+      "parts": [
+        {
+          "lines": "2109-2110",
+          "context_before": "",
+          "exact_text": "/* === CATEGORY SPHERE HOVER GLOW === */\n.category-sphere:hover .category-sphere__ball {  }\n",
+          "context_after": ""
+        }
+      ]
     },
     {
       "id": "T05",
@@ -88,13 +108,18 @@
       "baseline_lines": "4992-4997",
       "title": "Empty rule `.clg-hero canvas, .clg-grid { }` ('GRID PANEL FADED EDGES')",
       "kind": "empty rule",
-      "anchor_start": "/* === GRID PANEL FADED EDGES === */",
-      "anchor_end": "}",
       "why": "The rule body is a blank line, no declarations. The faded-edge effect it was for was removed long ago.",
       "proof": "Top level, depth 0. Real styling for these elements lives at `.clg-grid` and `#clg-hero, .clg-hero` in the V14 block.",
-      "verify": "DIFFERENT /   - removed: .clg-hero canvas, .clg-grid { }",
+      "verify": "DIFFERENT /   - removed: .clg-hero canvas, .clg-grid {  }",
       "visual_change": "None.",
-      "exact_text": "/* === GRID PANEL FADED EDGES === */\n.clg-hero canvas,\n.clg-grid {\n\n}\n\n"
+      "parts": [
+        {
+          "lines": "4992-4997",
+          "context_before": "",
+          "exact_text": "/* === GRID PANEL FADED EDGES === */\n.clg-hero canvas,\n.clg-grid {\n\n}\n\n",
+          "context_after": ""
+        }
+      ]
     },
     {
       "id": "T06",
@@ -104,13 +129,18 @@
       "baseline_lines": "25-27",
       "title": "`#MainContent > .shopify-section:first-child { background: #e5efea !important }` always loses",
       "kind": "cascade-dead rule",
-      "anchor_start": "html body #MainContent > .shopify-section:first-child {",
-      "anchor_end": "}",
       "why": "Its only declaration always loses to rules in the same file that match the same element: line 78 (same specificity, later, also !important) and line 310 (`#MainContent` x48 `>.shopify-section:first-child{background:#f2f2f2!important}`, far higher specificity). #e5efea never renders.",
       "proof": "Same file, so stylesheet load order does not matter. No media queries involved. Checked in headless Chrome by changing the value to a sentinel: computed background unchanged.",
       "verify": "DIFFERENT /   - removed: html body #MainContent > .shopify-section:first-child { background: rgb(229, 239, 234) !important; }",
       "visual_change": "None (the section stays #f2f2f2).",
-      "exact_text": "html body #MainContent > .shopify-section:first-child {\n  background: #e5efea !important;\n}\n"
+      "parts": [
+        {
+          "lines": "25-27",
+          "context_before": "",
+          "exact_text": "html body #MainContent > .shopify-section:first-child {\n  background: #e5efea !important;\n}\n",
+          "context_after": ""
+        }
+      ]
     },
     {
       "id": "T07",
@@ -120,13 +150,18 @@
       "baseline_lines": "275-277",
       "title": "`.cr-card__img-wrap > .cr-card__tag { border-radius: 50% !important }` duplicated by a stronger copy",
       "kind": "cascade-dead rule (duplicate)",
-      "anchor_start": "html body .cat-rows .cr-card__img-wrap > .cr-card__tag {",
-      "anchor_end": "}",
       "why": "Lines 278-281 match exactly the same elements (`.cr-card__tag` repeated 12 times) with the same `border-radius: 50% !important`, at much higher specificity (0,14,2 vs 0,3,2).",
       "proof": "Same combinators, same declaration, same file, no media query. Checked in headless Chrome with a sentinel value at 9 widths: computed value unchanged.",
       "verify": "DIFFERENT /   - removed: html body .cat-rows .cr-card__img-wrap > .cr-card__tag { border-radius: 50% !important; }",
       "visual_change": "None (tags stay round via lines 278-281).",
-      "exact_text": "html body .cat-rows .cr-card__img-wrap > .cr-card__tag {\n  border-radius: 50% !important;\n}\n"
+      "parts": [
+        {
+          "lines": "275-277",
+          "context_before": "",
+          "exact_text": "html body .cat-rows .cr-card__img-wrap > .cr-card__tag {\n  border-radius: 50% !important;\n}\n",
+          "context_after": ""
+        }
+      ]
     },
     {
       "id": "T08",
@@ -136,13 +171,18 @@
       "baseline_lines": "177-178",
       "title": "`.announcement-bar.announcement-bar { background: #f1fbfa }` duplicated by a stronger copy",
       "kind": "cascade-dead rule (duplicate)",
-      "anchor_start": "html body .announcement-bar.announcement-bar{background:#f1fbfa!important;background-im...",
-      "anchor_end": "html body .announcement-bar.announcement-bar{background:#f1fbfa!important;background-im...",
       "why": "Line 181 has the same two declarations (`background:#f1fbfa!important; background-image:none!important`) for the same element with higher specificity (class repeated 7 times vs 2).",
       "proof": "Same file, no media query, both !important. Checked in headless Chrome with a sentinel value: computed value unchanged.",
       "verify": "DIFFERENT /   - removed: html body .announcement-bar.announcement-bar { background: none rgb(241, 251, 250) !important; }",
       "visual_change": "None. Keep the comment on line 175 and the stronger rule on line 181.",
-      "exact_text": "html body .announcement-bar.announcement-bar{background:#f1fbfa!important;background-image:none!important}\n\n"
+      "parts": [
+        {
+          "lines": "177-178",
+          "context_before": "",
+          "exact_text": "html body .announcement-bar.announcement-bar{background:#f1fbfa!important;background-image:none!important}\n\n",
+          "context_after": ""
+        }
+      ]
     },
     {
       "id": "T09",
@@ -152,15 +192,454 @@
       "baseline_lines": "2144-2152",
       "title": "`.all-products-btn:hover` accidentally nested inside `.all-products-btn`",
       "kind": "accidental nesting (never-matching selector)",
-      "anchor_start": ".all-products-btn:hover {",
-      "anchor_end": "}}",
       "why": "The `.all-products-btn {` rule is not closed before the hover rule, so the hover rule is nested. With CSS nesting it means `.all-products-btn .all-products-btn:hover` (a button inside a button), which the theme markup never has. The intended hover style (gradient border, scale 1.12) has never applied.",
       "proof": "Headless Chrome serializes it as `& .all-products-btn:hover` inside `.all-products-btn`. Theme markup uses .all-products-btn without nesting (index sections and templates/404.liquid).",
-      "verify": "DIFFERENT /   - removed: .all-products-btn { /   color: rgb(12, 12, 12) !important; letter-spacing: normal !important; animation: auto ease 0s 1 normal none running none !important; padding: 1.016rem 2.71rem !important; font-size: 17.618px !important; background: linear-gradient(rgb(249, 250, 251), rgb(249, 250, 251)) padding /   - removed: CSSStyleRule(.all-products-btn) > & .all-products-btn:hover { color: rgb(12, 12, 12) !important; border: 1px solid transparent !important; background: linear-gradient(rgb(249, 250, 251), rgb(249, 250, 251)) padding-box padding-box, linear-gradient(135deg, rgb(255, 41, 148), rgb(33, 213, 237)) border /   + added:   .all-products-btn { color: rgb(12, 12, 12) !important; letter-spacing: normal !important; animation: auto ease 0s 1 normal none running none !important; padding: 1.016rem 2.71rem !important; font-size: 17.618px !important; background: linear-gradient(rgb(249, 250, 251), rgb(249, 250, 251)) padding-b",
+      "verify": "DIFFERENT /   - removed: .all-products-btn > & .all-products-btn:hover { color: rgb(12, 12, 12) !important; border: 1px solid transparent !important; background: linear-gradient(rgb(249, 250, 251), rgb(249, 250, 251)) padding-box padding-box, linear-gradient(135deg, rgb(255, 41, 148), rgb(33, 213, 237)) border-box border-bo",
       "visual_change": "None expected. HIGH confidence, not mathematically proven: it depends on markup (an app could in theory inject nested buttons).",
-      "exact_text": "                                      .all-products-btn:hover {\n                                        color: rgb(12, 12, 12) !important;\nborder: 1px solid transparent !important;\nbackground:\n  linear-gradient(rgb(249, 250, 251), rgb(249, 250, 251)) padding-box,\n  linear-gradient(135deg, rgb(255, 41, 148), rgb(33, 213, 237)) border-box !important;\nbox-shadow: none !important;\ntransform: scale(1.12) !important;\n                                      }}\n",
-      "replacement": "                              }\n",
-      "notes": "REVIEW: ask Ziko first. The edit replaces the nested block with a single `}` that closes the parent rule, so the parent's own declarations stay exactly the same."
+      "notes": "REVIEW: ask Ziko first. The edit replaces the nested block with a single `}` that closes the parent rule, so the parent's own declarations stay exactly the same.",
+      "parts": [
+        {
+          "lines": "2144-2152",
+          "context_before": "",
+          "exact_text": "                                      .all-products-btn:hover {\n                                        color: rgb(12, 12, 12) !important;\nborder: 1px solid transparent !important;\nbackground:\n  linear-gradient(rgb(249, 250, 251), rgb(249, 250, 251)) padding-box,\n  linear-gradient(135deg, rgb(255, 41, 148), rgb(33, 213, 237)) border-box !important;\nbox-shadow: none !important;\ntransform: scale(1.12) !important;\n                                      }}\n",
+          "context_after": "",
+          "replacement": "                              }\n"
+        }
+      ]
+    },
+    {
+      "id": "T10",
+      "status": "TODO",
+      "round": 1,
+      "file": "assets/toylvia.css",
+      "baseline_lines": "4354-4376, 4568-4598, 4635-4649",
+      "title": "Old drafts of the category-sphere ball styles, fully re-declared later (7 rules, 69 lines)",
+      "kind": "same-file overridden duplicates",
+      "why": "Seven `.category-sphere__ball` / icon rules (pink ring + hover, centred icon + hover, glass fill, ::before inherit, 'Pill' hover) are each re-declared later in the same file with the same selector and !important for every property, so the earlier copies can never win. Two of them are byte-identical to the later copies at baseline 4599-4632.",
+      "proof": "Static shadow proof (headless Chrome CSSOM): each of the 7 removed rules has a later kept rule with an identical selector, same-or-top-level scope and the same longhands at equal-or-higher priority -> PROVEN. A separate agent also compared computed styles at 7 widths with forced :hover: 0 differences in 192,192 checks. (Also: `.category-sphere` is display:none !important anyway.)",
+      "visual_change": "None. The later rules that win (baseline ~4418-4428, 4599-4632, 4784-4795) stay.",
+      "parts": [
+        {
+          "lines": "4354-4376",
+          "context_before": "",
+          "exact_text": "/* Sphere: thin glowing pink ring idle, fades to 0 on hover */\nhtml body .category-sphere__ball {\n  box-shadow:\n    0 0 0 1px rgba(255, 66, 161, 0.55),\n    0 0 8px rgba(255, 66, 161, 0.45),\n    0 0 18px rgba(255, 66, 161, 0.25),\n    0 18px 34px rgba(20, 30, 60, 0.16),\n    0 6px 12px rgba(20, 30, 60, 0.10),\n    inset 0 2px 3px rgba(255, 255, 255, 0.9),\n    inset 0 -10px 20px rgba(80, 90, 120, 0.18),\n    inset 4px 4px 8px rgba(255, 255, 255, 0.35) !important;\n}\nhtml body .category-sphere:hover .category-sphere__ball,\nhtml body .category-sphere__ball:hover {\n  box-shadow:\n    0 0 0 0px rgba(255, 66, 161, 0),\n    0 0 0 rgba(255, 66, 161, 0),\n    0 0 0 rgba(255, 66, 161, 0),\n    0 14px 32px rgba(30, 40, 70, 0.10),\n    0 4px 10px rgba(30, 40, 70, 0.06),\n    inset 0 1px 0 rgba(255, 255, 255, 0.9),\n    inset 0 -6px 14px rgba(200, 210, 225, 0.35) !important;\n}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "4568-4598",
+          "context_before": "",
+          "exact_text": "/* --- Icon: perfectly centered with high-specificity override -------- */\nhtml body .category-arc .category-sphere .category-sphere__ball .category-sphere__icon:not(#_x_) {\n  position: absolute !important;\n  left: 50% !important;\n  top: 50% !important;\n  right: auto !important;\n  bottom: auto !important;\n  margin: 0 !important;\n  transform: translate(-50%, -50%) !important;\n  transform-origin: center center !important;\n  z-index: 2 !important;\n}\nhtml body .category-arc .category-sphere:hover .category-sphere__ball .category-sphere__icon:not(#_x_) {\n  transform: translate(-50%, -50%) !important;\n  opacity: 0 !important;\n  filter: blur(4px) !important;\n}\n\n/* --- Sphere: slightly transparent glass fill ----------------------- */\nhtml body .category-arc .category-sphere__ball {\n  background: radial-gradient(circle at 30% 22%,\n    rgba(255, 255, 255, 0.82) 0%,\n    rgba(248, 250, 252, 0.78) 18%,\n    rgba(232, 237, 243, 0.70) 58%,\n    rgba(213, 221, 230, 0.65) 100%) !important;\n  backdrop-filter: blur(6px) saturate(1.1) !important;\n  -webkit-backdrop-filter: blur(6px) saturate(1.1) !important;\n}\nhtml body .category-arc .category-sphere__ball::before {\n  background: inherit !important;\n}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "4635-4649",
+          "context_before": "",
+          "exact_text": "/* Pill (hover-morphed state): extra translucent glass */\nhtml body .category-arc .category-sphere:hover .category-sphere__ball {\n  background: radial-gradient(circle at 30% 22%,\n    rgba(255, 255, 255, 0.48) 0%,\n    rgba(248, 250, 252, 0.42) 18%,\n    rgba(232, 237, 243, 0.34) 58%,\n    rgba(213, 221, 230, 0.28) 100%) !important;\n  -webkit-backdrop-filter: blur(10px) saturate(1.15) !important;\n          backdrop-filter: blur(10px) saturate(1.15) !important;\n  box-shadow:\n    inset -4px -6px 14px rgba(160, 170, 185, 0.25),\n    inset  3px  4px 10px rgba(255, 255, 255, 0.55),\n    0 8px 20px rgba(60, 70, 90, 0.10),\n    0 3px 8px rgba(60, 70, 90, 0.06) !important;\n}\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: html body .category-sphere__ball { box-shadow: rgba(255, 66, 161, 0.55) 0px 0px 0px 1px, rgba(255, 66, 161, 0.45) 0px 0px 8px, rgba(255, 66, 161, 0.25) 0px 0px 18px, rgba(20, 30, 60, 0.16) 0px 18px 34px, rgba(20, 30, 60, 0.1) 0px 6px 12px, rgba(255, 255, 255, 0.9) 0px 2px 3px inset, rgba(80, 90, 120 /   - removed: html body .category-sphere:hover .category-sphere__ball, html body .category-sphere__ball:hover { box-shadow: rgba(255, 66, 161, 0) 0px 0px 0px 0px, rgba(255, 66, 161, 0) 0px 0px 0px, rgba(255, 66, 161, 0) 0px 0px 0px, rgba(30, 40, 70, 0.1) 0px 14px 32px, rgba(30, 40, 70, 0.06) 0px 4px 10px, rgba(25 /   - removed: html body .category-arc .category-sphere .category-sphere__ball .category-sphere__icon:not(#_x_) { position: absolute !important; inset: 50% auto auto 50% !important; margin: 0px !important; transform: translate(-50%, -50%) !important; transform-origin: center center !important; z-index: 2 !importan /   - removed: html body .category-arc .category-sphere:hover .category-sphere__ball .category-sphere__icon:not(#_x_) { transform: translate(-50%, -50%) !important; opacity: 0 !important; filter: blur(4px) !important; } /   - removed: html body .category-arc .category-sphere__ball { background: radial-gradient(circle at 30% 22%, rgba(255, 255, 255, 0.82) 0%, rgba(248, 250, 252, 0.78) 18%, rgba(232, 237, 243, 0.7) 58%, rgba(213, 221, 230, 0.65) 100%) !important; backdrop-filter: blur(6px) saturate(1.1) !important; } /   - removed: html body .category-arc .category-sphere__ball::before { background: inherit !important; } /   - removed: html body .category-arc .category-sphere:hover .category-sphere__ball { background: radial-gradient(circle at 30% 22%, rgba(255, 255, 255, 0.48) 0%, rgba(248, 250, 252, 0.42) 18%, rgba(232, 237, 243, 0.34) 58%, rgba(213, 221, 230, 0.28) 100%) !important; backdrop-filter: blur(10px) saturate(1.15) !i"
+    },
+    {
+      "id": "T11",
+      "status": "TODO",
+      "round": 1,
+      "file": "assets/toylvia.css",
+      "baseline_lines": "1194-1196, 1770-1784, 1787-1789, 3258-3265, 3269-3269",
+      "title": "Superseded `.product-main` / `.product-main__grid` padding and gap rules (8 rules)",
+      "kind": "same-file overridden duplicates",
+      "why": "`.product-main` padding is set four times without !important, then `.product-main { padding: 20px 20px !important }` (and its 768/1024 !important variants) always wins. Two earlier `@media (max-width: 899px)` / `(max-width: 640px)` blocks are repeated later with the same selectors and !important. `.product-main__grid { gap: 2.5rem }` is re-declared later.",
+      "proof": "Static shadow proof (headless Chrome CSSOM): all 8 removed rules are fully shadowed by later kept rules -> PROVEN.",
+      "visual_change": "None (product pages keep the same padding and gaps).",
+      "parts": [
+        {
+          "lines": "1194-1196",
+          "context_before": "",
+          "exact_text": ".product-main {\n  padding: 3rem 1rem;\n}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "1770-1784",
+          "context_before": "",
+          "exact_text": ".product-main {\n  padding: 2rem 1.5rem;\n}\n\n@media (min-width: 768px) {\n  .product-main {\n    padding: 3rem 2rem;\n  }\n}\n\n@media (min-width: 1024px) {\n  .product-main {\n    padding: 4rem 3rem;\n  }\n}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "1787-1789",
+          "context_before": "",
+          "exact_text": ".product-main__grid {\n  gap: 2.5rem;\n}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "3258-3265",
+          "context_before": "",
+          "exact_text": "                  /* ---- PRODUCT MAIN: single-column below 900px ---- */\n                  @media (max-width: 899px) {\n                    .product-main { padding: 1rem 0.875rem !important; }\n                      .product-main__grid {\n                          grid-template-columns: 1fr !important;\n                              gap: 1.5rem !important;\n                                }\n                                }\n",
+          "context_after": ""
+        },
+        {
+          "lines": "3269-3269",
+          "context_before": "",
+          "exact_text": "                                  .product-main { padding: 0.75rem 0.625rem !important; }\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: @media (min-width: 768px) [group] /   - removed: @media (min-width: 1024px) [group] /   - removed: .product-main { padding: 3rem 1rem; } /   - removed: .product-main { padding: 2rem 1.5rem; } /   - removed: @media (min-width: 768px) > .product-main { padding: 3rem 2rem; } /   - removed: @media (min-width: 1024px) > .product-main { padding: 4rem 3rem; } /   - removed: .product-main__grid { gap: 2.5rem; } /   - removed: @media (max-width: 899px) [group] /   - removed: @media (max-width: 899px) > .product-main { padding: 1rem 0.875rem !important; } /   - removed: @media (max-width: 899px) > .product-main__grid { grid-template-columns: 1fr !important; gap: 1.5rem !important; } /   - removed: @media (max-width: 640px) > .product-main { padding: 0.75rem 0.625rem !important; }"
+    },
+    {
+      "id": "T12",
+      "status": "TODO",
+      "round": 1,
+      "file": "assets/toylvia.css",
+      "baseline_lines": "982-988, 1020-1023, 1031-1049, 2124-2129",
+      "title": "11 @keyframes that nothing uses (trustIconBounce, likeBurst, likeBounceFull, sphere-shine, sphere-float-0..5, ctaSoftBounce)",
+      "kind": "unreferenced @keyframes",
+      "why": "A @keyframes rule only matters if some `animation`/`animation-name` uses its name. These 11 names appear only in their own definitions.",
+      "proof": "grep across the whole theme (all sections, snippets, templates, layout/theme.liquid incl. inline styles, all JS assets, all 9 CSS assets, settings_data custom CSS): each name occurs once, in its definition; partial-name greps find nothing (no names built at runtime). Chrome's parsed animation-name values never reference them.",
+      "visual_change": "None. Keep `@keyframes cartBump` (1024-1029, used by `.cart-bump`) and `marquee`/`borderShine*`, which are used.",
+      "parts": [
+        {
+          "lines": "982-988",
+          "context_before": "",
+          "exact_text": "@keyframes trustIconBounce {\n  0% { transform: scale(1) rotate(0deg); }\n  25% { transform: scale(1.3) rotate(-12deg); }\n  50% { transform: scale(0.9) rotate(8deg); }\n  75% { transform: scale(1.15) rotate(-4deg); }\n  100% { transform: scale(1) rotate(0deg); }\n}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "1020-1023",
+          "context_before": "",
+          "exact_text": "@keyframes likeBurst {\n  0% { transform: rotate(var(--deg, 0deg)) translateY(-4px); opacity: 1; }\n  100% { transform: rotate(var(--deg, 0deg)) translateY(-18px); opacity: 0; }\n}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "1031-1049",
+          "context_before": "",
+          "exact_text": "@keyframes likeBounceFull {\n  0% { transform: scale(1); }\n  25% { transform: scale(1.35); }\n  50% { transform: scale(0.85); }\n  75% { transform: scale(1.15); }\n  100% { transform: scale(1); }\n}\n@keyframes sphere-shine {\n  0% { background-position: -200% center; opacity: 0; }\n  10% { opacity: 1; }\n  90% { opacity: 1; }\n  100% { background-position: 200% center; opacity: 0; }\n}\n@keyframes sphere-float-0 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }\n@keyframes sphere-float-1 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }\n@keyframes sphere-float-2 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }\n@keyframes sphere-float-3 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }\n@keyframes sphere-float-4 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }\n@keyframes sphere-float-5 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }\n",
+          "context_after": ""
+        },
+        {
+          "lines": "2124-2129",
+          "context_before": "",
+          "exact_text": "      /* CTA buttons: soft scale bounce only */\n      @keyframes ctaSoftBounce {\n        0%   { transform: scale(1);    }\n          45%  { transform: scale(1.03); }\n            100% { transform: scale(1);    }\n            }\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: @keyframes trustIconBounce { 0% { transform: scale(1) rotate(0deg); } 25% { transform: scale(1.3) rotate(-12deg); } 50% { transform: scale(0.9) rotate(8deg); } 75% { transform: scale(1.15) rotate(-4deg); } 100% { transform: scale(1) rotate(0deg); } } /   - removed: @keyframes likeBurst { 0% { transform: rotate(var(--deg, 0deg)) translateY(-4px); opacity: 1; } 100% { transform: rotate(var(--deg, 0deg)) translateY(-18px); opacity: 0; } } /   - removed: @keyframes likeBounceFull { 0% { transform: scale(1); } 25% { transform: scale(1.35); } 50% { transform: scale(0.85); } 75% { transform: scale(1.15); } 100% { transform: scale(1); } } /   - removed: @keyframes sphere-shine { 0% { background-position: -200% center; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { background-position: 200% center; opacity: 0; } } /   - removed: @keyframes sphere-float-0 { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-8px); } } /   - removed: @keyframes sphere-float-1 { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-6px); } } /   - removed: @keyframes sphere-float-2 { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } } /   - removed: @keyframes sphere-float-3 { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-7px); } } /   - removed: @keyframes sphere-float-4 { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-9px); } } /   - removed: @keyframes sphere-float-5 { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-6px); } } /   - removed: @keyframes ctaSoftBounce { 0% { transform: scale(1); } 45% { transform: scale(1.03); } 100% { transform: scale(1); } }"
+    },
+    {
+      "id": "T13",
+      "status": "TODO",
+      "round": 1,
+      "file": "assets/toylvia.css",
+      "baseline_lines": "273-280, 290-296, 298-304",
+      "title": "Sizing rules for `.category-arc__grid`, an element that is always hidden and never rendered",
+      "kind": "styles for a hidden element",
+      "why": "`.category-sphere, .category-arc__grid { display: none !important; }` (baseline 4875, top level, in the V14 block) hides the grid at every width and nothing overrides it. Its height/width/transform/padding/margin/transition can never render. Lines 303-304 also repeat 300-301. In addition, no template or snippet outputs `.category-arc__grid` at all.",
+      "proof": "Every display declaration on this selector across all theme CSS was checked: none with !important except the hider. Chrome reports display:none at 768-1920px. grep: `category-arc__grid` appears in no .liquid/.js/.json file.",
+      "visual_change": "None. Keep the `.category-arc` and `.category-arc .max-store` rules at 282-289 and the `}` at 297.",
+      "parts": [
+        {
+          "lines": "273-280",
+          "context_before": "",
+          "exact_text": "/* === CATEGORY ARC === */\n.category-arc__grid {\n  position: relative;\n  margin: 0 auto;\n  transform-origin: top center;\n  height: 260px;\n \n}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "290-296",
+          "context_before": "",
+          "exact_text": "  .category-arc__grid {\n    width: 680px;\n    height: 260px;\ntransition: filter 1.8s cubic-bezier(0.4, 0, 0.2, 1), transform 1.8s cubic-bezier(0.4, 0, 0.2, 1);    margin-bottom: 0;\n    padding: 0 1.5rem;        /* add this */\n    box-sizing: border-box;   /* add this */\n  }\n",
+          "context_after": ""
+        },
+        {
+          "lines": "298-304",
+          "context_before": "",
+          "exact_text": "@media (min-width: 480px) { .category-arc__grid { transform: scale(0.58); margin-bottom: -110px; } }\n@media (min-width: 640px) { .category-arc__grid { height: 330px; transform: scale(0.75); margin-bottom: 0; } }\n@media (min-width: 768px) { .category-arc__grid { height: 330px; transform: scale(0.9); margin-bottom: 0; } }\n@media (min-width: 1024px) { .category-arc__grid { height: 300px; transform: scale(1); margin-bottom: 0; } }\n\n@media (min-width: 768px) { .category-arc__grid { height: 330px; transform: scale(0.9); } }\n@media (min-width: 1024px) { .category-arc__grid { height: 300px; transform: scale(1); } }\n",
+          "context_after": ""
+        }
+      ],
+      "notes": "If someone ever brings the category spheres back (removes the display:none), these sizes would have to be rewritten anyway.",
+      "verify": "DIFFERENT /   - removed: @media (min-width: 768px) [group] /   - removed: @media (min-width: 768px) [group] /   - removed: @media (min-width: 1024px) [group] /   - removed: @media (min-width: 1024px) [group] /   - removed: .category-arc__grid { position: relative; margin: 0px auto; transform-origin: center top; height: 260px; } /   - removed: @media (max-width: 639px) > .category-arc__grid { width: 680px; height: 260px; transition: filter 1.8s cubic-bezier(0.4, 0, 0.2, 1), transform 1.8s cubic-bezier(0.4, 0, 0.2, 1); margin-bottom: 0px; padding: 0px 1.5rem; box-sizing: border-box; } /   - removed: @media (min-width: 480px) [group] /   - removed: @media (min-width: 480px) > .category-arc__grid { transform: scale(0.58); margin-bottom: -110px; } /   - removed: @media (min-width: 640px) [group] /   - removed: @media (min-width: 640px) > .category-arc__grid { height: 330px; transform: scale(0.75); margin-bottom: 0px; } /   - removed: @media (min-width: 768px) > .category-arc__grid { height: 330px; transform: scale(0.9); margin-bottom: 0px; } /   - removed: @media (min-width: 1024px) > .category-arc__grid { height: 300px; transform: scale(1); margin-bottom: 0px; } /   - removed: @media (min-width: 768px) > .category-arc__grid { height: 330px; transform: scale(0.9); } /   - removed: @media (min-width: 1024px) > .category-arc__grid { height: 300px; transform: scale(1); }"
+    },
+    {
+      "id": "T14",
+      "status": "TODO",
+      "round": 1,
+      "file": "assets/toylvia.css",
+      "baseline_lines": "5538-5538, 5544-5546",
+      "title": "Dangling `.cat-ice-label` fused into an impossible selector `.cat-ice-label html body .trust-badges`",
+      "kind": "never-matching selector",
+      "why": "A cut-off selector `.cat-ice-label` (no `{`) merges with the next rule `html body .trust-badges { padding: 2rem 3rem !important }`. The result `.cat-ice-label html body .trust-badges` needs an ancestor of <html>, which cannot exist. (`.trust-badges` is also not used in markup; the section uses `.trust-strip`.)",
+      "proof": "Chrome's CSSOM shows the fused rule; removing both parts removes exactly that one rule. Proven from CSS alone.",
+      "visual_change": "None.",
+      "parts": [
+        {
+          "lines": "5538-5538",
+          "context_before": "",
+          "exact_text": "                                                                                                                                                                                                                                                                                                                                                            .cat-ice-label\n",
+          "context_after": ""
+        },
+        {
+          "lines": "5544-5546",
+          "context_before": "",
+          "exact_text": "html body .trust-badges {\n  padding: 2rem 3rem !important;\n}\n",
+          "context_after": ""
+        }
+      ],
+      "notes": "Both parts must go together (one item, apply.py does that). Deleting only the rule would let `.cat-ice-label` fuse with the NEXT selector and break it. This does not fix the unclosed `@media (max-width: 1024px)` (see 'Known issues'): that block stays open, so nothing changes.",
+      "verify": "DIFFERENT /   - removed: @media (max-width: 1024px) > .cat-ice-label html body .trust-badges { padding: 2rem 3rem !important; }"
+    },
+    {
+      "id": "T15",
+      "status": "TODO",
+      "round": 1,
+      "file": "assets/toylvia.css",
+      "baseline_lines": "1-7",
+      "title": "Stale 'Shopify CDN: Minification failed' error header saved into the source",
+      "kind": "junk comment (not CSS)",
+      "why": "Shopify prepends this error report to the served file when minification fails. Someone saved it back into the source. The errors it lists (lines 2468, 2545, 3977) no longer exist.",
+      "proof": "Comment only, so Chrome's rule list is identical. If minification still fails, Shopify adds a fresh, accurate header to what it serves.",
+      "visual_change": "None.",
+      "parts": [
+        {
+          "lines": "1-7",
+          "context_before": "",
+          "exact_text": "/** Shopify CDN: Minification failed\n\nLine 2468:0 Unexpected \"<\"\nLine 2545:0 Unexpected \"<\"\nLine 3977:224 Unexpected \"}\"\n\n**/\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "IDENTICAL: Chrome keeps exactly the same rules in the same order. No visual change is possible."
+    },
+    {
+      "id": "T16",
+      "status": "TODO",
+      "round": 1,
+      "file": "assets/toylvia.css",
+      "baseline_lines": "5313-5317",
+      "title": "Broken double banner comment ('ICE CARD CATEGORY GRID' + 'complete rewrite')",
+      "kind": "junk comment (not CSS)",
+      "why": "An old banner was opened with `/*` and never closed, then a newer banner was pasted inside it. CSS comments do not nest, so it is one comment holding only banner text.",
+      "proof": "Comment only, Chrome's rule list is identical. The following `@keyframes cat-ice-float` parses normally either way.",
+      "visual_change": "None.",
+      "parts": [
+        {
+          "lines": "5313-5317",
+          "context_before": "",
+          "exact_text": "            /* ============================================================\n               ICE CARD CATEGORY GRID  –  Toylvia\n                  /* =====================================================\n                     ICE CATEGORY CARDS — complete rewrite\n                        ===================================================== */\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "IDENTICAL: Chrome keeps exactly the same rules in the same order. No visual change is possible."
+    },
+    {
+      "id": "T17",
+      "status": "REVIEW",
+      "round": 1,
+      "file": "assets/toylvia.css",
+      "baseline_lines": "21-24",
+      "title": "`body.index-page { background: transparent !important }`: <body> never has that class",
+      "kind": "never-matching selector (markup)",
+      "why": "layout/theme.liquid renders a bare `<body>`. The only class ever added is `tlv-support` (theme.liquid JS). `index-page` appears in no theme file. The stylesheet itself says at line ~52: 'body.template-index doesn't work (body has no class)'.",
+      "proof": "grep of all layout/section/snippet/template files and JS assets. Not provable from CSS alone (an app could add body classes), hence REVIEW.",
+      "visual_change": "None expected.",
+      "parts": [
+        {
+          "lines": "21-24",
+          "context_before": "",
+          "exact_text": "/* Homepage: transparent body so glitch bg layer shows through */\nbody.index-page {\n  background: transparent !important;\n}\n",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: body.index-page { background: transparent !important; }"
+    },
+    {
+      "id": "T18",
+      "status": "REVIEW",
+      "round": 1,
+      "file": "assets/toylvia.css",
+      "baseline_lines": "4874-4874, 4900-4900",
+      "title": "Two rules for section wrappers that no longer exist (`#shopify-section-template--29786103284043__glitch-bg`, `...__trust-badges`)",
+      "kind": "never-matching selector (markup)",
+      "why": "Shopify gives JSON-template sections the id `shopify-section-template--<templateId>__<key>`. templates/index.json and product.json have no `glitch-bg` or `trust-badges` key, so neither wrapper is rendered. The second rule also needs `.trust-badges`, which no markup uses.",
+      "proof": "Section keys checked in templates/index.json and templates/product.json; grep of the whole theme.",
+      "visual_change": "None expected.",
+      "parts": [
+        {
+          "lines": "4874-4874",
+          "context_before": "",
+          "exact_text": "#shopify-section-template--29786103284043__glitch-bg { display: none !important; }\n",
+          "context_after": ""
+        },
+        {
+          "lines": "4900-4900",
+          "context_before": "",
+          "exact_text": "html body #shopify-section-template--29786103284043__trust-badges .trust-badges { padding-top: 8px !important; }\n",
+          "context_after": ""
+        }
+      ],
+      "notes": "Would only come back to life if sections with those exact keys were re-added to the template with id 29786103284043.",
+      "verify": "DIFFERENT /   - removed: #shopify-section-template--29786103284043__glitch-bg { display: none !important; } /   - removed: html body #shopify-section-template--29786103284043__trust-badges .trust-badges { padding-top: 8px !important; }"
+    },
+    {
+      "id": "T19",
+      "status": "REVIEW",
+      "round": 1,
+      "file": "assets/toylvia.css",
+      "baseline_lines": "6019-6025",
+      "title": "'Desktop only' `.clg-pill .clg-block-header .clg-title` rule that can only apply at exactly 1024px, for markup that does not exist",
+      "kind": "never-true media + never-matching selector",
+      "why": "It sits inside the unclosed `@media (max-width: 1024px)`, so `@media (min-width: 1024px)` inside it is only true at exactly 1024px. And no template uses `clg-pill`, `clg-block-header` or `clg-title`.",
+      "proof": "Chrome CSSOM shows `@media (max-width:1024px) > @media (min-width:1024px)`. grep of all .liquid/.js/.json: no match for those classes.",
+      "visual_change": "None expected.",
+      "parts": [
+        {
+          "lines": "6019-6025",
+          "context_before": "",
+          "exact_text": "/* Target only screens wider than 1024px (Desktop) */\n@media (min-width: 1024px) {\n  .clg-pill .clg-block-header .clg-title {\n    font-size: 24px; /* Adjust this value as needed */\n    font-weight: bold; /* Optional: makes it stand out more */\n  }\n}\n",
+          "context_after": ""
+        }
+      ],
+      "notes": "If Ziko fixes the unclosed @media later, this rule would become desktop-wide, but it still matches no element.",
+      "verify": "DIFFERENT /   - removed: @media (max-width: 1024px) > @media (min-width: 1024px) [group] /   - removed: @media (max-width: 1024px) > @media (min-width: 1024px) > .clg-pill .clg-block-header .clg-title { font-size: 24px; font-weight: bold; }"
+    },
+    {
+      "id": "T20",
+      "status": "TODO",
+      "round": 1,
+      "file": "assets/toylvia.css",
+      "baseline_lines": "1459-1461, 1463-1466, 1476-1480, 1483-1486, 1488-1495, 1498-1504, 1506-1509, 1516-1520, 1522-1525, 1527-1530, 1537-1542, 1544-1548, 1550-1553, 1555-1559, 1568-1575, 1579-1581, 1588-1590, 1592-1596, 1608-1613, 1622-1624, 1626-1629",
+      "title": "First copy of the duplicated CART styles: 21 rules re-declared later (about 100 lines)",
+      "kind": "same-file overridden duplicates",
+      "why": "The 'CART BASE' block was pasted again later as '/* === CART === */'. These 21 earlier rules are re-declared later with the same selector, same media query and same importance, so they never win. Interleaved rules that still contribute a value (e.g. `.cart__header` justify-content, `.cart__title` margin-bottom, `.cart__total`, `.cart__update`, the @media wrappers) are NOT in the ranges and stay.",
+      "proof": "Static shadow proof (headless Chrome CSSOM): all 21 removed rules are fully shadowed by later kept rules -> PROVEN. Control: deleting the later live copy of `.cart` instead is correctly reported NOT shadowed.",
+      "visual_change": "None (cart page https://toylvia.com/cart keeps the same computed styles).",
+      "parts": [
+        {
+          "lines": "1459-1461",
+          "context_before": "/* === CART BASE === */\n\n",
+          "exact_text": ".cart {\n  padding: 3rem 1rem;\n}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "1463-1466",
+          "context_before": "",
+          "exact_text": ".cart__inner {\n  max-width: 900px;\n  margin: 0 auto;\n}\n",
+          "context_after": "\n/* HEADER */\n.cart__header {\n  display: flex;\n  justify-content: space-between;\n"
+        },
+        {
+          "lines": "1476-1480",
+          "context_before": "",
+          "exact_text": ".cart__back {\n  font-size: 14px;\n  text-decoration: none;\n  color: #555;\n}\n",
+          "context_after": "\n/* EMPTY */\n"
+        },
+        {
+          "lines": "1483-1486",
+          "context_before": "  color: #555;\n}\n\n/* EMPTY */\n",
+          "exact_text": ".cart__empty {\n  text-align: center;\n  margin-top: 4rem;\n}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "1488-1495",
+          "context_before": "  color: #555;\n}\n\n/* EMPTY */\n.cart__empty {\n  text-align: center;\n  margin-top: 4rem;\n}\n\n",
+          "exact_text": ".cart__cta {\n  display: inline-block;\n  margin-top: 1rem;\n  padding: 0.7rem 1.4rem;\n  background: #000;\n  color: #fff;\n  border-radius: 999px;\n}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "1498-1504",
+          "context_before": "",
+          "exact_text": ".cart__item {\n  display: grid;\n  grid-template-columns: 90px 1fr auto;\n  gap: 1.2rem;\n  align-items: center;\n  margin-bottom: 1.8rem;\n}\n",
+          "context_after": "\n.cart__img {\n  width: 90px;\n  border-radius: 0.5rem;\n}\n\n.cart__title {\n"
+        },
+        {
+          "lines": "1506-1509",
+          "context_before": "",
+          "exact_text": ".cart__img {\n  width: 90px;\n  border-radius: 0.5rem;\n}\n",
+          "context_after": "\n.cart__title {\n"
+        },
+        {
+          "lines": "1516-1520",
+          "context_before": ".cart__title {\n  font-weight: 700;\n  margin-bottom: 0.3rem;\n}\n\n",
+          "exact_text": ".cart__variant {\n  font-size: 13px;\n  color: #777;\n  margin-bottom: 0.3rem;\n}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "1522-1525",
+          "context_before": "",
+          "exact_text": ".cart__price {\n  font-size: 14px;\n  margin-bottom: 0.4rem;\n}\n",
+          "context_after": "\n.cart__qty {\n  width: 65px;\n  padding: 0.3rem;\n}\n\n.cart__total {\n"
+        },
+        {
+          "lines": "1527-1530",
+          "context_before": "",
+          "exact_text": ".cart__qty {\n  width: 65px;\n  padding: 0.3rem;\n}\n",
+          "context_after": "\n.cart__total {\n"
+        },
+        {
+          "lines": "1537-1542",
+          "context_before": ".cart__total {\n  font-weight: 700;\n}\n\n/* FOOTER */\n",
+          "exact_text": ".cart__footer {\n  margin-top: 3rem;\n  display: flex;\n  justify-content: space-between;\n  gap: 2rem;\n}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "1544-1548",
+          "context_before": ".cart__total {\n  font-weight: 700;\n}\n\n/* FOOTER */\n.cart__footer {\n  margin-top: 3rem;\n  display: flex;\n  justify-content: space-between;\n  gap: 2rem;\n}\n\n",
+          "exact_text": ".cart__row {\n  display: flex;\n  justify-content: space-between;\n  margin-bottom: 0.5rem;\n}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "1550-1553",
+          "context_before": "",
+          "exact_text": ".cart__note {\n  font-size: 13px;\n  color: #777;\n}\n",
+          "context_after": "\n.cart__actions {\n  display: flex;\n  flex-direction: column;\n  gap: 0.6rem;\n}\n\n.cart__update {\n"
+        },
+        {
+          "lines": "1555-1559",
+          "context_before": "",
+          "exact_text": ".cart__actions {\n  display: flex;\n  flex-direction: column;\n  gap: 0.6rem;\n}\n",
+          "context_after": "\n.cart__update {\n"
+        },
+        {
+          "lines": "1568-1575",
+          "context_before": "  border-radius: 0.4rem;\n}\n\n",
+          "exact_text": ".cart__checkout {\n  padding: 1rem 2rem;\n  border-radius: 999px;\n  background: linear-gradient(90deg,#ff42a1,#ff7bbd);\n  color: #fff;\n  font-weight: 800;\n  border: none;\n}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "1579-1581",
+          "context_before": "",
+          "exact_text": "  .cart__item {\n    grid-template-columns: 70px 1fr;\n  }\n",
+          "context_after": "\n  .cart__total {\n"
+        },
+        {
+          "lines": "1588-1590",
+          "context_before": "",
+          "exact_text": "  .cart__footer {\n    flex-direction: column;\n  }\n",
+          "context_after": "}\n.cart__actions {\n"
+        },
+        {
+          "lines": "1592-1596",
+          "context_before": "",
+          "exact_text": ".cart__actions {\n  display: flex;\n  flex-direction: column;\n  gap: 0.8rem;\n}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "1608-1613",
+          "context_before": "}\n",
+          "exact_text": ".cart__header {\n  display: flex;\n  align-items: center;\n  gap: 1rem;\n  margin-bottom: 2rem;\n}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "1622-1624",
+          "context_before": "  white-space: nowrap;\n}\n\n",
+          "exact_text": ".cart__back:hover {\n  color: #000;\n}\n",
+          "context_after": ""
+        },
+        {
+          "lines": "1626-1629",
+          "context_before": "",
+          "exact_text": ".cart__title {\n  font-size: 24px;\n  font-weight: 800;\n}\n",
+          "context_after": "/* === CART === */\n"
+        }
+      ],
+      "notes": "21 parts. Several parts are byte-identical to their later copies, so they are located with neighbouring context lines. Always use apply.py; do not delete by hand by searching for the rule text (you would hit the live copy).",
+      "verify": "DIFFERENT /   - removed: .cart { padding: 3rem 1rem; } /   - removed: .cart__inner { max-width: 900px; margin: 0px auto; } /   - removed: .cart__back { font-size: 14px; text-decoration: none; color: rgb(85, 85, 85); } /   - removed: .cart__empty { text-align: center; margin-top: 4rem; } /   - removed: .cart__cta { display: inline-block; margin-top: 1rem; padding: 0.7rem 1.4rem; background: rgb(0, 0, 0); color: rgb(255, 255, 255); border-radius: 999px; } /   - removed: .cart__item { display: grid; grid-template-columns: 90px 1fr auto; gap: 1.2rem; align-items: center; margin-bottom: 1.8rem; } /   - removed: .cart__img { width: 90px; border-radius: 0.5rem; } /   - removed: .cart__variant { font-size: 13px; color: rgb(119, 119, 119); margin-bottom: 0.3rem; } /   - removed: .cart__price { font-size: 14px; margin-bottom: 0.4rem; } /   - removed: .cart__qty { width: 65px; padding: 0.3rem; } /   - removed: .cart__footer { margin-top: 3rem; display: flex; justify-content: space-between; gap: 2rem; } /   - removed: .cart__row { display: flex; justify-content: space-between; margin-bottom: 0.5rem; } /   - removed: .cart__note { font-size: 13px; color: rgb(119, 119, 119); } /   - removed: .cart__actions { display: flex; flex-direction: column; gap: 0.6rem; } /   - removed: .cart__checkout { padding: 1rem 2rem; border-radius: 999px; background: linear-gradient(90deg, rgb(255, 66, 161), rgb(255, 123, 189)); color: rgb(255, 255, 255); font-weight: 800; border: none; } /   - removed: @media (max-width: 768px) > .cart__item { grid-template-columns: 70px 1fr; } /   - removed: @media (max-width: 768px) > .cart__footer { flex-direction: column; } /   - removed: .cart__actions { display: flex; flex-direction: column; gap: 0.8rem; } /   - removed: .cart__header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; } /   - removed: .cart__back:hover { color: rgb(0, 0, 0); } /   - removed: .cart__title { font-size: 24px; font-weight: 800; }"
     }
   ],
   "do_not_apply": [

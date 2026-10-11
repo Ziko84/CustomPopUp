@@ -24,6 +24,7 @@ Every item was found by one agent and then attacked by a separate skeptic agent 
 
 - Scan started: {data['scan']['started']} | last update: {data['scan']['updated']} | rounds: {data['scan']['rounds']}
 - Items: **{len(items)}** total, **{len(todo)} TODO** (proven safe), **{len(review)} REVIEW** (very likely safe, ask Ziko first)
+- Lines removed if every item is applied: {sum(sum(pp['exact_text'].count(chr(10)) - pp.get('replacement', '').count(chr(10)) for pp in i['parts']) for i in items)} (TODO only: {sum(sum(pp['exact_text'].count(chr(10)) - pp.get('replacement', '').count(chr(10)) for pp in i['parts']) for i in todo)})
 - Status legend: `TODO` apply | `REVIEW` apply only if Ziko says yes | `DONE` applied and verified | `SKIPPED: reason`
 
 ---
@@ -53,7 +54,7 @@ for f, m in data['scan']['baseline'].items():
 w(f"""
 **Rules (non-negotiable)**
 1. Get the CURRENT live file first. Never edit an old copy (assets/tlv-owner-overrides.css warns that a stale save already destroyed owner work once).
-2. Only remove the exact text listed for an item. `findings.json` -> `items[].exact_text` is authoritative (the README blocks below are for reading and may be shortened).
+2. Only remove the exact text listed for an item. `findings.json` -> `items[].parts[]` is authoritative (the README blocks below are for reading and may be shortened). Context lines are only for locating; they stay.
 3. If an item's exact text is not found exactly once in the live file, SKIP it, set its status to `SKIPPED: <reason>` and tell the user. Never adapt or guess.
 4. Never "repair" dead code (for example by adding a missing `/*` or fixing a selector). Repairs switch on styles that were never live and visibly change the site. Only delete.
 5. Ask Ziko before saving anything to the live theme. Show him the list of item ids you will apply and the verification result.
@@ -85,20 +86,35 @@ w(f"""
 
 ## Findings
 """)
+import re
+def short(t):
+    t = re.sub(r'\s+', ' ', t.strip())
+    return t if len(t) <= 90 else t[:87] + '...'
+
 for i in items:
     w(f"### {i['id']} [{i['status']}] {i['title']}")
     w(f"- **File:** `{i['file']}` | baseline lines {i['baseline_lines']} | kind: {i['kind']}")
-    w(f"- **Anchor (to find it in Shopify admin):** starts at `{i['anchor_start']}`, ends with `{i['anchor_end']}`")
     w(f"- **Why it is dead:** {i['why']}")
     w(f"- **Proof:** {i['proof']}")
     w(f"- **Verify:** expected `cssom.js compare` result for this item alone: **{i['verify']}**")
     w(f"- **Visual change if removed:** {i['visual_change']}")
     if i.get('notes'):
         w(f"- **Notes:** {i['notes']}")
+    w(f"- **Parts:** {len(i['parts'])} (apply.py handles all parts of an item at once)")
     w('')
-    w('Exact text to delete:')
-    w(fence(i['exact_text']))
-    w('')
+    for n, part in enumerate(i['parts'], 1):
+        nb = [l for l in part['exact_text'].split('\n') if l.strip()]
+        label = f"Part {n}" if len(i['parts']) > 1 else 'Exact text'
+        w(f"**{label}** (baseline lines {part['lines']}). Manual anchor: from `{short(nb[0])}` to `{short(nb[-1])}`.")
+        if part['context_before'] or part['context_after']:
+            w('This text also exists elsewhere in the file, so it is located by the neighbouring lines '
+              '(kept, not deleted): before = `' + short(part['context_before'] or '(none)') + '`, after = `' + short(part['context_after'] or '(none)') + '`.')
+        if 'replacement' in part:
+            w('Replace with: `' + part['replacement'].strip() + '` (keeps the parent rule closed).')
+        else:
+            w('Delete:')
+        w(fence(part['exact_text']))
+        w('')
 
 if data.get('do_not_apply'):
     w('---\n\n## Known issues that are NOT deletions (do not apply without asking Ziko)\n')

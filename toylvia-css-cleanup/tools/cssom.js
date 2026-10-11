@@ -37,9 +37,16 @@ function parse(cssFile) {
   if (/<\/style/i.test(css)) throw new Error(cssFile + ' contains "</style", cannot inline');
   const html = `<!doctype html><html><head><meta charset="utf-8"><style id="s">${css}</style></head><body><pre id="out"></pre><script>
 function walk(rules, ctx, out){for(const r of rules){
-  const head = r.cssRules ? (r.selectorText || r.conditionText || r.name || r.constructor.name) : null;
-  out.push(ctx + r.cssText);
-  if (r.cssRules && r.constructor.name !== 'CSSKeyframesRule') walk(r.cssRules, ctx + r.constructor.name + '(' + head + ') > ', out);
+  const t = r.constructor.name;
+  if (t === 'CSSStyleRule') {
+    // the rule itself = selector + its own declarations (nested child rules are listed separately)
+    out.push(ctx + r.selectorText + ' { ' + r.style.cssText + ' }');
+    if (r.cssRules && r.cssRules.length) walk(r.cssRules, ctx + r.selectorText + ' > ', out);
+  } else if (r.cssRules && t !== 'CSSKeyframesRule') {
+    const head = '@' + t.replace(/^CSS|Rule$/g, '').toLowerCase() + ' ' + (r.conditionText || r.name || '');
+    out.push(ctx + head + ' [group]');
+    walk(r.cssRules, ctx + head + ' > ', out);
+  } else out.push((ctx + r.cssText).replace(/\\s*\\n\\s*/g, ' '));
 } return out}
 const s = document.getElementById('s').sheet;
 document.getElementById('out').textContent = 'S@@' + encodeURIComponent(JSON.stringify(walk(s.cssRules, '', []))) + '@@E';
