@@ -5,7 +5,7 @@ Every item was found by one agent and then attacked by a separate skeptic agent 
 
 - Scan started: 2026-10-11T15:16:39Z | last update: 2026-10-11T15:51:43Z | rounds: 2
 - Items: **35** total, **17 TODO** (proven safe), **18 REVIEW** (very likely safe, ask Ziko first)
-- Lines removed if every item is applied: 1781 (TODO only: 377)
+- Lines removed if every item is applied (superseding items instead of the ones they contain): 1654 | TODO items only: 377
 - Status legend: `TODO` apply | `REVIEW` apply only if Ziko says yes | `DONE` applied and verified | `SKIPPED: reason`
 
 ---

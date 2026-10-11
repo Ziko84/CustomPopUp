@@ -7,6 +7,10 @@ data = json.loads((ROOT / 'findings.json').read_text(encoding='utf-8'))
 items = data['items']
 todo = [i for i in items if i['status'] == 'TODO']
 review = [i for i in items if i['status'] == 'REVIEW']
+def nlines(i): return sum(pp['exact_text'].count(chr(10)) - pp.get('replacement', '').count(chr(10)) for pp in i['parts'])
+superseded = {x for i in items for x in i.get('supersedes', [])}
+lines_all = sum(nlines(i) for i in items if i['id'] not in superseded)
+lines_todo = sum(nlines(i) for i in todo)
 
 def fence(t):
     t = t.rstrip('\n')
@@ -24,7 +28,7 @@ Every item was found by one agent and then attacked by a separate skeptic agent 
 
 - Scan started: {data['scan']['started']} | last update: {data['scan']['updated']} | rounds: {data['scan']['rounds']}
 - Items: **{len(items)}** total, **{len(todo)} TODO** (proven safe), **{len(review)} REVIEW** (very likely safe, ask Ziko first)
-- Lines removed if every item is applied: {sum(sum(pp['exact_text'].count(chr(10)) - pp.get('replacement', '').count(chr(10)) for pp in i['parts']) for i in items)} (TODO only: {sum(sum(pp['exact_text'].count(chr(10)) - pp.get('replacement', '').count(chr(10)) for pp in i['parts']) for i in todo)})
+- Lines removed if every item is applied (superseding items instead of the ones they contain): {lines_all} | TODO items only: {lines_todo}
 - Status legend: `TODO` apply | `REVIEW` apply only if Ziko says yes | `DONE` applied and verified | `SKIPPED: reason`
 
 ---
