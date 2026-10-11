@@ -50,11 +50,11 @@ You are applying a cleanup that was already researched and verified. Do not re-r
 
 **Store / theme**
 - Live theme: "{data['scan']['theme_name']}", id `{data['scan']['theme_id']}` (gid://shopify/OnlineStoreTheme/{data['scan']['theme_id']}).
-- Files touched: {', '.join('`assets/' + f + '`' for f in data['scan']['baseline'])}.
+- Files touched: {', '.join('`' + (f if '/' in f else 'assets/' + f) + '`' for f in data['scan']['baseline'])}.
 - Baseline md5 of each file when the scan read it:
 """)
 for f, m in data['scan']['baseline'].items():
-    w(f"  - `assets/{f}`: `{m}`")
+    w(f"  - `{f if '/' in f else 'assets/' + f}`: `{m}`")
 w(f"""
 **Rules (non-negotiable)**
 1. Get the CURRENT live file first. Never edit an old copy (assets/tlv-owner-overrides.css warns that a stale save already destroyed owner work once).
@@ -80,6 +80,8 @@ w(f"""
    - If every item you applied to a file says `IDENTICAL`, the whole file must compare `IDENTICAL`.
    - Otherwise the output may only contain the `removed` / `added` rules listed in the Verify lines of the items you applied to that file. Nothing else.
    - If anything else appears, stop, restore the backup, tell Ziko.
+   - **Items in `.liquid` files** (CSS inside `<style>` blocks of templates/sections/snippets): compare CSS views instead of the raw files, because Liquid is not CSS:
+     `python toylvia-css-cleanup/tools/liquid_css_view.py file.before.liquid before.css` and the same for the edited file, then `node toylvia-css-cleanup/tools/cssom.js compare before.css after.css`. The view keeps line numbers and replaces Liquid with neutral placeholders. Pull these files with `--only sections/x.liquid` / `--only snippets/x.liquid` / `--only layout/theme.liquid`. These files also contain HTML and Liquid: never edit anything outside the listed exact text.
 6. After Ziko approves, push only the edited files:
    `shopify theme push --theme {data['scan']['theme_id']} --only assets/toylvia.css --path ./theme-live --allow-live`
    (the Shopify MCP connector blocks writes to the live theme, so it will not work for this.)
