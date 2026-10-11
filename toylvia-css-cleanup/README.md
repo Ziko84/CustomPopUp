@@ -3,9 +3,9 @@
 Dead and commented-out CSS found in the live theme of https://toylvia.com by a cloud Claude scan.
 Every item was found by one agent and then attacked by a separate skeptic agent that tried to prove it still affects the page. Only items that survived are listed.
 
-- Scan started: 2026-10-11T15:16:39Z | last update: 2026-10-11T16:13:58Z | rounds: 4
-- Items: **80** total, **38 TODO** (proven safe), **42 REVIEW** (very likely safe, ask Ziko first)
-- Lines removed if every item is applied (superseding items instead of the ones they contain): 2493 | TODO items only: 707
+- Scan started: 2026-10-11T15:16:39Z | last update: 2026-10-11T16:52:33Z | rounds: 5
+- Items: **88** total, **46 TODO** (proven safe), **42 REVIEW** (very likely safe, ask Ziko first)
+- Lines removed if every item is applied (superseding items instead of the ones they contain): 2592 | TODO items only: 806
 - Status legend: `TODO` apply | `REVIEW` apply only if Ziko says yes | `DONE` applied and verified | `SKIPPED: reason`
 
 ---
@@ -39,7 +39,7 @@ You are applying a cleanup that was already researched and verified. Do not re-r
 
 **Store / theme**
 - Live theme: "lior's theme for toylvia", id `209157554507` (gid://shopify/OnlineStoreTheme/209157554507).
-- Files touched: `assets/toylvia.css`, `assets/tlv-owner-overrides.css`, `assets/home-palette.css`, `assets/card-look.css`, `assets/live-card-fixes.css`, `assets/card-markers.css`.
+- Files touched: `assets/toylvia.css`, `assets/tlv-owner-overrides.css`, `assets/home-palette.css`, `assets/card-look.css`, `assets/live-card-fixes.css`, `assets/card-markers.css`, `sections/category-rows.liquid`, `sections/clg-hero.liquid`, `sections/collections-showcase.liquid`, `sections/story-pair.liquid`, `snippets/cr-card-styles.liquid`, `snippets/product-card-styles.liquid`, `snippets/product-recommendations.liquid`, `snippets/tlv-orbs.liquid`.
 - Baseline md5 of each file when the scan read it:
 
   - `assets/toylvia.css`: `efc069df951128a76ac1adb542f17234`
@@ -48,6 +48,14 @@ You are applying a cleanup that was already researched and verified. Do not re-r
   - `assets/card-look.css`: `80c3701d5039636bd309a2760a3363b8`
   - `assets/live-card-fixes.css`: `35cf670e3bcd601f2d54a49ed3e57448`
   - `assets/card-markers.css`: `c447cc9f8b7e86be72bc5416aa421296`
+  - `sections/category-rows.liquid`: `78e0ea43ea6c22153e712d8014de2d39`
+  - `sections/clg-hero.liquid`: `3510c7d814872c85888695feb5d5589f`
+  - `sections/collections-showcase.liquid`: `85bdf62c3f0d6f206b6bc6cd4c8151e3`
+  - `sections/story-pair.liquid`: `f2ccb5e00a5bb4d9a1333e59f517b36f`
+  - `snippets/cr-card-styles.liquid`: `b22ac5b7f2202ba5229f284573497e40`
+  - `snippets/product-card-styles.liquid`: `a60975a8ed5af29e8213a5bd3d7f9016`
+  - `snippets/product-recommendations.liquid`: `c67ce07f996cf2a3e53cbc865e4912ab`
+  - `snippets/tlv-orbs.liquid`: `e34d6462a4f66ef79af21365bc84de89`
 
 **Rules (non-negotiable)**
 1. Get the CURRENT live file first. Never edit an old copy (assets/tlv-owner-overrides.css warns that a stale save already destroyed owner work once).
@@ -3381,6 +3389,619 @@ Delete:
 #MainContent .product-card__meta-row>[aria-hidden="true"],#MainContent .cr-card__meta-row>[aria-hidden="true"]{flex:1 1 auto!important}
 ```
 
+### T81 [TODO] 1 always-overridden rule(s) inside <style> blocks of sections/category-rows.liquid
+- **File:** `sections/category-rows.liquid` | baseline lines 2193-2193 | kind: always-overridden rules in inline CSS (same <style> block, tool-proven)
+- **Why it is dead:** Each removed rule is restated later in the SAME <style> block by a rule with the same selectors, same or top-level @media, every property at equal-or-higher priority, so it can never win. Selectors: .cat-rows__scroll
+- **Proof:** Automated scan of all 313 <style> blocks via the CSS view (identical line numbers). Only rules on lines of pure CSS (no HTML/Liquid) and without Liquid in the selector were considered; the winner had to be in the same <style> block and not inside a Liquid {% if/unless/case/for %}. Joint check with tools/cssom.js + tools/shadow.js on the views: all removed together -> PROVEN, no added rules.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: @media (max-width: 767px) > .cat-rows__scroll { padding: 0px 1.25rem; }**
+- **Visual change if removed:** None.
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 2193-2193). Manual anchor: from `.cat-rows__scroll { padding: 0 1.25rem; }` to `.cat-rows__scroll { padding: 0 1.25rem; }`.
+Delete:
+```css
+  .cat-rows__scroll { padding: 0 1.25rem; }
+```
+
+### T82 [TODO] 1 always-overridden rule(s) inside <style> blocks of sections/clg-hero.liquid
+- **File:** `sections/clg-hero.liquid` | baseline lines 4581-4581 | kind: always-overridden rules in inline CSS (same <style> block, tool-proven)
+- **Why it is dead:** Each removed rule is restated later in the SAME <style> block by a rule with the same selectors, same or top-level @media, every property at equal-or-higher priority, so it can never win. Selectors: .cat-strip__inner .cat-pill svg
+- **Proof:** Automated scan of all 313 <style> blocks via the CSS view (identical line numbers). Only rules on lines of pure CSS (no HTML/Liquid) and without Liquid in the selector were considered; the winner had to be in the same <style> block and not inside a Liquid {% if/unless/case/for %}. Joint check with tools/cssom.js + tools/shadow.js on the views: all removed together -> PROVEN, no added rules.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .cat-strip__inner .cat-pill svg { width: 18px !important; height: 18px !important; }**
+- **Visual change if removed:** None.
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 4581-4581). Manual anchor: from `.cat-strip__inner .cat-pill svg{width:18px!important;height:18px!important}` to `.cat-strip__inner .cat-pill svg{width:18px!important;height:18px!important}`.
+Delete:
+```css
+.cat-strip__inner .cat-pill svg{width:18px!important;height:18px!important}
+```
+
+### T83 [TODO] 2 always-overridden rule(s) inside <style> blocks of sections/collections-showcase.liquid
+- **File:** `sections/collections-showcase.liquid` | baseline lines 138-138, 198-207 | kind: always-overridden rules in inline CSS (same <style> block, tool-proven)
+- **Why it is dead:** Each removed rule is restated later in the SAME <style> block by a rule with the same selectors, same or top-level @media, every property at equal-or-higher priority, so it can never win. Selectors: .cs-card-wrap--featured .cs-card__cell img; .cs-card-wrap--featured .cs-card__cell img, .cs-card-wrap--featured .cs-card__cell:hover img
+- **Proof:** Automated scan of all 313 <style> blocks via the CSS view (identical line numbers). Only rules on lines of pure CSS (no HTML/Liquid) and without Liquid in the selector were considered; the winner had to be in the same <style> block and not inside a Liquid {% if/unless/case/for %}. Joint check with tools/cssom.js + tools/shadow.js on the views: all removed together -> PROVEN, no added rules.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: @media (min-width: 768px) > .cs-card-wrap--featured .cs-card__cell img { transition: none; } /   - removed: @media (max-width: 767px) > .cs-card-wrap--featured .cs-card__cell img, .cs-card-wrap--featured .cs-card__cell:hover img { position: static !important; width: 100% !important; height: 100% !important; left: auto !important; transform: none !important; transition: transform 0.32s !important; object-f**
+- **Visual change if removed:** None.
+- **Parts:** 2 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 138-138). Manual anchor: from `.cs-card-wrap--featured .cs-card__cell img { transition: none; }` to `.cs-card-wrap--featured .cs-card__cell img { transition: none; }`.
+Delete:
+```css
+  .cs-card-wrap--featured .cs-card__cell img { transition: none; }
+```
+
+**Part 2** (baseline lines 198-207). Manual anchor: from `.cs-card-wrap--featured .cs-card__cell img,` to `}`.
+Delete:
+```css
+  .cs-card-wrap--featured .cs-card__cell img,
+  .cs-card-wrap--featured .cs-card__cell:hover img {
+    position: static !important;
+    width: 100% !important;
+    height: 100% !important;
+    left: auto !important;
+    transform: none !important;
+    transition: transform 0.32s ease !important;
+    object-fit: cover !important;
+  }
+```
+
+### T84 [TODO] 3 always-overridden rule(s) inside <style> blocks of sections/story-pair.liquid
+- **File:** `sections/story-pair.liquid` | baseline lines 193-193, 194-194, 195-195 | kind: always-overridden rules in inline CSS (same <style> block, tool-proven)
+- **Why it is dead:** Each removed rule is restated later in the SAME <style> block by a rule with the same selectors, same or top-level @media, every property at equal-or-higher priority, so it can never win. Selectors: .tlv-sp.tlv-sp; .tlv-sp.tlv-sp .tlv-sp-card.tlv-sp-card:nth-of-type(10); .tlv-sp.tlv-sp .tlv-sp-card.tlv-sp-card:nth-of-type(9)
+- **Proof:** Automated scan of all 313 <style> blocks via the CSS view (identical line numbers). Only rules on lines of pure CSS (no HTML/Liquid) and without Liquid in the selector were considered; the winner had to be in the same <style> block and not inside a Liquid {% if/unless/case/for %}. Joint check with tools/cssom.js + tools/shadow.js on the views: all removed together -> PROVEN, no added rules.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: @media (max-width: 767px) > .tlv-sp.tlv-sp { grid-template-columns: repeat(6, minmax(0px, 1fr)); } /   - removed: @media (max-width: 767px) > .tlv-sp.tlv-sp .tlv-sp-card.tlv-sp-card:nth-of-type(9) { grid-column: auto / span 2; } /   - removed: @media (max-width: 767px) > .tlv-sp.tlv-sp .tlv-sp-card.tlv-sp-card:nth-of-type(10) { grid-column: 3 / span 2; }**
+- **Visual change if removed:** None.
+- **Parts:** 3 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 193-193). Manual anchor: from `.tlv-sp.tlv-sp{grid-template-columns:repeat(6,minmax(0,1fr))}` to `.tlv-sp.tlv-sp{grid-template-columns:repeat(6,minmax(0,1fr))}`.
+Delete:
+```css
+.tlv-sp.tlv-sp{grid-template-columns:repeat(6,minmax(0,1fr))}
+```
+
+**Part 2** (baseline lines 194-194). Manual anchor: from `.tlv-sp.tlv-sp .tlv-sp-card.tlv-sp-card:nth-of-type(9){grid-column:auto/span 2}` to `.tlv-sp.tlv-sp .tlv-sp-card.tlv-sp-card:nth-of-type(9){grid-column:auto/span 2}`.
+Delete:
+```css
+.tlv-sp.tlv-sp .tlv-sp-card.tlv-sp-card:nth-of-type(9){grid-column:auto/span 2}
+```
+
+**Part 3** (baseline lines 195-195). Manual anchor: from `.tlv-sp.tlv-sp .tlv-sp-card.tlv-sp-card:nth-of-type(10){grid-column:3/span 2}` to `.tlv-sp.tlv-sp .tlv-sp-card.tlv-sp-card:nth-of-type(10){grid-column:3/span 2}`.
+Delete:
+```css
+.tlv-sp.tlv-sp .tlv-sp-card.tlv-sp-card:nth-of-type(10){grid-column:3/span 2}
+```
+
+### T85 [TODO] 8 always-overridden rule(s) inside <style> blocks of snippets/cr-card-styles.liquid
+- **File:** `snippets/cr-card-styles.liquid` | baseline lines 86-86, 87-87, 88-88, 89-89, 90-90, 94-94, 123-123, 125-125 | kind: always-overridden rules in inline CSS (same <style> block, tool-proven)
+- **Why it is dead:** Each removed rule is restated later in the SAME <style> block by a rule with the same selectors, same or top-level @media, every property at equal-or-higher priority, so it can never win. Selectors: .cr-card__tag--building; .cr-card__tag--fidget; .cr-card__tag--keychain; .cr-card__tag--plush; .cr-card__tag--rc; .cr-card__tag.cr-card__tag.cr-card__tag.cr-card__tag.cr-card__tag.cr-card__tag.cr-card__tag.cr-card__tag; .soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot
+- **Proof:** Automated scan of all 313 <style> blocks via the CSS view (identical line numbers). Only rules on lines of pure CSS (no HTML/Liquid) and without Liquid in the selector were considered; the winner had to be in the same <style> block and not inside a Liquid {% if/unless/case/for %}. Joint check with tools/cssom.js + tools/shadow.js on the views: all removed together -> PROVEN, no added rules.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .cr-card__tag--rc { border-color: rgb(220, 38, 38); color: rgb(220, 38, 38); } /   - removed: .cr-card__tag--building { border-color: rgb(234, 88, 12); color: rgb(234, 88, 12); } /   - removed: .cr-card__tag--keychain { border-color: rgb(22, 163, 74); color: rgb(22, 163, 74); } /   - removed: .cr-card__tag--plush { border-color: rgb(255, 66, 161); color: rgb(255, 66, 161); } /   - removed: .cr-card__tag--fidget { border-color: rgb(79, 110, 247); color: rgb(79, 110, 247); } /   - removed: .cr-card__tag--building { border-color: rgb(37, 99, 235); color: rgb(37, 99, 235); } /   - removed: .cr-card__tag.cr-card__tag.cr-card__tag.cr-card__tag.cr-card__tag.cr-card__tag.cr-card__tag.cr-card__tag { transition: right 0.26s cubic-bezier(0.4, 0, 1, 1) 0.12s !important; } /   - removed: .soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot { transition: right 0.26s cubic-bezier(0.4, 0, 1, 1) 0.12s !important; }**
+- **Visual change if removed:** None.
+- **Parts:** 8 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 86-86). Manual anchor: from `.cr-card__tag--rc { border-color: #dc2626; color: #dc2626; }` to `.cr-card__tag--rc { border-color: #dc2626; color: #dc2626; }`.
+Delete:
+```css
+.cr-card__tag--rc { border-color: #dc2626; color: #dc2626; }
+```
+
+**Part 2** (baseline lines 87-87). Manual anchor: from `.cr-card__tag--building { border-color: #ea580c; color: #ea580c; }` to `.cr-card__tag--building { border-color: #ea580c; color: #ea580c; }`.
+Delete:
+```css
+.cr-card__tag--building { border-color: #ea580c; color: #ea580c; }
+```
+
+**Part 3** (baseline lines 88-88). Manual anchor: from `.cr-card__tag--keychain { border-color: #16a34a; color: #16a34a; }` to `.cr-card__tag--keychain { border-color: #16a34a; color: #16a34a; }`.
+Delete:
+```css
+.cr-card__tag--keychain { border-color: #16a34a; color: #16a34a; }
+```
+
+**Part 4** (baseline lines 89-89). Manual anchor: from `.cr-card__tag--plush { border-color: #ff42a1; color: #ff42a1; }` to `.cr-card__tag--plush { border-color: #ff42a1; color: #ff42a1; }`.
+Delete:
+```css
+.cr-card__tag--plush { border-color: #ff42a1; color: #ff42a1; }
+```
+
+**Part 5** (baseline lines 90-90). Manual anchor: from `.cr-card__tag--fidget { border-color: #4f6ef7; color: #4f6ef7; }` to `.cr-card__tag--fidget { border-color: #4f6ef7; color: #4f6ef7; }`.
+Delete:
+```css
+.cr-card__tag--fidget { border-color: #4f6ef7; color: #4f6ef7; }
+```
+
+**Part 6** (baseline lines 94-94). Manual anchor: from `.cr-card__tag--building{border-color:#2563eb;color:#2563eb}` to `.cr-card__tag--building{border-color:#2563eb;color:#2563eb}`.
+Delete:
+```css
+.cr-card__tag--building{border-color:#2563eb;color:#2563eb}
+```
+
+**Part 7** (baseline lines 123-123). Manual anchor: from `.cr-card__tag.cr-card__tag.cr-card__tag.cr-card__tag.cr-card__tag.cr-card__tag.cr-card_...` to `.cr-card__tag.cr-card__tag.cr-card__tag.cr-card__tag.cr-card__tag.cr-card__tag.cr-card_...`.
+Delete:
+```css
+.cr-card__tag.cr-card__tag.cr-card__tag.cr-card__tag.cr-card__tag.cr-card__tag.cr-card__tag.cr-card__tag{transition:right .26s cubic-bezier(.4,0,1,1) .12s!important}
+```
+
+**Part 8** (baseline lines 125-125). Manual anchor: from `.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot{trans...` to `.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot{trans...`.
+Delete:
+```css
+.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot{transition:right .26s cubic-bezier(.4,0,1,1) .12s!important}
+```
+
+### T86 [TODO] 3 always-overridden rule(s) inside <style> blocks of snippets/product-card-styles.liquid
+- **File:** `snippets/product-card-styles.liquid` | baseline lines 25-25, 54-54, 56-56 | kind: always-overridden rules in inline CSS (same <style> block, tool-proven)
+- **Why it is dead:** Each removed rule is restated later in the SAME <style> block by a rule with the same selectors, same or top-level @media, every property at equal-or-higher priority, so it can never win. Selectors: .product-card__tag--building; .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag; .soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot
+- **Proof:** Automated scan of all 313 <style> blocks via the CSS view (identical line numbers). Only rules on lines of pure CSS (no HTML/Liquid) and without Liquid in the selector were considered; the winner had to be in the same <style> block and not inside a Liquid {% if/unless/case/for %}. Joint check with tools/cssom.js + tools/shadow.js on the views: all removed together -> PROVEN, no added rules.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .product-card__tag--building { border-color: rgb(37, 99, 235); color: rgb(37, 99, 235); } /   - removed: .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag { transition: right 0.26s cubic-bezier(0.4, 0, 1, 1) 0.12s !important; } /   - removed: .soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot { transition: right 0.26s cubic-bezier(0.4, 0, 1, 1) 0.12s !important; }**
+- **Visual change if removed:** None.
+- **Parts:** 3 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 25-25). Manual anchor: from `.product-card__tag--building{border-color:#2563eb;color:#2563eb}` to `.product-card__tag--building{border-color:#2563eb;color:#2563eb}`.
+Delete:
+```css
+.product-card__tag--building{border-color:#2563eb;color:#2563eb}
+```
+
+**Part 2** (baseline lines 54-54). Manual anchor: from `.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__...` to `.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__...`.
+Delete:
+```css
+.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag{transition:right .26s cubic-bezier(.4,0,1,1) .12s!important}
+```
+
+**Part 3** (baseline lines 56-56). Manual anchor: from `.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot{trans...` to `.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot{trans...`.
+Delete:
+```css
+.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot.soft-dot{transition:right .26s cubic-bezier(.4,0,1,1) .12s!important}
+```
+
+### T87 [TODO] 5 always-overridden rule(s) inside <style> blocks of snippets/product-recommendations.liquid
+- **File:** `snippets/product-recommendations.liquid` | baseline lines 21-21, 22-22, 23-23, 24-24, 28-28 | kind: always-overridden rules in inline CSS (same <style> block, tool-proven)
+- **Why it is dead:** Each removed rule is restated later in the SAME <style> block by a rule with the same selectors, same or top-level @media, every property at equal-or-higher priority, so it can never win. Selectors: #product-recs-grid .rec-card__tag--building; #product-recs-grid .rec-card__tag--fidget; #product-recs-grid .rec-card__tag--keychain; #product-recs-grid .rec-card__tag--plush
+- **Proof:** Automated scan of all 313 <style> blocks via the CSS view (identical line numbers). Only rules on lines of pure CSS (no HTML/Liquid) and without Liquid in the selector were considered; the winner had to be in the same <style> block and not inside a Liquid {% if/unless/case/for %}. Joint check with tools/cssom.js + tools/shadow.js on the views: all removed together -> PROVEN, no added rules.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: #product-recs-grid .rec-card__tag--fidget { border-color: rgb(79, 110, 247) !important; color: rgb(79, 110, 247) !important; } /   - removed: #product-recs-grid .rec-card__tag--keychain { border-color: rgb(22, 163, 74) !important; color: rgb(22, 163, 74) !important; } /   - removed: #product-recs-grid .rec-card__tag--plush { border-color: rgb(255, 66, 161) !important; color: rgb(255, 66, 161) !important; } /   - removed: #product-recs-grid .rec-card__tag--building { border-color: rgb(234, 88, 12) !important; color: rgb(234, 88, 12) !important; } /   - removed: #product-recs-grid .rec-card__tag--building { border-color: rgb(37, 99, 235) !important; color: rgb(37, 99, 235) !important; }**
+- **Visual change if removed:** None.
+- **Parts:** 5 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 21-21). Manual anchor: from `#product-recs-grid .rec-card__tag--fidget { border-color:#4f6ef7 !important; color:#4f6...` to `#product-recs-grid .rec-card__tag--fidget { border-color:#4f6ef7 !important; color:#4f6...`.
+Delete:
+```css
+#product-recs-grid .rec-card__tag--fidget { border-color:#4f6ef7 !important; color:#4f6ef7 !important; }
+```
+
+**Part 2** (baseline lines 22-22). Manual anchor: from `#product-recs-grid .rec-card__tag--keychain { border-color:#16a34a !important; color:#1...` to `#product-recs-grid .rec-card__tag--keychain { border-color:#16a34a !important; color:#1...`.
+Delete:
+```css
+#product-recs-grid .rec-card__tag--keychain { border-color:#16a34a !important; color:#16a34a !important; }
+```
+
+**Part 3** (baseline lines 23-23). Manual anchor: from `#product-recs-grid .rec-card__tag--plush { border-color:#ff42a1 !important; color:#ff42...` to `#product-recs-grid .rec-card__tag--plush { border-color:#ff42a1 !important; color:#ff42...`.
+Delete:
+```css
+#product-recs-grid .rec-card__tag--plush { border-color:#ff42a1 !important; color:#ff42a1 !important; }
+```
+
+**Part 4** (baseline lines 24-24). Manual anchor: from `#product-recs-grid .rec-card__tag--building { border-color:#ea580c !important; color:#e...` to `#product-recs-grid .rec-card__tag--building { border-color:#ea580c !important; color:#e...`.
+Delete:
+```css
+#product-recs-grid .rec-card__tag--building { border-color:#ea580c !important; color:#ea580c !important; }
+```
+
+**Part 5** (baseline lines 28-28). Manual anchor: from `#product-recs-grid .rec-card__tag--building{border-color:#2563eb !important;color:#2563...` to `#product-recs-grid .rec-card__tag--building{border-color:#2563eb !important;color:#2563...`.
+Delete:
+```css
+#product-recs-grid .rec-card__tag--building{border-color:#2563eb !important;color:#2563eb !important}
+```
+
+### T88 [TODO] 67 always-overridden rule(s) inside <style> blocks of snippets/tlv-orbs.liquid
+- **File:** `snippets/tlv-orbs.liquid` | baseline lines 9-9, 30-30, 35-35, 36-36, 42-42, 43-43, 45-45, 47-47, 49-49, 52-52, 57-57, 58-58, 59-59, 60-60, 61-61, 62-62, 63-63, 65-65, 67-67, 88-88, 89-89, 90-90, 114-114, 118-118, 119-119, 125-125, 127-127, 131-131, 136-136, 144-144, 151-151, 158-158, 159-159, 162-162, 165-165, 166-166, 174-174, 187-187, 197-197, 198-198, 201-201, 204-204, 205-205, 209-209, 212-212, 213-213, 214-214, 215-215, 223-223, 224-224, 230-230, 231-231, 233-233, 234-234, 239-239, 240-240, 242-242, 243-243, 244-244, 258-258, 263-263, 265-265, 266-266, 272-272, 274-274, 275-275, 281-281 | kind: always-overridden rules in inline CSS (same <style> block, tool-proven)
+- **Why it is dead:** Each removed rule is restated later in the SAME <style> block by a rule with the same selectors, same or top-level @media, every property at equal-or-higher priority, so it can never win. Selectors: .tlv-orb--has-subs .tlv-orb__subs span; .tlv-orb--has-subs .tlv-orb__subs span::before; .tlv-orb--has-subs .tlv-orb__subs span:nth-child(1); .tlv-orb--has-subs .tlv-orb__subs span:nth-child(1)::before; .tlv-orb--has-subs .tlv-orb__subs span:nth-child(2); .tlv-orb--has-subs .tlv-orb__subs span:nth-child(2)::before; .tlv-orb--has-subs .tlv-orb__subs span:nth-child(3); .tlv-orb--has-subs .tlv-orb__subs span:nth-child(3)::before; .tlv-orb--has-subs:hover .tlv-orb__subs span, .tlv-orb--has-subs:focus-within .tlv-orb__subs span; .tlv-orb--has-subs:hover .tlv-orb__wrap, .tlv-orb--has-subs:focus-within .tlv-orb__wrap; .tlv-orb:hover .tlv-orb__glow, .tlv-orb:focus-visible .tlv-orb__glow; .tlv-orb:hov
+- **Proof:** Automated scan of all 313 <style> blocks via the CSS view (identical line numbers). Only rules on lines of pure CSS (no HTML/Liquid) and without Liquid in the selector were considered; the winner had to be in the same <style> block and not inside a Liquid {% if/unless/case/for %}. Joint check with tools/cssom.js + tools/shadow.js on the views: all removed together -> PROVEN, no added rules.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .tlv-orb__glow { display: none; } /   - removed: .tlv-orb--has-subs .tlv-orb__subs span { opacity: 0; transform: translate3d(-8px, 0px, 0px); transition: opacity 0.28s, transform 0.42s cubic-bezier(0.22, 0.8, 0.2, 1); } /   - removed: @media (hover: hover) > .tlv-orb--has-subs:hover .tlv-orb__wrap, .tlv-orb--has-subs:focus-within .tlv-orb__wrap { transform: translate3d(-34px, -3px, 0px); } /   - removed: @media (hover: hover) > .tlv-orb--has-subs:hover .tlv-orb__subs span, .tlv-orb--has-subs:focus-within .tlv-orb__subs span { opacity: 1; transform: translate3d(0px, 0px, 0px); } /   - removed: .tlv-orb--has-subs .tlv-orb__subs span::before { height: 1px; width: 34px; background: color-mix(in srgb,var(--c) 42%,#b7bec9); opacity: 0.55; } /   - removed: .tlv-orb--has-subs .tlv-orb__subs span:nth-child(1) { left: -92px; top: -70px; } /   - removed: .tlv-orb--has-subs .tlv-orb__subs span:nth-child(2) { left: 0px; top: 102px; } /   - removed: .tlv-orb--has-subs .tlv-orb__subs span:nth-child(3) { left: 92px; top: -70px; } /   - removed: .tlv-orb--has-subs .tlv-orb__subs span { min-width: 76px; padding: 0px; background: transparent; box-shadow: none; display: flex; flex-direction: column; align-items: center; gap: 5px; font-size: 10px; } /   - removed: .tlv-orb--has-subs .tlv-orb__subs span::before { left: 50%; top: 50%; width: 1px; height: 42px; background: color-mix(in srgb,var(--c) 42%,#b7bec9); } /   - removed: .tlv-orb--has-subs .tlv-orb__subs span::before { content: ""; position: absolute; z-index: -1; height: 1px; background: color-mix(in srgb,var(--c) 48%,#9aa3b5); transform-origin: left center; left: 50%; top: 50%; width: 36px; opacity: 0.7; } /   - removed: .tlv-orb--has-subs .tlv-orb__subs span:nth-child(1) { left: -82px; top: -62px; } /   - removed: .tlv-orb--has-subs .tlv-orb__subs span:nth-child(1)::before { transform: rotate(42deg); } /   - removed: .tlv-orb--has-subs .tlv-orb__subs span:nth-child(2) { left: 0px; top: 88px; } /   - removed: .tlv-orb--has-subs .tlv-orb__subs span:nth-child(2)::before { transform: rotate(-90deg); } /   - removed: .tlv-orb--has-subs .tlv-orb__subs span:nth-child(3) { left: 82px; top: -62px; } /   - removed: .tlv-orb--has-subs .tlv-orb__subs span:nth-child(3)::before { transform: rotate(138deg); } /   - removed: @media (hover: hover) > .tlv-orb--has-subs:hover .tlv-orb__wrap, .tlv-orb--has-subs:focus-within .tlv-orb__wrap { transform: translate3d(0px, 0px, 0px); } /   - removed: @media (hover: hover) > .tlv-orb--has-subs:hover .tlv-orb__subs span, .tlv-orb--has-subs:focus-within .tlv-orb__subs span { opacity: 1; transform: translate3d(-50%, -50%, 0px) scale(1); } /   - removed: .tlv-orb--has-subs .tlv-orb__subs span:nth-child(1)::before { transform: rotate(42deg) scaleX(0.15); } /   - removed: .tlv-orb--has-subs .tlv-orb__subs span:nth-child(2)::before { transform: rotate(-90deg) scaleX(0.15); } /   - removed: .tlv-orb--has-subs .tlv-orb__subs span:nth-child(3)::before { transform: rotate(138deg) scaleX(0.15); } /   - removed: .tlv-orb__glow::before { content: ""; position: absolute; left: 50%; top: -28px; width: 1px; height: 24px; border-left: 1px dotted color-mix(in srgb,var(--c) 62%,#aeb7c5); transform: translateX(-50%); opacity: 0; transition: opacity 0.2s 0.05s; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__glow, .tlv-orb:focus-visible .tlv-orb__glow { opacity: 1; transform: translate(-50%, 0px) scale(1); } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__glow::before, .tlv-orb:focus-visible .tlv-orb__glow::before { opacity: 1; } /   - removed: .tlv-orb__glow::before { top: -92px !important; height: 88px !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__glow::after, .tlv-orb:focus-visible .tlv-orb__glow::after { opacity: 0.82; transform: scale(1); } /   - removed: .tlv-orb__glow::before { display: none !important; } /   - removed: .tlv-orb__glow { top: calc(50% - 73px) !important; } /   - removed: .tlv-orb__wrap { width: clamp(64px, 19vw, 110px); flex: 0 0 auto; } /   - removed: .tlv-orb__glow { left: calc(50% + 57px) !important; top: calc(50% - 40px) !important; } /   - removed: .tlv-orb__wrap::before { transform: translateX(-50%) rotate(60deg) !important; transform-origin: center bottom !important; opacity: 0 !important; transition: opacity 0.25s !important; } /   - removed: .tlv-orb__wrap::after { transform: translateX(-50%) rotate(-60deg) !important; transform-origin: center bottom !important; opacity: 0 !important; transition: opacity 0.25s !important; } /   - removed: .tlv-orb__wrap::after { width: 2px !important; border: 0px !important; background: repeating-linear-gradient(to bottom,color-mix(in srgb,var(--c) 68%,#aeb7c5) 0 2px,transparent 2px 5px) !important; transform: translateX(-50%) rotate(-60deg) !important; transform-origin: center bottom !important; } /   - removed: .tlv-orb__wrap::before { transform: translateX(-50%) rotate(-120deg) !important; } /   - removed: .tlv-orb__wrap::after { transform: translateX(-50%) rotate(120deg) !important; } /   - removed: .tlv-orb__wrap::before, .tlv-orb__wrap::after { height: 86px !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__glow, .tlv-orb:focus-visible .tlv-orb__glow { opacity: 1 !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__glow::before, .tlv-orb:focus-visible .tlv-orb__glow::before, .tlv-orb:hover .tlv-orb__glow::after, .tlv-orb:focus-visible .tlv-orb__glow::after { opacity: 1 !important; } /   - removed: .tlv-orb__wrap::before, .tlv-orb__wrap::after { background: repeating-linear-gradient(to bottom,color-mix(in srgb,var(--c) 72%,#aeb7c5) 0 2px,transparent 2px 5px) !important; } /   - removed: .tlv-orb__glow::before { transition: opacity 0.25s 0.18s !important; } /   - removed: .tlv-orb__glow::after { transition: opacity 0.25s, transform 0.42s cubic-bezier(0.22, 0.8, 0.2, 1) !important; } /   - removed: .tlv-orb__wrap::before, .tlv-orb__wrap::after { transition: opacity 0.8s, transform 0.8s cubic-bezier(0.22, 0.8, 0.2, 1) !important; } /   - removed: .tlv-orb__glow::after { transition: opacity 0.3s 0.82s, transform 0.42s cubic-bezier(0.22, 0.8, 0.2, 1) 0.82s !important; } /   - removed: .tlv-orb__glow::before { transition: opacity 0.3s 1s !important; } /   - removed: .tlv-orb__glow::before { transition: opacity 0.3s 0.48s !important; } /   - removed: .tlv-orb__glow::before, .tlv-orb__glow::after { transition-delay: 0.48s !important; } /   - removed: .tlv-orb__wrap::before, .tlv-orb__wrap::after { transition: transform 0.8s linear, opacity 0.8s linear !important; } /   - removed: .tlv-orb__glow::before, .tlv-orb__glow::after { transition-delay: 0.85s !important; } /   - removed: .tlv-orb__glow { opacity: 0 !important; transition: opacity 0.3s 0.85s !important; } /   - removed: .tlv-orb__glow, .tlv-orb__glow::before, .tlv-orb__glow::after { transition: opacity 0.3s !important; } /   - removed: .tlv-orb__wrap::before, .tlv-orb__wrap::after { transition: opacity 0.8s 0.3s, transform 0.8s 0.3s !important; } /   - removed: .tlv-orb__glow { opacity: 0 !important; transition: opacity 0.25s 1.82s !important; } /   - removed: .tlv-orb__glow::before, .tlv-orb__glow::after { opacity: 0 !important; transition: opacity 0.25s 1.82s !important; } /   - removed: .tlv-orb__wrap::before, .tlv-orb__wrap::after { transform-origin: center top !important; opacity: 0 !important; } /   - removed: .tlv-orb__glow, .tlv-orb__glow::before, .tlv-orb__glow::after { opacity: 0 !important; transition: opacity 0.22s 1.86s !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__wrap::before, .tlv-orb:focus-visible .tlv-orb__wrap::before { animation: 1.8s cubic-bezier(0.22, 0.8, 0.2, 1) 0s 1 normal both running tlv-arm-draw-right !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__wrap::after, .tlv-orb:focus-visible .tlv-orb__wrap::after { animation: 1.8s cubic-bezier(0.22, 0.8, 0.2, 1) 0s 1 normal both running tlv-arm-draw-left !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__glow, .tlv-orb:focus-visible .tlv-orb__glow, .tlv-orb:hover .tlv-orb__glow::before, .tlv-orb:focus-visible .tlv-orb__glow::before, .tlv-orb:hover .tlv-orb__glow::after, .tlv-orb:focus-visible .tlv-orb__glow::after { opacity: 1 !important; } /   - removed: .tlv-orb__glow, .tlv-orb__glow::before, .tlv-orb__glow::after { display: none !important; opacity: 0 !important; } /   - removed: .tlv-orb__wrap::before, .tlv-orb__wrap::after { clip-path: inset(0px 0px 100%) !important; opacity: 0 !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__wrap::before, .tlv-orb:focus-visible .tlv-orb__wrap::before { animation: 1.15s cubic-bezier(0.22, 0.8, 0.2, 1) 0s 1 normal both running tlv-line-grow-right !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__wrap::after, .tlv-orb:focus-visible .tlv-orb__wrap::after { animation: 1.15s cubic-bezier(0.22, 0.8, 0.2, 1) 0s 1 normal both running tlv-line-grow-left !important; } /   - removed: .tlv-orb__wrap::before, .tlv-orb__wrap::after { clip-path: none !important; height: 0px !important; opacity: 0 !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__wrap::before, .tlv-orb:focus-visible .tlv-orb__wrap::before { animation: 1.15s cubic-bezier(0.22, 0.8, 0.2, 1) 0s 1 normal both running tlv-line-height-right !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__wrap::after, .tlv-orb:focus-visible .tlv-orb__wrap::after { animation: 1.15s cubic-bezier(0.22, 0.8, 0.2, 1) 0s 1 normal both running tlv-line-height-left !important; } /   - removed: .tlv-orb__glow::before { transition-delay: 1.15s !important; }**
+- **Visual change if removed:** None.
+- **Parts:** 67 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 9-9). Manual anchor: from `.tlv-orb__glow{display:none}` to `.tlv-orb__glow{display:none}`.
+Delete:
+```css
+.tlv-orb__glow{display:none}
+```
+
+**Part 2** (baseline lines 30-30). Manual anchor: from `.tlv-orb--has-subs .tlv-orb__subs span{opacity:0;transform:translate3d(-8px,0,0);transi...` to `.tlv-orb--has-subs .tlv-orb__subs span{opacity:0;transform:translate3d(-8px,0,0);transi...`.
+Delete:
+```css
+.tlv-orb--has-subs .tlv-orb__subs span{opacity:0;transform:translate3d(-8px,0,0);transition:opacity .28s ease,transform .42s cubic-bezier(.22,.8,.2,1)}
+```
+
+**Part 3** (baseline lines 35-35). Manual anchor: from `.tlv-orb--has-subs:hover .tlv-orb__wrap,.tlv-orb--has-subs:focus-within .tlv-orb__wrap{...` to `.tlv-orb--has-subs:hover .tlv-orb__wrap,.tlv-orb--has-subs:focus-within .tlv-orb__wrap{...`.
+Delete:
+```css
+  .tlv-orb--has-subs:hover .tlv-orb__wrap,.tlv-orb--has-subs:focus-within .tlv-orb__wrap{transform:translate3d(-34px,-3px,0)}
+```
+
+**Part 4** (baseline lines 36-36). Manual anchor: from `.tlv-orb--has-subs:hover .tlv-orb__subs span,.tlv-orb--has-subs:focus-within .tlv-orb__...` to `.tlv-orb--has-subs:hover .tlv-orb__subs span,.tlv-orb--has-subs:focus-within .tlv-orb__...`.
+Delete:
+```css
+  .tlv-orb--has-subs:hover .tlv-orb__subs span,.tlv-orb--has-subs:focus-within .tlv-orb__subs span{opacity:1;transform:translate3d(0,0,0)}
+```
+
+**Part 5** (baseline lines 42-42). Manual anchor: from `.tlv-orb--has-subs .tlv-orb__subs span::before{height:1px;width:34px;background:color-m...` to `.tlv-orb--has-subs .tlv-orb__subs span::before{height:1px;width:34px;background:color-m...`.
+Delete:
+```css
+.tlv-orb--has-subs .tlv-orb__subs span::before{height:1px;width:34px;background:color-mix(in srgb,var(--c) 42%,#b7bec9);opacity:.55}
+```
+
+**Part 6** (baseline lines 43-43). Manual anchor: from `.tlv-orb--has-subs .tlv-orb__subs span:nth-child(1){left:-92px;top:-70px}` to `.tlv-orb--has-subs .tlv-orb__subs span:nth-child(1){left:-92px;top:-70px}`.
+Delete:
+```css
+.tlv-orb--has-subs .tlv-orb__subs span:nth-child(1){left:-92px;top:-70px}
+```
+
+**Part 7** (baseline lines 45-45). Manual anchor: from `.tlv-orb--has-subs .tlv-orb__subs span:nth-child(2){left:0;top:102px}` to `.tlv-orb--has-subs .tlv-orb__subs span:nth-child(2){left:0;top:102px}`.
+Delete:
+```css
+.tlv-orb--has-subs .tlv-orb__subs span:nth-child(2){left:0;top:102px}
+```
+
+**Part 8** (baseline lines 47-47). Manual anchor: from `.tlv-orb--has-subs .tlv-orb__subs span:nth-child(3){left:92px;top:-70px}` to `.tlv-orb--has-subs .tlv-orb__subs span:nth-child(3){left:92px;top:-70px}`.
+Delete:
+```css
+.tlv-orb--has-subs .tlv-orb__subs span:nth-child(3){left:92px;top:-70px}
+```
+
+**Part 9** (baseline lines 49-49). Manual anchor: from `.tlv-orb--has-subs .tlv-orb__subs span{min-width:76px;padding:0;background:transparent;...` to `.tlv-orb--has-subs .tlv-orb__subs span{min-width:76px;padding:0;background:transparent;...`.
+Delete:
+```css
+.tlv-orb--has-subs .tlv-orb__subs span{min-width:76px;padding:0;background:transparent;box-shadow:none;display:flex;flex-direction:column;align-items:center;gap:5px;font-size:10px}
+```
+
+**Part 10** (baseline lines 52-52). Manual anchor: from `.tlv-orb--has-subs .tlv-orb__subs span::before{left:50%;top:50%;width:1px;height:42px;b...` to `.tlv-orb--has-subs .tlv-orb__subs span::before{left:50%;top:50%;width:1px;height:42px;b...`.
+Delete:
+```css
+.tlv-orb--has-subs .tlv-orb__subs span::before{left:50%;top:50%;width:1px;height:42px;background:color-mix(in srgb,var(--c) 42%,#b7bec9)}
+```
+
+**Part 11** (baseline lines 57-57). Manual anchor: from `.tlv-orb--has-subs .tlv-orb__subs span::before{content:"";position:absolute;z-index:-1;...` to `.tlv-orb--has-subs .tlv-orb__subs span::before{content:"";position:absolute;z-index:-1;...`.
+Delete:
+```css
+.tlv-orb--has-subs .tlv-orb__subs span::before{content:"";position:absolute;z-index:-1;height:1px;background:color-mix(in srgb,var(--c) 48%,#9aa3b5);transform-origin:left center;left:50%;top:50%;width:36px;opacity:.7}
+```
+
+**Part 12** (baseline lines 58-58). Manual anchor: from `.tlv-orb--has-subs .tlv-orb__subs span:nth-child(1){left:-82px;top:-62px}` to `.tlv-orb--has-subs .tlv-orb__subs span:nth-child(1){left:-82px;top:-62px}`.
+Delete:
+```css
+.tlv-orb--has-subs .tlv-orb__subs span:nth-child(1){left:-82px;top:-62px}
+```
+
+**Part 13** (baseline lines 59-59). Manual anchor: from `.tlv-orb--has-subs .tlv-orb__subs span:nth-child(1)::before{transform:rotate(42deg)}` to `.tlv-orb--has-subs .tlv-orb__subs span:nth-child(1)::before{transform:rotate(42deg)}`.
+Delete:
+```css
+.tlv-orb--has-subs .tlv-orb__subs span:nth-child(1)::before{transform:rotate(42deg)}
+```
+
+**Part 14** (baseline lines 60-60). Manual anchor: from `.tlv-orb--has-subs .tlv-orb__subs span:nth-child(2){left:0;top:88px}` to `.tlv-orb--has-subs .tlv-orb__subs span:nth-child(2){left:0;top:88px}`.
+Delete:
+```css
+.tlv-orb--has-subs .tlv-orb__subs span:nth-child(2){left:0;top:88px}
+```
+
+**Part 15** (baseline lines 61-61). Manual anchor: from `.tlv-orb--has-subs .tlv-orb__subs span:nth-child(2)::before{transform:rotate(-90deg)}` to `.tlv-orb--has-subs .tlv-orb__subs span:nth-child(2)::before{transform:rotate(-90deg)}`.
+Delete:
+```css
+.tlv-orb--has-subs .tlv-orb__subs span:nth-child(2)::before{transform:rotate(-90deg)}
+```
+
+**Part 16** (baseline lines 62-62). Manual anchor: from `.tlv-orb--has-subs .tlv-orb__subs span:nth-child(3){left:82px;top:-62px}` to `.tlv-orb--has-subs .tlv-orb__subs span:nth-child(3){left:82px;top:-62px}`.
+Delete:
+```css
+.tlv-orb--has-subs .tlv-orb__subs span:nth-child(3){left:82px;top:-62px}
+```
+
+**Part 17** (baseline lines 63-63). Manual anchor: from `.tlv-orb--has-subs .tlv-orb__subs span:nth-child(3)::before{transform:rotate(138deg)}` to `.tlv-orb--has-subs .tlv-orb__subs span:nth-child(3)::before{transform:rotate(138deg)}`.
+Delete:
+```css
+.tlv-orb--has-subs .tlv-orb__subs span:nth-child(3)::before{transform:rotate(138deg)}
+```
+
+**Part 18** (baseline lines 65-65). Manual anchor: from `.tlv-orb--has-subs:hover .tlv-orb__wrap,.tlv-orb--has-subs:focus-within .tlv-orb__wrap{...` to `.tlv-orb--has-subs:hover .tlv-orb__wrap,.tlv-orb--has-subs:focus-within .tlv-orb__wrap{...`.
+Delete:
+```css
+ .tlv-orb--has-subs:hover .tlv-orb__wrap,.tlv-orb--has-subs:focus-within .tlv-orb__wrap{transform:translate3d(0,0,0)}
+```
+
+**Part 19** (baseline lines 67-67). Manual anchor: from `.tlv-orb--has-subs:hover .tlv-orb__subs span,.tlv-orb--has-subs:focus-within .tlv-orb__...` to `.tlv-orb--has-subs:hover .tlv-orb__subs span,.tlv-orb--has-subs:focus-within .tlv-orb__...`.
+Delete:
+```css
+ .tlv-orb--has-subs:hover .tlv-orb__subs span,.tlv-orb--has-subs:focus-within .tlv-orb__subs span{opacity:1;transform:translate3d(-50%,-50%,0) scale(1)}
+```
+
+**Part 20** (baseline lines 88-88). Manual anchor: from `.tlv-orb--has-subs .tlv-orb__subs span:nth-child(1)::before{transform:rotate(42deg) sca...` to `.tlv-orb--has-subs .tlv-orb__subs span:nth-child(1)::before{transform:rotate(42deg) sca...`.
+Delete:
+```css
+.tlv-orb--has-subs .tlv-orb__subs span:nth-child(1)::before{transform:rotate(42deg) scaleX(.15)}
+```
+
+**Part 21** (baseline lines 89-89). Manual anchor: from `.tlv-orb--has-subs .tlv-orb__subs span:nth-child(2)::before{transform:rotate(-90deg) sc...` to `.tlv-orb--has-subs .tlv-orb__subs span:nth-child(2)::before{transform:rotate(-90deg) sc...`.
+Delete:
+```css
+.tlv-orb--has-subs .tlv-orb__subs span:nth-child(2)::before{transform:rotate(-90deg) scaleX(.15)}
+```
+
+**Part 22** (baseline lines 90-90). Manual anchor: from `.tlv-orb--has-subs .tlv-orb__subs span:nth-child(3)::before{transform:rotate(138deg) sc...` to `.tlv-orb--has-subs .tlv-orb__subs span:nth-child(3)::before{transform:rotate(138deg) sc...`.
+Delete:
+```css
+.tlv-orb--has-subs .tlv-orb__subs span:nth-child(3)::before{transform:rotate(138deg) scaleX(.15)}
+```
+
+**Part 23** (baseline lines 114-114). Manual anchor: from `.tlv-orb__glow::before{content:"";position:absolute;left:50%;top:-28px;width:1px;height...` to `.tlv-orb__glow::before{content:"";position:absolute;left:50%;top:-28px;width:1px;height...`.
+Delete:
+```css
+.tlv-orb__glow::before{content:"";position:absolute;left:50%;top:-28px;width:1px;height:24px;border-left:1px dotted color-mix(in srgb,var(--c) 62%,#aeb7c5);transform:translateX(-50%);opacity:0;transition:opacity .2s ease .05s}
+```
+
+**Part 24** (baseline lines 118-118). Manual anchor: from `.tlv-orb:hover .tlv-orb__glow,.tlv-orb:focus-visible .tlv-orb__glow{opacity:1;transform...` to `.tlv-orb:hover .tlv-orb__glow,.tlv-orb:focus-visible .tlv-orb__glow{opacity:1;transform...`.
+Delete:
+```css
+ .tlv-orb:hover .tlv-orb__glow,.tlv-orb:focus-visible .tlv-orb__glow{opacity:1;transform:translate(-50%,0) scale(1)}
+```
+
+**Part 25** (baseline lines 119-119). Manual anchor: from `.tlv-orb:hover .tlv-orb__glow::before,.tlv-orb:focus-visible .tlv-orb__glow::before{opa...` to `.tlv-orb:hover .tlv-orb__glow::before,.tlv-orb:focus-visible .tlv-orb__glow::before{opa...`.
+Delete:
+```css
+ .tlv-orb:hover .tlv-orb__glow::before,.tlv-orb:focus-visible .tlv-orb__glow::before{opacity:1}
+```
+
+**Part 26** (baseline lines 125-125). Manual anchor: from `.tlv-orb__glow::before{top:-92px!important;height:88px!important}` to `.tlv-orb__glow::before{top:-92px!important;height:88px!important}`.
+Delete:
+```css
+.tlv-orb__glow::before{top:-92px!important;height:88px!important}
+```
+
+**Part 27** (baseline lines 127-127). Manual anchor: from `.tlv-orb:hover .tlv-orb__glow::after,.tlv-orb:focus-visible .tlv-orb__glow::after{opaci...` to `.tlv-orb:hover .tlv-orb__glow::after,.tlv-orb:focus-visible .tlv-orb__glow::after{opaci...`.
+Delete:
+```css
+ .tlv-orb:hover .tlv-orb__glow::after,.tlv-orb:focus-visible .tlv-orb__glow::after{opacity:.82;transform:scale(1)}
+```
+
+**Part 28** (baseline lines 131-131). Manual anchor: from `.tlv-orb__glow::before{display:none!important}` to `.tlv-orb__glow::before{display:none!important}`.
+Delete:
+```css
+.tlv-orb__glow::before{display:none!important}
+```
+
+**Part 29** (baseline lines 136-136). Manual anchor: from `.tlv-orb__glow{top:calc(50% - 73px)!important}` to `.tlv-orb__glow{top:calc(50% - 73px)!important}`.
+Delete:
+```css
+.tlv-orb__glow{top:calc(50% - 73px)!important}
+```
+
+**Part 30** (baseline lines 144-144). Manual anchor: from `.tlv-orb__wrap{width:clamp(64px,19vw,110px);flex:0 0 auto}` to `.tlv-orb__wrap{width:clamp(64px,19vw,110px);flex:0 0 auto}`.
+Delete:
+```css
+.tlv-orb__wrap{width:clamp(64px,19vw,110px);flex:0 0 auto}
+```
+
+**Part 31** (baseline lines 151-151). Manual anchor: from `.tlv-orb__glow{left:calc(50% + 57px)!important;top:calc(50% - 40px)!important}` to `.tlv-orb__glow{left:calc(50% + 57px)!important;top:calc(50% - 40px)!important}`.
+Delete:
+```css
+.tlv-orb__glow{left:calc(50% + 57px)!important;top:calc(50% - 40px)!important}
+```
+
+**Part 32** (baseline lines 158-158). Manual anchor: from `.tlv-orb__wrap::before{transform:translateX(-50%) rotate(60deg)!important;transform-ori...` to `.tlv-orb__wrap::before{transform:translateX(-50%) rotate(60deg)!important;transform-ori...`.
+Delete:
+```css
+.tlv-orb__wrap::before{transform:translateX(-50%) rotate(60deg)!important;transform-origin:bottom center!important;opacity:0!important;transition:opacity .25s ease!important}
+```
+
+**Part 33** (baseline lines 159-159). Manual anchor: from `.tlv-orb__wrap::after{transform:translateX(-50%) rotate(-60deg)!important;transform-ori...` to `.tlv-orb__wrap::after{transform:translateX(-50%) rotate(-60deg)!important;transform-ori...`.
+Delete:
+```css
+.tlv-orb__wrap::after{transform:translateX(-50%) rotate(-60deg)!important;transform-origin:bottom center!important;opacity:0!important;transition:opacity .25s ease!important}
+```
+
+**Part 34** (baseline lines 162-162). Manual anchor: from `.tlv-orb__wrap::after{width:2px!important;border:0!important;background:repeating-linea...` to `.tlv-orb__wrap::after{width:2px!important;border:0!important;background:repeating-linea...`.
+Delete:
+```css
+.tlv-orb__wrap::after{width:2px!important;border:0!important;background:repeating-linear-gradient(to bottom,color-mix(in srgb,var(--c) 68%,#aeb7c5) 0 2px,transparent 2px 5px)!important;transform:translateX(-50%) rotate(-60deg)!important;transform-origin:bottom center!important}
+```
+
+**Part 35** (baseline lines 165-165). Manual anchor: from `.tlv-orb__wrap::before{transform:translateX(-50%) rotate(-120deg)!important}` to `.tlv-orb__wrap::before{transform:translateX(-50%) rotate(-120deg)!important}`.
+Delete:
+```css
+.tlv-orb__wrap::before{transform:translateX(-50%) rotate(-120deg)!important}
+```
+
+**Part 36** (baseline lines 166-166). Manual anchor: from `.tlv-orb__wrap::after{transform:translateX(-50%) rotate(120deg)!important}` to `.tlv-orb__wrap::after{transform:translateX(-50%) rotate(120deg)!important}`.
+Delete:
+```css
+.tlv-orb__wrap::after{transform:translateX(-50%) rotate(120deg)!important}
+```
+
+**Part 37** (baseline lines 174-174). Manual anchor: from `.tlv-orb__wrap::before,.tlv-orb__wrap::after{height:86px!important}` to `.tlv-orb__wrap::before,.tlv-orb__wrap::after{height:86px!important}`.
+Delete:
+```css
+.tlv-orb__wrap::before,.tlv-orb__wrap::after{height:86px!important}
+```
+
+**Part 38** (baseline lines 187-187). Manual anchor: from `.tlv-orb__wrap::before,.tlv-orb__wrap::after{background:repeating-linear-gradient(to bo...` to `.tlv-orb__wrap::before,.tlv-orb__wrap::after{background:repeating-linear-gradient(to bo...`.
+Delete:
+```css
+.tlv-orb__wrap::before,.tlv-orb__wrap::after{background:repeating-linear-gradient(to bottom,color-mix(in srgb,var(--c) 72%,#aeb7c5) 0 2px,transparent 2px 5px)!important}
+```
+
+**Part 39** (baseline lines 197-197). Manual anchor: from `.tlv-orb__glow::before{transition:opacity .25s ease .18s!important}` to `.tlv-orb__glow::before{transition:opacity .25s ease .18s!important}`.
+Delete:
+```css
+.tlv-orb__glow::before{transition:opacity .25s ease .18s!important}
+```
+
+**Part 40** (baseline lines 198-198). Manual anchor: from `.tlv-orb__glow::after{transition:opacity .25s ease 0s,transform .42s cubic-bezier(.22,....` to `.tlv-orb__glow::after{transition:opacity .25s ease 0s,transform .42s cubic-bezier(.22,....`.
+Delete:
+```css
+.tlv-orb__glow::after{transition:opacity .25s ease 0s,transform .42s cubic-bezier(.22,.8,.2,1) 0s!important}
+```
+
+**Part 41** (baseline lines 201-201). Manual anchor: from `.tlv-orb__wrap::before,.tlv-orb__wrap::after{transition:opacity .8s ease,transform .8s ...` to `.tlv-orb__wrap::before,.tlv-orb__wrap::after{transition:opacity .8s ease,transform .8s ...`.
+Delete:
+```css
+.tlv-orb__wrap::before,.tlv-orb__wrap::after{transition:opacity .8s ease,transform .8s cubic-bezier(.22,.8,.2,1)!important}
+```
+
+**Part 42** (baseline lines 204-204). Manual anchor: from `.tlv-orb__glow::after{transition:opacity .3s ease .82s,transform .42s cubic-bezier(.22,...` to `.tlv-orb__glow::after{transition:opacity .3s ease .82s,transform .42s cubic-bezier(.22,...`.
+Delete:
+```css
+.tlv-orb__glow::after{transition:opacity .3s ease .82s,transform .42s cubic-bezier(.22,.8,.2,1) .82s!important}
+```
+
+**Part 43** (baseline lines 205-205). Manual anchor: from `.tlv-orb__glow::before{transition:opacity .3s ease 1s!important}` to `.tlv-orb__glow::before{transition:opacity .3s ease 1s!important}`.
+Delete:
+```css
+.tlv-orb__glow::before{transition:opacity .3s ease 1s!important}
+```
+
+**Part 44** (baseline lines 209-209). Manual anchor: from `.tlv-orb__glow::before{transition:opacity .3s ease .48s!important}` to `.tlv-orb__glow::before{transition:opacity .3s ease .48s!important}`.
+Delete:
+```css
+.tlv-orb__glow::before{transition:opacity .3s ease .48s!important}
+```
+
+**Part 45** (baseline lines 212-212). Manual anchor: from `.tlv-orb__glow::before,.tlv-orb__glow::after{transition-delay:.48s!important}` to `.tlv-orb__glow::before,.tlv-orb__glow::after{transition-delay:.48s!important}`.
+Delete:
+```css
+.tlv-orb__glow::before,.tlv-orb__glow::after{transition-delay:.48s!important}
+```
+
+**Part 46** (baseline lines 213-213). Manual anchor: from `.tlv-orb__wrap::before,.tlv-orb__wrap::after{transition:transform .8s linear,opacity .8...` to `.tlv-orb__wrap::before,.tlv-orb__wrap::after{transition:transform .8s linear,opacity .8...`.
+Delete:
+```css
+.tlv-orb__wrap::before,.tlv-orb__wrap::after{transition:transform .8s linear,opacity .8s linear!important;transition-delay:0s!important}
+```
+
+**Part 47** (baseline lines 214-214). Manual anchor: from `.tlv-orb__glow::before,.tlv-orb__glow::after{transition-delay:.85s!important}` to `.tlv-orb__glow::before,.tlv-orb__glow::after{transition-delay:.85s!important}`.
+Delete:
+```css
+.tlv-orb__glow::before,.tlv-orb__glow::after{transition-delay:.85s!important}
+```
+
+**Part 48** (baseline lines 215-215). Manual anchor: from `.tlv-orb__glow{opacity:0!important;transition:opacity .3s ease .85s!important}` to `.tlv-orb__glow{opacity:0!important;transition:opacity .3s ease .85s!important}`.
+Delete:
+```css
+.tlv-orb__glow{opacity:0!important;transition:opacity .3s ease .85s!important}
+```
+
+**Part 49** (baseline lines 223-223). Manual anchor: from `.tlv-orb__glow,.tlv-orb__glow::before,.tlv-orb__glow::after{transition:opacity .3s ease...` to `.tlv-orb__glow,.tlv-orb__glow::before,.tlv-orb__glow::after{transition:opacity .3s ease...`.
+Delete:
+```css
+.tlv-orb__glow,.tlv-orb__glow::before,.tlv-orb__glow::after{transition:opacity .3s ease 0s!important}
+```
+
+**Part 50** (baseline lines 224-224). Manual anchor: from `.tlv-orb__wrap::before,.tlv-orb__wrap::after{transition:opacity .8s ease .3s,transform ...` to `.tlv-orb__wrap::before,.tlv-orb__wrap::after{transition:opacity .8s ease .3s,transform ...`.
+Delete:
+```css
+.tlv-orb__wrap::before,.tlv-orb__wrap::after{transition:opacity .8s ease .3s,transform .8s ease .3s!important}
+```
+
+**Part 51** (baseline lines 230-230). Manual anchor: from `.tlv-orb__glow{opacity:0!important;transition:opacity .25s ease 1.82s!important}` to `.tlv-orb__glow{opacity:0!important;transition:opacity .25s ease 1.82s!important}`.
+Delete:
+```css
+.tlv-orb__glow{opacity:0!important;transition:opacity .25s ease 1.82s!important}
+```
+
+**Part 52** (baseline lines 231-231). Manual anchor: from `.tlv-orb__glow::before,.tlv-orb__glow::after{opacity:0!important;transition:opacity .25...` to `.tlv-orb__glow::before,.tlv-orb__glow::after{opacity:0!important;transition:opacity .25...`.
+Delete:
+```css
+.tlv-orb__glow::before,.tlv-orb__glow::after{opacity:0!important;transition:opacity .25s ease 1.82s!important}
+```
+
+**Part 53** (baseline lines 233-233). Manual anchor: from `.tlv-orb:hover .tlv-orb__glow,.tlv-orb:focus-visible .tlv-orb__glow{opacity:1!important}` to `.tlv-orb:hover .tlv-orb__glow,.tlv-orb:focus-visible .tlv-orb__glow{opacity:1!important}`.
+Delete:
+```css
+ .tlv-orb:hover .tlv-orb__glow,.tlv-orb:focus-visible .tlv-orb__glow{opacity:1!important}
+```
+
+**Part 54** (baseline lines 234-234). Manual anchor: from `.tlv-orb:hover .tlv-orb__glow::before,.tlv-orb:focus-visible .tlv-orb__glow::before,.tl...` to `.tlv-orb:hover .tlv-orb__glow::before,.tlv-orb:focus-visible .tlv-orb__glow::before,.tl...`.
+Delete:
+```css
+ .tlv-orb:hover .tlv-orb__glow::before,.tlv-orb:focus-visible .tlv-orb__glow::before,.tlv-orb:hover .tlv-orb__glow::after,.tlv-orb:focus-visible .tlv-orb__glow::after{opacity:1!important}
+```
+
+**Part 55** (baseline lines 239-239). Manual anchor: from `.tlv-orb__wrap::before,.tlv-orb__wrap::after{transform-origin:top center!important;opac...` to `.tlv-orb__wrap::before,.tlv-orb__wrap::after{transform-origin:top center!important;opac...`.
+Delete:
+```css
+.tlv-orb__wrap::before,.tlv-orb__wrap::after{transform-origin:top center!important;opacity:0!important}
+```
+
+**Part 56** (baseline lines 240-240). Manual anchor: from `.tlv-orb__glow,.tlv-orb__glow::before,.tlv-orb__glow::after{opacity:0!important;transit...` to `.tlv-orb__glow,.tlv-orb__glow::before,.tlv-orb__glow::after{opacity:0!important;transit...`.
+Delete:
+```css
+.tlv-orb__glow,.tlv-orb__glow::before,.tlv-orb__glow::after{opacity:0!important;transition:opacity .22s ease 1.86s!important}
+```
+
+**Part 57** (baseline lines 242-242). Manual anchor: from `.tlv-orb:hover .tlv-orb__wrap::before,.tlv-orb:focus-visible .tlv-orb__wrap::before{ani...` to `.tlv-orb:hover .tlv-orb__wrap::before,.tlv-orb:focus-visible .tlv-orb__wrap::before{ani...`.
+Delete:
+```css
+ .tlv-orb:hover .tlv-orb__wrap::before,.tlv-orb:focus-visible .tlv-orb__wrap::before{animation:tlv-arm-draw-right 1.8s cubic-bezier(.22,.8,.2,1) both!important}
+```
+
+**Part 58** (baseline lines 243-243). Manual anchor: from `.tlv-orb:hover .tlv-orb__wrap::after,.tlv-orb:focus-visible .tlv-orb__wrap::after{anima...` to `.tlv-orb:hover .tlv-orb__wrap::after,.tlv-orb:focus-visible .tlv-orb__wrap::after{anima...`.
+Delete:
+```css
+ .tlv-orb:hover .tlv-orb__wrap::after,.tlv-orb:focus-visible .tlv-orb__wrap::after{animation:tlv-arm-draw-left 1.8s cubic-bezier(.22,.8,.2,1) both!important}
+```
+
+**Part 59** (baseline lines 244-244). Manual anchor: from `.tlv-orb:hover .tlv-orb__glow,.tlv-orb:focus-visible .tlv-orb__glow,.tlv-orb:hover .tlv...` to `.tlv-orb:hover .tlv-orb__glow,.tlv-orb:focus-visible .tlv-orb__glow,.tlv-orb:hover .tlv...`.
+Delete:
+```css
+ .tlv-orb:hover .tlv-orb__glow,.tlv-orb:focus-visible .tlv-orb__glow,.tlv-orb:hover .tlv-orb__glow::before,.tlv-orb:focus-visible .tlv-orb__glow::before,.tlv-orb:hover .tlv-orb__glow::after,.tlv-orb:focus-visible .tlv-orb__glow::after{opacity:1!important}
+```
+
+**Part 60** (baseline lines 258-258). Manual anchor: from `.tlv-orb__glow,.tlv-orb__glow::before,.tlv-orb__glow::after{display:none!important;opac...` to `.tlv-orb__glow,.tlv-orb__glow::before,.tlv-orb__glow::after{display:none!important;opac...`.
+Delete:
+```css
+.tlv-orb__glow,.tlv-orb__glow::before,.tlv-orb__glow::after{display:none!important;opacity:0!important}
+```
+
+**Part 61** (baseline lines 263-263). Manual anchor: from `.tlv-orb__wrap::before,.tlv-orb__wrap::after{clip-path:inset(0 0 100% 0)!important;opac...` to `.tlv-orb__wrap::before,.tlv-orb__wrap::after{clip-path:inset(0 0 100% 0)!important;opac...`.
+Delete:
+```css
+.tlv-orb__wrap::before,.tlv-orb__wrap::after{clip-path:inset(0 0 100% 0)!important;opacity:0!important}
+```
+
+**Part 62** (baseline lines 265-265). Manual anchor: from `.tlv-orb:hover .tlv-orb__wrap::before,.tlv-orb:focus-visible .tlv-orb__wrap::before{ani...` to `.tlv-orb:hover .tlv-orb__wrap::before,.tlv-orb:focus-visible .tlv-orb__wrap::before{ani...`.
+Delete:
+```css
+ .tlv-orb:hover .tlv-orb__wrap::before,.tlv-orb:focus-visible .tlv-orb__wrap::before{animation:tlv-line-grow-right 1.15s cubic-bezier(.22,.8,.2,1) both!important}
+```
+
+**Part 63** (baseline lines 266-266). Manual anchor: from `.tlv-orb:hover .tlv-orb__wrap::after,.tlv-orb:focus-visible .tlv-orb__wrap::after{anima...` to `.tlv-orb:hover .tlv-orb__wrap::after,.tlv-orb:focus-visible .tlv-orb__wrap::after{anima...`.
+Delete:
+```css
+ .tlv-orb:hover .tlv-orb__wrap::after,.tlv-orb:focus-visible .tlv-orb__wrap::after{animation:tlv-line-grow-left 1.15s cubic-bezier(.22,.8,.2,1) both!important}
+```
+
+**Part 64** (baseline lines 272-272). Manual anchor: from `.tlv-orb__wrap::before,.tlv-orb__wrap::after{clip-path:none!important;height:0!importan...` to `.tlv-orb__wrap::before,.tlv-orb__wrap::after{clip-path:none!important;height:0!importan...`.
+Delete:
+```css
+.tlv-orb__wrap::before,.tlv-orb__wrap::after{clip-path:none!important;height:0!important;opacity:0!important}
+```
+
+**Part 65** (baseline lines 274-274). Manual anchor: from `.tlv-orb:hover .tlv-orb__wrap::before,.tlv-orb:focus-visible .tlv-orb__wrap::before{ani...` to `.tlv-orb:hover .tlv-orb__wrap::before,.tlv-orb:focus-visible .tlv-orb__wrap::before{ani...`.
+Delete:
+```css
+ .tlv-orb:hover .tlv-orb__wrap::before,.tlv-orb:focus-visible .tlv-orb__wrap::before{animation:tlv-line-height-right 1.15s cubic-bezier(.22,.8,.2,1) both!important}
+```
+
+**Part 66** (baseline lines 275-275). Manual anchor: from `.tlv-orb:hover .tlv-orb__wrap::after,.tlv-orb:focus-visible .tlv-orb__wrap::after{anima...` to `.tlv-orb:hover .tlv-orb__wrap::after,.tlv-orb:focus-visible .tlv-orb__wrap::after{anima...`.
+Delete:
+```css
+ .tlv-orb:hover .tlv-orb__wrap::after,.tlv-orb:focus-visible .tlv-orb__wrap::after{animation:tlv-line-height-left 1.15s cubic-bezier(.22,.8,.2,1) both!important}
+```
+
+**Part 67** (baseline lines 281-281). Manual anchor: from `.tlv-orb__glow::before{transition-delay:1.15s!important}` to `.tlv-orb__glow::before{transition-delay:1.15s!important}`.
+Delete:
+```css
+.tlv-orb__glow::before{transition-delay:1.15s!important}
+```
+
 ---
 
 ## Deciding on REVIEW items
@@ -3394,7 +4015,7 @@ Delete:
 
 ## Not scanned yet (possible next step)
 
-- INLINE CSS IN .liquid FILES (started, NOT finished: stopped to save credits). ~670 KB of CSS in 313 <style> blocks across 68 files, biggest: snippets/collection-page.liquid (114 KB), layout/theme.liquid (113 KB, has Liquid {% if %} inside CSS), sections/category-rows.liquid (48 KB), snippets/tlv-orbs.liquid (41 KB), snippets/cr-card-styles.liquid (33 KB), sections/story-pair.liquid (29 KB), snippets/product-card-styles.liquid (28 KB), sections/clg-hero.liquid (25 KB). Tools are ready in tools/: liquid_css_view.py (CSS view with identical line numbers, `--stats` lists blocks and Liquid conditionals), lqcheck.sh (cut ranges + CSSOM diff + override proof), shadow.js, cut.py. Same rules as this file: only whole rules inside <style>, TODO only if proven from CSS alone, never use a winner inside a Liquid conditional, selectors with {{ }} target the section's own wrapper (treat as used). Also check for sections/snippets that are never rendered at all (e.g. sections/glitch-background-backup.liquid, sections/category-arc.liquid is not in templates/index.json).
+- INLINE CSS IN .liquid FILES (partly done: round 5 logged the always-overridden rules that sit on whole lines; NOT yet scanned for orphan/never-rendered CSS, and minified multi-rule lines, e.g. most of theme.liquid and collection-page.liquid, need declaration-level edits). ~670 KB of CSS in 313 <style> blocks across 68 files, biggest: snippets/collection-page.liquid (114 KB), layout/theme.liquid (113 KB, has Liquid {% if %} inside CSS), sections/category-rows.liquid (48 KB), snippets/tlv-orbs.liquid (41 KB), snippets/cr-card-styles.liquid (33 KB), sections/story-pair.liquid (29 KB), snippets/product-card-styles.liquid (28 KB), sections/clg-hero.liquid (25 KB). Tools are ready in tools/: liquid_css_view.py (CSS view with identical line numbers, `--stats` lists blocks and Liquid conditionals), lqcheck.sh (cut ranges + CSSOM diff + override proof), shadow.js, cut.py. Same rules as this file: only whole rules inside <style>, TODO only if proven from CSS alone, never use a winner inside a Liquid conditional, selectors with {{ }} target the section's own wrapper (treat as used). Also check for sections/snippets that are never rendered at all (e.g. sections/glitch-background-backup.liquid, sections/category-arc.liquid is not in templates/index.json).
 - assets/tlv-owner-overrides.css: deliberately excluded (owner-requested file; one proven duplicate there was left alone on purpose).
 - Declaration-level dead code inside live rules (single overridden properties). Only whole rules/blocks were logged.
 
