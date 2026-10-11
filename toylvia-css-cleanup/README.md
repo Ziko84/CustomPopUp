@@ -3,9 +3,9 @@
 Dead and commented-out CSS found in the live theme of https://toylvia.com by a cloud Claude scan.
 Every item was found by one agent and then attacked by a separate skeptic agent that tried to prove it still affects the page. Only items that survived are listed.
 
-- Scan started: 2026-10-11T15:16:39Z | last update: 2026-10-11T15:45:17Z | rounds: 1
-- Items: **20** total, **16 TODO** (proven safe), **4 REVIEW** (very likely safe, ask Ziko first)
-- Lines removed if every item is applied: 380 (TODO only: 359)
+- Scan started: 2026-10-11T15:16:39Z | last update: 2026-10-11T15:51:43Z | rounds: 2
+- Items: **35** total, **17 TODO** (proven safe), **18 REVIEW** (very likely safe, ask Ziko first)
+- Lines removed if every item is applied: 1781 (TODO only: 377)
 - Status legend: `TODO` apply | `REVIEW` apply only if Ziko says yes | `DONE` applied and verified | `SKIPPED: reason`
 
 ---
@@ -27,13 +27,14 @@ You are applying a cleanup that was already researched and verified. Do not re-r
 
 **Store / theme**
 - Live theme: "lior's theme for toylvia", id `209157554507` (gid://shopify/OnlineStoreTheme/209157554507).
-- Files touched: `assets/toylvia.css`, `assets/tlv-owner-overrides.css`, `assets/home-palette.css`, `assets/card-look.css`.
+- Files touched: `assets/toylvia.css`, `assets/tlv-owner-overrides.css`, `assets/home-palette.css`, `assets/card-look.css`, `assets/live-card-fixes.css`.
 - Baseline md5 of each file when the scan read it:
 
   - `assets/toylvia.css`: `efc069df951128a76ac1adb542f17234`
   - `assets/tlv-owner-overrides.css`: `85a3bd4e370256a4f8dd92b7939a3531`
   - `assets/home-palette.css`: `01f05408f5ad9004afeb97c14313d787`
   - `assets/card-look.css`: `80c3701d5039636bd309a2760a3363b8`
+  - `assets/live-card-fixes.css`: `35cf670e3bcd601f2d54a49ed3e57448`
 
 **Rules (non-negotiable)**
 1. Get the CURRENT live file first. Never edit an old copy (assets/tlv-owner-overrides.css warns that a stale save already destroyed owner work once).
@@ -49,7 +50,7 @@ You are applying a cleanup that was already researched and verified. Do not re-r
    (add `--store <store>.myshopify.com` if the CLI asks). If the CLI is not available, ask Ziko to copy the file contents from Shopify admin, or ask him to do the deletions manually using the anchors below.
 2. Make a backup copy of each file you will edit (e.g. `toylvia.before.css`).
 3. Compare md5 with the baseline above. If it differs, the file was edited since the scan. Continue, but rule 3 protects you.
-4. For each TODO item, in order:
+4. Decide the list first: all TODO items, plus the REVIEW items Ziko approved. If an approved item `supersedes` other items, drop those from the list (it contains them). Then for each item, in order (superseding items first):
    - `python toylvia-css-cleanup/tools/apply.py ./theme-live/assets/<file> <ID>` (use `--dry-run` first if unsure)
    - It refuses unless the exact text occurs once.
 5. Verify each edited file against its backup:
@@ -507,6 +508,7 @@ Delete:
 - **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: @media (min-width: 768px) [group] /   - removed: @media (min-width: 768px) [group] /   - removed: @media (min-width: 1024px) [group] /   - removed: @media (min-width: 1024px) [group] /   - removed: .category-arc__grid { position: relative; margin: 0px auto; transform-origin: center top; height: 260px; } /   - removed: @media (max-width: 639px) > .category-arc__grid { width: 680px; height: 260px; transition: filter 1.8s cubic-bezier(0.4, 0, 0.2, 1), transform 1.8s cubic-bezier(0.4, 0, 0.2, 1); margin-bottom: 0px; padding: 0px 1.5rem; box-sizing: border-box; } /   - removed: @media (min-width: 480px) [group] /   - removed: @media (min-width: 480px) > .category-arc__grid { transform: scale(0.58); margin-bottom: -110px; } /   - removed: @media (min-width: 640px) [group] /   - removed: @media (min-width: 640px) > .category-arc__grid { height: 330px; transform: scale(0.75); margin-bottom: 0px; } /   - removed: @media (min-width: 768px) > .category-arc__grid { height: 330px; transform: scale(0.9); margin-bottom: 0px; } /   - removed: @media (min-width: 1024px) > .category-arc__grid { height: 300px; transform: scale(1); margin-bottom: 0px; } /   - removed: @media (min-width: 768px) > .category-arc__grid { height: 330px; transform: scale(0.9); } /   - removed: @media (min-width: 1024px) > .category-arc__grid { height: 300px; transform: scale(1); }**
 - **Visual change if removed:** None. Keep the `.category-arc` and `.category-arc .max-store` rules at 282-289 and the `}` at 297.
 - **Notes:** If someone ever brings the category spheres back (removes the display:none), these sizes would have to be rewritten anyway.
+- **Superseded by:** T22 (REVIEW). If Ziko approves T22, skip this item; it is included there.
 - **Parts:** 3 (apply.py handles all parts of an item at once)
 
 **Part 1** (baseline lines 273-280). Manual anchor: from `/* === CATEGORY ARC === */` to `}`.
@@ -595,6 +597,7 @@ Line 3977:224 Unexpected "}"
 - **Proof:** Comment only, Chrome's rule list is identical. The following `@keyframes cat-ice-float` parses normally either way.
 - **Verify:** expected `cssom.js compare` result for this item alone: **IDENTICAL: Chrome keeps exactly the same rules in the same order. No visual change is possible.**
 - **Visual change if removed:** None.
+- **Superseded by:** T31 (REVIEW). If Ziko approves T31, skip this item; it is included there.
 - **Parts:** 1 (apply.py handles all parts of an item at once)
 
 **Exact text** (baseline lines 5313-5317). Manual anchor: from `/* ============================================================` to `===================================================== */`.
@@ -673,6 +676,7 @@ Delete:
 - **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .cart { padding: 3rem 1rem; } /   - removed: .cart__inner { max-width: 900px; margin: 0px auto; } /   - removed: .cart__back { font-size: 14px; text-decoration: none; color: rgb(85, 85, 85); } /   - removed: .cart__empty { text-align: center; margin-top: 4rem; } /   - removed: .cart__cta { display: inline-block; margin-top: 1rem; padding: 0.7rem 1.4rem; background: rgb(0, 0, 0); color: rgb(255, 255, 255); border-radius: 999px; } /   - removed: .cart__item { display: grid; grid-template-columns: 90px 1fr auto; gap: 1.2rem; align-items: center; margin-bottom: 1.8rem; } /   - removed: .cart__img { width: 90px; border-radius: 0.5rem; } /   - removed: .cart__variant { font-size: 13px; color: rgb(119, 119, 119); margin-bottom: 0.3rem; } /   - removed: .cart__price { font-size: 14px; margin-bottom: 0.4rem; } /   - removed: .cart__qty { width: 65px; padding: 0.3rem; } /   - removed: .cart__footer { margin-top: 3rem; display: flex; justify-content: space-between; gap: 2rem; } /   - removed: .cart__row { display: flex; justify-content: space-between; margin-bottom: 0.5rem; } /   - removed: .cart__note { font-size: 13px; color: rgb(119, 119, 119); } /   - removed: .cart__actions { display: flex; flex-direction: column; gap: 0.6rem; } /   - removed: .cart__checkout { padding: 1rem 2rem; border-radius: 999px; background: linear-gradient(90deg, rgb(255, 66, 161), rgb(255, 123, 189)); color: rgb(255, 255, 255); font-weight: 800; border: none; } /   - removed: @media (max-width: 768px) > .cart__item { grid-template-columns: 70px 1fr; } /   - removed: @media (max-width: 768px) > .cart__footer { flex-direction: column; } /   - removed: .cart__actions { display: flex; flex-direction: column; gap: 0.8rem; } /   - removed: .cart__header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; } /   - removed: .cart__back:hover { color: rgb(0, 0, 0); } /   - removed: .cart__title { font-size: 24px; font-weight: 800; }**
 - **Visual change if removed:** None (cart page https://toylvia.com/cart keeps the same computed styles).
 - **Notes:** 21 parts. Several parts are byte-identical to their later copies, so they are located with neighbouring context lines. Always use apply.py; do not delete by hand by searching for the rule text (you would hit the live copy).
+- **Superseded by:** T26 (REVIEW). If Ziko approves T26, skip this item; it is included there.
 - **Parts:** 21 (apply.py handles all parts of an item at once)
 
 **Part 1** (baseline lines 1459-1461). Manual anchor: from `.cart {` to `}`.
@@ -897,6 +901,814 @@ Delete:
 .cart__title {
   font-size: 24px;
   font-weight: 800;
+}
+```
+
+### T21 [TODO] Superseded connector-width, age-label size and card padding tweaks (6 rules)
+- **File:** `assets/live-card-fixes.css` | baseline lines 105-122 | kind: overridden rules (cross-file, !important + higher specificity)
+- **Why it is dead:** Six earlier tweaks, each fully replaced by a later !important rule with higher specificity that matches every element they match: connector width/min-width lose to live-card-fixes 197-199 (16 IDs), `.age-tag` 10px loses to 232-233 (22 IDs, 9px), `.cr-card` padding-bottom loses to card-look.css 45 (#MainContent x308, padding shorthand !important), body padding loses to later card rules.
+- **Proof:** Checked property by property by two agents. live-card-fixes.css and card-look.css are both loaded unconditionally on every page (layout/theme.liquid lines ~2091 and ~2095), and !important plus higher specificity wins regardless of order. Chrome CSSOM: removing the range removes exactly these 6 rules.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: html body #MainContent#MainContent#MainContent#MainContent .cr-card__tag.cr-card__tag.cr-card__tag::before, html body #MainContent#MainContent#MainContent#MainContent .product-card__tag.product-card__tag.product-card__tag::before, html body #MainContent#MainContent#MainContent#MainContent .soft-dot  /   - removed: html body #MainContent#MainContent#MainContent .age-tag.age-tag.age-tag { font-size: 10px !important; } /   - removed: html body #MainContent#MainContent#MainContent#MainContent .cr-card.cr-card.cr-card { padding-bottom: 6.3px !important; } /   - removed: html body #MainContent#MainContent#MainContent#MainContent .cr-card.cr-card.cr-card .cr-card__body { padding-left: 6px !important; padding-right: 6px !important; } /   - removed: html body #MainContent#MainContent#MainContent#MainContent#MainContent .cr-card.cr-card.cr-card .cr-card__body { padding-left: 4px !important; padding-right: 4px !important; } /   - removed: html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .cr-card.cr-card.cr-card .cr-card__body { padding-bottom: 7.5px !important; }**
+- **Visual change if removed:** None.
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 105-122). Manual anchor: from `html body #MainContent#MainContent#MainContent#MainContent .cr-card__tag.cr-card__tag.c...` to `html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .cr-...`.
+Delete:
+```css
+html body #MainContent#MainContent#MainContent#MainContent .cr-card__tag.cr-card__tag.cr-card__tag::before,
+html body #MainContent#MainContent#MainContent#MainContent .product-card__tag.product-card__tag.product-card__tag::before,
+html body #MainContent#MainContent#MainContent#MainContent .soft-dot>.tag-edge-line.tag-edge-line{width:calc(var(--marker-inset,8.68625px) - 3px)!important;min-width:calc(var(--marker-inset,8.68625px) - 3px)!important}
+
+/* Age label on cards: 9px -> 10px. */
+html body #MainContent#MainContent#MainContent .age-tag.age-tag.age-tag{font-size:10px!important}
+
+/* Space under the price: 14px total -> about 12.3px (-12%). */
+html body #MainContent#MainContent#MainContent#MainContent .cr-card.cr-card.cr-card{padding-bottom:6.3px!important}
+
+/* Text sits 14px from the card edge: 8px card padding + 6px body padding. */
+html body #MainContent#MainContent#MainContent#MainContent .cr-card.cr-card.cr-card .cr-card__body{padding-left:6px!important;padding-right:6px!important}
+
+/* Text area side padding 4px (text sits 12px from the card edge). */
+html body #MainContent#MainContent#MainContent#MainContent#MainContent .cr-card.cr-card.cr-card .cr-card__body{padding-left:4px!important;padding-right:4px!important}
+
+/* Text area bottom padding 7.5px (sides stay 4px). */
+html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .cr-card.cr-card.cr-card .cr-card__body{padding-bottom:7.5px!important}
+```
+
+### T22 [REVIEW] The whole original CATEGORY ARC / category-sphere block (37 rules, 173 lines)
+- **File:** `assets/toylvia.css` | baseline lines 273-445 | kind: styles for hidden + non-existent elements
+- **Why it is dead:** Styles for the old round 'category sphere' buttons. `.category-sphere, .category-arc__grid { display: none !important }` (baseline 4875, top level) hides them on every page and nothing overrides it. On top of that, no template, snippet or script outputs `category-sphere` or `category-arc` at all (sections/category-arc.liquid renders `.holo-section` / `.cat-grid` and is not used in templates/index.json).
+- **Proof:** grep of all .liquid/.js/.json: no markup with these classes; only querySelector calls and a settings_data custom-CSS selector. No CSS anywhere sets display with !important on these selectors except the hider. Chrome CSSOM: removing 273-445 removes exactly the 37 category-arc/sphere rules.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: @media (min-width: 768px) [group] /   - removed: @media (min-width: 768px) [group] /   - removed: @media (min-width: 1024px) [group] /   - removed: @media (min-width: 1024px) [group] /   - removed: .category-arc__grid { position: relative; margin: 0px auto; transform-origin: center top; height: 260px; } /   - removed: @media (max-width: 639px) [group] /   - removed: @media (max-width: 639px) > .category-arc { overflow-x: auto; padding: 0px 1.5rem; } /   - removed: @media (max-width: 639px) > .category-arc .max-store { min-width: 680px; } /   - removed: @media (max-width: 639px) > .category-arc__grid { width: 680px; height: 260px; transition: filter 1.8s cubic-bezier(0.4, 0, 0.2, 1), transform 1.8s cubic-bezier(0.4, 0, 0.2, 1); margin-bottom: 0px; padding: 0px 1.5rem; box-sizing: border-box; } /   - removed: @media (min-width: 480px) [group] /   - removed: @media (min-width: 480px) > .category-arc__grid { transform: scale(0.58); margin-bottom: -110px; } /   - removed: @media (min-width: 640px) [group] /   - removed: @media (min-width: 640px) > .category-arc__grid { height: 330px; transform: scale(0.75); margin-bottom: 0px; } /   - removed: @media (min-width: 768px) > .category-arc__grid { height: 330px; transform: scale(0.9); margin-bottom: 0px; } /   - removed: @media (min-width: 1024px) > .category-arc__grid { height: 300px; transform: scale(1); margin-bottom: 0px; } /   - removed: @media (min-width: 768px) > .category-arc__grid { height: 330px; transform: scale(0.9); } /   - removed: @media (min-width: 1024px) > .category-arc__grid { height: 300px; transform: scale(1); } /   - removed: .category-sphere { position: absolute; cursor: pointer; transition: filter 1.8s cubic-bezier(0.4, 0, 0.2, 1), transform 1.8s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1; } /   - removed: .category-sphere:hover { z-index: 10; } /   - removed: .category-sphere__ball { width: 132px; height: 132px; border-radius: 50%; background: radial-gradient(circle at 32% 25%, rgba(255, 255, 255, 0.85) 0%, rgba(246, 247, 248, 0.75) 25%, rgba(228, 231, 236, 0.6) 50%, rgba(202, 207, 216, 0.5) 75%, rgba(179, 186, 198, 0.45) 100%); display: flex; align-item /   - removed: .category-sphere:hover .category-sphere__ball { width: 175px; height: 100px; border-radius: 999px; background: hsl(var(--card)); } /   - removed: .category-sphere__icon { transition: opacity 1.8s cubic-bezier(0.4, 0, 0.2, 1), transform 1.8s cubic-bezier(0.4, 0, 0.2, 1), filter 1.8s cubic-bezier(0.4, 0, 0.2, 1); } /   - removed: .category-sphere:hover .category-sphere__icon { opacity: 0; transform: scale(0.5); filter: blur(6px); } /   - removed: .category-sphere__label { position: absolute; inset: 0px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; letter-spacing: 0.22em; white-space: nowrap; text-transform: uppercase; color: hsl(var(--foreground)); opacity: 0; transform: translateX(10px) sca /   - removed: .category-sphere:hover .category-sphere__label { opacity: 1; transform: translateX(0px) scale(1); } /   - removed: .category-sphere__rim { position: absolute; top: 1px; left: 8%; right: 8%; height: 3px; border-radius: 50%; filter: blur(1.5px); opacity: 0.7; } /   - removed: .category-sphere:hover .category-sphere__rim { opacity: 0; } /   - removed: .category-sphere__shadow { width: 65px; height: 15px; border-radius: 50%; background: radial-gradient(rgba(0, 0, 0, 0.06), transparent 70%); margin: 14px auto 0px; transition: width 1s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.85s; opacity: 0; } /   - removed: .category-sphere:hover .category-sphere__shadow { width: 100px; } /   - removed: .category-sphere::after { display: none; } /   - removed: .category-sphere__ball { background: radial-gradient(circle at 50% 120%, rgb(228, 234, 241) 0%, rgba(193, 202, 215, 0.9) 25%, rgba(151, 164, 186, 0.75) 60%, rgba(99, 116, 156, 0.65) 85%, rgba(74, 85, 120, 0.6) 100%); overflow: visible; } /   - removed: .category-sphere__ball::before { content: ""; position: absolute; top: 1%; left: 5%; width: 90%; height: 90%; border-radius: 50%; background: radial-gradient(circle at 50% 0px, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0) 58%); filter: blur(5px); z-index: 2; pointer-events: none; } /   - removed: .category-sphere__ball::after { content: ""; position: absolute; top: 8%; left: 10%; width: 40%; height: 25%; border-radius: 50%; background: radial-gradient(circle, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0) 70%); transform: rotate(-30deg) skewX(-10deg); filter: blur(3px); z-index: 3; pointe /   - removed: .category-sphere__ball { background: radial-gradient(circle at 50% 120%, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.3) 25%, rgba(255, 255, 255, 0.55) 60%, rgba(240, 240, 248, 0.75) 85%, rgba(220, 222, 235, 0.85) 100%); } /   - removed: .category-sphere__ball { background: linear-gradient(165deg, rgb(255, 255, 255) 0%, rgb(232, 234, 237) 50%, rgb(220, 222, 226) 95%, rgb(180, 182, 196) 100%); box-shadow: rgba(255, 255, 255, 0.95) -12px -10px 24px, rgba(148, 150, 176, 0.55) 12px 10px 24px; transition: 0.4s; } /   - removed: .category-sphere:hover .category-sphere__ball { background: linear-gradient(165deg, rgb(255, 255, 255) 0%, rgb(232, 234, 237) 50%, rgb(220, 222, 226) 95%, rgb(180, 182, 196) 100%); box-shadow: rgba(255, 255, 255, 0.95) -12px -10px 24px, rgba(148, 150, 176, 0.55) 12px 10px 24px; } /   - removed: .category-sphere:hover .category-sphere__ball { height: 135px; width: 200px; }**
+- **Visual change if removed:** None (the spheres are never shown).
+- **Notes:** Markup-based (the `.category-arc` and `.category-arc .max-store` rules are not hidden by CSS, they just match nothing), hence REVIEW. Contains T13 entirely.
+- **Supersedes:** T13. This bigger item already contains them. If Ziko approves it, apply it INSTEAD of T13 and mark those `DONE (covered by T22)`. Apply it before them; once they are applied this item no longer matches.
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 273-445). Manual anchor: from `/* === CATEGORY ARC === */` to `}`.
+Delete:
+```css
+/* === CATEGORY ARC === */
+.category-arc__grid {
+  position: relative;
+  margin: 0 auto;
+  transform-origin: top center;
+  height: 260px;
+ 
+}
+@media (max-width: 639px) {
+  .category-arc {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+       padding: 0 1.5rem; 
+  }
+  .category-arc .max-store {
+    min-width: 680px;
+  }
+  .category-arc__grid {
+    width: 680px;
+    height: 260px;
+transition: filter 1.8s cubic-bezier(0.4, 0, 0.2, 1), transform 1.8s cubic-bezier(0.4, 0, 0.2, 1);    margin-bottom: 0;
+    padding: 0 1.5rem;        /* add this */
+    box-sizing: border-box;   /* add this */
+  }
+}
+/* ... 123 more lines, see findings.json exact_text ... */
+  filter: blur(3px);
+  z-index: 3;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+/* === WHITE / TRANSPARENT SPHERE OVERRIDE === */
+.category-sphere__ball {
+  background: radial-gradient(circle at 50% 120%, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.30) 25%, rgba(255,255,255,0.55) 60%, rgba(240,240,248,0.75) 85%, rgba(220,222,235,0.85) 100%);
+}
+/* === KEV_KAN_CODE NEUMORPHIC (adapted for spheres) === */
+.category-sphere__ball {
+  background: linear-gradient(165deg, rgba(255,255,255,1) 0%, rgba(232,234,237,1) 50%, rgba(220,222,226,1) 95%, rgba(180,182,196,1) 100%);
+    box-shadow: -12px -10px 24px rgba(255,255,255,0.95), 12px 10px 24px rgba(148,150,176,0.55);
+      transition: all 0.4s ease;
+}
+/* Hover stays the same */
+.category-sphere:hover .category-sphere__ball {
+  background: linear-gradient(165deg, rgba(255,255,255,1) 0%, rgba(232,234,237,1) 50%, rgba(220,222,226,1) 95%, rgba(180,182,196,1) 100%);
+    box-shadow: -12px -10px 24px rgba(255,255,255,0.95), 12px 10px 24px rgba(148,150,176,0.55);
+    }
+    /* === PILL HOVER HEIGHT === */
+  .category-sphere:hover .category-sphere__ball {
+        height: 135px;
+          width: 200px;
+          }
+```
+
+### T23 [REVIEW] 'Consolidated overrides' sections 1-4: sphere fills, centred icon/label, hover fade, blurred overlay (11 rules)
+- **File:** `assets/toylvia.css` | baseline lines 4417-4485 | kind: styles for hidden + non-existent elements
+- **Why it is dead:** Sections 1-4 of the 'TOYLVIA - Consolidated custom overrides' group only style `.category-sphere__ball`, its ::before, `__shadow`, `__icon`, `__label` and hover versions. The spheres are display:none !important and no markup outputs these classes. Section 5 (ALL PRODUCTS button, live) and the group header comment are NOT included.
+- **Proof:** Chrome CSSOM: removing 4417-4485 removes exactly 11 category-sphere rules. grep: no markup with these classes.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: html body .category-sphere__ball { background: radial-gradient(circle at 30% 22%, rgb(255, 255, 255) 0%, rgb(248, 250, 252) 18%, rgb(232, 237, 243) 58%, rgb(213, 221, 230) 100%) !important; box-shadow: rgba(160, 170, 185, 0.45) -8px -10px 20px inset, rgba(255, 255, 255, 0.95) 6px 8px 18px inset, rgb /   - removed: html body .category-sphere:hover .category-sphere__ball { transform: none !important; } /   - removed: html body .category-sphere__shadow { display: none !important; } /   - removed: html body .category-sphere__ball { position: relative !important; overflow: hidden !important; } /   - removed: html body .category-sphere__ball .category-sphere__icon, html body .category-sphere__ball .category-sphere__label { position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; z-index: 2 !important; text-align: center !important; } /   - removed: html body .category-sphere__icon { transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1), filter 0.45s cubic-bezier(0.4, 0, 0.2, 1) !important; } /   - removed: html body .category-sphere__label { opacity: 0; transition: opacity 0.38s cubic-bezier(0.4, 0, 0.2, 1) 0.38s !important; } /   - removed: html body .category-sphere:hover .category-sphere__icon, html body .category-sphere__ball:hover .category-sphere__icon { opacity: 0 !important; filter: blur(4px) !important; } /   - removed: html body .category-sphere:hover .category-sphere__label, html body .category-sphere__ball:hover .category-sphere__label { opacity: 1 !important; } /   - removed: html body .category-sphere__ball::before { content: "" !important; position: absolute !important; inset: 0px !important; border-radius: 50% !important; background: inherit !important; filter: blur(0px) !important; opacity: 0 !important; pointer-events: none !important; transition: opacity 0.3s, filt /   - removed: html body .category-sphere:hover .category-sphere__ball::before, html body .category-sphere__ball:hover::before { opacity: 1 !important; filter: blur(2px) !important; }**
+- **Visual change if removed:** None.
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 4417-4485). Manual anchor: from `/* ---------- 1. SPHERES: solid neumorphic fills, no pink glow ---------- */` to `}`.
+Delete:
+```css
+/* ---------- 1. SPHERES: solid neumorphic fills, no pink glow ---------- */
+html body .category-sphere__ball {
+  background: radial-gradient(circle at 30% 22%, #ffffff 0%, #f8fafc 18%, #e8edf3 58%, #d5dde6 100%) !important;
+  box-shadow:
+    inset -8px -10px 20px rgba(160, 170, 185, 0.45),
+    inset  6px  8px 18px rgba(255, 255, 255, 0.95),
+    0 12px 28px rgba(60, 70, 90, 0.18),
+    0 4px 10px rgba(60, 70, 90, 0.10) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  transition: all 0.75s cubic-bezier(0.42, 0, 0.58, 1) !important;
+}
+html body .category-sphere:hover .category-sphere__ball {
+  transform: none !important; /* kill theme's translateY(-4px) jump */
+}
+html body .category-sphere__shadow { display: none !important; }
+
+/* ---------- 2. SPHERES: center icon + label, layered above blur ---------- */
+html body .category-sphere__ball {
+  position: relative !important;
+  overflow: hidden !important;
+}
+html body .category-sphere__ball .category-sphere__icon,
+html body .category-sphere__ball .category-sphere__label {
+  position: absolute !important;
+/* ... 19 more lines, see findings.json exact_text ... */
+  filter: blur(4px) !important;
+}
+html body .category-sphere:hover .category-sphere__label,
+html body .category-sphere__ball:hover .category-sphere__label {
+  opacity: 1 !important;
+}
+
+/* ---------- 4. SPHERE HOVER: blurred overlay (text stays crisp) ------- */
+html body .category-sphere__ball::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  border-radius: 50% !important;
+  background: inherit !important;
+  filter: blur(0px) !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: opacity 0.3s ease, filter 0.3s ease !important;
+  z-index: 0 !important;
+}
+html body .category-sphere:hover .category-sphere__ball::before,
+html body .category-sphere__ball:hover::before {
+  opacity: 1 !important;
+  filter: blur(2px) !important;
+}
+```
+
+### T24 [REVIEW] Second copy of the `html body .category-arc .category-sphere...` glass/icon block (the copy that T10 keeps)
+- **File:** `assets/toylvia.css` | baseline lines 4599-4633 | kind: styles for non-existent elements
+- **Why it is dead:** Every selector needs an ancestor with class `.category-arc`, which no markup has, and the spheres are display:none !important anyway. T10 deletes the first copy (proven duplicates); this deletes the remaining copy.
+- **Proof:** Chrome CSSOM: removing the range removes only `html body .category-arc ...` rules. grep: `category-arc` appears only in CSS and in a settings_data custom-CSS selector.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: html body .category-arc .category-sphere:hover .category-sphere__ball .category-sphere__icon:not(#_x_) { transform: translate(-50%, -50%) !important; opacity: 0 !important; filter: blur(4px) !important; } /   - removed: html body .category-arc .category-sphere__ball { background: radial-gradient(circle at 30% 22%, rgba(255, 255, 255, 0.82) 0%, rgba(248, 250, 252, 0.78) 18%, rgba(232, 237, 243, 0.7) 58%, rgba(213, 221, 230, 0.65) 100%) !important; backdrop-filter: blur(6px) saturate(1.1) !important; } /   - removed: html body .category-arc .category-sphere__ball::before { background: inherit !important; } /   - removed: html body .category-arc .category-sphere .category-sphere__ball .category-sphere__icon:not(#_x_) { position: absolute !important; inset: 50% auto auto 50% !important; margin: 0px !important; transform: translate(-50%, -50%) !important; transform-origin: center center !important; z-index: 2 !importan**
+- **Visual change if removed:** None.
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 4599-4633). Manual anchor: from `/* Icon: perfectly centered - high specificity to beat theme */` to `}`.
+Delete:
+```css
+/* Icon: perfectly centered - high specificity to beat theme */
+html body .category-arc .category-sphere .category-sphere__ball .category-sphere__icon:not(#_x_) {
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
+  right: auto !important;
+  bottom: auto !important;
+  margin: 0 !important;
+  transform: translate(-50%, -50%) !important;
+  transform-origin: center center !important;
+  z-index: 2 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+html body .category-arc .category-sphere:hover .category-sphere__ball .category-sphere__icon:not(#_x_) {
+  transform: translate(-50%, -50%) !important;
+  opacity: 0 !important;
+  filter: blur(4px) !important;
+}
+
+/* Sphere: translucent glass */
+html body .category-arc .category-sphere__ball {
+  background: radial-gradient(circle at 30% 22%,
+    rgba(255, 255, 255, 0.82) 0%,
+    rgba(248, 250, 252, 0.78) 18%,
+    rgba(232, 237, 243, 0.70) 58%,
+    rgba(213, 221, 230, 0.65) 100%) !important;
+  -webkit-backdrop-filter: blur(6px) saturate(1.1) !important;
+          backdrop-filter: blur(6px) saturate(1.1) !important;
+}
+html body .category-arc .category-sphere__ball::before {
+  background: inherit !important;
+}
+```
+
+### T25 [REVIEW] Newsletter form, email input and Subscribe button styles (the form is hidden on every page)
+- **File:** `assets/toylvia.css` | baseline lines 715-749 | kind: styles for a hidden element
+- **Why it is dead:** `.newsletter__title, .newsletter__subtitle, .newsletter__form { display: none !important }` (baseline ~3610, top level; templates/page.liquid repeats it) hides the form site-wide. The input and button live inside the form (sections/newsletter.liquid), so their styles never render.
+- **Proof:** No CSS, inline style or JS gives `.newsletter__form` a display with !important. Chrome CSSOM: removing the range removes exactly 7 newsletter rules.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: @media (min-width: 640px) [group] /   - removed: .newsletter__form { display: flex; flex-direction: column; gap: 0.75rem; max-width: 28rem; margin: 0px auto; } /   - removed: @media (min-width: 640px) > .newsletter__form { flex-direction: row; } /   - removed: .newsletter__input { flex: 1 1 0%; padding: 0.875rem 1rem; border-radius: 0.75rem; border: 2px solid hsl(var(--border)); background: hsl(var(--background)); font-size: 14px; font-weight: 500; color: hsl(var(--foreground)); outline: none; transition: border-color 0.3s, box-shadow 0.3s; } /   - removed: .newsletter__input:focus { border-color: hsl(var(--secondary)); box-shadow: rgba(33, 213, 237, 0.1) 0px 0px 0px 3px; } /   - removed: .newsletter__btn { padding: 0.875rem 1.5rem; border-radius: 0.75rem; background: hsl(var(--secondary)); color: hsl(var(--secondary-foreground)); font-weight: 800; font-size: 14px; transition: background 0.3s; white-space: nowrap; } /   - removed: .newsletter__btn:hover { background: rgba(33, 213, 237, 0.9); }**
+- **Visual change if removed:** None. The social icons part of the newsletter section is styled elsewhere and stays.
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 715-749). Manual anchor: from `.newsletter__form {` to `.newsletter__btn:hover { background: hsla(187, 85%, 53%, 0.9); }`.
+Delete:
+```css
+.newsletter__form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 28rem;
+  margin: 0 auto;
+}
+@media (min-width: 640px) { .newsletter__form { flex-direction: row; } }
+.newsletter__input {
+  flex: 1;
+  padding: 0.875rem 1rem;
+  border-radius: 0.75rem;
+  border: 2px solid hsl(var(--border));
+  background: hsl(var(--background));
+  font-size: 14px;
+  font-weight: 500;
+  color: hsl(var(--foreground));
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.newsletter__input:focus {
+  border-color: hsl(var(--secondary));
+  box-shadow: 0 0 0 3px hsla(187,85%,53%,0.1);
+}
+.newsletter__btn {
+  padding: 0.875rem 1.5rem;
+  border-radius: 0.75rem;
+  background: hsl(var(--secondary));
+  color: hsl(var(--secondary-foreground));
+  font-weight: 800;
+  font-size: 14px;
+  transition: background 0.3s;
+  white-space: nowrap;
+}
+.newsletter__btn:hover { background: hsla(187, 85%, 53%, 0.9); }
+```
+
+### T26 [REVIEW] The whole old cart-page stylesheet (`.cart`, `.cart__*`), both copies (310 lines)
+- **File:** `assets/toylvia.css` | baseline lines 1457-1766 | kind: orphan selectors (feature removed)
+- **Why it is dead:** An older cart design, pasted twice. The live cart (templates/cart.liquid) uses `.cart-page`, `.tv-stepper-*`, `.tv-remove-btn`, `.tv-checkout-btn`; the drawer uses `.cart-drawer__*`. No element has the class `cart` or any `cart__*` class.
+- **Proof:** grep for `cart__` in all .liquid/.js/.json: 0 hits; no element with the bare class `cart` (regex over class attributes and classList calls). Chrome CSSOM: removing 1457-1766 removes only `.cart` / `.cart__*` rules and their @media wrappers.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: @media (max-width: 768px) [group] /   - removed: @media (max-width: 768px) [group] /   - removed: .cart { padding: 3rem 1rem; } /   - removed: .cart { padding: 3rem 1rem; } /   - removed: .cart__inner { max-width: 900px; margin: 0px auto; } /   - removed: .cart__inner { max-width: 900px; margin: 0px auto; } /   - removed: .cart__header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; } /   - removed: .cart__back { font-size: 14px; text-decoration: none; color: rgb(85, 85, 85); } /   - removed: .cart__back { font-size: 14px; text-decoration: none; color: rgb(85, 85, 85); } /   - removed: .cart__empty { text-align: center; margin-top: 4rem; } /   - removed: .cart__empty { text-align: center; margin-top: 4rem; } /   - removed: .cart__cta { display: inline-block; margin-top: 1rem; padding: 0.7rem 1.4rem; background: rgb(0, 0, 0); color: rgb(255, 255, 255); border-radius: 999px; } /   - removed: .cart__cta { display: inline-block; margin-top: 1rem; padding: 0.7rem 1.4rem; background: rgb(0, 0, 0); color: rgb(255, 255, 255); border-radius: 999px; } /   - removed: .cart__item { display: grid; grid-template-columns: 90px 1fr auto; gap: 1.2rem; align-items: center; margin-bottom: 1.8rem; } /   - removed: .cart__item { display: grid; grid-template-columns: 90px 1fr auto; gap: 1.2rem; align-items: center; margin-bottom: 1.8rem; } /   - removed: .cart__img { width: 90px; border-radius: 0.5rem; } /   - removed: .cart__img { width: 90px; border-radius: 0.5rem; } /   - removed: .cart__title { font-weight: 700; margin-bottom: 0.3rem; } /   - removed: .cart__variant { font-size: 13px; color: rgb(119, 119, 119); margin-bottom: 0.3rem; } /   - removed: .cart__variant { font-size: 13px; color: rgb(119, 119, 119); margin-bottom: 0.3rem; } /   - removed: .cart__price { font-size: 14px; margin-bottom: 0.4rem; } /   - removed: .cart__price { font-size: 14px; margin-bottom: 0.4rem; } /   - removed: .cart__qty { width: 65px; padding: 0.3rem; } /   - removed: .cart__qty { width: 65px; padding: 0.3rem; } /   - removed: .cart__total { font-weight: 700; } /   - removed: .cart__footer { margin-top: 3rem; display: flex; justify-content: space-between; gap: 2rem; } /   - removed: .cart__footer { margin-top: 3rem; display: flex; justify-content: space-between; gap: 2rem; } /   - removed: .cart__row { display: flex; justify-content: space-between; margin-bottom: 0.5rem; } /   - removed: .cart__row { display: flex; justify-content: space-between; margin-bottom: 0.5rem; } /   - removed: .cart__note { font-size: 13px; color: rgb(119, 119, 119); } /   - removed: .cart__note { font-size: 13px; color: rgb(119, 119, 119); } /   - removed: .cart__actions { display: flex; flex-direction: column; gap: 0.6rem; } /   - removed: .cart__actions { display: flex; flex-direction: column; gap: 0.6rem; } /   - removed: .cart__update { padding: 0.6rem 1.2rem; background: rgb(238, 238, 238); border: none; border-radius: 0.4rem; } /   - removed: .cart__checkout { padding: 1rem 2rem; border-radius: 999px; background: linear-gradient(90deg, rgb(255, 66, 161), rgb(255, 123, 189)); color: rgb(255, 255, 255); font-weight: 800; border: none; } /   - removed: .cart__checkout { padding: 1rem 2rem; border-radius: 999px; background: linear-gradient(90deg, rgb(255, 66, 161), rgb(255, 123, 189)); color: rgb(255, 255, 255); font-weight: 800; border: none; } /   - removed: @media (max-width: 768px) > .cart__item { grid-template-columns: 70px 1fr; } /   - removed: @media (max-width: 768px) > .cart__item { grid-template-columns: 70px 1fr; } /   - removed: @media (max-width: 768px) > .cart__total { grid-column: span 2; text-align: right; } /   - removed: @media (max-width: 768px) > .cart__footer { flex-direction: column; } /   - removed: @media (max-width: 768px) > .cart__footer { flex-direction: column; } /   - removed: .cart__actions { display: flex; flex-direction: column; gap: 0.8rem; } /   - removed: .cart__back-inline { font-size: 14px; color: rgb(102, 102, 102); text-decoration: none; text-align: center; } /   - removed: .cart__back-inline:hover { color: rgb(0, 0, 0); } /   - removed: .cart__header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; } /   - removed: .cart__header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; } /   - removed: .cart__back { font-size: 14px; text-decoration: none; color: rgb(85, 85, 85); white-space: nowrap; } /   - removed: .cart__back:hover { color: rgb(0, 0, 0); } /   - removed: .cart__back:hover { color: rgb(0, 0, 0); } /   - removed: .cart__title { font-size: 24px; font-weight: 800; } /   - removed: .cart__title { font-size: 24px; font-weight: 800; } /   - removed: .cart__name { font-weight: 700; margin-bottom: 0.3rem; } /   - removed: .cart__line { font-weight: 700; } /   - removed: @media (max-width: 768px) > .cart__line { grid-column: span 2; text-align: right; }**
+- **Visual change if removed:** None (https://toylvia.com/cart does not use these classes).
+- **Notes:** Contains T20 (the proven duplicate half). If approved, apply this instead of T20.
+- **Supersedes:** T20. This bigger item already contains them. If Ziko approves it, apply it INSTEAD of T20 and mark those `DONE (covered by T26)`. Apply it before them; once they are applied this item no longer matches.
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 1457-1766). Manual anchor: from `/* === CART BASE === */` to `}`.
+Delete:
+```css
+/* === CART BASE === */
+
+.cart {
+  padding: 3rem 1rem;
+}
+
+.cart__inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* HEADER */
+.cart__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.cart__back {
+  font-size: 14px;
+  text-decoration: none;
+  color: #555;
+}
+
+/* ... 260 more lines, see findings.json exact_text ... */
+
+.cart__checkout {
+  padding: 1rem 2rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg,#ff42a1,#ff7bbd);
+  color: #fff;
+  font-weight: 800;
+  border: none;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .cart__item {
+    grid-template-columns: 70px 1fr;
+  }
+
+  .cart__line {
+    grid-column: span 2;
+    text-align: right;
+  }
+
+  .cart__footer {
+    flex-direction: column;
+  }
+}
+```
+
+### T27 [REVIEW] Unused sticky add-to-cart bar and old product-description styles (`.sticky-cart`, `.product-main__description(-full)`)
+- **File:** `assets/toylvia.css` | baseline lines 1313-1408 | kind: orphan selectors (feature removed)
+- **Why it is dead:** No template renders `.sticky-cart` or `.product-main__description` / `__description-full`. The live product page (sections/product-main.liquid) uses `.product-main__info/top/vendor/title/price/bottom` and the `.pdc*` description card.
+- **Proof:** grep of all .liquid/.js/.json: 0 hits for `sticky-cart` and for the description classes outside CSS. Chrome CSSOM: removing the range removes only those rules.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .sticky-cart { position: fixed; bottom: 0px; left: 0px; right: 0px; background: rgb(255, 255, 255); border-top: 1px solid rgb(238, 238, 238); padding: 0.75rem; display: none; z-index: 9999; } /   - removed: .sticky-cart .sticky-cart__btn { width: 100%; padding: 1rem; border-radius: 999px; font-weight: 800; background: linear-gradient(90deg, rgb(255, 66, 161), rgb(255, 123, 189)) !important; color: rgb(255, 255, 255) !important; } /   - removed: @media (max-width: 768px) [group] /   - removed: @media (max-width: 768px) [group] /   - removed: @media (max-width: 768px) > .sticky-cart { display: block; } /   - removed: .product-main__description { margin-top: 2rem; line-height: 1.6; font-size: 14px; color: rgb(68, 68, 68); } /   - removed: .product-main__description-full { max-width: 1100px; margin: 5rem auto 0px; padding: 0px 1.5rem; font-size: 18px; line-height: 1.9; color: rgb(26, 26, 26); } /   - removed: .product-main__description-full h2, .product-main__description-full h3 { font-size: 26px; font-weight: 900; margin: 3rem 0px 1.2rem; letter-spacing: 0.02em; } /   - removed: .product-main__description-full p { margin-bottom: 1.4rem; font-weight: 500; } /   - removed: .product-main__description-full strong { font-weight: 800; color: rgb(0, 0, 0); } /   - removed: .product-main__description-full ul { padding-left: 1.4rem; margin: 1.5rem 0px; } /   - removed: .product-main__description-full li { margin-bottom: 0.7rem; line-height: 1.8; } /   - removed: .product-main__description-full hr { margin: 2.5rem 0px; border-right: none; border-bottom: none; border-left: none; border-image: initial; border-top: 1px solid rgb(221, 221, 221); } /   - removed: @media (max-width: 768px) > .product-main__description-full { font-size: 16px; line-height: 1.7; margin-top: 3rem; } /   - removed: @media (max-width: 768px) > .product-main__description-full h2, .product-main__description-full h3 { font-size: 22px; }**
+- **Visual change if removed:** None.
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 1313-1408). Manual anchor: from `/* === STICKY ADD TO CART === */` to `}`.
+Delete:
+```css
+/* === STICKY ADD TO CART === */
+.sticky-cart {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-top: 1px solid #eee;
+  padding: 0.75rem;
+  display: none;
+  z-index: 9999;
+}
+
+.sticky-cart .sticky-cart__btn {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg,#ff42a1,#ff7bbd) !important;
+  color: #fff !important;
+  font-weight: 800;
+}
+
+@media (max-width: 768px) {
+  .sticky-cart { display: block; }
+}
+/* ... 46 more lines, see findings.json exact_text ... */
+.product-main__description-full li {
+  margin-bottom: 0.7rem;
+  line-height: 1.8;
+}
+
+/* SEPARATORS */
+.product-main__description-full hr {
+  margin: 2.5rem 0;
+  border: none;
+  border-top: 1px solid #ddd;
+}
+
+/* MOBILE FIX */
+@media (max-width: 768px) {
+  .product-main__description-full {
+    font-size: 16px;
+    line-height: 1.7;
+    margin-top: 3rem;
+  }
+
+  .product-main__description-full h2,
+  .product-main__description-full h3 {
+    font-size: 22px;
+  }
+}
+```
+
+### T28 [REVIEW] Variant pill-button styles (`.product-variants__options`, `.product-variants__btn*`) for buttons the product page no longer renders
+- **File:** `assets/toylvia.css` | baseline lines 2187-2255 | kind: orphan selectors (feature removed)
+- **Why it is dead:** Variants are now a dropdown (`.product-variants__select` inside `.product-variants__select-wrap`). The options row and pill buttons are never output. The live `.product-variants`, `__group`, `__label` rules above (2173-2185) are not included.
+- **Proof:** grep: `product-variants__btn` appears in no .liquid/.js/.json; `product-variants__options` appears only inside CSS (settings_data custom CSS and an inline <style> in product-main.liquid), never in markup.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .product-variants__options { display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-start; } /   - removed: .product-variants__btn { position: relative; display: inline-flex; align-items: center; justify-content: center; min-width: 80px; padding: 7px 16px; border-radius: 999px; background: rgb(255, 255, 255); color: rgb(26, 26, 46); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.03em; cursor: poi /   - removed: .product-variants__btn:hover:not(.disabled):not(.selected) { border-color: rgb(255, 66, 161); background: rgb(255, 245, 250); color: rgb(255, 66, 161); box-shadow: none; transform: none; } /   - removed: .product-variants__btn:not(.disabled):active { background: rgb(255, 232, 244); border-color: rgb(255, 66, 161); box-shadow: none; transform: none; } /   - removed: .product-variants__btn.selected { background: rgb(255, 245, 250); color: rgb(255, 66, 161); box-shadow: none; padding-bottom: 7px; border: 2px solid rgb(255, 66, 161) !important; } /   - removed: .product-variants__btn.selected::after { display: none; } /   - removed: .product-variants__btn.disabled:not(.selected) { opacity: 0.4; cursor: not-allowed; text-decoration: line-through; color: rgb(187, 187, 187); border-color: rgb(229, 231, 235); background: rgb(249, 250, 251); box-shadow: none; } /   - removed: .product-variants__btn.disabled.selected { cursor: not-allowed; }**
+- **Visual change if removed:** None.
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 2187-2255). Manual anchor: from `.product-variants__options {` to `}`.
+Delete:
+```css
+.product-variants__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-start;
+}
+
+.product-variants__btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 80px;
+  padding: 7px 16px;
+  border-radius: 999px;
+  border: 1.5px solid #d1d5db !important;
+  background: #fff;
+  color: #1a1a2e;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+  box-shadow: none;
+  outline: none;
+/* ... 19 more lines, see findings.json exact_text ... */
+.product-variants__btn.selected {
+  border: 2px solid #ff42a1 !important;
+  background: #fff5fa;
+  color: #ff42a1;
+  box-shadow: none;
+  padding-bottom: 7px;
+}
+
+.product-variants__btn.selected::after {
+  display: none;
+}
+
+.product-variants__btn.disabled:not(.selected) {
+  opacity: 0.4;
+  cursor: not-allowed;
+  text-decoration: line-through;
+  color: #bbb;
+  border-color: #e5e7eb;
+  background: #f9fafb;
+  box-shadow: none;
+}
+
+.product-variants__btn.disabled.selected {
+  cursor: not-allowed;
+}
+```
+
+### T29 [REVIEW] 'Neumorphic trust badges - product page' block for `.product-trust-badges`, which is never rendered
+- **File:** `assets/toylvia.css` | baseline lines 2350-2396 | kind: orphan selectors (feature removed)
+- **Why it is dead:** Every selector needs a `.product-trust-badges` ancestor. The product page now uses the `.pdp-trust-trio` component instead.
+- **Proof:** grep: `product-trust-badges` appears in no .liquid/.js/.json file. Chrome CSSOM: only these rules are removed.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .product-trust-badges { display: flex; flex-wrap: nowrap; gap: 8px; margin-top: 1.5rem; padding-top: 0px; border-top: none; overflow: visible; } /   - removed: .product-trust-badges .trust-badge { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: rgb(68, 68, 68); background: rgb(235, 235, 238); padding: 8px 10px; border-radius: 50px; box-shadow: rgba(0, 0, 0, 0.13) 5px /   - removed: .product-trust-badges .trust-badge:hover { box-shadow: rgba(0, 0, 0, 0.15) 6px 6px 15px, rgb(255, 255, 255) -6px -6px 15px; } /   - removed: .product-trust-badges .trust-badge__icon { width: 15px; height: 15px; color: hsl(var(--toylvia-pink, 330 100% 63%)); stroke: hsl(var(--toylvia-pink, 330 100% 63%)); flex-shrink: 0; }**
+- **Visual change if removed:** None.
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 2350-2396). Manual anchor: from `/* ========================================` to `}`.
+Delete:
+```css
+/* ========================================
+   NEUMORPHIC TRUST BADGES - PRODUCT PAGE (SINGLE ROW)
+   ======================================== */
+
+.product-trust-badges {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  margin-top: 1.5rem;
+  padding-top: 0;
+  border-top: none;
+  overflow: visible;
+}
+
+.product-trust-badges .trust-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #444;
+  background: #ebebee;
+  padding: 8px 10px;
+  border-radius: 50px;
+  box-shadow:
+    5px 5px 12px rgba(0, 0, 0, 0.13),
+    -5px -5px 12px rgba(255, 255, 255, 0.95);
+  transition: box-shadow 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.product-trust-badges .trust-badge:hover {
+  box-shadow:
+    6px 6px 15px rgba(0, 0, 0, 0.15),
+    -6px -6px 15px rgba(255, 255, 255, 1);
+}
+
+.product-trust-badges .trust-badge__icon {
+  width: 15px;
+  height: 15px;
+  color: hsl(var(--toylvia-pink, 330 100% 63%));
+  stroke: hsl(var(--toylvia-pink, 330 100% 63%));
+  flex-shrink: 0;
+}
+```
+
+### T30 [REVIEW] Unused 'BRAND LOADER' (`#brand-loader`, `.pl`, `.pl__dot*` and 15 dot-* @keyframes, 157 lines)
+- **File:** `assets/toylvia.css` | baseline lines 3690-3846 | kind: orphan selectors (feature removed)
+- **Why it is dead:** A full-screen dot-spinner loader that the theme never outputs; no script adds `.bl-hidden`. The 15 keyframes are used only by these `.pl__dot` rules.
+- **Proof:** grep: `brand-loader`, `pl__dot`, `bl-hidden` appear in no .liquid/.js/.json file. Chrome CSSOM: removing the range removes exactly the 45 loader rules and keyframes.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: #brand-loader { position: fixed; inset: 0px; z-index: 9999; display: flex; align-items: center; justify-content: center; background: hsla(var(--background), 0.95); backdrop-filter: blur(4px); transition: opacity 0.4s, visibility 0.4s; } /   - removed: #brand-loader.bl-hidden { opacity: 0; visibility: hidden; pointer-events: none; } /   - removed: .pl { aspect-ratio: 1 / 1; display: grid; gap: 1em; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr); width: 8em; } /   - removed: .pl__dot { position: relative; } /   - removed: .pl__dot, .pl__dot::before, .pl__dot::after { animation-duration: 2s; animation-timing-function: linear; animation-iteration-count: infinite; } /   - removed: .pl__dot::before, .pl__dot::after { aspect-ratio: 1 / 1; background-color: hsl(var(--foreground)); border-radius: 50%; content: ""; display: block; position: absolute; width: 100%; transition: background-color 0.3s; } /   - removed: .pl__dot::after { top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0); } /   - removed: .pl__dot--red::before, .pl__dot--red::after { background-color: rgb(245, 61, 61); } /   - removed: .pl__dot--yellow::before, .pl__dot--yellow::after { background-color: rgb(242, 185, 13); } /   - removed: .pl__dot--green::before, .pl__dot--green::after { background-color: rgb(10, 194, 102); } /   - removed: .pl__dot--blue::before, .pl__dot--blue::after { background-color: rgb(13, 128, 242); } /   - removed: .pl__dot--lg::after { width: 500%; } /   - removed: .pl__dot--sm::after { width: 167%; } /   - removed: .pl__dot:nth-child(1)::before { animation-name: dot-scale1; } /   - removed: .pl__dot:nth-child(2) { animation-name: dot-rotate; transform-origin: 50% 200%; } /   - removed: .pl__dot:nth-child(2)::before { animation-name: dot-scale2; } /   - removed: .pl__dot:nth-child(3)::before { animation-name: dot-scale3; } /   - removed: .pl__dot:nth-child(3)::after { animation-name: dot-wave3; } /   - removed: .pl__dot:nth-child(4) { animation-name: dot-rotate; transform-origin: 200% 50%; } /   - removed: .pl__dot:nth-child(4)::before { animation-name: dot-scale4; } /   - removed: .pl__dot:nth-child(5)::before { animation-name: dot-scale5; } /   - removed: .pl__dot:nth-child(5)::after { animation-name: dot-wave5a, dot-wave5b; } /   - removed: .pl__dot:nth-child(6) { animation-name: dot-rotate; transform-origin: -100% 50%; } /   - removed: .pl__dot:nth-child(6)::before { animation-name: dot-scale6; } /   - removed: .pl__dot:nth-child(7)::before { animation-name: dot-scale7; } /   - removed: .pl__dot:nth-child(7)::after { animation-name: dot-wave7; } /   - removed: .pl__dot:nth-child(8) { animation-name: dot-rotate; transform-origin: 50% -100%; } /   - removed: .pl__dot:nth-child(8)::before { animation-name: dot-scale8; } /   - removed: .pl__dot:nth-child(9)::before { animation-name: dot-scale9; } /   - removed: .pl__dot:nth-child(9)::after { animation-name: dot-wave9; } /   - removed: @keyframes dot-rotate { 0%, 22% { animation-timing-function: ease-out; transform: rotate(-45deg); } 37%, 100% { transform: rotate(0deg); } } /   - removed: @keyframes dot-scale1 { 0%, 36% { transform: translate(0px, 0px) scale(0); } 50%, 71% { transform: translate(0px, 0px) scale(1); } 87%, 100% { transform: translate(75%, 75%) scale(0); } } /   - removed: @keyframes dot-scale2 { 0%, 25% { animation-timing-function: ease-out; transform: translate(0px, 0px) scale(0); } 40%, 71% { transform: translate(0px, 0px) scale(1); } 87%, 100% { transform: translate(0px, -100%) scale(0); } } /   - removed: @keyframes dot-scale3 { 0%, 27% { animation-timing-function: ease-in; transform: translate(0px, 0px) scale(0); } 45%, 71% { transform: translate(0px, 0px) scale(1); } 87%, 100% { transform: translate(-75%, 75%) scale(0); } } /   - removed: @keyframes dot-scale4 { 0%, 28% { animation-timing-function: ease-out; transform: translate(0px, 0px) scale(0); } 43%, 71% { transform: translate(0px, 0px) scale(1); } 87%, 100% { transform: translate(-100%, 0px) scale(0); } } /   - removed: @keyframes dot-scale5 { 0%, 9%, 100% { transform: scale(0); } 26% { transform: scale(1.17); } 41%, 75% { transform: scale(1); } } /   - removed: @keyframes dot-scale6 { 0%, 22% { animation-timing-function: ease-out; transform: translate(0px, 0px) scale(0); } 37%, 71% { transform: translate(0px, 0px) scale(1); } 87%, 100% { transform: translate(100%, 0px) scale(0); } } /   - removed: @keyframes dot-scale7 { 0%, 36% { animation-timing-function: ease-in; transform: translate(0px, 0px) scale(0); } 53%, 71% { transform: translate(0px, 0px) scale(1); } 87%, 100% { transform: translate(75%, -75%) scale(0); } } /   - removed: @keyframes dot-scale8 { 0%, 24% { animation-timing-function: ease-out; transform: translate(0px, 0px) scale(0); } 39%, 71% { transform: translate(0px, 0px) scale(1); } 87%, 100% { transform: translate(0px, 100%) scale(0); } } /   - removed: @keyframes dot-scale9 { 0%, 32% { animation-timing-function: ease-in; transform: translate(0px, 0px) scale(0); } 49%, 71% { transform: translate(0px, 0px) scale(1); } 87%, 100% { transform: translate(-75%, -75%) scale(0); } } /   - removed: @keyframes dot-wave3 { 0% { visibility: hidden; } 45% { opacity: 1; transform: translate(-50%, -50%) scale(calc(0.598802)); visibility: hidden; } 61%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1); } } /   - removed: @keyframes dot-wave5a { 0% { transform: translate(-50%, -50%) scale(0.2); } 8% { transform: translate(-50%, -50%) scale(0.8); } 25%, 100% { transform: translate(-50%, -50%) scale(1); } } /   - removed: @keyframes dot-wave5b { 0%, 25%, 100% { opacity: 0; } 8% { opacity: 0.5; } } /   - removed: @keyframes dot-wave7 { 0% { visibility: hidden; } 53% { opacity: 1; transform: translate(-50%, -50%) scale(calc(0.598802)); visibility: hidden; } 69%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1); } } /   - removed: @keyframes dot-wave9 { 0% { visibility: hidden; } 49% { opacity: 1; transform: translate(-50%, -50%) scale(calc(0.598802)); visibility: hidden; } 65%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1); } }**
+- **Visual change if removed:** None. (snippets/toylvia-loader.liquid is a different loader and has its own styles.)
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 3690-3846). Manual anchor: from `/* === BRAND LOADER === */` to `}`.
+Delete:
+```css
+/* === BRAND LOADER === */
+#brand-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: hsla(var(--background), 0.95);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+#brand-loader.bl-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.pl {
+  aspect-ratio: 1;
+  display: grid;
+  gap: 1em;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  width: 8em;
+/* ... 107 more lines, see findings.json exact_text ... */
+}
+@keyframes dot-wave3 {
+  from { visibility: hidden; }
+  45% { opacity: 1; transform: translate(-50%, -50%) scale(calc(1 / 1.67)); visibility: hidden; }
+  61%, to { opacity: 0; transform: translate(-50%, -50%) scale(1); }
+}
+@keyframes dot-wave5a {
+  from { transform: translate(-50%, -50%) scale(0.2); }
+  8% { transform: translate(-50%, -50%) scale(0.8); }
+  25%, to { transform: translate(-50%, -50%) scale(1); }
+}
+@keyframes dot-wave5b {
+  from, 25%, to { opacity: 0; }
+  8% { opacity: 0.5; }
+}
+@keyframes dot-wave7 {
+  from { visibility: hidden; }
+  53% { opacity: 1; transform: translate(-50%, -50%) scale(calc(1 / 1.67)); visibility: hidden; }
+  69%, to { opacity: 0; transform: translate(-50%, -50%) scale(1); }
+}
+@keyframes dot-wave9 {
+  from { visibility: hidden; }
+  49% { opacity: 1; transform: translate(-50%, -50%) scale(calc(1 / 1.67)); visibility: hidden; }
+  65%, to { opacity: 0; transform: translate(-50%, -50%) scale(1); }
+}
+```
+
+### T31 [REVIEW] Unused 'ICE CARD CATEGORY GRID' feature (`.cat-ice-*`, 220 lines)
+- **File:** `assets/toylvia.css` | baseline lines 5313-5532 | kind: orphan selectors (feature removed)
+- **Why it is dead:** No element uses any `.cat-ice-*` class. The live category grid uses `.cat-grid` / `.cat-card`.
+- **Proof:** grep: `cat-ice` appears in no .liquid/.js/.json file. The range is brace-balanced and stops BEFORE the 'RESPONSIVE' comment and the unclosed `@media (max-width: 1024px) {` opener (must stay). Chrome CSSOM: removes only `.cat-ice-*` rules.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: @media (hover: hover) and (pointer: fine) [group] /   - removed: @keyframes cat-ice-float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } } /   - removed: .cat-ice-grid { display: flex; flex-wrap: nowrap; justify-content: center; gap: 20px; padding: 40px 24px 20px; position: relative; } /   - removed: .cat-ice-card { flex: 1 1 0px; min-width: 0px; position: relative; display: flex; flex-direction: column; align-items: center; text-decoration: none; cursor: pointer; animation: 3.8s ease-in-out 0s infinite normal none running cat-ice-float; transition: filter 0.5s, transform 0.45s cubic-bezier(0.34 /   - removed: .cat-ice-card:nth-child(1) { animation-delay: 0s; } /   - removed: .cat-ice-card:nth-child(2) { animation-delay: 0.5s; } /   - removed: .cat-ice-card:nth-child(3) { animation-delay: 1s; } /   - removed: .cat-ice-card:nth-child(4) { animation-delay: 1.5s; } /   - removed: .cat-ice-card:nth-child(5) { animation-delay: 2s; } /   - removed: .cat-ice-card:nth-child(6) { animation-delay: 2.5s; } /   - removed: .cat-ice-frame { position: relative; width: 100%; aspect-ratio: 1 / 1; border-radius: 28px; background: linear-gradient(135deg, rgba(255, 255, 255, 0.72) 0%, rgba(220, 240, 255, 0.48) 40%, rgba(190, 225, 255, 0.38) 100%); backdrop-filter: blur(18px) saturate(1.4); border: 1px solid rgba(255, 255, 25 /   - removed: .cat-ice-frame::before { content: ""; position: absolute; inset: 0px; border-radius: inherit; background: linear-gradient(135deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 55%); pointer-events: none; z-index: 2; } /   - removed: .cat-ice-frame::after { content: ""; position: absolute; top: 10px; left: 12px; width: 36px; height: 36px; background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 70%); pointer-events: none; z-index: 3; } /   - removed: .cat-ice-glow { position: absolute; inset: -20px; border-radius: 40px; background: radial-gradient(ellipse at center, /                                                                                                                                                                                        /   - removed: .cat-ice-img-wrap { position: relative; width: 82%; aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center; z-index: 1; } /   - removed: .cat-ice-img { display: block; width: 100%; height: 100%; object-fit: contain; transition: filter 0.5s, transform 0.45s; filter: drop-shadow(rgba(0, 0, 0, 0.18) 0px 12px 20px) drop-shadow(rgba(0, 0, 0, 0.1) 0px 4px 8px); } /   - removed: .cat-ice-img-shadow { position: absolute; bottom: -4px; left: 50%; transform: translateX(-50%) scaleX(0.75) scaleY(0.3); width: 70%; height: 28px; background: radial-gradient(rgba(60, 80, 120, 0.35) 0%, transparent 70%); filter: blur(6px); border-radius: 50%; transition: transform 0.45s, opacity 0.4 /   - removed: .cat-ice-light-emit { position: absolute; inset: 10px; border-radius: 50%; background: radial-gradient(circle, /                                                                                                                                                                                               /   - removed: .cat-ice-label { margin-top: 14px; font-size: 13px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: rgb(45, 58, 74); text-align: center; transition: color 0.4s, transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1); } /   - removed: .cat-ice-desc { margin-top: 4px; font-size: 11.5px; color: rgb(122, 143, 166); text-align: center; letter-spacing: 0.03em; transition: color 0.4s, transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1); } /   - removed: @media (hover: hover) and (pointer: fine) > .cat-ice-grid.cat-ice-active .cat-ice-card { filter: brightness(0.52) saturate(0.7); } /   - removed: @media (hover: hover) and (pointer: fine) > .cat-ice-grid.cat-ice-active .cat-ice-card.cat-ice-on { filter: brightness(1.18) saturate(1.2) !important; transform: translateY(-14px) !important; animation: auto ease 0s 1 normal none running none !important; } /   - removed: @media (hover: hover) and (pointer: fine) > .cat-ice-card.cat-ice-on .cat-ice-glow { opacity: 0.5; } /   - removed: @media (hover: hover) and (pointer: fine) > .cat-ice-card.cat-ice-on .cat-ice-img-shadow { transform: translateX(-50%) scaleX(0.45) scaleY(0.18); width: 50%; opacity: 0.5; } /   - removed: @media (hover: hover) and (pointer: fine) > .cat-ice-card.cat-ice-on .cat-ice-light-emit { opacity: 0.5; } /   - removed: @media (hover: hover) and (pointer: fine) > .cat-ice-card.cat-ice-on .cat-ice-img { filter: drop-shadow(0 0 14px var(--card-accent, rgba(255,255,255,0.6))) /             drop-shadow(0 16px 28px rgba(0,0,0,0.22)); } /   - removed: @media (hover: hover) and (pointer: fine) > .cat-ice-card.cat-ice-on .cat-ice-label, .cat-ice-card.cat-ice-on .cat-ice-desc { transform: translateY(10px); } /   - removed: @media (hover: hover) and (pointer: fine) > .cat-ice-card.cat-ice-on .cat-ice-label { background: rgba(255, 255, 255, 0.78); border-radius: 6px; padding: 3px 8px; }**
+- **Visual change if removed:** None.
+- **Notes:** Contains T16 (the broken banner comment). The 3 `.cat-ice-*` lines inside the unclosed @media opener area are NOT touched (see Known issues).
+- **Supersedes:** T16. This bigger item already contains them. If Ziko approves it, apply it INSTEAD of T16 and mark those `DONE (covered by T31)`. Apply it before them; once they are applied this item no longer matches.
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 5313-5532). Manual anchor: from `/* ============================================================` to `}`.
+Delete:
+```css
+            /* ============================================================
+               ICE CARD CATEGORY GRID  –  Toylvia
+                  /* =====================================================
+                     ICE CATEGORY CARDS — complete rewrite
+                        ===================================================== */
+
+                        /* Float keyframe */
+                        @keyframes cat-ice-float {
+                          0%,100% { transform: translateY(0px); }
+                            50%      { transform: translateY(-10px); }
+                            }
+
+                            /* Grid container */
+                            .cat-ice-grid {
+                              display: flex;
+                                flex-wrap: nowrap;
+                                  justify-content: center;
+                                    gap: 20px;
+                                      padding: 40px 24px 20px;
+                                        position: relative;
+                                        }
+
+                                        /* Each card link */
+                                        .cat-ice-card {
+                                          flex: 1 1 0;
+/* ... 170 more lines, see findings.json exact_text ... */
+    filter: brightness(1.18) saturate(1.2) !important;
+    transform: translateY(-14px) !important;
+    animation: none !important;
+  }
+  .cat-ice-card.cat-ice-on .cat-ice-glow { opacity: 0.5; }
+  .cat-ice-card.cat-ice-on .cat-ice-img-shadow {
+    transform: translateX(-50%) scaleX(0.45) scaleY(0.18);
+    width: 50%;
+    opacity: 0.5;
+  }
+  .cat-ice-card.cat-ice-on .cat-ice-light-emit { opacity: 0.5; }
+  .cat-ice-card.cat-ice-on .cat-ice-img {
+    filter: drop-shadow(0 0 14px var(--card-accent, rgba(255,255,255,0.6)))
+            drop-shadow(0 16px 28px rgba(0,0,0,0.22));
+  }
+  .cat-ice-card.cat-ice-on .cat-ice-label,
+  .cat-ice-card.cat-ice-on .cat-ice-desc {
+    transform: translateY(10px);
+  }
+  .cat-ice-card.cat-ice-on .cat-ice-label {
+    background: rgba(255,255,255,0.78);
+    border-radius: 6px;
+    padding: 3px 8px;
+  }
+}
+```
+
+### T32 [REVIEW] Unused 'PRODUCT DESCRIPTION CARD' styles (`.product-desc-card*`)
+- **File:** `assets/toylvia.css` | baseline lines 5729-5835 | kind: orphan selectors (feature removed)
+- **Why it is dead:** An older description-card design. The live product page uses `#product-desc-wrap` and the `.pdc*` classes, styled by the second 'PRODUCT DESCRIPTION CARD' block further down (kept).
+- **Proof:** grep: `product-desc-card` appears in no .liquid/.js/.json file. The range is inside the unclosed 1024px @media and stays balanced (depth 1 at both ends). Chrome CSSOM: removes 13 `.product-desc-card*` rules plus one nested @media.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: @media (max-width: 1024px) > @media (max-width: 767px) [group] /   - removed: @media (max-width: 1024px) > .product-desc-card { max-width: 1200px; margin: 3rem auto 2rem; padding: 0px 1.5rem; } /   - removed: @media (max-width: 1024px) > .product-desc-card__label { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: rgb(255, 66, 161); margin-bottom: 0.75rem; } /   - removed: @media (max-width: 1024px) > .product-desc-card__label::before { content: ""; display: inline-block; width: 28px; height: 3px; background: rgb(255, 66, 161); border-radius: 2px; } /   - removed: @media (max-width: 1024px) > .product-desc-card__body { background: rgb(255, 255, 255); border-radius: 1.25rem; border: 2px solid hsl(var(--border)); box-shadow: rgba(0, 0, 0, 0.05) 0px 4px 24px; padding: 2.5rem 3rem; font-size: 17px; line-height: 1.9; color: rgb(51, 51, 51); position: relative; ove /   - removed: @media (max-width: 1024px) > .product-desc-card__body::before { content: ""; position: absolute; top: 0px; left: 0px; width: 5px; height: 100%; background: linear-gradient(180deg, #ff42a1, hsl(var(--secondary))); border-radius: 4px 0px 0px 4px; } /   - removed: @media (max-width: 1024px) > .product-desc-card__body h2, .product-desc-card__body h3 { font-size: 1.3rem; font-weight: 800; color: rgb(255, 66, 161); margin: 2rem 0px 0.6rem; letter-spacing: 0.01em; } /   - removed: @media (max-width: 1024px) > .product-desc-card__body h2:first-child, .product-desc-card__body h3:first-child { margin-top: 0px; } /   - removed: @media (max-width: 1024px) > .product-desc-card__body p { margin-bottom: 1.1rem; } /   - removed: @media (max-width: 1024px) > .product-desc-card__body p:last-child { margin-bottom: 0px; } /   - removed: @media (max-width: 1024px) > .product-desc-card__body ul { list-style: none; padding: 0px; margin: 1rem 0px; } /   - removed: @media (max-width: 1024px) > .product-desc-card__body ul li { padding-left: 1.5rem; position: relative; margin-bottom: 0.55rem; line-height: 1.7; } /   - removed: @media (max-width: 1024px) > .product-desc-card__body ul li::before { content: ""; position: absolute; left: 0px; top: 0.55em; width: 8px; height: 8px; background: rgb(255, 66, 161); border-radius: 50%; } /   - removed: @media (max-width: 1024px) > .product-desc-card__body strong { font-weight: 700; color: rgb(17, 17, 17); } /   - removed: @media (max-width: 1024px) > @media (max-width: 767px) > .product-desc-card { padding: 0px 0.75rem; margin-top: 2rem; } /   - removed: @media (max-width: 1024px) > @media (max-width: 767px) > .product-desc-card__body { padding: 1.5rem 1.25rem; font-size: 15px; } /   - removed: @media (max-width: 1024px) > @media (max-width: 767px) > .product-desc-card__body h2, .product-desc-card__body h3 { font-size: 1.1rem; }**
+- **Visual change if removed:** None.
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 5729-5835). Manual anchor: from `/* =============================================` to `}`.
+Delete:
+```css
+/* =============================================
+   PRODUCT DESCRIPTION CARD
+   ============================================= */
+.product-desc-card {
+  max-width: 1200px;
+  margin: 3rem auto 2rem;
+  padding: 0 1.5rem;
+}
+
+.product-desc-card__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #ff42a1;
+  margin-bottom: 0.75rem;
+}
+.product-desc-card__label::before {
+  content: '';
+  display: inline-block;
+  width: 28px;
+  height: 3px;
+/* ... 57 more lines, see findings.json exact_text ... */
+  margin-bottom: 0.55rem;
+  line-height: 1.7;
+}
+.product-desc-card__body ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 8px;
+  height: 8px;
+  background: #ff42a1;
+  border-radius: 50%;
+}
+
+.product-desc-card__body strong {
+  font-weight: 700;
+  color: #111;
+}
+
+@media (max-width: 767px) {
+  .product-desc-card { padding: 0 0.75rem; margin-top: 2rem; }
+  .product-desc-card__body { padding: 1.5rem 1.25rem; font-size: 15px; }
+  .product-desc-card__body h2,
+  .product-desc-card__body h3 { font-size: 1.1rem; }
+}
+```
+
+### T33 [REVIEW] Superseded card shadow, connector-line and text-area spacing tweaks (11 rules)
+- **File:** `assets/live-card-fixes.css` | baseline lines 60-78 | kind: overridden rules (cross-file)
+- **Why it is dead:** Old tweaks that later rules replaced: card box-shadows lose to card-look.css 19-21 (#MainContent x304, !important); connector sizes and text spacing lose to later !important rules in the same file.
+- **Proof:** Property-by-property check by two agents; Chrome CSSOM shows exactly the 11 rules removed. REVIEW because part of the proof relies on very high specificity in another file (Chrome caps an ID count at 255, which still wins).
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: html body #MainContent .cr-card, html body #MainContent .product-card { box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 5px, rgba(0, 0, 0, 0.04) 0px 1px 2px !important; } /   - removed: @media (hover: hover) [group] /   - removed: @media (hover: hover) > html body #MainContent .cr-card:hover, html body #MainContent .product-card:hover { box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 8px, rgba(0, 0, 0, 0.04) 0px 1px 2px !important; } /   - removed: html body #MainContent#MainContent .cr-card__img-wrap > .cr-card__tag.cr-card__tag.cr-card__tag::before, html body #MainContent#MainContent .product-card__image-wrap > .product-card__tag.product-card__tag.product-card__tag::before, html body #MainContent#MainContent .cr-card__img-wrap > .soft-dot >  /   - removed: html body #MainContent#MainContent#MainContent .cr-card.cr-card.cr-card .cr-card__body { height: auto !important; min-height: 0px !important; justify-content: flex-start !important; gap: 6px !important; } /   - removed: html body #MainContent#MainContent#MainContent .cr-card.cr-card.cr-card .cr-card__name { min-height: 31px !important; margin: 0px !important; } /   - removed: html body #MainContent#MainContent#MainContent .cr-card.cr-card.cr-card .cr-card__footer { margin-top: 0px !important; } /   - removed: html body #MainContent#MainContent#MainContent .cr-card.cr-card.cr-card .cr-card__body { padding: 5px 9px 4px !important; gap: 3px !important; } /   - removed: html body #MainContent#MainContent#MainContent .cr-card.cr-card.cr-card .cr-card__name { min-height: 30px !important; } /   - removed: html body #MainContent#MainContent#MainContent .cr-card.cr-card.cr-card .cr-card__footer { margin-top: 0px !important; margin-bottom: 0px !important; } /   - removed: html body #MainContent#MainContent#MainContent .cr-card.cr-card.cr-card .card-shop-action { margin-bottom: 0px !important; }**
+- **Visual change if removed:** None.
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 60-78). Manual anchor: from `html body #MainContent .cr-card,html body #MainContent .product-card{box-shadow:0 1px 5...` to `html body #MainContent#MainContent#MainContent .cr-card.cr-card.cr-card .card-shop-acti...`.
+Delete:
+```css
+html body #MainContent .cr-card,html body #MainContent .product-card{box-shadow:0 1px 5px rgba(0,0,0,.07),0 1px 2px rgba(0,0,0,.04)!important}
+@media(hover:hover){html body #MainContent .cr-card:hover,html body #MainContent .product-card:hover{box-shadow:0 3px 8px rgba(0,0,0,.10),0 1px 2px rgba(0,0,0,.04)!important}}
+
+/* Tag connector line runs from the circle's right edge to the card's right edge. */
+html body #MainContent#MainContent .cr-card__img-wrap>.cr-card__tag.cr-card__tag.cr-card__tag::before,
+html body #MainContent#MainContent .product-card__image-wrap>.product-card__tag.product-card__tag.product-card__tag::before,
+html body #MainContent#MainContent .cr-card__img-wrap>.soft-dot>.tag-edge-line,
+html body #MainContent#MainContent .product-card__image-wrap>.soft-dot>.tag-edge-line{width:calc(2px + var(--marker-inset,8.68625px))!important;min-width:calc(2px + var(--marker-inset,8.68625px))!important;height:.5px!important}
+
+/* Title-to-price gap: size the card body to its content instead of a fixed 100px with the price pushed to the bottom. */
+html body #MainContent#MainContent#MainContent .cr-card.cr-card.cr-card .cr-card__body{height:auto!important;min-height:0!important;justify-content:flex-start!important;gap:6px!important}
+html body #MainContent#MainContent#MainContent .cr-card.cr-card.cr-card .cr-card__name{min-height:31px!important;margin:0!important}
+html body #MainContent#MainContent#MainContent .cr-card.cr-card.cr-card .cr-card__footer{margin-top:0!important}
+
+/* Tighter card text area (about 5% shorter card); the image area is untouched. */
+html body #MainContent#MainContent#MainContent .cr-card.cr-card.cr-card .cr-card__body{padding:5px 9px 4px!important;gap:3px!important}
+html body #MainContent#MainContent#MainContent .cr-card.cr-card.cr-card .cr-card__name{min-height:30px!important}
+html body #MainContent#MainContent#MainContent .cr-card.cr-card.cr-card .cr-card__footer{margin-top:0!important;margin-bottom:0!important}
+html body #MainContent#MainContent#MainContent .cr-card.cr-card.cr-card .card-shop-action{margin-bottom:0!important}
+```
+
+### T34 [REVIEW] Unused 'marker cluster' layout (`.card-marker-cluster`, `.drift-marker-cluster`) plus a duplicate body-height rule
+- **File:** `assets/live-card-fixes.css` | baseline lines 319-339 | kind: orphan selectors + duplicate
+- **Why it is dead:** The cluster wrapper classes appear nowhere in markup or JS. Line 339 matches the same elements as line 341 with the same declarations.
+- **Proof:** grep `cluster` in all .liquid/.js/.json: 0 hits. Chrome CSSOM: removes exactly the 6 cluster rules and line 339.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: @media (max-width: 767px) [group] /   - removed: html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .card-marker-cluster, html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#Main /   - removed: html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .card-marker-cluster > .age-tag, html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainC /   - removed: html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .card-marker-cluster > .cr-card__tag::before, html body #MainContent#MainContent#MainContent#MainContent#Main /   - removed: @media (max-width: 767px) > html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .card-marker-cluster, html body #MainContent#MainContent#MainContent#MainContent# /   - removed: html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .drift-marker-cluster > [data-drift-category] { display: block !important; width: 8.4px !important; min-width /   - removed: html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .cr-card .card-marker-cluster, html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainCon /   - removed: html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .cr-card .cr-card__body { height: 122px !important; min-height: 122px !important; max-height: 122px !importan**
+- **Visual change if removed:** None.
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 319-339). Manual anchor: from `/* Center age, collection, and soft markers as a compact row at the top of every card i...` to `html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#Main...`.
+Delete:
+```css
+/* Center age, collection, and soft markers as a compact row at the top of every card image. */
+html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .card-marker-cluster,
+html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .drift-marker-cluster{position:absolute!important;top:8px!important;right:auto!important;bottom:auto!important;left:50%!important;transform:translateX(-50%)!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:6px!important;width:max-content!important;max-width:calc(100% - 40px)!important;z-index:12!important;pointer-events:none!important;white-space:nowrap!important}
+html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .card-marker-cluster>.age-tag,
+html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .card-marker-cluster>.cr-card__tag,
+html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .card-marker-cluster>.product-card__tag,
+html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .card-marker-cluster>.soft-dot,
+html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .drift-marker-cluster>[data-drift-age],
+html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .drift-marker-cluster>[data-drift-category]{position:relative!important;top:auto!important;right:auto!important;bottom:auto!important;left:auto!important;margin:0!important;transform:none!important;flex:0 0 auto!important;pointer-events:auto!important}
+html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .card-marker-cluster>.cr-card__tag::before,
+html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .card-marker-cluster>.soft-dot>.tag-edge-line,
+html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .drift-marker-cluster>[data-drift-category]::before{content:none!important;display:none!important}
+@media(max-width:767px){html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .card-marker-cluster,html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .drift-marker-cluster{top:6px!important;gap:4px!important}}
+
+html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .drift-marker-cluster>[data-drift-category]{display:block!important;width:8.4px!important;min-width:8.4px!important;max-width:8.4px!important;height:8.4px!important;padding:0!important;overflow:visible!important;border:0!important;border-radius:50%!important;background:color-mix(in srgb,var(--label-color) 50%,white)!important;color:transparent!important;font-size:0!important;line-height:0!important;box-sizing:border-box!important}
+
+
+/* Keep the image clear: standard card markers sit centered above the title. */
+html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .cr-card .card-marker-cluster,
+html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card .card-marker-cluster{position:relative!important;top:auto!important;right:auto!important;bottom:auto!important;left:auto!important;transform:none!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:6px!important;width:100%!important;max-width:100%!important;height:22px!important;min-height:22px!important;max-height:22px!important;margin:0 0 1px!important;z-index:3!important;pointer-events:none!important}
+html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .cr-card .cr-card__body{height:122px!important;min-height:122px!important;max-height:122px!important;overflow:hidden!important}
+```
+
+### T35 [REVIEW] Layout for the removed 'Fidget pair' banners (`#tlv-fidget-pair`, `#tlv-squishy-banner`)
+- **File:** `assets/card-look.css` | baseline lines 71-95 | kind: orphan selectors (feature removed)
+- **Why it is dead:** The only code that creates these elements (snippets/heart-js.liquid, script tlv-insert-squishy-banner) starts with `return true;`, so they are never built. tlv-owner-overrides.css also hides them with display:none !important (owner removed these banners).
+- **Proof:** grep: the ids appear elsewhere only inside CSS/<style> blocks. Chrome CSSOM: removes 2 @media rules and their 8 nested rules.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: @media (max-width: 767px) [group] /   - removed: @media (min-width: 768px) [group] /   - removed: @media (min-width: 768px) > html body #tlv-fidget-pair { gap: 20px; width: calc(100% - 40px); align-items: flex-start; display: flex !important; margin: 28px 20px 32px !important; } /   - removed: @media (min-width: 768px) > html body #tlv-fidget-pair > #tlv-mechanical-fidgets-banner#tlv-mechanical-fidgets-banner, html body #tlv-fidget-pair > #tlv-squishy-banner { min-width: 0px; border-radius: 30px; overflow: hidden; box-shadow: var(--tlv-shared-card-shadow); flex: 1 1 0px !important; width: /   - removed: @media (min-width: 768px) > html body #tlv-fidget-pair #tlv-mechanical-fidgets-banner img.tlv-mechanical-fidgets-desktop, html body #tlv-fidget-pair #tlv-squishy-banner img { display: block !important; width: 100% !important; height: 100% !important; max-width: 100% !important; object-fit: cover !im /   - removed: @media (min-width: 768px) > html body #tlv-squishy-banner .tlv-sq-link { display: block; width: 100%; height: 100%; } /   - removed: @media (max-width: 767px) > html body #tlv-fidget-pair { display: block; width: calc(100% - 20px); margin: 20px auto 24px; } /   - removed: @media (max-width: 767px) > html body #tlv-squishy-banner { display: block; margin-top: 14px; border-radius: 22px; overflow: hidden; box-shadow: var(--tlv-shared-card-shadow); } /   - removed: @media (max-width: 767px) > html body #tlv-squishy-banner img { display: block; width: 100%; height: auto; } /   - removed: @media (max-width: 767px) > html body #tlv-fidget-pair > #tlv-mechanical-fidgets-banner { width: 100% !important; margin: 0px !important; }**
+- **Visual change if removed:** None.
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 71-95). Manual anchor: from `/* Fidget pair: Mechanical + Squishy half-width 8:3 cards side by side (tablet + deskto...` to `}`.
+Delete:
+```css
+/* Fidget pair: Mechanical + Squishy half-width 8:3 cards side by side (tablet + desktop) */
+
+@media(min-width:768px){
+
+html body #tlv-fidget-pair{display:flex!important;gap:20px;width:calc(100% - 40px);margin:28px 20px 32px!important;align-items:flex-start}
+
+html body #tlv-fidget-pair>#tlv-mechanical-fidgets-banner#tlv-mechanical-fidgets-banner,html body #tlv-fidget-pair>#tlv-squishy-banner{flex:1 1 0!important;width:auto!important;min-width:0;max-width:none!important;height:auto!important;aspect-ratio:8/3!important;margin:0!important;border-radius:30px;overflow:hidden;box-shadow:var(--tlv-shared-card-shadow)}
+
+html body #tlv-fidget-pair #tlv-mechanical-fidgets-banner img.tlv-mechanical-fidgets-desktop,html body #tlv-fidget-pair #tlv-squishy-banner img{display:block!important;width:100%!important;height:100%!important;max-width:100%!important;object-fit:cover!important}
+
+html body #tlv-squishy-banner .tlv-sq-link{display:block;width:100%;height:100%}
+
+}
+
+@media(max-width:767px){
+
+html body #tlv-fidget-pair{display:block;width:calc(100% - 20px);margin:20px auto 24px}
+
+html body #tlv-squishy-banner{display:block;margin-top:14px;border-radius:22px;overflow:hidden;box-shadow:var(--tlv-shared-card-shadow)}
+
+html body #tlv-squishy-banner img{display:block;width:100%;height:auto}
+
+html body #tlv-fidget-pair>#tlv-mechanical-fidgets-banner{width:100%!important;margin:0!important}
+
 }
 ```
 

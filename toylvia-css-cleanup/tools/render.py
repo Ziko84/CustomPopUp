@@ -66,7 +66,7 @@ w(f"""
    (add `--store <store>.myshopify.com` if the CLI asks). If the CLI is not available, ask Ziko to copy the file contents from Shopify admin, or ask him to do the deletions manually using the anchors below.
 2. Make a backup copy of each file you will edit (e.g. `toylvia.before.css`).
 3. Compare md5 with the baseline above. If it differs, the file was edited since the scan. Continue, but rule 3 protects you.
-4. For each TODO item, in order:
+4. Decide the list first: all TODO items, plus the REVIEW items Ziko approved. If an approved item `supersedes` other items, drop those from the list (it contains them). Then for each item, in order (superseding items first):
    - `python toylvia-css-cleanup/tools/apply.py ./theme-live/assets/<file> <ID>` (use `--dry-run` first if unsure)
    - It refuses unless the exact text occurs once.
 5. Verify each edited file against its backup:
@@ -100,6 +100,11 @@ for i in items:
     w(f"- **Visual change if removed:** {i['visual_change']}")
     if i.get('notes'):
         w(f"- **Notes:** {i['notes']}")
+    if i.get('supersedes'):
+        w(f"- **Supersedes:** {', '.join(i['supersedes'])}. This bigger item already contains them. If Ziko approves it, apply it INSTEAD of {', '.join(i['supersedes'])} and mark those `DONE (covered by {i['id']})`. Apply it before them; once they are applied this item no longer matches.")
+    sb = [j['id'] for j in items if i['id'] in j.get('supersedes', [])]
+    if sb:
+        w(f"- **Superseded by:** {', '.join(sb)} (REVIEW). If Ziko approves {', '.join(sb)}, skip this item; it is included there.")
     w(f"- **Parts:** {len(i['parts'])} (apply.py handles all parts of an item at once)")
     w('')
     for n, part in enumerate(i['parts'], 1):
