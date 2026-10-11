@@ -2171,8 +2171,17 @@
     "Supersede pairs: a few REVIEW items contain smaller TODO items. Approving the REVIEW item removes the TODO item's lines too; apply it instead of them."
   ],
   "not_scanned": [
-    "Inline <style> blocks inside .liquid files (layout/theme.liquid ~180 KB, sections/category-rows.liquid, snippets/collection-page.liquid, snippets/cr-card-styles.liquid, snippets/product-card-styles.liquid, ...). They hold a lot of CSS and very likely more dead code, but editing Liquid files needs a different verification setup.",
+    "INLINE CSS IN .liquid FILES (started, NOT finished: stopped to save credits). ~670 KB of CSS in 313 <style> blocks across 68 files, biggest: snippets/collection-page.liquid (114 KB), layout/theme.liquid (113 KB, has Liquid {% if %} inside CSS), sections/category-rows.liquid (48 KB), snippets/tlv-orbs.liquid (41 KB), snippets/cr-card-styles.liquid (33 KB), sections/story-pair.liquid (29 KB), snippets/product-card-styles.liquid (28 KB), sections/clg-hero.liquid (25 KB). Tools are ready in tools/: liquid_css_view.py (CSS view with identical line numbers, `--stats` lists blocks and Liquid conditionals), lqcheck.sh (cut ranges + CSSOM diff + override proof), shadow.js, cut.py. Same rules as this file: only whole rules inside <style>, TODO only if proven from CSS alone, never use a winner inside a Liquid conditional, selectors with {{ }} target the section's own wrapper (treat as used). Also check for sections/snippets that are never rendered at all (e.g. sections/glitch-background-backup.liquid, sections/category-arc.liquid is not in templates/index.json).",
     "assets/tlv-owner-overrides.css: deliberately excluded (owner-requested file; one proven duplicate there was left alone on purpose).",
     "Declaration-level dead code inside live rules (single overridden properties). Only whole rules/blocks were logged."
+  ],
+  "final_summary": [
+    "STATE: nothing in this file has been applied to the live theme yet. Baseline md5s above were the live files at scan time (re-checked at ~16:20 UTC; the four main stylesheets were unchanged).",
+    "WHAT TO DO, IN ORDER: (1) pull the live files listed under 'Files touched'; (2) compare md5 with the baseline; (3) apply all TODO items with tools/apply.py (exact-text, refuses on any mismatch); (4) verify each file with tools/cssom.js compare against a backup (for every item the expected result is in its Verify line); (5) show Ziko the result and get his OK; (6) push with Shopify CLI (`--allow-live`), the Shopify MCP connector cannot write to the live theme; (7) re-pull and confirm md5; (8) mark items DONE/SKIPPED in findings.json, run tools/render.py, commit and push.",
+    "REVIEW ITEMS: only with Ziko's approval, ideally applied to a duplicate theme first and previewed (homepage, product, collection, cart; desktop + mobile). Apply superseding items instead of the TODO items they contain.",
+    "EXPECTED RESULT: TODO only = 707 lines removed (toylvia.css 6205 -> 5544). Everything approved = 2493 lines (toylvia.css -> 3847). Both paths were tested end to end in the cloud: every item applied cleanly and every file changed exactly as predicted.",
+    "DO NOT: repair dead code (e.g. re-add a missing /*), touch tlv-owner-overrides.css, fix the unclosed @media, or apply Ziko's DevTools row-spacing edits without asking (see 'Known issues').",
+    "IF T01 FAILS with 'found 0 times': Ziko probably already deleted that block by hand; check and mark it DONE.",
+    "NEXT (optional): finish the inline-CSS scan described under 'Not scanned yet' with the tools in tools/."
   ]
 }

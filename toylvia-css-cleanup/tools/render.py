@@ -33,6 +33,12 @@ Every item was found by one agent and then attacked by a separate skeptic agent 
 
 ---
 
+## FINAL SUMMARY FOR CLAUDE DESKTOP (read this first)
+
+{chr(10).join('- ' + x for x in data.get('final_summary', []))}
+
+---
+
 ## For Ziko (what you do)
 
 1. On your computer, open this repo and get the branch: `git fetch origin && git checkout {data['scan']['branch']} && git pull`
