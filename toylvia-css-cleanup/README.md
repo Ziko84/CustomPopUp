@@ -3,9 +3,9 @@
 Dead and commented-out CSS found in the live theme of https://toylvia.com by a cloud Claude scan.
 Every item was found by one agent and then attacked by a separate skeptic agent that tried to prove it still affects the page. Only items that survived are listed.
 
-- Scan started: 2026-10-11T15:16:39Z | last update: 2026-10-11T15:51:43Z | rounds: 2
-- Items: **35** total, **17 TODO** (proven safe), **18 REVIEW** (very likely safe, ask Ziko first)
-- Lines removed if every item is applied (superseding items instead of the ones they contain): 1654 | TODO items only: 377
+- Scan started: 2026-10-11T15:16:39Z | last update: 2026-10-11T16:04:48Z | rounds: 3
+- Items: **56** total, **38 TODO** (proven safe), **18 REVIEW** (very likely safe, ask Ziko first)
+- Lines removed if every item is applied (superseding items instead of the ones they contain): 1953 | TODO items only: 707
 - Status legend: `TODO` apply | `REVIEW` apply only if Ziko says yes | `DONE` applied and verified | `SKIPPED: reason`
 
 ---
@@ -27,7 +27,7 @@ You are applying a cleanup that was already researched and verified. Do not re-r
 
 **Store / theme**
 - Live theme: "lior's theme for toylvia", id `209157554507` (gid://shopify/OnlineStoreTheme/209157554507).
-- Files touched: `assets/toylvia.css`, `assets/tlv-owner-overrides.css`, `assets/home-palette.css`, `assets/card-look.css`, `assets/live-card-fixes.css`.
+- Files touched: `assets/toylvia.css`, `assets/tlv-owner-overrides.css`, `assets/home-palette.css`, `assets/card-look.css`, `assets/live-card-fixes.css`, `assets/card-markers.css`.
 - Baseline md5 of each file when the scan read it:
 
   - `assets/toylvia.css`: `efc069df951128a76ac1adb542f17234`
@@ -35,6 +35,7 @@ You are applying a cleanup that was already researched and verified. Do not re-r
   - `assets/home-palette.css`: `01f05408f5ad9004afeb97c14313d787`
   - `assets/card-look.css`: `80c3701d5039636bd309a2760a3363b8`
   - `assets/live-card-fixes.css`: `35cf670e3bcd601f2d54a49ed3e57448`
+  - `assets/card-markers.css`: `c447cc9f8b7e86be72bc5416aa421296`
 
 **Rules (non-negotiable)**
 1. Get the CURRENT live file first. Never edit an old copy (assets/tlv-owner-overrides.css warns that a stale save already destroyed owner work once).
@@ -942,7 +943,7 @@ html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainConte
 - **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: @media (min-width: 768px) [group] /   - removed: @media (min-width: 768px) [group] /   - removed: @media (min-width: 1024px) [group] /   - removed: @media (min-width: 1024px) [group] /   - removed: .category-arc__grid { position: relative; margin: 0px auto; transform-origin: center top; height: 260px; } /   - removed: @media (max-width: 639px) [group] /   - removed: @media (max-width: 639px) > .category-arc { overflow-x: auto; padding: 0px 1.5rem; } /   - removed: @media (max-width: 639px) > .category-arc .max-store { min-width: 680px; } /   - removed: @media (max-width: 639px) > .category-arc__grid { width: 680px; height: 260px; transition: filter 1.8s cubic-bezier(0.4, 0, 0.2, 1), transform 1.8s cubic-bezier(0.4, 0, 0.2, 1); margin-bottom: 0px; padding: 0px 1.5rem; box-sizing: border-box; } /   - removed: @media (min-width: 480px) [group] /   - removed: @media (min-width: 480px) > .category-arc__grid { transform: scale(0.58); margin-bottom: -110px; } /   - removed: @media (min-width: 640px) [group] /   - removed: @media (min-width: 640px) > .category-arc__grid { height: 330px; transform: scale(0.75); margin-bottom: 0px; } /   - removed: @media (min-width: 768px) > .category-arc__grid { height: 330px; transform: scale(0.9); margin-bottom: 0px; } /   - removed: @media (min-width: 1024px) > .category-arc__grid { height: 300px; transform: scale(1); margin-bottom: 0px; } /   - removed: @media (min-width: 768px) > .category-arc__grid { height: 330px; transform: scale(0.9); } /   - removed: @media (min-width: 1024px) > .category-arc__grid { height: 300px; transform: scale(1); } /   - removed: .category-sphere { position: absolute; cursor: pointer; transition: filter 1.8s cubic-bezier(0.4, 0, 0.2, 1), transform 1.8s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1; } /   - removed: .category-sphere:hover { z-index: 10; } /   - removed: .category-sphere__ball { width: 132px; height: 132px; border-radius: 50%; background: radial-gradient(circle at 32% 25%, rgba(255, 255, 255, 0.85) 0%, rgba(246, 247, 248, 0.75) 25%, rgba(228, 231, 236, 0.6) 50%, rgba(202, 207, 216, 0.5) 75%, rgba(179, 186, 198, 0.45) 100%); display: flex; align-item /   - removed: .category-sphere:hover .category-sphere__ball { width: 175px; height: 100px; border-radius: 999px; background: hsl(var(--card)); } /   - removed: .category-sphere__icon { transition: opacity 1.8s cubic-bezier(0.4, 0, 0.2, 1), transform 1.8s cubic-bezier(0.4, 0, 0.2, 1), filter 1.8s cubic-bezier(0.4, 0, 0.2, 1); } /   - removed: .category-sphere:hover .category-sphere__icon { opacity: 0; transform: scale(0.5); filter: blur(6px); } /   - removed: .category-sphere__label { position: absolute; inset: 0px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; letter-spacing: 0.22em; white-space: nowrap; text-transform: uppercase; color: hsl(var(--foreground)); opacity: 0; transform: translateX(10px) sca /   - removed: .category-sphere:hover .category-sphere__label { opacity: 1; transform: translateX(0px) scale(1); } /   - removed: .category-sphere__rim { position: absolute; top: 1px; left: 8%; right: 8%; height: 3px; border-radius: 50%; filter: blur(1.5px); opacity: 0.7; } /   - removed: .category-sphere:hover .category-sphere__rim { opacity: 0; } /   - removed: .category-sphere__shadow { width: 65px; height: 15px; border-radius: 50%; background: radial-gradient(rgba(0, 0, 0, 0.06), transparent 70%); margin: 14px auto 0px; transition: width 1s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.85s; opacity: 0; } /   - removed: .category-sphere:hover .category-sphere__shadow { width: 100px; } /   - removed: .category-sphere::after { display: none; } /   - removed: .category-sphere__ball { background: radial-gradient(circle at 50% 120%, rgb(228, 234, 241) 0%, rgba(193, 202, 215, 0.9) 25%, rgba(151, 164, 186, 0.75) 60%, rgba(99, 116, 156, 0.65) 85%, rgba(74, 85, 120, 0.6) 100%); overflow: visible; } /   - removed: .category-sphere__ball::before { content: ""; position: absolute; top: 1%; left: 5%; width: 90%; height: 90%; border-radius: 50%; background: radial-gradient(circle at 50% 0px, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0) 58%); filter: blur(5px); z-index: 2; pointer-events: none; } /   - removed: .category-sphere__ball::after { content: ""; position: absolute; top: 8%; left: 10%; width: 40%; height: 25%; border-radius: 50%; background: radial-gradient(circle, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0) 70%); transform: rotate(-30deg) skewX(-10deg); filter: blur(3px); z-index: 3; pointe /   - removed: .category-sphere__ball { background: radial-gradient(circle at 50% 120%, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.3) 25%, rgba(255, 255, 255, 0.55) 60%, rgba(240, 240, 248, 0.75) 85%, rgba(220, 222, 235, 0.85) 100%); } /   - removed: .category-sphere__ball { background: linear-gradient(165deg, rgb(255, 255, 255) 0%, rgb(232, 234, 237) 50%, rgb(220, 222, 226) 95%, rgb(180, 182, 196) 100%); box-shadow: rgba(255, 255, 255, 0.95) -12px -10px 24px, rgba(148, 150, 176, 0.55) 12px 10px 24px; transition: 0.4s; } /   - removed: .category-sphere:hover .category-sphere__ball { background: linear-gradient(165deg, rgb(255, 255, 255) 0%, rgb(232, 234, 237) 50%, rgb(220, 222, 226) 95%, rgb(180, 182, 196) 100%); box-shadow: rgba(255, 255, 255, 0.95) -12px -10px 24px, rgba(148, 150, 176, 0.55) 12px 10px 24px; } /   - removed: .category-sphere:hover .category-sphere__ball { height: 135px; width: 200px; }**
 - **Visual change if removed:** None (the spheres are never shown).
 - **Notes:** Markup-based (the `.category-arc` and `.category-arc .max-store` rules are not hidden by CSS, they just match nothing), hence REVIEW. Contains T13 entirely.
-- **Supersedes:** T13. This bigger item already contains them. If Ziko approves it, apply it INSTEAD of T13 and mark those `DONE (covered by T22)`. Apply it before them; once they are applied this item no longer matches.
+- **Supersedes:** T13, T39. This bigger item already contains them. If Ziko approves it, apply it INSTEAD of T13, T39 and mark those `DONE (covered by T22)`. Apply it before them; once they are applied this item no longer matches.
 - **Parts:** 1 (apply.py handles all parts of an item at once)
 
 **Exact text** (baseline lines 273-445). Manual anchor: from `/* === CATEGORY ARC === */` to `}`.
@@ -1232,6 +1233,7 @@ Delete:
 - **Proof:** grep of all .liquid/.js/.json: 0 hits for `sticky-cart` and for the description classes outside CSS. Chrome CSSOM: removing the range removes only those rules.
 - **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .sticky-cart { position: fixed; bottom: 0px; left: 0px; right: 0px; background: rgb(255, 255, 255); border-top: 1px solid rgb(238, 238, 238); padding: 0.75rem; display: none; z-index: 9999; } /   - removed: .sticky-cart .sticky-cart__btn { width: 100%; padding: 1rem; border-radius: 999px; font-weight: 800; background: linear-gradient(90deg, rgb(255, 66, 161), rgb(255, 123, 189)) !important; color: rgb(255, 255, 255) !important; } /   - removed: @media (max-width: 768px) [group] /   - removed: @media (max-width: 768px) [group] /   - removed: @media (max-width: 768px) > .sticky-cart { display: block; } /   - removed: .product-main__description { margin-top: 2rem; line-height: 1.6; font-size: 14px; color: rgb(68, 68, 68); } /   - removed: .product-main__description-full { max-width: 1100px; margin: 5rem auto 0px; padding: 0px 1.5rem; font-size: 18px; line-height: 1.9; color: rgb(26, 26, 26); } /   - removed: .product-main__description-full h2, .product-main__description-full h3 { font-size: 26px; font-weight: 900; margin: 3rem 0px 1.2rem; letter-spacing: 0.02em; } /   - removed: .product-main__description-full p { margin-bottom: 1.4rem; font-weight: 500; } /   - removed: .product-main__description-full strong { font-weight: 800; color: rgb(0, 0, 0); } /   - removed: .product-main__description-full ul { padding-left: 1.4rem; margin: 1.5rem 0px; } /   - removed: .product-main__description-full li { margin-bottom: 0.7rem; line-height: 1.8; } /   - removed: .product-main__description-full hr { margin: 2.5rem 0px; border-right: none; border-bottom: none; border-left: none; border-image: initial; border-top: 1px solid rgb(221, 221, 221); } /   - removed: @media (max-width: 768px) > .product-main__description-full { font-size: 16px; line-height: 1.7; margin-top: 3rem; } /   - removed: @media (max-width: 768px) > .product-main__description-full h2, .product-main__description-full h3 { font-size: 22px; }**
 - **Visual change if removed:** None.
+- **Supersedes:** T37. This bigger item already contains them. If Ziko approves it, apply it INSTEAD of T37 and mark those `DONE (covered by T27)`. Apply it before them; once they are applied this item no longer matches.
 - **Parts:** 1 (apply.py handles all parts of an item at once)
 
 **Exact text** (baseline lines 1313-1408). Manual anchor: from `/* === STICKY ADD TO CART === */` to `}`.
@@ -1360,6 +1362,7 @@ Delete:
 - **Proof:** grep: `product-trust-badges` appears in no .liquid/.js/.json file. Chrome CSSOM: only these rules are removed.
 - **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .product-trust-badges { display: flex; flex-wrap: nowrap; gap: 8px; margin-top: 1.5rem; padding-top: 0px; border-top: none; overflow: visible; } /   - removed: .product-trust-badges .trust-badge { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: rgb(68, 68, 68); background: rgb(235, 235, 238); padding: 8px 10px; border-radius: 50px; box-shadow: rgba(0, 0, 0, 0.13) 5px /   - removed: .product-trust-badges .trust-badge:hover { box-shadow: rgba(0, 0, 0, 0.15) 6px 6px 15px, rgb(255, 255, 255) -6px -6px 15px; } /   - removed: .product-trust-badges .trust-badge__icon { width: 15px; height: 15px; color: hsl(var(--toylvia-pink, 330 100% 63%)); stroke: hsl(var(--toylvia-pink, 330 100% 63%)); flex-shrink: 0; }**
 - **Visual change if removed:** None.
+- **Supersedes:** T43. This bigger item already contains them. If Ziko approves it, apply it INSTEAD of T43 and mark those `DONE (covered by T29)`. Apply it before them; once they are applied this item no longer matches.
 - **Parts:** 1 (apply.py handles all parts of an item at once)
 
 **Exact text** (baseline lines 2350-2396). Manual anchor: from `/* ========================================` to `}`.
@@ -1614,6 +1617,7 @@ Delete:
 - **Proof:** Property-by-property check by two agents; Chrome CSSOM shows exactly the 11 rules removed. REVIEW because part of the proof relies on very high specificity in another file (Chrome caps an ID count at 255, which still wins).
 - **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: html body #MainContent .cr-card, html body #MainContent .product-card { box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 5px, rgba(0, 0, 0, 0.04) 0px 1px 2px !important; } /   - removed: @media (hover: hover) [group] /   - removed: @media (hover: hover) > html body #MainContent .cr-card:hover, html body #MainContent .product-card:hover { box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 8px, rgba(0, 0, 0, 0.04) 0px 1px 2px !important; } /   - removed: html body #MainContent#MainContent .cr-card__img-wrap > .cr-card__tag.cr-card__tag.cr-card__tag::before, html body #MainContent#MainContent .product-card__image-wrap > .product-card__tag.product-card__tag.product-card__tag::before, html body #MainContent#MainContent .cr-card__img-wrap > .soft-dot >  /   - removed: html body #MainContent#MainContent#MainContent .cr-card.cr-card.cr-card .cr-card__body { height: auto !important; min-height: 0px !important; justify-content: flex-start !important; gap: 6px !important; } /   - removed: html body #MainContent#MainContent#MainContent .cr-card.cr-card.cr-card .cr-card__name { min-height: 31px !important; margin: 0px !important; } /   - removed: html body #MainContent#MainContent#MainContent .cr-card.cr-card.cr-card .cr-card__footer { margin-top: 0px !important; } /   - removed: html body #MainContent#MainContent#MainContent .cr-card.cr-card.cr-card .cr-card__body { padding: 5px 9px 4px !important; gap: 3px !important; } /   - removed: html body #MainContent#MainContent#MainContent .cr-card.cr-card.cr-card .cr-card__name { min-height: 30px !important; } /   - removed: html body #MainContent#MainContent#MainContent .cr-card.cr-card.cr-card .cr-card__footer { margin-top: 0px !important; margin-bottom: 0px !important; } /   - removed: html body #MainContent#MainContent#MainContent .cr-card.cr-card.cr-card .card-shop-action { margin-bottom: 0px !important; }**
 - **Visual change if removed:** None.
+- **Supersedes:** T56. This bigger item already contains them. If Ziko approves it, apply it INSTEAD of T56 and mark those `DONE (covered by T33)`. Apply it before them; once they are applied this item no longer matches.
 - **Parts:** 1 (apply.py handles all parts of an item at once)
 
 **Exact text** (baseline lines 60-78). Manual anchor: from `html body #MainContent .cr-card,html body #MainContent .product-card{box-shadow:0 1px 5...` to `html body #MainContent#MainContent#MainContent .cr-card.cr-card.cr-card .card-shop-acti...`.
@@ -1710,6 +1714,795 @@ html body #tlv-squishy-banner img{display:block;width:100%;height:auto}
 html body #tlv-fidget-pair>#tlv-mechanical-fidgets-banner{width:100%!important;margin:0!important}
 
 }
+```
+
+### T36 [TODO] Product page: early CTA, mobile description and 1:1 main-image rules restated later
+- **File:** `assets/toylvia.css` | baseline lines 1303-1312, 1411-1429, 1923-1927 | kind: always-overridden rules (same file, tool-proven)
+- **Why it is dead:** The first .product-main__cta block (1303-1312) and the 'buttons less harsh' tweak (1923-1927) are fully redeclared by .product-main__cta at 2399. The whole '/* MOBILE FIX */' @media (max-width: 768px) block (1396-1408) is redeclared by the top-level description rules at 1792, 1902 and 1911. The first '1:1' .product-main__main-image block and its img rule (1411-1429, including the '/* image inside */' comment) are redeclared by the later 'FORCE PRODUCT IMAGE 1:1' block at 1821 and 1844. Each later rule has the same selector in the same or a top-level context, so the removed rules can never win. cssom.js shows only these 6 rules removed, plus the @media group that is left empty.
+- **Proof:** shadow.js (headless Chrome): every removed rule has a LATER kept rule in the same file with a selector list containing its selectors, the same or top-level @media context, and every longhand at equal-or-higher priority -> PROVEN. Winners: 1303-1312 -> 2399 (1924 is also removed here; 2399 alone covers it); 1398-1402 -> 1792, 1902; 1404-1407 -> 1911; 1411-1422 -> 1821; 1425-1429 -> 1844; 1924-1927 -> 2399. Re-run independently by a skeptic agent (same result, no added rules).
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .product-main__cta { width: fit-content; padding: 1rem 2.2rem; border-radius: 999px; background: rgb(17, 17, 17); color: rgb(255, 255, 255); font-weight: 800; border: none; cursor: pointer; } /   - removed: .product-main__main-image { width: 100%; aspect-ratio: 1 / 1; background: rgb(246, 246, 246); border-radius: 1rem; display: flex; align-items: center; justify-content: center; overflow: hidden; } /   - removed: .product-main__main-image img { width: 100%; height: 100%; object-fit: contain; } /   - removed: .product-main__cta { font-weight: 700; letter-spacing: 0.03em; }**
+- **Visual change if removed:** None.
+- **Parts:** 3 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 1303-1312). Manual anchor: from `.product-main__cta {` to `}`.
+Delete:
+```css
+.product-main__cta {
+  width: fit-content;
+  padding: 1rem 2.2rem;
+  border-radius: 999px;
+  background: #111;
+  color: #fff;
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+}
+```
+
+**Part 2** (baseline lines 1411-1429). Manual anchor: from `.product-main__main-image {` to `}`.
+Delete:
+```css
+.product-main__main-image {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* key line */
+  background: #f6f6f6;
+  border-radius: 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+/* image inside */
+.product-main__main-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* keeps full product visible */
+}
+```
+
+**Part 3** (baseline lines 1923-1927). Manual anchor: from `/* buttons less harsh */` to `}`.
+Delete:
+```css
+/* buttons less harsh */
+.product-main__cta {
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+```
+
+### T37 [TODO] Product page: early CTA, mobile description and 1:1 main-image rules restated later (part inside T27)
+- **File:** `assets/toylvia.css` | baseline lines 1396-1408 | kind: always-overridden rules (same file, tool-proven)
+- **Why it is dead:** The first .product-main__cta block (1303-1312) and the 'buttons less harsh' tweak (1923-1927) are fully redeclared by .product-main__cta at 2399. The whole '/* MOBILE FIX */' @media (max-width: 768px) block (1396-1408) is redeclared by the top-level description rules at 1792, 1902 and 1911. The first '1:1' .product-main__main-image block and its img rule (1411-1429, including the '/* image inside */' comment) are redeclared by the later 'FORCE PRODUCT IMAGE 1:1' block at 1821 and 1844. Each later rule has the same selector in the same or a top-level context, so the removed rules can never win. cssom.js shows only these 6 rules removed, plus the @media group that is left empty.
+- **Proof:** shadow.js (headless Chrome): every removed rule has a LATER kept rule in the same file with a selector list containing its selectors, the same or top-level @media context, and every longhand at equal-or-higher priority -> PROVEN. Winners: 1303-1312 -> 2399 (1924 is also removed here; 2399 alone covers it); 1398-1402 -> 1792, 1902; 1404-1407 -> 1911; 1411-1422 -> 1821; 1425-1429 -> 1844; 1924-1927 -> 2399. Re-run independently by a skeptic agent (same result, no added rules).
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: @media (max-width: 768px) [group] /   - removed: @media (max-width: 768px) > .product-main__description-full { font-size: 16px; line-height: 1.7; margin-top: 3rem; } /   - removed: @media (max-width: 768px) > .product-main__description-full h2, .product-main__description-full h3 { font-size: 22px; }**
+- **Visual change if removed:** None.
+- **Superseded by:** T27 (REVIEW). If Ziko approves T27, skip this item; it is included there.
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 1396-1408). Manual anchor: from `/* MOBILE FIX */` to `}`.
+Delete:
+```css
+/* MOBILE FIX */
+@media (max-width: 768px) {
+  .product-main__description-full {
+    font-size: 16px;
+    line-height: 1.7;
+    margin-top: 3rem;
+  }
+
+  .product-main__description-full h2,
+  .product-main__description-full h3 {
+    font-size: 22px;
+  }
+}
+```
+
+### T38 [TODO] Original trust-badge rules (homepage + product page) restated later
+- **File:** `assets/toylvia.css` | baseline lines 237-250, 260-271, 991-1008 | kind: always-overridden rules (same file, tool-proven)
+- **Why it is dead:** The original homepage trust-badge styles are all redeclared later. .trust-badges, including its two one-line @media variants (237-241), is redeclared with !important at 5084. .trust-badges__inner (242-250) is redeclared with !important at 2825 and 2855. .trust-badge__icon, the two hover rules and .trust-badge span (260-271) are redeclared with !important at 3183, 2918, 2922 and 3193. The original product-page trust-badge rules (991-1008) are redeclared by the 'NEUMORPHIC TRUST BADGES - PRODUCT PAGE' block at 2354, 2364 and 2390. The live .trust-badge rule (251-259), the live @media at 1010, and the section comments at 236 and 990 are kept. cssom.js shows only these 11 rules removed, plus the two one-line @media groups.
+- **Proof:** shadow.js (headless Chrome): every removed rule has a LATER kept rule in the same file with a selector list containing its selectors, the same or top-level @media context, and every longhand at equal-or-higher priority -> PROVEN. Winners: 237-241 -> 5084; 242-250 -> 2825, 2855; 260-264 -> 3183; 265-267 -> 2918; 268-270 -> 2922; 271 -> 3193; 991-998 -> 2354; 1000-1003 -> 2364; 1005-1008 -> 2390. Re-run independently by a skeptic agent (same result, no added rules).
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: @media (min-width: 768px) [group] /   - removed: @media (min-width: 1024px) [group] /   - removed: .trust-badges { padding: 2.5rem 3rem; } /   - removed: @media (min-width: 768px) > .trust-badges { padding: 2.5rem 6rem; } /   - removed: @media (min-width: 1024px) > .trust-badges { padding: 2.5rem 8rem; } /   - removed: .trust-badges__inner { max-width: 1200px; margin: 0px auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 2rem; } /   - removed: .trust-badge__icon { width: 28px; height: 28px; color: hsl(var(--secondary)); } /   - removed: .trust-badge:hover .trust-badge__icon { color: hsl(var(--primary)); } /   - removed: .trust-badge:hover span { color: hsl(var(--foreground)); } /   - removed: .trust-badge span { text-transform: uppercase; } /   - removed: .product-trust-badges { display: flex; flex-wrap: wrap; gap: 0.75rem 1.25rem; margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid hsl(var(--border)); } /   - removed: .product-trust-badges .trust-badge { font-size: 12px; gap: 0.5rem; } /   - removed: .product-trust-badges .trust-badge__icon { width: 22px; height: 22px; }**
+- **Visual change if removed:** None.
+- **Parts:** 3 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 237-250). Manual anchor: from `.trust-badges {` to `}`.
+Delete:
+```css
+.trust-badges {
+  padding: 2.5rem 3rem;
+}
+@media (min-width: 768px) { .trust-badges { padding: 2.5rem 6rem; } }
+@media (min-width: 1024px) { .trust-badges { padding: 2.5rem 8rem; } }
+.trust-badges__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+```
+
+**Part 2** (baseline lines 260-271). Manual anchor: from `.trust-badge__icon {` to `.trust-badge span { text-transform: uppercase; }`.
+Delete:
+```css
+.trust-badge__icon {
+  width: 28px;
+  height: 28px;
+  color: hsl(var(--secondary));
+}
+.trust-badge:hover .trust-badge__icon {
+  color: hsl(var(--primary));
+}
+.trust-badge:hover span {
+  color: hsl(var(--foreground));
+}
+.trust-badge span { text-transform: uppercase; }
+```
+
+**Part 3** (baseline lines 991-1008). Manual anchor: from `.product-trust-badges {` to `}`.
+Delete:
+```css
+.product-trust-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid hsl(var(--border));
+}
+
+.product-trust-badges .trust-badge {
+  font-size: 12px;
+  gap: 0.5rem;
+}
+
+.product-trust-badges .trust-badge__icon {
+  width: 22px;
+  height: 22px;
+}
+```
+
+### T39 [TODO] Category-arc / All-Products-button rules overridden by later copies (part inside T22)
+- **File:** `assets/toylvia.css` | baseline lines 287-289, 338-342, 426-429 | kind: always-overridden rules (same file, tool-proven)
+- **Why it is dead:** These are category-arc rules that later rules with the same selector fully redeclare. 287-289: the mobile .category-arc .max-store min-width is redeclared by 1145 in the same @media. 338-342: the sphere icon hover is redeclared at 4105. 426-429: the 'WHITE / TRANSPARENT SPHERE OVERRIDE' background is redeclared by the neumorphic .category-sphere__ball at 431; that comment describes only this rule. 463-466 and 468: the first .all-products-btn:hover and the one-line .all-products-btn are redeclared by 469, 2840, 2122, 2135 and 3952; comment 467 is kept because it also heads the live 469. 1166-1173: the mobile ball and svg sizes are redeclared with !important at 1945 and 1949 in the same @media. 2091 and 2095: these one-line rules inside the mobile @media are redeclared by the top-level rules at 4105 and 2840 (!important). cssom.js shows exactly these 9 rules removed.
+- **Proof:** shadow.js (headless Chrome): every removed rule has a LATER kept rule in the same file with a selector list containing its selectors, the same or top-level @media context, and every longhand at equal-or-higher priority -> PROVEN. Winners: 287-289 -> 1145; 338-342 -> 4105; 427-429 -> 431; 463-466 -> 469, 2840; 468 -> 2122, 2135, 3952; 1166-1169 -> 1945; 1170-1173 -> 1949; 2091 -> 4105; 2095 -> 2840. Re-run independently by a skeptic agent (same result, no added rules).
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: @media (max-width: 639px) > .category-arc .max-store { min-width: 680px; } /   - removed: .category-sphere:hover .category-sphere__icon { opacity: 0; transform: scale(0.5); filter: blur(6px); } /   - removed: .category-sphere__ball { background: radial-gradient(circle at 50% 120%, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.3) 25%, rgba(255, 255, 255, 0.55) 60%, rgba(240, 240, 248, 0.75) 85%, rgba(220, 222, 235, 0.85) 100%); }**
+- **Visual change if removed:** None.
+- **Superseded by:** T22 (REVIEW). If Ziko approves T22, skip this item; it is included there.
+- **Parts:** 3 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 287-289). Manual anchor: from `.category-arc .max-store {` to `}`.
+Delete:
+```css
+  .category-arc .max-store {
+    min-width: 680px;
+  }
+```
+
+**Part 2** (baseline lines 338-342). Manual anchor: from `.category-sphere:hover .category-sphere__icon {` to `}`.
+Delete:
+```css
+.category-sphere:hover .category-sphere__icon {
+  opacity: 0;
+  transform: scale(0.5);
+  filter: blur(6px);
+}
+```
+
+**Part 3** (baseline lines 426-429). Manual anchor: from `/* === WHITE / TRANSPARENT SPHERE OVERRIDE === */` to `}`.
+Delete:
+```css
+/* === WHITE / TRANSPARENT SPHERE OVERRIDE === */
+.category-sphere__ball {
+  background: radial-gradient(circle at 50% 120%, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.30) 25%, rgba(255,255,255,0.55) 60%, rgba(240,240,248,0.75) 85%, rgba(220,222,235,0.85) 100%);
+}
+```
+
+### T40 [TODO] Category-arc / All-Products-button rules overridden by later copies
+- **File:** `assets/toylvia.css` | baseline lines 463-466, 468-468, 1166-1173, 2091-2091, 2095-2095 | kind: always-overridden rules (same file, tool-proven)
+- **Why it is dead:** These are category-arc rules that later rules with the same selector fully redeclare. 287-289: the mobile .category-arc .max-store min-width is redeclared by 1145 in the same @media. 338-342: the sphere icon hover is redeclared at 4105. 426-429: the 'WHITE / TRANSPARENT SPHERE OVERRIDE' background is redeclared by the neumorphic .category-sphere__ball at 431; that comment describes only this rule. 463-466 and 468: the first .all-products-btn:hover and the one-line .all-products-btn are redeclared by 469, 2840, 2122, 2135 and 3952; comment 467 is kept because it also heads the live 469. 1166-1173: the mobile ball and svg sizes are redeclared with !important at 1945 and 1949 in the same @media. 2091 and 2095: these one-line rules inside the mobile @media are redeclared by the top-level rules at 4105 and 2840 (!important). cssom.js shows exactly these 9 rules removed.
+- **Proof:** shadow.js (headless Chrome): every removed rule has a LATER kept rule in the same file with a selector list containing its selectors, the same or top-level @media context, and every longhand at equal-or-higher priority -> PROVEN. Winners: 287-289 -> 1145; 338-342 -> 4105; 427-429 -> 431; 463-466 -> 469, 2840; 468 -> 2122, 2135, 3952; 1166-1169 -> 1945; 1170-1173 -> 1949; 2091 -> 4105; 2095 -> 2840. Re-run independently by a skeptic agent (same result, no added rules).
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .all-products-btn:hover { transform: scale(1.15); box-shadow: rgba(255, 255, 255, 0.35) 0px 0px 0px 1px inset, rgba(255, 255, 255, 0.2) 0px 2px 6px inset, rgb(33, 213, 237) 0px 0px 45px, rgba(33, 213, 237, 0.45) 0px 0px 120px, rgba(0, 0, 0, 0.35) 0px 16px 50px; } /   - removed: .all-products-btn { padding: 0.924rem 2.464rem; font-size: 16.016px; background: rgb(249, 250, 251); border: 2.5px solid transparent; color: rgb(255, 42, 148); box-shadow: rgba(255, 255, 255, 0.9) -10px -8px 20px, rgba(148, 150, 176, 0.45) 10px 8px 20px; } /   - removed: @media (max-width: 639px) > .category-sphere__ball { width: 70px; height: 70px; } /   - removed: @media (max-width: 639px) > .category-sphere__ball svg { width: 24px; height: 24px; } /   - removed: @media (max-width: 639px) > .category-sphere:hover .category-sphere__icon { opacity: 1; transform: none; filter: none; } /   - removed: @media (max-width: 639px) > .all-products-btn:hover { transform: none; box-shadow: rgba(255, 255, 255, 0.9) -10px -8px 20px, rgba(148, 150, 176, 0.45) 10px 8px 20px; }**
+- **Visual change if removed:** None.
+- **Parts:** 5 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 463-466). Manual anchor: from `.all-products-btn:hover {` to `}`.
+Delete:
+```css
+.all-products-btn:hover {
+  transform: scale(1.15);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.35), inset 0 2px 6px rgba(255,255,255,0.2), 0 0 45px hsla(187,85%,53%,1.0), 0 0 120px hsla(187,85%,53%,0.45), 0 16px 50px rgba(0,0,0,0.35);
+}
+```
+
+**Part 2** (baseline lines 468-468). Manual anchor: from `.all-products-btn { padding: 0.924rem 2.464rem; font-size: 16.016px; background: rgb(24...` to `.all-products-btn { padding: 0.924rem 2.464rem; font-size: 16.016px; background: rgb(24...`.
+Delete:
+```css
+.all-products-btn { padding: 0.924rem 2.464rem; font-size: 16.016px; background: rgb(249,250,251); border: 2.5px solid transparent; color: rgb(255,42,148); box-shadow: -10px -8px 20px rgba(255,255,255,0.9), 10px 8px 20px rgba(148,150,176,0.45); }
+```
+
+**Part 3** (baseline lines 1166-1173). Manual anchor: from `.category-sphere__ball {` to `}`.
+Delete:
+```css
+  .category-sphere__ball {
+    width: 70px;
+    height: 70px;
+  }
+  .category-sphere__ball svg {
+    width: 24px;
+    height: 24px;
+  }
+```
+
+**Part 4** (baseline lines 2091-2091). Manual anchor: from `.category-sphere:hover .category-sphere__icon { opacity: 1; transform: none; filter: no...` to `.category-sphere:hover .category-sphere__icon { opacity: 1; transform: none; filter: no...`.
+Delete:
+```css
+                        .category-sphere:hover .category-sphere__icon { opacity: 1; transform: none; filter: none; }
+```
+
+**Part 5** (baseline lines 2095-2095). Manual anchor: from `.all-products-btn:hover { transform: none; box-shadow: -10px -8px 20px rgba(255,255,255...` to `.all-products-btn:hover { transform: none; box-shadow: -10px -8px 20px rgba(255,255,255...`.
+Delete:
+```css
+                                .all-products-btn:hover { transform: none; box-shadow: -10px -8px 20px rgba(255,255,255,0.9), 10px 8px 20px rgba(148,150,176,0.45); }
+```
+
+### T41 [TODO] Original header nav rules (logo, nav, link underline, dropdown) restated later
+- **File:** `assets/toylvia.css` | baseline lines 145-145, 154-154, 164-178, 198-200, 1929-1933 | kind: always-overridden rules (same file, tool-proven)
+- **Why it is dead:** These are original header rules that later !important header overrides redeclare. .site-header__logo (145) is redeclared at 3098. The one-line @media (min-width: 1024px) .site-header__nav (154) is redeclared at 3106. The nav-link hover color, the ::after underline and hover::after (164-178) are redeclared at 3906, 3921 and 3935. .nav-dropdown position (198-200) is redeclared by the 'Dropdown hover-bridge fix' at 3529. The 'nav less robotic' tweak (1929-1933, comment included) is redeclared at 3888. The live .site-header__nav-link base rule (155-163) and the '/* Dropdown */' comment are kept. cssom.js shows only these 7 rules removed, plus the one-line @media group.
+- **Proof:** shadow.js (headless Chrome): every removed rule has a LATER kept rule in the same file with a selector list containing its selectors, the same or top-level @media context, and every longhand at equal-or-higher priority -> PROVEN. Winners: 145 -> 3098; 154 -> 3106; 164 -> 3906; 165-177 -> 3921; 178 -> 3935; 198-200 -> 3529; 1930-1933 -> 3888. Re-run independently by a skeptic agent (same result, no added rules).
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: @media (min-width: 1024px) [group] /   - removed: .site-header__logo { flex-shrink: 0; } /   - removed: @media (min-width: 1024px) > .site-header__nav { display: flex; } /   - removed: .site-header__nav-link:hover { color: hsl(var(--foreground)); } /   - removed: .site-header__nav-link::after { content: ""; position: absolute; bottom: 0px; left: 0px; width: 100%; height: 2px; background: hsl(var(--primary)); border-radius: 1px 1px 0px 0px; transform: scaleX(0); transform-origin: left center; transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1); } /   - removed: .site-header__nav-link:hover::after { transform: scaleX(1); } /   - removed: .nav-dropdown { position: relative; } /   - removed: .site-header__nav-link { letter-spacing: 0.05em; font-weight: 500; }**
+- **Visual change if removed:** None.
+- **Parts:** 5 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 145-145). Manual anchor: from `.site-header__logo { flex-shrink: 0; }` to `.site-header__logo { flex-shrink: 0; }`.
+Delete:
+```css
+.site-header__logo { flex-shrink: 0; }
+```
+
+**Part 2** (baseline lines 154-154). Manual anchor: from `@media (min-width: 1024px) { .site-header__nav { display: flex; } }` to `@media (min-width: 1024px) { .site-header__nav { display: flex; } }`.
+Delete:
+```css
+@media (min-width: 1024px) { .site-header__nav { display: flex; } }
+```
+
+**Part 3** (baseline lines 164-178). Manual anchor: from `.site-header__nav-link:hover { color: hsl(var(--foreground)); }` to `.site-header__nav-link:hover::after { transform: scaleX(1); }`.
+Delete:
+```css
+.site-header__nav-link:hover { color: hsl(var(--foreground)); }
+.site-header__nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: hsl(var(--primary));
+  border-radius: 1px 1px 0 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+.site-header__nav-link:hover::after { transform: scaleX(1); }
+```
+
+**Part 4** (baseline lines 198-200). Manual anchor: from `.nav-dropdown {` to `}`.
+Delete:
+```css
+.nav-dropdown {
+  position: relative;
+}
+```
+
+**Part 5** (baseline lines 1929-1933). Manual anchor: from `/* nav less robotic */` to `}`.
+Delete:
+```css
+/* nav less robotic */
+.site-header__nav-link {
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+```
+
+### T42 [TODO] Original newsletter socials / social-link / dot-texture rules restated later
+- **File:** `assets/toylvia.css` | baseline lines 692-710, 2057-2060 | kind: always-overridden rules (same file, tool-proven)
+- **Why it is dead:** The original .newsletter__socials (692-698) and .newsletter__social-link (699-710) are fully redeclared by the later 'Social Icons' and 'SOCIAL ICONS' rules at 3562, 3650 and 3651. The .newsletter dot-texture background (2057-2060) is redeclared by the !important footer override at 3647. The live .newsletter__social-link:hover (711) and the other dot-texture rules (2049-2056, 2061-2064) are kept. cssom.js shows exactly these 3 rules removed.
+- **Proof:** shadow.js (headless Chrome): every removed rule has a LATER kept rule in the same file with a selector list containing its selectors, the same or top-level @media context, and every longhand at equal-or-higher priority -> PROVEN. Winners: 692-698 -> 3650; 699-710 -> 3562, 3651; 2057-2060 -> 3647. Re-run independently by a skeptic agent (same result, no added rules).
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .newsletter__socials { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 2rem; } /   - removed: .newsletter__social-link { width: 40px; height: 40px; border-radius: 50%; border: 2px solid hsl(var(--border)); background: hsl(var(--background)); display: flex; align-items: center; justify-content: center; color: hsl(var(--muted-foreground)); transition: color 0.3s, border-color 0.3s; } /   - removed: .newsletter { background-image: radial-gradient(circle, rgba(175, 155, 210, 0.13) 1.1px, transparent 1.1px); background-size: 26px 26px; }**
+- **Visual change if removed:** None.
+- **Parts:** 2 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 692-710). Manual anchor: from `.newsletter__socials {` to `}`.
+Delete:
+```css
+.newsletter__socials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.newsletter__social-link {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid hsl(var(--border));
+  background: hsl(var(--background));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: hsl(var(--muted-foreground));
+  transition: color 0.3s, border-color 0.3s;
+}
+```
+
+**Part 2** (baseline lines 2057-2060). Manual anchor: from `.newsletter {` to `}`.
+Delete:
+```css
+                .newsletter {
+                  background-image: radial-gradient(circle, rgba(175,155,210,0.13) 1.1px, transparent 1.1px);
+                    background-size: 26px 26px;
+                    }
+```
+
+### T43 [TODO] Earlier trust-badge container, hover and animation rules restated by later override blocks (part inside T29)
+- **File:** `assets/toylvia.css` | baseline lines 2384-2388 | kind: always-overridden rules (same file, tool-proven)
+- **Why it is dead:** Trust-badge styling was pasted several times. Five earlier .trust-badges__inner rules (the max-width 920px one, the whole min-width 921px @media block with its 'Desktop (Above 920px)' comment, the top-level '2. ALIGN & FIX TRUST BADGE CONTAINER' rule, and the max-width 768px one) are fully restated with !important by .trust-badges__inner at 2855-2864, 3037-3045, 4886-4891 and 5090-5098. The '1. REMOVE ANIMATIONS FROM TRUST BADGES' rule (2816-2822) is restated by the larger list at 2888-2902. On the product page, .product-trust-badges .trust-badge:hover at 2384-2388 and 2961-2967 are restated by the 'Definitively kill all hover shadows' rule at 2980-2991, and the white-background rule at 2968-2978 is restated by 2992-3012 and 3160-3180. The included comments (2804, 2815, 2824) describe only removed rules. The section comment at 2779-2782 and the 920px .trust-badge rule at 2796-2801 stay b
+- **Proof:** shadow.js (headless Chrome): every removed rule has a LATER kept rule in the same file with a selector list containing its selectors, the same or top-level @media context, and every longhand at equal-or-higher priority -> PROVEN. Winners: toylvia.css 2855-2864, 2888-2902, 2980-2991, 2992-3012, 3037-3045, 3160-3180, 4886-4891, 5090-5098. Re-run independently by a skeptic agent (same result, no added rules).
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .product-trust-badges .trust-badge:hover { box-shadow: rgba(0, 0, 0, 0.15) 6px 6px 15px, rgb(255, 255, 255) -6px -6px 15px; }**
+- **Visual change if removed:** None.
+- **Superseded by:** T29 (REVIEW). If Ziko approves T29, skip this item; it is included there.
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 2384-2388). Manual anchor: from `.product-trust-badges .trust-badge:hover {` to `}`.
+Delete:
+```css
+.product-trust-badges .trust-badge:hover {
+  box-shadow:
+    6px 6px 15px rgba(0, 0, 0, 0.15),
+    -6px -6px 15px rgba(255, 255, 255, 1);
+}
+```
+
+### T44 [TODO] Earlier trust-badge container, hover and animation rules restated by later override blocks
+- **File:** `assets/toylvia.css` | baseline lines 2784-2794, 2804-2837, 2876-2879, 2961-2978 | kind: always-overridden rules (same file, tool-proven)
+- **Why it is dead:** Trust-badge styling was pasted several times. Five earlier .trust-badges__inner rules (the max-width 920px one, the whole min-width 921px @media block with its 'Desktop (Above 920px)' comment, the top-level '2. ALIGN & FIX TRUST BADGE CONTAINER' rule, and the max-width 768px one) are fully restated with !important by .trust-badges__inner at 2855-2864, 3037-3045, 4886-4891 and 5090-5098. The '1. REMOVE ANIMATIONS FROM TRUST BADGES' rule (2816-2822) is restated by the larger list at 2888-2902. On the product page, .product-trust-badges .trust-badge:hover at 2384-2388 and 2961-2967 are restated by the 'Definitively kill all hover shadows' rule at 2980-2991, and the white-background rule at 2968-2978 is restated by 2992-3012 and 3160-3180. The included comments (2804, 2815, 2824) describe only removed rules. The section comment at 2779-2782 and the 920px .trust-badge rule at 2796-2801 stay b
+- **Proof:** shadow.js (headless Chrome): every removed rule has a LATER kept rule in the same file with a selector list containing its selectors, the same or top-level @media context, and every longhand at equal-or-higher priority -> PROVEN. Winners: toylvia.css 2855-2864, 2888-2902, 2980-2991, 2992-3012, 3037-3045, 3160-3180, 4886-4891, 5090-5098. Re-run independently by a skeptic agent (same result, no added rules).
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: @media (max-width: 920px) > .trust-badges__inner { display: flex !important; flex-wrap: wrap !important; gap: 0.75rem !important; width: 100% !important; padding: 1rem 0.5rem !important; justify-content: center !important; align-items: center !important; overflow: visible !important; margin: 0px !im /   - removed: @media (min-width: 921px) [group] /   - removed: @media (min-width: 921px) > .trust-badges__inner { display: flex !important; flex-wrap: nowrap !important; justify-content: center !important; gap: 3rem !important; width: 100% !important; margin: 0px auto !important; } /   - removed: .trust-badge, .trust-badge *, .trust-badge__icon, .trust-badge span { animation: auto ease 0s 1 normal none running none !important; transition: none !important; } /   - removed: .trust-badges__inner { display: flex !important; flex-wrap: wrap !important; justify-content: center !important; align-items: center !important; width: 100% !important; max-width: 1212px !important; margin-left: auto !important; margin-right: auto !important; gap: 20px !important; overflow: hidden ! /   - removed: @media (max-width: 768px) > .trust-badges__inner { justify-content: center !important; gap: 30px 10% !important; } /   - removed: .product-trust-badges .trust-badge:hover { box-shadow: rgba(163, 177, 198, 0.6) 9px 9px 16px, rgb(255, 255, 255) -9px -9px 16px !important; transform: none !important; } /   - removed: .product-trust-badges .trust-badge, .trust-badge, .trust-badge:hover { background: rgb(255, 255, 255) !important; box-shadow: none !important; filter: none !important; border: none !important; transform: none !important; transition: none !important; }**
+- **Visual change if removed:** None.
+- **Parts:** 4 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 2784-2794). Manual anchor: from `.trust-badges__inner {` to `}`.
+Delete:
+```css
+  .trust-badges__inner {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 0.75rem !important;
+    width: 100% !important;
+    padding: 1rem 0.5rem !important;
+    justify-content: center !important;
+    align-items: center !important;
+    overflow: visible !important;
+    margin: 0 !important;
+  }
+```
+
+**Part 2** (baseline lines 2804-2837). Manual anchor: from `/* Desktop (Above 920px) */` to `}`.
+Delete:
+```css
+/* Desktop (Above 920px) */
+@media (min-width: 921px) {
+  .trust-badges__inner {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    justify-content: center !important;
+    gap: 3rem !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+  }
+}
+/* 1. REMOVE ANIMATIONS FROM TRUST BADGES */
+.trust-badge, 
+.trust-badge *, 
+.trust-badge__icon, 
+.trust-badge span {
+  animation: none !important;
+  transition: none !important;
+}
+
+/* 2. ALIGN & FIX TRUST BADGE CONTAINER */
+.trust-badges__inner {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  max-width: 1212px !important; /* Matches your category grid width */
+  margin-left: auto !important;
+  margin-right: auto !important;
+  gap: 20px !important;
+  overflow: hidden !important;
+  height: auto !important;
+}
+```
+
+**Part 3** (baseline lines 2876-2879). Manual anchor: from `.trust-badges__inner {` to `}`.
+Delete:
+```css
+  .trust-badges__inner {
+    justify-content: center !important;
+    gap: 30px 10% !important; /* Vertical gap 30px, Horizontal gap 10% */
+  }
+```
+
+**Part 4** (baseline lines 2961-2978). Manual anchor: from `.product-trust-badges .trust-badge:hover {` to `}`.
+Delete:
+```css
+.product-trust-badges .trust-badge:hover {
+  /* Match the non-hover state to avoid sinking */
+  box-shadow: 
+    9px 9px 16px rgba(163, 177, 198, 0.6), 
+    -9px -9px 16px rgba(255, 255, 255, 1) !important;
+  transform: none !important;
+}
+.product-trust-badges .trust-badge,
+.trust-badge,
+.trust-badge:hover {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  box-shadow: none !important;
+  filter: none !important;
+  border: none !important;
+  transform: none !important;
+  transition: none !important;
+}
+```
+
+### T45 [TODO] Duplicated site-header nav-link, ::before, inner and mobile header rules
+- **File:** `assets/toylvia.css` | baseline lines 3116-3121, 3252-3253, 3507-3507, 3510-3510, 3521-3526 | kind: always-overridden rules (same file, tool-proven)
+- **Why it is dead:** .site-header__nav-link {position;padding;border-radius;transition} was pasted twice (3116-3121 and 3521-3526), and both copies are restated by .site-header__nav-link at 3888-3904. .site-header::before at 3507 is restated by 4064-4077 and 4872. .site-header__inner {position;z-index} at 3510 is restated by 4088. In the 'MOBILE RESPONSIVE' @media (max-width:768px) block, .site-header__inner and .site-header__logo img at 3252-3253 (not !important) are restated with !important in the same media by 'MOBILE FIX V2' at 3375-3376. The live neighbours stay: 3508 ::after, 3254-3255, and .site-header__nav at 3512-3519. cssom.js shows exactly these 6 rules removed.
+- **Proof:** shadow.js (headless Chrome): every removed rule has a LATER kept rule in the same file with a selector list containing its selectors, the same or top-level @media context, and every longhand at equal-or-higher priority -> PROVEN. Winners: toylvia.css 3375, 3376, 3888-3904, 4064-4077, 4088, 4872. Re-run independently by a skeptic agent (same result, no added rules).
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .site-header__nav-link { position: relative; padding: 8px 16px; border-radius: 999px; transition: 0.25s; } /   - removed: .site-header__nav-link { position: relative; padding: 8px 16px; border-radius: 999px; transition: 0.25s; } /   - removed: @media (max-width: 768px) > .site-header__inner { padding: 0px 1rem; height: 60px; } /   - removed: @media (max-width: 768px) > .site-header__logo img { height: 46px; } /   - removed: .site-header::before { top: 1px; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent); } /   - removed: .site-header__inner { position: relative; z-index: 1; }**
+- **Visual change if removed:** None.
+- **Parts:** 5 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 3116-3121). Manual anchor: from `.site-header__nav-link {` to `}`.
+This text also exists elsewhere in the file, so it is located by the neighbouring lines (kept, not deleted): before = `(none)`, after = `/* Positioning the action icons (account, search, cart) on the right */`.
+Delete:
+```css
+.site-header__nav-link {
+  position: relative;
+  padding: 8px 16px;
+  border-radius: 999px;
+  transition: all .25s ease;
+}
+```
+
+**Part 2** (baseline lines 3252-3253). Manual anchor: from `.site-header__inner { padding: 0 1rem; height: 60px; }` to `.site-header__logo img { height: 46px; }`.
+Delete:
+```css
+            .site-header__inner { padding: 0 1rem; height: 60px; }
+              .site-header__logo img { height: 46px; }
+```
+
+**Part 3** (baseline lines 3507-3507). Manual anchor: from `.site-header::before { top: 1px; background: linear-gradient(90deg, transparent, rgba(2...` to `.site-header::before { top: 1px; background: linear-gradient(90deg, transparent, rgba(2...`.
+Delete:
+```css
+.site-header::before { top: 1px;    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.9), transparent); }
+```
+
+**Part 4** (baseline lines 3510-3510). Manual anchor: from `.site-header__inner { position: relative; z-index: 1; }` to `.site-header__inner { position: relative; z-index: 1; }`.
+Delete:
+```css
+.site-header__inner { position: relative; z-index: 1; }
+```
+
+**Part 5** (baseline lines 3521-3526). Manual anchor: from `.site-header__nav-link {` to `}`.
+This text also exists elsewhere in the file, so it is located by the neighbouring lines (kept, not deleted): before = `(none)`, after = `/* Dropdown hover-bridge fix */`.
+Delete:
+```css
+.site-header__nav-link {
+  position: relative;
+  padding: 8px 16px;
+  border-radius: 999px;
+  transition: all .25s ease;
+}
+```
+
+### T46 [TODO] Overridden All-Products / See-all button rules
+- **File:** `assets/toylvia.css` | baseline lines 2121-2122, 2511-2512, 2692-2695 | kind: always-overridden rules (same file, tool-proven)
+- **Why it is dead:** 'GRADIENT BORDER: ALL PRODUCTS BUTTON' .all-products-btn {background} at 2122 is restated by the !important backgrounds at 2135-2143 and 3952-3969. a.all-products-btn:active {transform} at 2693-2695 is restated with !important at 2746-2748. The one-line .see-all-btn:hover at 2511 and .see-all-btn {font-size;padding} at 2512 are restated with !important by 2643-2650 and 3661-3669, and by 2625-2641. Both comments (2121, 2692) describe only the removed rule. 2507-2510 stay because they are live. CAUTION: the already-logged range 2144-2152 removes the '}}' that also closes the .all-products-btn rule opened at 2135. Cut alone, cssom.js shows 27 rules lost (e.g. '*,::before,::after' at 2516), so that logged entry looks broken. This candidate does not depend on it, because 3952-3969 also covers 2122.
+- **Proof:** shadow.js (headless Chrome): every removed rule has a LATER kept rule in the same file with a selector list containing its selectors, the same or top-level @media context, and every longhand at equal-or-higher priority -> PROVEN. Winners: toylvia.css 2135-2143 (and 3952-3969), 2625-2641, 2643-2650, 3661-3669, 2746-2748. Re-run independently by a skeptic agent (same result, no added rules).
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .all-products-btn { background: linear-gradient(rgb(249, 250, 251), rgb(249, 250, 251)) padding-box padding-box, linear-gradient(135deg, rgb(255, 41, 148), rgb(33, 213, 237)) border-box border-box; } /   - removed: .see-all-btn:hover { box-shadow: rgb(209, 209, 209) 3px 3px 8px, rgb(255, 255, 255) -3px -3px 8px !important; transform: translateY(-2px) !important; color: rgb(17, 17, 17) !important; } /   - removed: .see-all-btn { font-size: 16px !important; padding: 20px 41px 16px !important; } /   - removed: a.all-products-btn:active { transform: translateY(4px); }**
+- **Visual change if removed:** None.
+- **Parts:** 3 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 2121-2122). Manual anchor: from `/* === GRADIENT BORDER: ALL PRODUCTS BUTTON === */` to `.all-products-btn { background: linear-gradient(rgb(249,250,251), rgb(249,250,251)) pad...`.
+Delete:
+```css
+/* === GRADIENT BORDER: ALL PRODUCTS BUTTON === */
+.all-products-btn { background: linear-gradient(rgb(249,250,251), rgb(249,250,251)) padding-box, linear-gradient(135deg, #ff2994, #21d5ed) border-box; }
+```
+
+**Part 2** (baseline lines 2511-2512). Manual anchor: from `.see-all-btn:hover { box-shadow: 3px 3px 8px #d1d1d1, -3px -3px 8px #ffffff !important;...` to `.see-all-btn { font-size: 16px !important; padding: 20px 41px 16px 41px !important; }`.
+Delete:
+```css
+.see-all-btn:hover { box-shadow: 3px 3px 8px #d1d1d1, -3px -3px 8px #ffffff !important; transform: translateY(-2px) !important; color: #111 !important; }
+.see-all-btn { font-size: 16px !important; padding: 20px 41px 16px 41px !important; }
+```
+
+**Part 3** (baseline lines 2692-2695). Manual anchor: from `/* 5. Active State: Deep "Pressed" effect when clicked */` to `}`.
+Delete:
+```css
+/* 5. Active State: Deep "Pressed" effect when clicked */
+a.all-products-btn:active {
+  transform: translateY(4px);
+}
+```
+
+### T47 [TODO] 'MOBILE LAYOUT FIXES' (max-width 639px) trust-badge and section-title rules restated later
+- **File:** `assets/toylvia.css` | baseline lines 2101-2104 | kind: always-overridden rules (same file, tool-proven)
+- **Why it is dead:** Inside @media (max-width: 639px) at 2099-2106, .trust-badges, .trust-badges__inner, .section-title and .section-title__line (2101-2104) are not !important. The later top-level !important rules in the numbered mobile-fix block restate them: .trust-badges 5084-5088, .trust-badges__inner 5090-5098, .section-title 5134-5140 and .section-title__line 5142-5144 (margin shorthand). The @media opener and closer, the 2098 comment, and the live 2100 and 2105 rules stay, so the block remains balanced. cssom.js shows exactly these 4 rules removed.
+- **Proof:** shadow.js (headless Chrome): every removed rule has a LATER kept rule in the same file with a selector list containing its selectors, the same or top-level @media context, and every longhand at equal-or-higher priority -> PROVEN. Winners: toylvia.css 5084-5088, 5090-5098, 5134-5140, 5142-5144. Re-run independently by a skeptic agent (same result, no added rules).
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: @media (max-width: 639px) > .trust-badges { padding: 1.5rem 1rem; } /   - removed: @media (max-width: 639px) > .trust-badges__inner { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; justify-items: start; } /   - removed: @media (max-width: 639px) > .section-title { text-align: center; display: inline-block; } /   - removed: @media (max-width: 639px) > .section-title__line { margin-left: auto; margin-right: auto; }**
+- **Visual change if removed:** None.
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 2101-2104). Manual anchor: from `.trust-badges { padding: 1.5rem 1rem; }` to `.section-title__line { margin-left: auto; margin-right: auto; }`.
+Delete:
+```css
+                                    .trust-badges { padding: 1.5rem 1rem; }
+                                      .trust-badges__inner { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; justify-items: start; }
+                                        .section-title { text-align: center; display: inline-block; }
+                                          .section-title__line { margin-left: auto; margin-right: auto; }
+```
+
+### T48 [TODO] Newsletter mobile padding/input and social-link colour restated later
+- **File:** `assets/toylvia.css` | baseline lines 3320-3320, 3324-3324, 3572-3574 | kind: always-overridden rules (same file, tool-proven)
+- **Why it is dead:** In the 'NEWSLETTER' @media (max-width:640px) block, .newsletter {padding !important} at 3320 is restated by .newsletter at 3394, and .newsletter__input {width;box-sizing !important} at 3324 is restated by '.newsletter__input, .newsletter__btn' at 3396. Both later rules are in the same media in 'MOBILE FIX V2'. The stand-alone .newsletter__social-link {color:#aab4c0 !important} at 3572-3574 is restated by the one-line .newsletter__social-link at 3651. 3321-3323 and 3325 stay because they are live. cssom.js shows exactly these 3 rules removed.
+- **Proof:** shadow.js (headless Chrome): every removed rule has a LATER kept rule in the same file with a selector list containing its selectors, the same or top-level @media context, and every longhand at equal-or-higher priority -> PROVEN. Winners: toylvia.css 3394, 3396, 3651. Re-run independently by a skeptic agent (same result, no added rules).
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: @media (max-width: 640px) > .newsletter { padding: 2.5rem 1.25rem !important; } /   - removed: @media (max-width: 640px) > .newsletter__input { width: 100% !important; box-sizing: border-box !important; } /   - removed: .newsletter__social-link { color: rgb(170, 180, 192) !important; }**
+- **Visual change if removed:** None.
+- **Parts:** 3 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 3320-3320). Manual anchor: from `.newsletter { padding: 2.5rem 1.25rem !important; }` to `.newsletter { padding: 2.5rem 1.25rem !important; }`.
+Delete:
+```css
+                                                                                                                            .newsletter { padding: 2.5rem 1.25rem !important; }
+```
+
+**Part 2** (baseline lines 3324-3324). Manual anchor: from `.newsletter__input { width: 100% !important; box-sizing: border-box !important; }` to `.newsletter__input { width: 100% !important; box-sizing: border-box !important; }`.
+Delete:
+```css
+                                                                                                                                    .newsletter__input { width: 100% !important; box-sizing: border-box !important; }
+```
+
+**Part 3** (baseline lines 3572-3574). Manual anchor: from `.newsletter__social-link {` to `}`.
+Delete:
+```css
+.newsletter__social-link {
+  color: #aab4c0 !important;
+}
+```
+
+### T49 [TODO] V14 trust-badge sizing one-liners overridden by the later trust-badge block
+- **File:** `assets/toylvia.css` | baseline lines 4892-4892, 4936-4937, 4945-4946, 4957-4959 | kind: always-overridden rules (same file, tool-proven)
+- **Why it is dead:** In the 'TOYLVIA V14 PERMANENT STYLES' block, 8 one-line rules (.trust-badge gap at top level, plus .trust-badges__inner gap, .trust-badge__icon width/height and .trust-badge span font-size inside @media 1024/768/480) are restated later at top level with the same selectors and !important on every longhand. A top-level later rule beats an earlier media-scoped rule with the same selector, so these values never apply. The sibling rules on the same media lines (section-title, clg-*, padding, flex) are kept.
+- **Proof:** shadow.js (headless Chrome): every removed rule has a LATER kept rule in the same file with a selector list containing its selectors, the same or top-level @media context, and every longhand at equal-or-higher priority -> PROVEN. Winners: toylvia.css 5090-5098 (.trust-badges__inner gap 16px 8px !important), 5100-5109 (.trust-badge gap 0.6rem !important), 5111-5114 (.trust-badge span font-size 11px !important), 5116-5121 (.trust-badge__icon width/height 36px !important), all top level. Re-run independently by a skeptic agent (same result, no added rules).
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .trust-badge { gap: 14px !important; } /   - removed: @media (max-width: 1024px) > .trust-badges__inner { gap: 36px !important; } /   - removed: @media (max-width: 1024px) > .trust-badge__icon { width: 22px !important; height: 22px !important; } /   - removed: @media (max-width: 768px) > .trust-badge__icon { width: 18px !important; height: 18px !important; } /   - removed: @media (max-width: 768px) > .trust-badge span { font-size: 12px !important; } /   - removed: @media (max-width: 480px) > .trust-badges__inner { gap: 14px !important; } /   - removed: @media (max-width: 480px) > .trust-badge__icon { width: 14px !important; height: 14px !important; } /   - removed: @media (max-width: 480px) > .trust-badge span { font-size: 11px !important; }**
+- **Visual change if removed:** None.
+- **Parts:** 4 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 4892-4892). Manual anchor: from `.trust-badge { gap: 14px !important; }` to `.trust-badge { gap: 14px !important; }`.
+Delete:
+```css
+.trust-badge { gap: 14px !important; }
+```
+
+**Part 2** (baseline lines 4936-4937). Manual anchor: from `.trust-badges__inner { gap: 36px !important; }` to `.trust-badge__icon { width: 22px !important; height: 22px !important; }`.
+Delete:
+```css
+  .trust-badges__inner { gap: 36px !important; }
+  .trust-badge__icon { width: 22px !important; height: 22px !important; }
+```
+
+**Part 3** (baseline lines 4945-4946). Manual anchor: from `.trust-badge__icon { width: 18px !important; height: 18px !important; }` to `.trust-badge span { font-size: 12px !important; }`.
+Delete:
+```css
+  .trust-badge__icon { width: 18px !important; height: 18px !important; }
+  .trust-badge span { font-size: 12px !important; }
+```
+
+**Part 4** (baseline lines 4957-4959). Manual anchor: from `.trust-badges__inner { gap: 14px !important; }` to `.trust-badge span { font-size: 11px !important; }`.
+Delete:
+```css
+  .trust-badges__inner { gap: 14px !important; }
+  .trust-badge__icon { width: 14px !important; height: 14px !important; }
+  .trust-badge span { font-size: 11px !important; }
+```
+
+### T50 [TODO] Earlier nav-dropdown bridge / padding / z-index attempts restated by the final nav block
+- **File:** `assets/toylvia.css` | baseline lines 4318-4322, 4344-4347, 4548-4552, 4665-4667 | kind: always-overridden rules (same file, tool-proven)
+- **Why it is dead:** Three earlier attempts at the nav dropdown hover bridge set .nav-dropdown position/padding-bottom/margin-bottom/z-index, .nav-dropdown__menu transition/pointer-events, and .site-header__nav-link/.nav-dropdown__trigger padding-bottom. A later top-level block at 4726-4782 sets every one of these longhands again, with the same selectors and !important. The section comments at 4317 and 4547 are kept because they also describe the live ::before/::after/hover rules next to these.
+- **Proof:** shadow.js (headless Chrome): every removed rule has a LATER kept rule in the same file with a selector list containing its selectors, the same or top-level @media context, and every longhand at equal-or-higher priority -> PROVEN. Winners: toylvia.css 4726-4731 (html body .nav-dropdown padding/margin/position/z-index !important), 4744-4758 (html body .nav-dropdown__menu transition/pointer-events !important), 4780-4783 (html body .site-header__nav-link, html body .nav-dropdown__trigger padding-bottom 10px !important). Re-run independently by a skeptic agent (same result, no added rules).
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: html body .nav-dropdown { position: relative !important; padding-bottom: 18px !important; margin-bottom: -18px !important; } /   - removed: html body .nav-dropdown__menu { transition: opacity 0.25s 0.15s, transform 0.25s 0.15s !important; pointer-events: auto !important; } /   - removed: html body .nav-dropdown { position: relative; } /   - removed: html body .site-header__nav-link, html body .nav-dropdown__trigger { padding-bottom: 22px !important; } /   - removed: html body .nav-dropdown { z-index: 9999 !important; }**
+- **Visual change if removed:** None.
+- **Parts:** 4 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 4318-4322). Manual anchor: from `html body .nav-dropdown {` to `}`.
+Delete:
+```css
+html body .nav-dropdown {
+  position: relative !important;
+  padding-bottom: 18px !important;
+  margin-bottom: -18px !important;
+}
+```
+
+**Part 2** (baseline lines 4344-4347). Manual anchor: from `html body .nav-dropdown__menu {` to `}`.
+Delete:
+```css
+html body .nav-dropdown__menu {
+  transition: opacity 0.25s ease 0.15s, transform 0.25s ease 0.15s !important;
+  pointer-events: auto !important;
+}
+```
+
+**Part 3** (baseline lines 4548-4552). Manual anchor: from `html body .nav-dropdown { position: relative; }` to `}`.
+Delete:
+```css
+html body .nav-dropdown { position: relative; }
+html body .site-header__nav-link,
+html body .nav-dropdown__trigger {
+  padding-bottom: 22px !important;
+}
+```
+
+**Part 4** (baseline lines 4665-4667). Manual anchor: from `html body .nav-dropdown {` to `}`.
+Delete:
+```css
+html body .nav-dropdown {
+  z-index: 9999 !important;
+}
+```
+
+### T51 [TODO] 'Doubled titles' 128px / 72px section-title sizes overridden later
+- **File:** `assets/toylvia.css` | baseline lines 4307-4315 | kind: always-overridden rules (same file, tool-proven)
+- **Why it is dead:** The '/* Doubled titles */' block sets section-title font-size 128px and line-height 1.02 at top level, and 72px inside @media (max-width:768px). The later top-level rules 4503 (line-height 1.1, font-size 64px) and 4876 (font-size 40px) restate both longhands with superset selector lists and !important, and the later @media (max-width:768px) rule at 4942 restates the 72px value. The comment and the @media wrapper contain only these two rules, so the whole block goes.
+- **Proof:** shadow.js (headless Chrome): every removed rule has a LATER kept rule in the same file with a selector list containing its selectors, the same or top-level @media context, and every longhand at equal-or-higher priority -> PROVEN. Winners: toylvia.css 4503-4509 (line-height/font-size !important, top level), 4876-4885 (font-size 40px !important, top level), 4942 inside @media (max-width:768px) (font-size 26px !important). Re-run independently by a skeptic agent (same result, no added rules).
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: @media (max-width: 768px) [group] /   - removed: html body .section-title, html body h2.section-title { font-size: 128px !important; line-height: 1.02 !important; } /   - removed: @media (max-width: 768px) > html body .section-title { font-size: 72px !important; }**
+- **Visual change if removed:** None.
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 4307-4315). Manual anchor: from `/* Doubled titles */` to `}`.
+Delete:
+```css
+/* Doubled titles */
+html body .section-title,
+html body h2.section-title {
+  font-size: 128px !important;
+  line-height: 1.02 !important;
+}
+@media (max-width: 768px) {
+  html body .section-title { font-size: 72px !important; }
+}
+```
+
+### T52 [TODO] Product-card CTA border reset restated by a later CTA rule
+- **File:** `assets/toylvia.css` | baseline lines 4294-4298 | kind: always-overridden rules (same file, tool-proven)
+- **Why it is dead:** This rule sets border-width:0 and border-style:none !important on .product-card__cta (both selectors). The later top-level rule at 4921 has the identical selector list and 'border: none !important', which sets every border-width/style longhand. The comment at 4285 is kept because it also describes the live rule at 4286-4293.
+- **Proof:** shadow.js (headless Chrome): every removed rule has a LATER kept rule in the same file with a selector list containing its selectors, the same or top-level @media context, and every longhand at equal-or-higher priority -> PROVEN. Winners: toylvia.css 4921-4927 (html body .product-card .product-card__cta, html body .product-card .product-card__footer .product-card__cta { border: none !important; ... }). Re-run independently by a skeptic agent (same result, no added rules).
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: html body .product-card .product-card__cta, html body .product-card .product-card__footer .product-card__cta { border-width: 0px !important; border-style: none !important; }**
+- **Visual change if removed:** None.
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 4294-4298). Manual anchor: from `html body .product-card .product-card__cta,` to `}`.
+Delete:
+```css
+html body .product-card .product-card__cta,
+html body .product-card .product-card__footer .product-card__cta {
+  border-width: 0 !important;
+  border-style: none !important;
+}
+```
+
+### T53 [TODO] card-markers.css: category-marker size/inset/connector rules restated by later marker blocks
+- **File:** `assets/card-markers.css` | baseline lines 3-6, 11-12, 17-19, 53-54 | kind: always-overridden rules (same file, tool-proven)
+- **Why it is dead:** These are earlier copies of the category-marker rules that later blocks in the same file restate with the same selector lists, top-level context and !important. 3-6 (marker box, 9 longhands) is shadowed by 53 and then 59. 11-12 (soft-dot::before inset, radius, clip-path, background) is shadowed by 54 and then 62. 18 (connector width, min-width, height) is shadowed by 55. 19 (drift-card marker ::before width and height) is shadowed by 36-41. 53 (17 longhands) is fully restated by 59. 54 is fully restated by 62. The comment on line 17 describes only rules 18-19, so it goes with them. The comments on lines 2 and 52 stay because they also describe the live rules at 7-16 and 55. Every shadowing value is a var() or a plain length, so it is valid at parse time in every browser. shadow.js: 6 removed, PROVEN. cssom.js shows exactly these 6 rules removed and nothing added.
+- **Proof:** shadow.js (headless Chrome): every removed rule has a LATER kept rule in the same file with a selector list containing its selectors, the same or top-level @media context, and every longhand at equal-or-higher priority -> PROVEN. Winners: card-markers.css 36-41, 55, 59, 62. Re-run independently by a skeptic agent (same result, no added rules).
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: #MainContent .cr-card__img-wrap > .cr-card__tag, #MainContent .product-card__image-wrap > .product-card__tag, #MainContent .cr-card__img-wrap > .soft-dot, #MainContent .product-card__image-wrap > .soft-dot { box-sizing: border-box !important; width: 25.15px !important; min-width: 25.15px !important; /   - removed: #MainContent .cr-card__img-wrap > .soft-dot::before, #MainContent .product-card__image-wrap > .soft-dot::before { inset: 0px !important; border-radius: 50% !important; clip-path: none !important; background: color-mix(in srgb,var(--dot) 50%,#fff) !important; } /   - removed: #MainContent .cr-card__img-wrap > .cr-card__tag::before, #MainContent .product-card__image-wrap > .product-card__tag::before, #MainContent .cr-card__img-wrap > .soft-dot > .tag-edge-line, #MainContent .product-card__image-wrap > .soft-dot > .tag-edge-line { width: var(--card-marker-dot-size) !import /   - removed: html body .drift-card [data-drift-category]::before { width: var(--card-marker-dot-size) !important; height: 0.5px !important; } /   - removed: #MainContent .cr-card__img-wrap > .cr-card__tag, #MainContent .product-card__image-wrap > .product-card__tag, #MainContent .cr-card__img-wrap > .soft-dot, #MainContent .product-card__image-wrap > .soft-dot { box-sizing: border-box !important; width: 25.15px !important; min-width: 25.15px !important; /   - removed: #MainContent .cr-card__img-wrap > .soft-dot::before, #MainContent .product-card__image-wrap > .soft-dot::before { inset: 8.6px !important; border-radius: 50% !important; clip-path: none !important; }**
+- **Visual change if removed:** None.
+- **Parts:** 4 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 3-6). Manual anchor: from `#MainContent .cr-card__img-wrap>.cr-card__tag,` to `#MainContent .product-card__image-wrap>.soft-dot{box-sizing:border-box!important;width:...`.
+Delete:
+```css
+#MainContent .cr-card__img-wrap>.cr-card__tag,
+#MainContent .product-card__image-wrap>.product-card__tag,
+#MainContent .cr-card__img-wrap>.soft-dot,
+#MainContent .product-card__image-wrap>.soft-dot{box-sizing:border-box!important;width:25.15px!important;min-width:25.15px!important;max-width:25.15px!important;height:25.15px!important;border-radius:50%!important}
+```
+
+**Part 2** (baseline lines 11-12). Manual anchor: from `#MainContent .cr-card__img-wrap>.soft-dot::before,` to `#MainContent .product-card__image-wrap>.soft-dot::before{inset:0!important;border-radiu...`.
+Delete:
+```css
+#MainContent .cr-card__img-wrap>.soft-dot::before,
+#MainContent .product-card__image-wrap>.soft-dot::before{inset:0!important;border-radius:50%!important;clip-path:none!important;background:color-mix(in srgb,var(--dot) 50%,#fff)!important}
+```
+
+**Part 3** (baseline lines 17-19). Manual anchor: from `/* Match every top-right marker dot and connector exactly; only the hue varies by tag. */` to `html body .drift-card [data-drift-category]::before{width:var(--card-marker-dot-size)!i...`.
+Delete:
+```css
+/* Match every top-right marker dot and connector exactly; only the hue varies by tag. */
+#MainContent .cr-card__img-wrap>.cr-card__tag::before,#MainContent .product-card__image-wrap>.product-card__tag::before,#MainContent .cr-card__img-wrap>.soft-dot>.tag-edge-line,#MainContent .product-card__image-wrap>.soft-dot>.tag-edge-line{width:var(--card-marker-dot-size)!important;min-width:var(--card-marker-dot-size)!important;height:.5px!important}
+html body .drift-card [data-drift-category]::before{width:var(--card-marker-dot-size)!important;height:.5px!important}
+```
+
+**Part 4** (baseline lines 53-54). Manual anchor: from `#MainContent .cr-card__img-wrap>.cr-card__tag,#MainContent .product-card__image-wrap>.p...` to `#MainContent .cr-card__img-wrap>.soft-dot::before,#MainContent .product-card__image-wra...`.
+Delete:
+```css
+#MainContent .cr-card__img-wrap>.cr-card__tag,#MainContent .product-card__image-wrap>.product-card__tag,#MainContent .cr-card__img-wrap>.soft-dot,#MainContent .product-card__image-wrap>.soft-dot{box-sizing:border-box!important;width:25.15px!important;min-width:25.15px!important;max-width:25.15px!important;height:25.15px!important;border-radius:50%!important;border-width:8.6px!important;padding:0!important}
+#MainContent .cr-card__img-wrap>.soft-dot::before,#MainContent .product-card__image-wrap>.soft-dot::before{inset:8.6px!important;border-radius:50%!important;clip-path:none!important}
+```
+
+### T54 [TODO] home-palette.css: superseded .cat-strip__inner gap values (12px, mobile 8px)
+- **File:** `assets/home-palette.css` | baseline lines 118-118, 262-262 | kind: always-overridden rules (same file, tool-proven)
+- **Why it is dead:** "html body .cat-strip__inner { gap: 12px !important }" at line 118 is restated by the same selector at top level at line 288 (gap:14px !important), in the 'breathing room' block. The copy inside @media (max-width:767px) at line 262 (gap:8px !important) is shadowed by the top-level rule at 288 and also by the same-media rule at 303 (gap:10px !important). Line 262 is a single-line rule inside the 252-263 media block, so the block stays balanced. shadow.js: 2 removed, PROVEN. cssom.js shows exactly these 2 rules removed.
+- **Proof:** shadow.js (headless Chrome): every removed rule has a LATER kept rule in the same file with a selector list containing its selectors, the same or top-level @media context, and every longhand at equal-or-higher priority -> PROVEN. Winners: home-palette.css 288 (and 303 inside @media max-width:767px). Re-run independently by a skeptic agent (same result, no added rules).
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: html body .cat-strip__inner { gap: 12px !important; } /   - removed: @media (max-width: 767px) > html body .cat-strip__inner { gap: 8px !important; }**
+- **Visual change if removed:** None.
+- **Parts:** 2 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 118-118). Manual anchor: from `html body .cat-strip__inner { gap: 12px !important; }` to `html body .cat-strip__inner { gap: 12px !important; }`.
+Delete:
+```css
+html body .cat-strip__inner { gap: 12px !important; }
+```
+
+**Part 2** (baseline lines 262-262). Manual anchor: from `html body .cat-strip__inner { gap: 8px !important; }` to `html body .cat-strip__inner { gap: 8px !important; }`.
+Delete:
+```css
+  html body .cat-strip__inner { gap: 8px !important; }
+```
+
+### T55 [TODO] card-markers.css: duplicate 'remove wishlist hearts' rule pasted twice
+- **File:** `assets/card-markers.css` | baseline lines 175-180 | kind: always-overridden rules (same file, tool-proven)
+- **Why it is dead:** Lines 176-179 (.cr-card .pc-heart, .product-card .pc-heart with 4x#MainContent: display:none, visibility:hidden, pointer-events:none, all !important) are a byte-identical copy of the rule at 203-206, which comes later in the same file at top level. The comment on line 175 describes only this rule, and line 180 is the blank line after it. shadow.js: 1 removed, PROVEN. cssom.js shows only this rule removed. The other scan looking for hidden-element styles may overlap with this.
+- **Proof:** shadow.js (headless Chrome): every removed rule has a LATER kept rule in the same file with a selector list containing its selectors, the same or top-level @media context, and every longhand at equal-or-higher priority -> PROVEN. Winners: card-markers.css 203-206. Re-run independently by a skeptic agent (same result, no added rules).
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: html body #MainContent#MainContent#MainContent#MainContent .cr-card .pc-heart, html body #MainContent#MainContent#MainContent#MainContent .product-card .pc-heart { display: none !important; visibility: hidden !important; pointer-events: none !important; }**
+- **Visual change if removed:** None.
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 175-180). Manual anchor: from `/* Remove wishlist hearts from product cards only. The sidebar wishlist remains intact. */` to `}`.
+Delete:
+```css
+/* Remove wishlist hearts from product cards only. The sidebar wishlist remains intact. */
+html body #MainContent#MainContent#MainContent#MainContent .cr-card .pc-heart,
+html body #MainContent#MainContent#MainContent#MainContent .product-card .pc-heart{
+  display:none!important;visibility:hidden!important;pointer-events:none!important
+}
+
+```
+
+### T56 [TODO] live-card-fixes.css: duplicate .cr-card__footer margin-top:0 rule (part inside T33)
+- **File:** `assets/live-card-fixes.css` | baseline lines 72-72 | kind: always-overridden rules (same file, tool-proven)
+- **Why it is dead:** Line 72 (3x#MainContent .cr-card.cr-card.cr-card .cr-card__footer{margin-top:0!important}) is fully restated by the identical selector at line 77 ({margin-top:0!important;margin-bottom:0!important}), at top level with the same !important. The comment on line 69 also describes the live rules at 70-71, so it stays. shadow.js: 1 removed, PROVEN. cssom.js shows only this rule removed.
+- **Proof:** shadow.js (headless Chrome): every removed rule has a LATER kept rule in the same file with a selector list containing its selectors, the same or top-level @media context, and every longhand at equal-or-higher priority -> PROVEN. Winners: live-card-fixes.css 77. Re-run independently by a skeptic agent (same result, no added rules).
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: html body #MainContent#MainContent#MainContent .cr-card.cr-card.cr-card .cr-card__footer { margin-top: 0px !important; }**
+- **Visual change if removed:** None.
+- **Superseded by:** T33 (REVIEW). If Ziko approves T33, skip this item; it is included there.
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 72-72). Manual anchor: from `html body #MainContent#MainContent#MainContent .cr-card.cr-card.cr-card .cr-card__foote...` to `html body #MainContent#MainContent#MainContent .cr-card.cr-card.cr-card .cr-card__foote...`.
+Delete:
+```css
+html body #MainContent#MainContent#MainContent .cr-card.cr-card.cr-card .cr-card__footer{margin-top:0!important}
 ```
 
 ---
