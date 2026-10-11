@@ -3,9 +3,9 @@
 Dead and commented-out CSS found in the live theme of https://toylvia.com by a cloud Claude scan.
 Every item was found by one agent and then attacked by a separate skeptic agent that tried to prove it still affects the page. Only items that survived are listed.
 
-- Scan started: 2026-10-11T15:16:39Z | last update: 2026-10-11T17:04:37Z | rounds: 7
-- Items: **120** total, **52 TODO** (proven safe), **68 REVIEW** (very likely safe, ask Ziko first)
-- Lines removed if every item is applied (superseding items instead of the ones they contain): 3044 | TODO items only: 818
+- Scan started: 2026-10-11T15:16:39Z | last update: 2026-10-11T17:07:38Z | rounds: 8
+- Items: **125** total, **54 TODO** (proven safe), **71 REVIEW** (very likely safe, ask Ziko first)
+- Lines removed if every item is applied (superseding items instead of the ones they contain): 3230 | TODO items only: 847
 - Status legend: `TODO` apply | `REVIEW` apply only if Ziko says yes | `DONE` applied and verified | `SKIPPED: reason`
 
 ---
@@ -13,9 +13,9 @@ Every item was found by one agent and then attacked by a separate skeptic agent 
 ## FINAL SUMMARY FOR CLAUDE DESKTOP (read this first)
 
 - STATE: nothing in this file has been applied to the live theme yet. Baseline md5s above were the live files at scan time (re-checked at ~16:20 UTC; the four main stylesheets were unchanged).
-- WHAT TO DO, IN ORDER: (1) pull the live files listed under 'Files touched' (assets/*.css AND the .liquid files of T81-T88); (2) compare md5 with the baseline; (3) apply all TODO items with tools/apply.py (exact-text, refuses on any mismatch); (4) verify each file with tools/cssom.js compare against a backup (for every item the expected result is in its Verify line); (5) show Ziko the result and get his OK; (6) push with Shopify CLI (`--allow-live`), the Shopify MCP connector cannot write to the live theme; (7) re-pull and confirm md5; (8) mark items DONE/SKIPPED in findings.json, run tools/render.py, commit and push.
+- WHAT TO DO, IN ORDER: (1) pull the live files listed under 'Files touched' (assets/*.css AND every .liquid file that has items); (2) compare md5 with the baseline; (3) apply all TODO items with tools/apply.py (exact-text, refuses on any mismatch); (4) verify each file with tools/cssom.js compare against a backup (for every item the expected result is in its Verify line); (5) show Ziko the result and get his OK; (6) push with Shopify CLI (`--allow-live`), the Shopify MCP connector cannot write to the live theme; (7) re-pull and confirm md5; (8) mark items DONE/SKIPPED in findings.json, run tools/render.py, commit and push.
 - REVIEW ITEMS: only with Ziko's approval, ideally applied to a duplicate theme first and previewed (homepage, product, collection, cart; desktop + mobile). Apply superseding items instead of the TODO items they contain.
-- EXPECTED RESULT: TODO only = 806 lines removed (toylvia.css 6205 -> 5544, plus 99 lines of inline CSS in 8 .liquid files, T81-T88). Everything approved = 2592 lines (toylvia.css -> 3847). Both paths were tested end to end in the cloud: every item applied cleanly and every file changed exactly as predicted.
+- EXPECTED RESULT: see the 'Items' and 'Lines removed' lines at the very top (they are recomputed every time). Some parts remove a single rule from the middle of a minified line, so the line count understates those. Both paths (TODO only / everything approved) were tested end to end in the cloud: every item applied cleanly and every file changed exactly as predicted.
 - DO NOT: repair dead code (e.g. re-add a missing /*), touch tlv-owner-overrides.css, fix the unclosed @media, or apply Ziko's DevTools row-spacing edits without asking (see 'Known issues').
 - IF T01 FAILS with 'found 0 times': Ziko probably already deleted that block by hand; check and mark it DONE.
 - NEXT (optional): finish the inline-CSS scan described under 'Not scanned yet' with the tools in tools/.
@@ -6123,6 +6123,1126 @@ Delete:
 Delete:
 ```css
 .tlv-wlp a.tlv-wlp__t{color:#1a1a2e!important}
+```
+
+### T121 [TODO] 15 always-overridden or empty rule(s) inside lines of assets/toylvia.css
+- **File:** `assets/toylvia.css` | baseline lines 13-13, 26-26, 483-485, 511-511, 514-514, 618-618, 641-649, 662-662, 2035-2037, 2043-2045, 2072-2074, 2077-2079, 2082-2084, 2164-2167, 4125-4130 | kind: rule-level removal inside lines (exact text) - always overridden (tool-proven)
+- **Why it is dead:** Each removed rule is restated later in the SAME <style> block (same selectors, same or top-level @media, every property at equal-or-higher priority, winner not inside a Liquid conditional), or is empty. Selectors: *, ::before, ::after; .category-arc__grid:has(.category-sphere:hover) .category-sphere:hover; .collection-back-btn; .product-card; .product-card .product-card__body::before; .product-card--cyan:hover; .product-card--pink:hover; .product-card--yellow:hover; .product-card:hover; .product-card:hover img, .product-card:hover .product-card__image; .section-title; .see-all-btn; .see-all-btn:hover; a
+- **Proof:** Joint shadow proof per file on the CSS views (tools/shadow.js) -> PROVEN; joint Chrome CSSOM check: exactly these rules removed, nothing added. These parts remove a single rule from the middle of a line: only the exact_text is removed, context is kept.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: *, ::before, ::after { box-sizing: border-box; margin: 0px; padding: 0px; } /   - removed: a { color: inherit; text-decoration: none; } /   - removed: .product-card:hover { transform: translateY(-8px); } /   - removed: @media (max-width: 1023px) > .product-card .product-card__body::before { backdrop-filter: none !important; } /   - removed: @media (max-width: 1023px) > .product-card:hover img, .product-card:hover .product-card__image { transform: none !important; } /   - removed: @media (min-width: 768px) > .section-title { font-size: 2.7rem; } /   - removed: .see-all-btn { display: inline-flex; padding: 0.875rem 2.25rem; border-radius: 999px; font-size: 14px; font-weight: 700; border: 2px solid; transition: 0.4s; } /   - removed: .see-all-btn:hover { transform: scale(1.1); } /   - removed: .see-all-btn { box-shadow: rgba(255, 255, 255, 0.22) 0px 1px 4px 0px inset, rgba(0, 0, 0, 0.16) 0px 0px 18px 0px, rgba(0, 0, 0, 0.09) 0px 4px 12px 0px; } /   - removed: .collection-back-btn { box-shadow: rgba(255, 255, 255, 0.22) 0px 1px 4px 0px inset, rgba(0, 0, 0, 0.16) 0px 0px 18px 0px, rgba(0, 0, 0, 0.09) 0px 4px 12px 0px; } /   - removed: .product-card--pink:hover { box-shadow: rgba(33, 213, 237, 0.55) 0px 0px 22px 6px, rgba(33, 213, 237, 0.25) 0px 0px 50px 12px, rgba(0, 0, 0, 0.1) 0px 8px 32px; } /   - removed: .product-card--cyan:hover { box-shadow: rgba(255, 216, 61, 0.6) 0px 0px 22px 6px, rgba(255, 216, 61, 0.28) 0px 0px 50px 12px, rgba(0, 0, 0, 0.1) 0px 8px 32px; } /   - removed: .product-card--yellow:hover { box-shadow: rgba(255, 66, 161, 0.55) 0px 0px 22px 6px, rgba(255, 66, 161, 0.25) 0px 0px 50px 12px, rgba(0, 0, 0, 0.1) 0px 8px 32px; } /   - removed: .category-arc__grid:has(.category-sphere:hover) .category-sphere:hover { transform: scale(1); transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1); } /   - removed: .product-card { transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.45s cubic-bezier(0.22, 1, 0.36, 1) !important; }**
+- **Visual change if removed:** None.
+- **Parts:** 15 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 13-13). Manual anchor: from `*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }` to `*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }`.
+Delete:
+```css
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+```
+
+**Part 2** (baseline lines 26-26). Manual anchor: from `a { color: inherit; text-decoration: none; }` to `a { color: inherit; text-decoration: none; }`.
+Delete:
+```css
+a { color: inherit; text-decoration: none; }
+```
+
+**Part 3** (baseline lines 483-485). Manual anchor: from `.product-card:hover {` to `}`.
+Delete:
+```css
+.product-card:hover {
+    transform: translateY(-8px);
+}
+```
+
+**Part 4** (baseline lines 511-511). Manual anchor: from `.product-card .product-card__body::before { backdrop-filter: none !important; -webkit-b...` to `.product-card .product-card__body::before { backdrop-filter: none !important; -webkit-b...`.
+Delete:
+```css
+.product-card .product-card__body::before { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+```
+
+**Part 5** (baseline lines 514-514). Manual anchor: from `.product-card:hover img, .product-card:hover .product-card__image { transform: none !im...` to `.product-card:hover img, .product-card:hover .product-card__image { transform: none !im...`.
+Delete:
+```css
+.product-card:hover img, .product-card:hover .product-card__image { transform: none !important; }
+```
+
+**Part 6** (baseline lines 618-618). Manual anchor: from `.section-title { font-size: 2.7rem; }` to `.section-title { font-size: 2.7rem; }`.
+Delete:
+```css
+.section-title { font-size: 2.7rem; }
+```
+
+**Part 7** (baseline lines 641-649). Manual anchor: from `.see-all-btn {` to `}`.
+Delete:
+```css
+.see-all-btn {
+  display: inline-flex;
+  padding: 0.875rem 2.25rem;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+  border: 2px solid;
+  transition: all 0.4s ease;
+}
+```
+
+**Part 8** (baseline lines 662-662). Manual anchor: from `.see-all-btn:hover { transform: scale(1.1); }` to `.see-all-btn:hover { transform: scale(1.1); }`.
+Delete:
+```css
+.see-all-btn:hover { transform: scale(1.1); }
+```
+
+**Part 9** (baseline lines 2035-2037). Manual anchor: from `.see-all-btn {` to `}`.
+Delete:
+```css
+.see-all-btn {
+    box-shadow: rgba(255,255,255,0.22) 0px 1px 4px 0px inset, rgba(0,0,0,0.16) 0px 0px 18px 0px, rgba(0,0,0,0.09) 0px 4px 12px 0px;
+    }
+```
+
+**Part 10** (baseline lines 2043-2045). Manual anchor: from `.collection-back-btn {` to `}`.
+Delete:
+```css
+.collection-back-btn {
+        box-shadow: rgba(255,255,255,0.22) 0px 1px 4px 0px inset, rgba(0,0,0,0.16) 0px 0px 18px 0px, rgba(0,0,0,0.09) 0px 4px 12px 0px;
+        }
+```
+
+**Part 11** (baseline lines 2072-2074). Manual anchor: from `.product-card--pink:hover {` to `}`.
+Delete:
+```css
+.product-card--pink:hover {
+                box-shadow: 0 0 22px 6px hsla(187,85%,53%,0.55), 0 0 50px 12px hsla(187,85%,53%,0.25), 0 8px 32px rgba(0,0,0,0.1);
+            }
+```
+
+**Part 12** (baseline lines 2077-2079). Manual anchor: from `.product-card--cyan:hover {` to `}`.
+Delete:
+```css
+.product-card--cyan:hover {
+                  box-shadow: 0 0 22px 6px hsla(48,100%,62%,0.6), 0 0 50px 12px hsla(48,100%,62%,0.28), 0 8px 32px rgba(0,0,0,0.1);
+              }
+```
+
+**Part 13** (baseline lines 2082-2084). Manual anchor: from `.product-card--yellow:hover {` to `}`.
+Delete:
+```css
+.product-card--yellow:hover {
+                    box-shadow: 0 0 22px 6px hsla(330,100%,63%,0.55), 0 0 50px 12px hsla(330,100%,63%,0.25), 0 8px 32px rgba(0,0,0,0.1);
+                }
+```
+
+**Part 14** (baseline lines 2164-2167). Manual anchor: from `.category-arc__grid:has(.category-sphere:hover) .category-sphere:hover {` to `}`.
+Delete:
+```css
+.category-arc__grid:has(.category-sphere:hover) .category-sphere:hover {
+                                                                            transform: scale(1);
+                                                                              transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+                                                                              }
+```
+
+**Part 15** (baseline lines 4125-4130). Manual anchor: from `.product-card {` to `}`.
+Delete:
+```css
+.product-card {
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.45s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+```
+
+### T122 [REVIEW] 129 orphaned rule(s) inside lines of assets/toylvia.css
+- **File:** `assets/toylvia.css` | baseline lines 486-486, 487-487, 488-488, 599-602, 603-603, 604-604, 762-768, 769-769, 777-782, 783-792, 793-793, 794-794, 904-904, 928-932, 966-975, 1030-1030, 1146-1157, 1176-1179, 1181-1186, 1187-1187, 1188-1188, 1189-1189, 1190-1190, 1289-1294, 1296-1301, 1437-1444, 1446-1455, 1792-1794, 1902-1908, 1911-1916, 1953-1955, 2053-2056, 2061-2064, 2088-2088, 2092-2092, 2093-2093, 2094-2094, 2119-2119, 2555-2555, 2556-2556, 2557-2557, 2558-2558, 2559-2559, 2560-2560, 2566-2566, 2567-2567, 2568-2568, 2569-2569, 2570-2570, 2571-2571, 2586-2586, 2587-2587, 3014-3018, 3247-3247, 3296-3296, 3340-3340, 3345-3345, 3346-3346, 3397-3397, 3461-3461, 3462-3462, 3468-3468, 3475-3475, 3476-3476, 3478-3478, 3479-3479, 3480-3480, 3481-3481, 3615-3615, 3646-3646, 3650-3650, 3651-3651, 3652-3652, 3653-3653, 4091-4091, 4092-4092, 4110-4112, 4113-4117, 4938-4938, 4939-4939, 4949-4949, 4950-4950, 4951-4951, 4952-4952, 4953-4953, 4960-4960, 4961-4961, 5007-5007, 5008-5008, 5009-5009, 5084-5088, 5283-5285, 5289-5291, 5292-5294, 5300-5303, 5306-5311, 5536-5536, 5537-5537, 5623-5627, 5645-5651, 5670-5674, 5683-5685, 5895-5895, 5896-5896, 5897-5897, 5898-5898, 5899-5899, 5902-5902, 5903-5903, 5918-5918, 5919-5919, 5930-5930, 5978-5981, 5982-5984, 6109-6114, 6162-6162, 6163-6163, 6164-6164, 6165-6165, 6166-6166, 6167-6167, 6198-6198, 6199-6199, 6200-6200, 6201-6201, 6202-6202, 6203-6203, 6204-6204, 6205-6205 | kind: rule-level removal inside lines (exact text) - orphan selectors (scripted search)
+- **Why it is dead:** Every selector of each rule needs a class/ID that appears nowhere in the theme outside CSS (markup, JS, JSON; any mention counts as used; prefix-built names count as used; Shopify/app prefixes count as used). Selectors: #tvFilters .tv-tc-label; #tvFilters .tv-theme-more; #tvFilters .tv-theme-more:hover; #tvFilters .tv-type-card; #tvFilters .tv-type-card.tv-type-card--active; #tvFilters .tv-type-card.tv-type-card--active .tv-tc-label; .announcement-bar .announcement-bar__track; .announcement-bar__track; .bento-grid; .bento-grid--left; .card-body; .card-body .excerpt; .card-body .meta; .card-body h3; .card-img; .card-img .placeholder; .cart-bump; .cart-bundle__discount; .cat-ice-frame; .cat-ice-grid; .category-arc__grid; .category-arc__grid:has(.category-sphere:hover) .category-sphere; .category-arc__grid:has(.category-sphere:hover) .category-sphere:hover; .category-sphere:hover .category-sphere__label; .cate
+- **Proof:** Not provable from CSS alone, hence REVIEW; joint Chrome CSSOM check: exactly these rules removed, nothing added. These parts remove a single rule from the middle of a line: only the exact_text is removed, context is kept.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .product-card--cyan:hover { border-color: rgba(33, 213, 237, 0.7); box-shadow: rgba(34, 211, 238, 0.45) 0px 28px 64px, rgba(34, 211, 238, 0.3) 0px 12px 32px, rgba(0, 0, 0, 0.06) 0px 4px 12px; } /   - removed: .product-card--pink:hover { border-color: rgba(255, 66, 161, 0.7); box-shadow: rgba(255, 66, 161, 0.45) 0px 28px 64px, rgba(255, 66, 161, 0.3) 0px 12px 32px, rgba(0, 0, 0, 0.06) 0px 4px 12px; } /   - removed: .product-card--yellow:hover { border-color: rgba(255, 216, 61, 0.7); box-shadow: rgba(255, 184, 0, 0.45) 0px 28px 64px, rgba(255, 184, 0, 0.3) 0px 12px 32px, rgba(0, 0, 0, 0.06) 0px 4px 12px; } /   - removed: .bento-grid { display: grid; gap: 1rem; } /   - removed: .bento-grid--left { grid-template-columns: 1fr 2fr 1fr; } /   - removed: @media (max-width: 767px) > .bento-grid--left { grid-template-columns: 1fr; } /   - removed: .site-footer__brand-name { font-size: 28px; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 1rem; display: block; } /   - removed: .site-footer__brand-name sup { font-size: 12px; opacity: 0.5; font-weight: 700; } /   - removed: .site-footer__social-icons { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; } /   - removed: .site-footer__social-icon { width: 40px; height: 40px; border-radius: 50%; background: rgba(249, 250, 251, 0.1); display: flex; align-items: center; justify-content: center; transition: background 0.3s; } /   - removed: .site-footer__social-icon:hover { background: rgba(249, 250, 251, 0.2); } /   - removed: .site-footer__social-icon svg { width: 20px; height: 20px; opacity: 0.7; } /   - removed: .chat-msg--user { flex-direction: row-reverse; } /   - removed: .chat-msg--user .chat-msg__bubble { background: hsl(var(--secondary)); color: hsl(var(--secondary-foreground)); border-bottom-right-radius: 4px; } /   - removed: .fly-dot { position: fixed; width: 12px; height: 12px; border-radius: 50%; background: hsl(var(--toylvia-pink)); pointer-events: none; z-index: 99999; box-shadow: rgba(255, 66, 161, 0.6) 0px 0px 8px; } /   - removed: .cart-bump { animation: 0.4s ease-out 0s 1 normal none running cartBump; } /   - removed: @media (max-width: 639px) > .category-arc__grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.25rem 0.5rem; height: auto; width: 100%; transform: none; box-sizing: border-box; margin-bottom: 0px; padding: 0px 2rem; } /   - removed: @media (min-width: 768px) > .product-page-grid { grid-template-columns: 1fr 1fr; gap: 3rem; } /   - removed: .product-description { font-size: 16px !important; line-height: 2 !important; color: rgb(107, 114, 128) !important; text-transform: none !important; } /   - removed: .product-description p { margin-bottom: 1rem; } /   - removed: .product-description ul { padding-left: 1.5rem; margin-bottom: 1rem; } /   - removed: .product-description li { margin-bottom: 0.5rem; } /   - removed: .product-description strong { color: rgb(26, 26, 46); } /   - removed: .product-main__badges { display: flex; gap: 1rem; font-size: 13px; margin-bottom: 1.5rem; } /   - removed: .product-main__select { width: 100%; padding: 0.75rem; border-radius: 0.5rem; margin-bottom: 1rem; } /   - removed: .product-main__back { position: relative; z-index: 20; max-width: 1100px; margin: 1.5rem auto 0px; padding: 0px 1.5rem; } /   - removed: .product-main__back a { display: inline-block; font-size: 15px; font-weight: 700; color: rgb(0, 0, 0); text-decoration: none; background: rgba(255, 255, 255, 0.9); padding: 0.4rem 0.8rem; border-radius: 999px; } /   - removed: .product-main__description-full { margin-top: 4rem; } /   - removed: .product-main__description, .product-main__description-full { font-size: 17px; line-height: 1.8; color: rgb(68, 68, 68); font-weight: 400; } /   - removed: .product-main__description-full h2, .product-main__description-full h3 { font-size: 22px; font-weight: 700; letter-spacing: 0px; } /   - removed: @media (max-width: 639px) > .category-sphere__shadow { width: 50px; } /   - removed: .trust-badges { background-image: radial-gradient(circle, rgba(175, 155, 210, 0.14) 1.1px, transparent 1.1px); background-size: 26px 26px; } /   - removed: .footer__inner { background-image: radial-gradient(circle, rgba(175, 155, 210, 0.1) 1px, transparent 1px); background-size: 26px 26px; } /   - removed: @media (max-width: 639px) > .category-arc__grid { padding: 1rem 1rem 0.5rem; box-sizing: border-box; } /   - removed: @media (max-width: 639px) > .category-sphere:hover .category-sphere__label { opacity: 0; } /   - removed: @media (max-width: 639px) > .category-sphere:hover .category-sphere__rim { opacity: 0.7; } /   - removed: @media (max-width: 639px) > .category-sphere:hover .category-sphere__shadow { width: 65px; } /   - removed: .product-card__badge--soldout { left: auto !important; right: 12px !important; width: max-content !important; } /   - removed: .featured-body h2 { font-size: 1.6rem; font-weight: 800; letter-spacing: 2px; line-height: 1.3; margin-bottom: 0.75rem; } /   - removed: .featured-body .excerpt { color: var(--text-muted); font-size: 0.78rem; letter-spacing: 0.5px; text-transform: none; line-height: 1.7; margin-bottom: 1.25rem; } /   - removed: .featured-body .meta { color: var(--text-muted); font-size: 0.65rem; letter-spacing: 1.5px; } /   - removed: .read-more { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--pink); font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; margin-top: auto; transition: gap 0.3s; } /   - removed: .read-more:hover { gap: 0.8rem; } /   - removed: .read-more::after { content: "→"; } /   - removed: .card-img { background: linear-gradient(135deg, rgba(33, 213, 237, 0.12), rgba(255, 216, 61, 0.12)); height: 200px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; } /   - removed: .card-img .placeholder { color: var(--text-muted); font-size: 0.65rem; letter-spacing: 2px; } /   - removed: .card-body { padding: 1.25rem; } /   - removed: .card-body h3 { font-size: 0.85rem; font-weight: 700; letter-spacing: 1.5px; margin-bottom: 0.5rem; line-height: 1.4; } /   - removed: .card-body .excerpt { color: var(--text-muted); font-size: 0.72rem; text-transform: none; line-height: 1.6; margin-bottom: 0.75rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; } /   - removed: .card-body .meta { color: var(--text-muted); font-size: 0.6rem; letter-spacing: 1.5px; display: flex; justify-content: space-between; align-items: center; } /   - removed: @media (max-width: 600px) > .featured-body { padding: 1.5rem; } /   - removed: @media (max-width: 600px) > .page-title h1 { font-size: 1.6rem; } /   - removed: .announcement-bar .announcement-bar__track { animation: 22s linear 0s infinite normal none running marquee !important; display: inline-block !important; white-space: nowrap !important; } /   - removed: @media (max-width: 480px) > .announcement-bar__track { font-size: 11px; } /   - removed: @media (max-width: 640px) > .product-trust-badges { gap: 0.5rem 0.75rem !important; } /   - removed: @media (max-width: 639px) > .site-footer__brand-name { font-size: 22px !important; } /   - removed: @media (max-width: 768px) > .sticky-cart { padding: 0.625rem 0.875rem !important; } /   - removed: @media (max-width: 768px) > .sticky-cart button { padding: 0.875rem !important; font-size: 15px !important; } /   - removed: @media (max-width: 640px) > .product-main__description-full { padding: 0px !important; font-size: 15px !important; } /   - removed: .product-card .product-card__image-wrap, .product-card .product-card__image-wrapper { position: relative !important; width: 100% !important; aspect-ratio: 1 / 1 !important; border-radius: 14px !important; overflow: hidden !important; background: rgb(240, 240, 240) !important; flex-shrink: 0 !importa /   - removed: @media (min-width: 768px) > .product-card .product-card__image-wrap { height: auto !important; aspect-ratio: 1 / 1 !important; } /   - removed: .product-card--pink:hover, .product-card--cyan:hover, .product-card--yellow:hover { box-shadow: none !important; } /   - removed: .product-card .product-card__vendor { font-size: 11px !important; color: rgb(153, 153, 153) !important; font-weight: 400 !important; text-transform: none !important; letter-spacing: 0px !important; line-height: 1.2 !important; } /   - removed: .product-card .product-card__stars { display: flex !important; align-items: center !important; gap: 1px !important; margin-top: 1px !important; } /   - removed: .product-card .product-card__link { position: absolute !important; inset: 0px !important; z-index: 2 !important; display: block !important; } /   - removed: .product-card .product-card__quickview { position: absolute !important; bottom: 10px !important; right: 10px !important; z-index: 3 !important; width: 30px !important; height: 30px !important; border-radius: 50% !important; background: rgba(255, 255, 255, 0.92) !important; display: flex !important;  /   - removed: .product-card:hover .product-card__quickview { opacity: 1 !important; } /   - removed: .product-card .product-card__sold-badge { position: absolute !important; top: 10px !important; left: 10px !important; z-index: 3 !important; background: rgba(0, 0, 0, 0.65) !important; color: rgb(255, 255, 255) !important; font-size: 11px !important; font-weight: 600 !important; padding: 3px 8px !im /   - removed: .return-page .hero h1 { text-align: center !important; } /   - removed: .faq-page .support { display: none !important; } /   - removed: .newsletter__socials { display: flex !important; gap: 14px !important; justify-content: center !important; align-items: center !important; margin: 1.2rem 0px 1.6rem !important; flex-wrap: nowrap !important; } /   - removed: .newsletter__social-link { width: 46px !important; height: 46px !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; border-radius: 50% !important; background: transparent !important; border: 1.5px solid rgba(255, 66, 161, 0.35) !important; /   - removed: .newsletter__social-link svg { width: 22px !important; height: 22px !important; fill: none !important; stroke: currentcolor !important; stroke-width: 2 !important; display: block !important; } /   - removed: .newsletter__social-link:hover { background: rgba(255, 66, 161, 0.12) !important; border-color: rgb(255, 66, 161) !important; } /   - removed: .category-sphere__label { transition: font-size 0.25s, opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.25s, transform 1.8s cubic-bezier(0.4, 0, 0.2, 1) 0.15s; } /   - removed: .category-sphere:hover .category-sphere__label { font-size: 15px !important; } /   - removed: .category-sphere__label { transform: translateY(0px); } /   - removed: .category-sphere:hover .category-sphere__label { transform: translateY(2px) !important; letter-spacing: 0.12em !important; font-weight: 600 !important; } /   - removed: @media (max-width: 1024px) > .clg-pill { height: 240px; } /   - removed: @media (max-width: 1024px) > .clg-icon { width: 96px; height: 96px; } /   - removed: @media (max-width: 768px) > .clg-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } /   - removed: @media (max-width: 768px) > .clg-pill { height: 200px; border-radius: 32px; } /   - removed: @media (max-width: 768px) > .clg-icon { width: 80px; height: 80px; border-radius: 20px; } /   - removed: @media (max-width: 768px) > .clg-title { font-size: 13px; } /   - removed: @media (max-width: 768px) > .clg-slogan { font-size: 11px; } /   - removed: @media (max-width: 480px) > .clg-pill { height: 180px; } /   - removed: @media (max-width: 480px) > .clg-icon { width: 68px; height: 68px; } /   - removed: .product-card--pink { border-color: rgba(255, 66, 161, 0.2) !important; } /   - removed: .product-card--yellow { border-color: rgba(255, 216, 61, 0.25) !important; } /   - removed: .product-card--cyan { border-color: rgba(33, 213, 237, 0.25) !important; } /   - removed: .trust-badges { display: block !important; padding: 16px 20px 30px !important; box-sizing: border-box !important; } /   - removed: @media (max-width: 768px) > .site-footer__col { text-align: center !important; } /   - removed: @media (max-width: 768px) > .site-footer__col-links { text-align: center !important; } /   - removed: @media (max-width: 768px) > .site-footer__col-links li { text-align: center !important; } /   - removed: .category-arc__grid:has(.category-sphere:hover) .category-sphere { filter: brightness(0.55) saturate(0.8); transition: filter 0.45s, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); } /   - removed: .category-arc__grid:has(.category-sphere:hover) .category-sphere:hover { filter: brightness(1.25) saturate(1.15) drop-shadow(rgba(255, 255, 255, 0.55) 0px 0px 18px) drop-shadow(rgba(255, 255, 255, 0.25) 0px 0px 40px); transform: translateY(-6px) scale(1.06); transition: filter 0.45s, transform 0.4s  /   - removed: @media (max-width: 1024px) > .cat-ice-grid { gap: 14px; padding: 30px 16px 16px; } /   - removed: @media (max-width: 1024px) > .cat-ice-frame { border-radius: 22px; } /   - removed: @media (max-width: 1024px) > .trust-badges .trust-badge .trust-badge__icon, .trust-badges .trust-badge[class*="trust-badge"] svg { width: 8px !important; height: 8px !important; } /   - removed: @media (max-width: 1024px) > @media (pointer: coarse) > html body .cat-ice-grid .cat-ice-card, html body .cat-ice-grid.cat-ice-active .cat-ice-card, html body .cat-ice-grid:has(.cat-ice-card:hover) .cat-ice-card { filter: brightness(1) saturate(1) !important; opacity: 1 !important; transition: filte /   - removed: @media (max-width: 1024px) > @media (max-width: 1024px) > html body .product-grid .product-card .product-card__image-wrap { aspect-ratio: 1 / 1 !important; height: auto !important; flex-shrink: 0 !important; } /   - removed: @media (max-width: 1024px) > @media (max-width: 1024px) > html body .product-grid .product-card .product-card__footer { margin-top: auto !important; } /   - removed: @media (max-width: 1024px) > .fsbar { padding: 10px 14px; background: transparent; border-radius: 10px; margin: 0.5rem 0px; } /   - removed: @media (max-width: 1024px) > .fsbar--unlocked { background: transparent; color: rgb(21, 128, 61); font-size: 13px; font-weight: 700; text-align: center; padding: 6px 14px; border-radius: 10px; } /   - removed: @media (max-width: 1024px) > .fsbar__text { font-size: 12.5px; color: rgb(255, 66, 161); font-weight: 600; margin-bottom: 6px; } /   - removed: @media (max-width: 1024px) > .fsbar__track { display: block !important; height: 6px !important; min-height: 6px !important; background: rgb(220, 252, 231) !important; border-radius: 999px !important; overflow: hidden !important; width: 100% !important; box-sizing: border-box !important; } /   - removed: @media (max-width: 1024px) > .fsbar__fill { display: block !important; height: 6px !important; min-height: 6px !important; background: linear-gradient(90deg, rgb(34, 197, 94), rgb(22, 163, 74)) !important; border-radius: 999px !important; transition: width 0.5s !important; } /   - removed: @media (max-width: 1024px) > .pdp-reward-timer { display: flex; align-items: center; gap: 8px; padding: 9px 14px; background: rgb(255, 248, 240); border: 1.5px solid rgb(249, 115, 22); border-radius: 10px; font-size: 13px; font-weight: 600; color: rgb(154, 52, 18); } /   - removed: @media (max-width: 1024px) > .pdp-reward-timer svg { flex-shrink: 0; stroke: rgb(249, 115, 22); } /   - removed: @media (max-width: 1024px) > .fsbar--empty { display: flex; align-items: center; gap: 7px; font-size: 12.5px; font-weight: 600; color: rgb(55, 65, 81); padding: 9px 12px; background: transparent; border-radius: 10px; } /   - removed: @media (max-width: 1024px) > .fsbar--empty strong { color: rgb(21, 128, 61); } /   - removed: @media (max-width: 1024px) > .cart-bundle__discount { font-size: 11px; color: rgb(22, 163, 74); font-weight: 700; margin-top: 6px; text-align: center; } /   - removed: @media (max-width: 1024px) > .coll-sort__btn:not(.coll-sort__btn--active) { color: rgb(17, 17, 17) !important; font-weight: 300 !important; } /   - removed: @media (max-width: 1024px) > .coll-sort__btn--active { font-weight: 600 !important; } /   - removed: @media (max-width: 1024px) > @media (max-width: 1023px) > .product-card--cyan, .product-card--pink, .product-card--yellow, .product-card--purple, .product-card--green, .product-card--orange { animation: auto ease 0s 1 normal none running none !important; } /   - removed: @media (max-width: 1024px) > #tvFilters .tv-theme-more { color: rgb(68, 68, 68) !important; background: rgb(255, 255, 255) !important; border: 1.5px solid rgb(226, 232, 240) !important; box-shadow: rgba(0, 0, 0, 0.06) 0px 1px 3px !important; } /   - removed: @media (max-width: 1024px) > #tvFilters .tv-theme-more:hover { color: rgb(255, 66, 161) !important; background: rgb(255, 255, 255) !important; border-color: rgb(255, 66, 161) !important; } /   - removed: @media (max-width: 1024px) > #tvFilters .tv-type-card { background: rgb(255, 255, 255) !important; border: 1.5px solid rgb(229, 231, 235) !important; box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 5px !important; } /   - removed: @media (max-width: 1024px) > #tvFilters .tv-tc-label { color: rgb(51, 51, 51) !important; font-weight: 600 !important; } /   - removed: @media (max-width: 1024px) > #tvFilters .tv-type-card.tv-type-card--active { border-color: rgb(255, 66, 161) !important; box-shadow: rgb(255, 66, 161) 0px 0px 0px 2px !important; background: rgba(255, 66, 161, 0.04) !important; } /   - removed: @media (max-width: 1024px) > #tvFilters .tv-type-card.tv-type-card--active .tv-tc-label { color: rgb(255, 66, 161) !important; } /   - removed: @media (max-width: 1024px) > html body .product-card__badge[data-badge="best-seller"] { background: transparent !important; border: 1.5px solid rgb(255, 42, 148) !important; color: rgb(255, 42, 148) !important; } /   - removed: @media (max-width: 1024px) > html body .product-card__badge[data-badge="new"] { background: transparent !important; border: 1.5px solid rgb(22, 163, 74) !important; color: rgb(22, 163, 74) !important; } /   - removed: @media (max-width: 1024px) > html body .product-card__badge[data-badge="sale"] { background: transparent !important; border: 1.5px solid rgb(220, 38, 38) !important; color: rgb(220, 38, 38) !important; } /   - removed: @media (max-width: 1024px) > html body .product-card__badge[data-badge="award"] { background: transparent !important; border: 1.5px solid rgb(217, 119, 6) !important; color: rgb(217, 119, 6) !important; } /   - removed: @media (max-width: 1024px) > html body .product-card__badge[data-badge="top pick"] { background: transparent !important; border: 1.5px solid rgb(124, 58, 237) !important; color: rgb(124, 58, 237) !important; } /   - removed: @media (max-width: 1024px) > html body .product-card__badge[data-badge="trending"] { background: transparent !important; border: 1.5px solid rgb(234, 88, 12) !important; color: rgb(234, 88, 12) !important; } /   - removed: @media (max-width: 1024px) > html body .product-card__badge[data-badge="hot"] { background: transparent !important; border: 1.5px solid rgb(220, 38, 38) !important; color: rgb(220, 38, 38) !important; } /   - removed: @media (max-width: 1024px) > html body .product-card__badge[data-badge="sold-out"] { background: transparent !important; border: 1.5px solid rgb(107, 114, 128) !important; color: rgb(107, 114, 128) !important; }**
+- **Visual change if removed:** None expected.
+- **Parts:** 129 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 486-486). Manual anchor: from `.product-card--cyan:hover { border-color: hsla(187, 85%, 53%, 0.7); box-shadow: 0 28px ...` to `.product-card--cyan:hover { border-color: hsla(187, 85%, 53%, 0.7); box-shadow: 0 28px ...`.
+Delete:
+```css
+.product-card--cyan:hover { border-color: hsla(187, 85%, 53%, 0.7); box-shadow: 0 28px 64px rgba(34,211,238,0.45), 0 12px 32px rgba(34,211,238,0.30), 0 4px 12px rgba(0,0,0,0.06); }
+```
+
+**Part 2** (baseline lines 487-487). Manual anchor: from `.product-card--pink:hover { border-color: hsla(330, 100%, 63%, 0.7); box-shadow: 0 28px...` to `.product-card--pink:hover { border-color: hsla(330, 100%, 63%, 0.7); box-shadow: 0 28px...`.
+Delete:
+```css
+.product-card--pink:hover { border-color: hsla(330, 100%, 63%, 0.7); box-shadow: 0 28px 64px rgba(255,66,161,0.45), 0 12px 32px rgba(255,66,161,0.30), 0 4px 12px rgba(0,0,0,0.06); }
+```
+
+**Part 3** (baseline lines 488-488). Manual anchor: from `.product-card--yellow:hover { border-color: hsla(48, 100%, 62%, 0.7); box-shadow: 0 28p...` to `.product-card--yellow:hover { border-color: hsla(48, 100%, 62%, 0.7); box-shadow: 0 28p...`.
+Delete:
+```css
+.product-card--yellow:hover { border-color: hsla(48, 100%, 62%, 0.7); box-shadow: 0 28px 64px rgba(255,184,0,0.45), 0 12px 32px rgba(255,184,0,0.30), 0 4px 12px rgba(0,0,0,0.06); }
+```
+
+**Part 4** (baseline lines 599-602). Manual anchor: from `.bento-grid {` to `}`.
+Delete:
+```css
+.bento-grid {
+  display: grid;
+  gap: 1rem;
+}
+```
+
+**Part 5** (baseline lines 603-603). Manual anchor: from `.bento-grid--left { grid-template-columns: 1fr 2fr 1fr; }` to `.bento-grid--left { grid-template-columns: 1fr 2fr 1fr; }`.
+Delete:
+```css
+.bento-grid--left { grid-template-columns: 1fr 2fr 1fr; }
+```
+
+**Part 6** (baseline lines 604-604). Manual anchor: from `.bento-grid--left { grid-template-columns: 1fr; }` to `.bento-grid--left { grid-template-columns: 1fr; }`.
+Delete:
+```css
+.bento-grid--left { grid-template-columns: 1fr; }
+```
+
+**Part 7** (baseline lines 762-768). Manual anchor: from `.site-footer__brand-name {` to `}`.
+Delete:
+```css
+.site-footer__brand-name {
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+  display: block;
+}
+```
+
+**Part 8** (baseline lines 769-769). Manual anchor: from `.site-footer__brand-name sup { font-size: 12px; opacity: 0.5; font-weight: 700; }` to `.site-footer__brand-name sup { font-size: 12px; opacity: 0.5; font-weight: 700; }`.
+Delete:
+```css
+.site-footer__brand-name sup { font-size: 12px; opacity: 0.5; font-weight: 700; }
+```
+
+**Part 9** (baseline lines 777-782). Manual anchor: from `.site-footer__social-icons {` to `}`.
+Delete:
+```css
+.site-footer__social-icons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+```
+
+**Part 10** (baseline lines 783-792). Manual anchor: from `.site-footer__social-icon {` to `}`.
+Delete:
+```css
+.site-footer__social-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: hsla(210, 20%, 98%, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+}
+```
+
+**Part 11** (baseline lines 793-793). Manual anchor: from `.site-footer__social-icon:hover { background: hsla(210, 20%, 98%, 0.2); }` to `.site-footer__social-icon:hover { background: hsla(210, 20%, 98%, 0.2); }`.
+Delete:
+```css
+.site-footer__social-icon:hover { background: hsla(210, 20%, 98%, 0.2); }
+```
+
+**Part 12** (baseline lines 794-794). Manual anchor: from `.site-footer__social-icon svg { width: 20px; height: 20px; opacity: 0.7; }` to `.site-footer__social-icon svg { width: 20px; height: 20px; opacity: 0.7; }`.
+Delete:
+```css
+.site-footer__social-icon svg { width: 20px; height: 20px; opacity: 0.7; }
+```
+
+**Part 13** (baseline lines 904-904). Manual anchor: from `.chat-msg--user { flex-direction: row-reverse; }` to `.chat-msg--user { flex-direction: row-reverse; }`.
+Delete:
+```css
+.chat-msg--user { flex-direction: row-reverse; }
+```
+
+**Part 14** (baseline lines 928-932). Manual anchor: from `.chat-msg--user .chat-msg__bubble {` to `}`.
+Delete:
+```css
+.chat-msg--user .chat-msg__bubble {
+  background: hsl(var(--secondary));
+  color: hsl(var(--secondary-foreground));
+  border-bottom-right-radius: 4px;
+}
+```
+
+**Part 15** (baseline lines 966-975). Manual anchor: from `.fly-dot {` to `}`.
+Delete:
+```css
+.fly-dot {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: hsl(var(--toylvia-pink));
+  pointer-events: none;
+  z-index: 99999;
+  box-shadow: 0 0 8px hsla(330, 100%, 63%, 0.6);
+}
+```
+
+**Part 16** (baseline lines 1030-1030). Manual anchor: from `.cart-bump { animation: cartBump 0.4s ease-out; }` to `.cart-bump { animation: cartBump 0.4s ease-out; }`.
+Delete:
+```css
+.cart-bump { animation: cartBump 0.4s ease-out; }
+```
+
+**Part 17** (baseline lines 1146-1157). Manual anchor: from `.category-arc__grid {` to `}`.
+Delete:
+```css
+.category-arc__grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.25rem 0.5rem;
+    height: auto;
+    width: 100%;
+    transform: none;
+    box-sizing: border-box;
+    margin-bottom: 0;
+    padding: 0 2rem;
+  }
+```
+
+**Part 18** (baseline lines 1176-1179). Manual anchor: from `.product-page-grid {` to `}`.
+Delete:
+```css
+.product-page-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+```
+
+**Part 19** (baseline lines 1181-1186). Manual anchor: from `.product-description {` to `}`.
+Delete:
+```css
+.product-description {
+  font-size: 16px !important;
+  line-height: 2 !important;
+  color: #6b7280 !important;
+  text-transform: none !important;
+}
+```
+
+**Part 20** (baseline lines 1187-1187). Manual anchor: from `.product-description p { margin-bottom: 1rem; }` to `.product-description p { margin-bottom: 1rem; }`.
+Delete:
+```css
+.product-description p { margin-bottom: 1rem; }
+```
+
+**Part 21** (baseline lines 1188-1188). Manual anchor: from `.product-description ul { padding-left: 1.5rem; margin-bottom: 1rem; }` to `.product-description ul { padding-left: 1.5rem; margin-bottom: 1rem; }`.
+Delete:
+```css
+.product-description ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+```
+
+**Part 22** (baseline lines 1189-1189). Manual anchor: from `.product-description li { margin-bottom: 0.5rem; }` to `.product-description li { margin-bottom: 0.5rem; }`.
+Delete:
+```css
+.product-description li { margin-bottom: 0.5rem; }
+```
+
+**Part 23** (baseline lines 1190-1190). Manual anchor: from `.product-description strong { color: #1a1a2e; }` to `.product-description strong { color: #1a1a2e; }`.
+Delete:
+```css
+.product-description strong { color: #1a1a2e; }
+```
+
+**Part 24** (baseline lines 1289-1294). Manual anchor: from `.product-main__badges {` to `}`.
+Delete:
+```css
+.product-main__badges {
+  display: flex;
+  gap: 1rem;
+  font-size: 13px;
+  margin-bottom: 1.5rem;
+}
+```
+
+**Part 25** (baseline lines 1296-1301). Manual anchor: from `.product-main__select {` to `}`.
+Delete:
+```css
+.product-main__select {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+```
+
+**Part 26** (baseline lines 1437-1444). Manual anchor: from `.product-main__back {` to `}`.
+Delete:
+```css
+.product-main__back {
+  position: relative;
+  z-index: 20;
+
+  max-width: 1100px;
+  margin: 1.5rem auto 0;
+  padding: 0 1.5rem;
+}
+```
+
+**Part 27** (baseline lines 1446-1455). Manual anchor: from `.product-main__back a {` to `}`.
+Delete:
+```css
+.product-main__back a {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 700;
+  color: #000;
+  text-decoration: none;
+  background: rgba(255,255,255,0.9);
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+}
+```
+
+**Part 28** (baseline lines 1792-1794). Manual anchor: from `.product-main__description-full {` to `}`.
+Delete:
+```css
+.product-main__description-full {
+  margin-top: 4rem;
+}
+```
+
+**Part 29** (baseline lines 1902-1908). Manual anchor: from `.product-main__description,` to `}`.
+Delete:
+```css
+.product-main__description,
+.product-main__description-full {
+  font-size: 17px;
+  line-height: 1.8;
+  color: #444;
+  font-weight: 400;
+}
+```
+
+**Part 30** (baseline lines 1911-1916). Manual anchor: from `.product-main__description-full h2,` to `}`.
+Delete:
+```css
+.product-main__description-full h2,
+.product-main__description-full h3 {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+```
+
+**Part 31** (baseline lines 1953-1955). Manual anchor: from `.category-sphere__shadow {` to `}`.
+Delete:
+```css
+.category-sphere__shadow {
+                              width: 50px;
+                                }
+```
+
+**Part 32** (baseline lines 2053-2056). Manual anchor: from `.trust-badges {` to `}`.
+Delete:
+```css
+.trust-badges {
+              background-image: radial-gradient(circle, rgba(175,155,210,0.14) 1.1px, transparent 1.1px);
+                background-size: 26px 26px;
+                }
+```
+
+**Part 33** (baseline lines 2061-2064). Manual anchor: from `.footer__inner {` to `}`.
+Delete:
+```css
+.footer__inner {
+                      background-image: radial-gradient(circle, rgba(175,155,210,0.10) 1px, transparent 1px);
+                        background-size: 26px 26px;
+                        }
+```
+
+**Part 34** (baseline lines 2088-2088). Manual anchor: from `.category-arc__grid { padding: 1rem 1rem 0.5rem; box-sizing: border-box; }` to `.category-arc__grid { padding: 1rem 1rem 0.5rem; box-sizing: border-box; }`.
+Delete:
+```css
+.category-arc__grid { padding: 1rem 1rem 0.5rem; box-sizing: border-box; }
+```
+
+**Part 35** (baseline lines 2092-2092). Manual anchor: from `.category-sphere:hover .category-sphere__label { opacity: 0; }` to `.category-sphere:hover .category-sphere__label { opacity: 0; }`.
+Delete:
+```css
+.category-sphere:hover .category-sphere__label { opacity: 0; }
+```
+
+**Part 36** (baseline lines 2093-2093). Manual anchor: from `.category-sphere:hover .category-sphere__rim { opacity: 0.7; }` to `.category-sphere:hover .category-sphere__rim { opacity: 0.7; }`.
+Delete:
+```css
+.category-sphere:hover .category-sphere__rim { opacity: 0.7; }
+```
+
+**Part 37** (baseline lines 2094-2094). Manual anchor: from `.category-sphere:hover .category-sphere__shadow { width: 65px; }` to `.category-sphere:hover .category-sphere__shadow { width: 65px; }`.
+Delete:
+```css
+.category-sphere:hover .category-sphere__shadow { width: 65px; }
+```
+
+**Part 38** (baseline lines 2119-2119). Manual anchor: from `.product-card__badge--soldout { left: auto !important; right: 12px !important; width: m...` to `.product-card__badge--soldout { left: auto !important; right: 12px !important; width: m...`.
+Delete:
+```css
+.product-card__badge--soldout                  { left: auto !important; right: 12px !important; width: max-content !important; }
+```
+
+**Part 39** (baseline lines 2555-2555). Manual anchor: from `.featured-body h2{font-size:1.6rem;font-weight:800;letter-spacing:2px;line-height:1.3;m...` to `.featured-body h2{font-size:1.6rem;font-weight:800;letter-spacing:2px;line-height:1.3;m...`.
+Delete:
+```css
+.featured-body h2{font-size:1.6rem;font-weight:800;letter-spacing:2px;line-height:1.3;margin-bottom:.75rem}
+```
+
+**Part 40** (baseline lines 2556-2556). Manual anchor: from `.featured-body .excerpt{color:var(--text-muted);font-size:.78rem;letter-spacing:.5px;te...` to `.featured-body .excerpt{color:var(--text-muted);font-size:.78rem;letter-spacing:.5px;te...`.
+Delete:
+```css
+.featured-body .excerpt{color:var(--text-muted);font-size:.78rem;letter-spacing:.5px;text-transform:none;line-height:1.7;margin-bottom:1.25rem}
+```
+
+**Part 41** (baseline lines 2557-2557). Manual anchor: from `.featured-body .meta{color:var(--text-muted);font-size:.65rem;letter-spacing:1.5px}` to `.featured-body .meta{color:var(--text-muted);font-size:.65rem;letter-spacing:1.5px}`.
+Delete:
+```css
+.featured-body .meta{color:var(--text-muted);font-size:.65rem;letter-spacing:1.5px}
+```
+
+**Part 42** (baseline lines 2558-2558). Manual anchor: from `.read-more{display:inline-flex;align-items:center;gap:.4rem;color:var(--pink);font-size...` to `.read-more{display:inline-flex;align-items:center;gap:.4rem;color:var(--pink);font-size...`.
+Delete:
+```css
+.read-more{display:inline-flex;align-items:center;gap:.4rem;color:var(--pink);font-size:.7rem;font-weight:700;letter-spacing:2px;margin-top:auto;transition:gap .3s}
+```
+
+**Part 43** (baseline lines 2559-2559). Manual anchor: from `.read-more:hover{gap:.8rem}` to `.read-more:hover{gap:.8rem}`.
+Delete:
+```css
+.read-more:hover{gap:.8rem}
+```
+
+**Part 44** (baseline lines 2560-2560). Manual anchor: from `.read-more::after{content:'→'}` to `.read-more::after{content:'→'}`.
+Delete:
+```css
+.read-more::after{content:'→'}
+```
+
+**Part 45** (baseline lines 2566-2566). Manual anchor: from `.card-img{background:linear-gradient(135deg,hsla(187,85%,53%,.12),hsla(48,100%,62%,.12)...` to `.card-img{background:linear-gradient(135deg,hsla(187,85%,53%,.12),hsla(48,100%,62%,.12)...`.
+Delete:
+```css
+.card-img{background:linear-gradient(135deg,hsla(187,85%,53%,.12),hsla(48,100%,62%,.12));height:200px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+```
+
+**Part 46** (baseline lines 2567-2567). Manual anchor: from `.card-img .placeholder{color:var(--text-muted);font-size:.65rem;letter-spacing:2px}` to `.card-img .placeholder{color:var(--text-muted);font-size:.65rem;letter-spacing:2px}`.
+Delete:
+```css
+.card-img .placeholder{color:var(--text-muted);font-size:.65rem;letter-spacing:2px}
+```
+
+**Part 47** (baseline lines 2568-2568). Manual anchor: from `.card-body{padding:1.25rem}` to `.card-body{padding:1.25rem}`.
+Delete:
+```css
+.card-body{padding:1.25rem}
+```
+
+**Part 48** (baseline lines 2569-2569). Manual anchor: from `.card-body h3{font-size:.85rem;font-weight:700;letter-spacing:1.5px;margin-bottom:.5rem...` to `.card-body h3{font-size:.85rem;font-weight:700;letter-spacing:1.5px;margin-bottom:.5rem...`.
+Delete:
+```css
+.card-body h3{font-size:.85rem;font-weight:700;letter-spacing:1.5px;margin-bottom:.5rem;line-height:1.4}
+```
+
+**Part 49** (baseline lines 2570-2570). Manual anchor: from `.card-body .excerpt{color:var(--text-muted);font-size:.72rem;text-transform:none;line-h...` to `.card-body .excerpt{color:var(--text-muted);font-size:.72rem;text-transform:none;line-h...`.
+Delete:
+```css
+.card-body .excerpt{color:var(--text-muted);font-size:.72rem;text-transform:none;line-height:1.6;margin-bottom:.75rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+```
+
+**Part 50** (baseline lines 2571-2571). Manual anchor: from `.card-body .meta{color:var(--text-muted);font-size:.6rem;letter-spacing:1.5px;display:f...` to `.card-body .meta{color:var(--text-muted);font-size:.6rem;letter-spacing:1.5px;display:f...`.
+Delete:
+```css
+.card-body .meta{color:var(--text-muted);font-size:.6rem;letter-spacing:1.5px;display:flex;justify-content:space-between;align-items:center}
+```
+
+**Part 51** (baseline lines 2586-2586). Manual anchor: from `.featured-body{padding:1.5rem}` to `.featured-body{padding:1.5rem}`.
+Delete:
+```css
+.featured-body{padding:1.5rem}
+```
+
+**Part 52** (baseline lines 2587-2587). Manual anchor: from `.page-title h1{font-size:1.6rem}` to `.page-title h1{font-size:1.6rem}`.
+Delete:
+```css
+.page-title h1{font-size:1.6rem}
+```
+
+**Part 53** (baseline lines 3014-3018). Manual anchor: from `.announcement-bar .announcement-bar__track {` to `}`.
+Delete:
+```css
+.announcement-bar .announcement-bar__track {
+  animation: marquee 22s linear infinite !important;
+  display: inline-block !important;
+  white-space: nowrap !important;
+}
+```
+
+**Part 54** (baseline lines 3247-3247). Manual anchor: from `.announcement-bar__track { font-size: 11px; }` to `.announcement-bar__track { font-size: 11px; }`.
+Delete:
+```css
+.announcement-bar__track { font-size: 11px; }
+```
+
+**Part 55** (baseline lines 3296-3296). Manual anchor: from `.product-trust-badges { gap: 0.5rem 0.75rem !important; }` to `.product-trust-badges { gap: 0.5rem 0.75rem !important; }`.
+Delete:
+```css
+.product-trust-badges { gap: 0.5rem 0.75rem !important; }
+```
+
+**Part 56** (baseline lines 3340-3340). Manual anchor: from `.site-footer__brand-name { font-size: 22px !important; }` to `.site-footer__brand-name { font-size: 22px !important; }`.
+Delete:
+```css
+.site-footer__brand-name { font-size: 22px !important; }
+```
+
+**Part 57** (baseline lines 3345-3345). Manual anchor: from `.sticky-cart { padding: 0.625rem 0.875rem !important; }` to `.sticky-cart { padding: 0.625rem 0.875rem !important; }`.
+Delete:
+```css
+.sticky-cart { padding: 0.625rem 0.875rem !important; }
+```
+
+**Part 58** (baseline lines 3346-3346). Manual anchor: from `.sticky-cart button { padding: 0.875rem !important; font-size: 15px !important; }` to `.sticky-cart button { padding: 0.875rem !important; font-size: 15px !important; }`.
+Delete:
+```css
+.sticky-cart button { padding: 0.875rem !important; font-size: 15px !important; }
+```
+
+**Part 59** (baseline lines 3397-3397). Manual anchor: from `.product-main__description-full { padding: 0 !important; font-size: 15px !important; }` to `.product-main__description-full { padding: 0 !important; font-size: 15px !important; }`.
+Delete:
+```css
+.product-main__description-full { padding: 0 !important; font-size: 15px !important; }
+```
+
+**Part 60** (baseline lines 3461-3461). Manual anchor: from `.product-card .product-card__image-wrap,.product-card .product-card__image-wrapper{posi...` to `.product-card .product-card__image-wrap,.product-card .product-card__image-wrapper{posi...`.
+Delete:
+```css
+.product-card .product-card__image-wrap,.product-card .product-card__image-wrapper{position:relative !important;width:100% !important;aspect-ratio:1/1 !important;border-radius:14px !important;overflow:hidden !important;background:#f0f0f0 !important;flex-shrink:0 !important;box-shadow:0 2px 12px rgba(0,0,0,0.09) !important;height:auto !important}
+```
+
+**Part 61** (baseline lines 3462-3462). Manual anchor: from `.product-card .product-card__image-wrap{height:auto !important;aspect-ratio:1/1 !import...` to `.product-card .product-card__image-wrap{height:auto !important;aspect-ratio:1/1 !import...`.
+Delete:
+```css
+.product-card .product-card__image-wrap{height:auto !important;aspect-ratio:1/1 !important}
+```
+
+**Part 62** (baseline lines 3468-3468). Manual anchor: from `.product-card--pink:hover,.product-card--cyan:hover,.product-card--yellow:hover{box-sha...` to `.product-card--pink:hover,.product-card--cyan:hover,.product-card--yellow:hover{box-sha...`.
+Delete:
+```css
+.product-card--pink:hover,.product-card--cyan:hover,.product-card--yellow:hover{box-shadow:none !important}
+```
+
+**Part 63** (baseline lines 3475-3475). Manual anchor: from `.product-card .product-card__vendor{font-size:11px !important;color:#999 !important;fon...` to `.product-card .product-card__vendor{font-size:11px !important;color:#999 !important;fon...`.
+Delete:
+```css
+.product-card .product-card__vendor{font-size:11px !important;color:#999 !important;font-weight:400 !important;text-transform:none !important;letter-spacing:0 !important;line-height:1.2 !important}
+```
+
+**Part 64** (baseline lines 3476-3476). Manual anchor: from `.product-card .product-card__stars{display:flex !important;align-items:center !importan...` to `.product-card .product-card__stars{display:flex !important;align-items:center !importan...`.
+Delete:
+```css
+.product-card .product-card__stars{display:flex !important;align-items:center !important;gap:1px !important;margin-top:1px !important}
+```
+
+**Part 65** (baseline lines 3478-3478). Manual anchor: from `.product-card .product-card__link{position:absolute !important;inset:0 !important;z-ind...` to `.product-card .product-card__link{position:absolute !important;inset:0 !important;z-ind...`.
+Delete:
+```css
+.product-card .product-card__link{position:absolute !important;inset:0 !important;z-index:2 !important;display:block !important}
+```
+
+**Part 66** (baseline lines 3479-3479). Manual anchor: from `.product-card .product-card__quickview{position:absolute !important;bottom:10px !import...` to `.product-card .product-card__quickview{position:absolute !important;bottom:10px !import...`.
+Delete:
+```css
+.product-card .product-card__quickview{position:absolute !important;bottom:10px !important;right:10px !important;z-index:3 !important;width:30px !important;height:30px !important;border-radius:50% !important;background:rgba(255,255,255,0.92) !important;display:flex !important;align-items:center !important;justify-content:center !important;color:#444 !important;text-decoration:none !important;opacity:0 !important;transition:opacity 0.2s !important;box-shadow:none !important}
+```
+
+**Part 67** (baseline lines 3480-3480). Manual anchor: from `.product-card:hover .product-card__quickview{opacity:1 !important}` to `.product-card:hover .product-card__quickview{opacity:1 !important}`.
+Delete:
+```css
+.product-card:hover .product-card__quickview{opacity:1 !important}
+```
+
+**Part 68** (baseline lines 3481-3481). Manual anchor: from `.product-card .product-card__sold-badge{position:absolute !important;top:10px !importan...` to `.product-card .product-card__sold-badge{position:absolute !important;top:10px !importan...`.
+Delete:
+```css
+.product-card .product-card__sold-badge{position:absolute !important;top:10px !important;left:10px !important;z-index:3 !important;background:rgba(0,0,0,0.65) !important;color:#fff !important;font-size:11px !important;font-weight:600 !important;padding:3px 8px !important;border-radius:20px !important;text-transform:none !important}
+```
+
+**Part 69** (baseline lines 3615-3615). Manual anchor: from `.return-page .hero h1 { text-align: center !important; }` to `.return-page .hero h1 { text-align: center !important; }`.
+Delete:
+```css
+.return-page .hero h1 { text-align: center !important; }
+```
+
+**Part 70** (baseline lines 3646-3646). Manual anchor: from `.faq-page .support { display: none !important; }` to `.faq-page .support { display: none !important; }`.
+Delete:
+```css
+.faq-page .support { display: none !important; }
+```
+
+**Part 71** (baseline lines 3650-3650). Manual anchor: from `.newsletter__socials { display:flex !important; gap:14px !important; justify-content:ce...` to `.newsletter__socials { display:flex !important; gap:14px !important; justify-content:ce...`.
+Delete:
+```css
+.newsletter__socials { display:flex !important; gap:14px !important; justify-content:center !important; align-items:center !important; margin:1.2rem 0 1.6rem !important; flex-wrap:nowrap !important; }
+```
+
+**Part 72** (baseline lines 3651-3651). Manual anchor: from `.newsletter__social-link { width:46px !important; height:46px !important; display:inlin...` to `.newsletter__social-link { width:46px !important; height:46px !important; display:inlin...`.
+Delete:
+```css
+.newsletter__social-link { width:46px !important; height:46px !important; display:inline-flex !important; align-items:center !important; justify-content:center !important; border-radius:50% !important; background:transparent !important; border:1.5px solid rgba(255,66,161,0.35) !important; backdrop-filter:none !important; -webkit-backdrop-filter:none !important; box-shadow:none !important; color:#ff42a1 !important; transition:background 0.2s,border-color 0.2s !important; flex-shrink:0 !important; }
+```
+
+**Part 73** (baseline lines 3652-3652). Manual anchor: from `.newsletter__social-link svg { width:22px !important; height:22px !important; fill:none...` to `.newsletter__social-link svg { width:22px !important; height:22px !important; fill:none...`.
+Delete:
+```css
+.newsletter__social-link svg { width:22px !important; height:22px !important; fill:none !important; stroke:currentColor !important; stroke-width:2 !important; display:block !important; }
+```
+
+**Part 74** (baseline lines 3653-3653). Manual anchor: from `.newsletter__social-link:hover { background:rgba(255,66,161,0.12) !important; border-co...` to `.newsletter__social-link:hover { background:rgba(255,66,161,0.12) !important; border-co...`.
+Delete:
+```css
+.newsletter__social-link:hover { background:rgba(255,66,161,0.12) !important; border-color:#ff42a1 !important; }
+```
+
+**Part 75** (baseline lines 4091-4091). Manual anchor: from `.category-sphere__label{transition:font-size 0.25s ease, opacity 1.5s cubic-bezier(0.4,...` to `.category-sphere__label{transition:font-size 0.25s ease, opacity 1.5s cubic-bezier(0.4,...`.
+Delete:
+```css
+.category-sphere__label{transition:font-size 0.25s ease, opacity 1.5s cubic-bezier(0.4,0,0.2,1) 0.25s, transform 1.8s cubic-bezier(0.4,0,0.2,1) 0.15s;}
+```
+
+**Part 76** (baseline lines 4092-4092). Manual anchor: from `.category-sphere:hover .category-sphere__label{font-size:15px !important;}` to `.category-sphere:hover .category-sphere__label{font-size:15px !important;}`.
+Delete:
+```css
+.category-sphere:hover .category-sphere__label{font-size:15px !important;}
+```
+
+**Part 77** (baseline lines 4110-4112). Manual anchor: from `.category-sphere__label {` to `}`.
+Delete:
+```css
+.category-sphere__label {
+  transform: translateY(0);
+}
+```
+
+**Part 78** (baseline lines 4113-4117). Manual anchor: from `.category-sphere:hover .category-sphere__label {` to `}`.
+Delete:
+```css
+.category-sphere:hover .category-sphere__label {
+  transform: translateY(2px) !important;
+  letter-spacing: 0.12em !important;
+  font-weight: 600 !important;
+}
+```
+
+**Part 79** (baseline lines 4938-4938). Manual anchor: from `.clg-pill { height: 240px; }` to `.clg-pill { height: 240px; }`.
+Delete:
+```css
+.clg-pill { height: 240px; }
+```
+
+**Part 80** (baseline lines 4939-4939). Manual anchor: from `.clg-icon { width: 96px; height: 96px; }` to `.clg-icon { width: 96px; height: 96px; }`.
+Delete:
+```css
+.clg-icon { width: 96px; height: 96px; }
+```
+
+**Part 81** (baseline lines 4949-4949). Manual anchor: from `.clg-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }` to `.clg-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }`.
+Delete:
+```css
+.clg-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+```
+
+**Part 82** (baseline lines 4950-4950). Manual anchor: from `.clg-pill { height: 200px; border-radius: 32px; }` to `.clg-pill { height: 200px; border-radius: 32px; }`.
+Delete:
+```css
+.clg-pill { height: 200px; border-radius: 32px; }
+```
+
+**Part 83** (baseline lines 4951-4951). Manual anchor: from `.clg-icon { width: 80px; height: 80px; border-radius: 20px; }` to `.clg-icon { width: 80px; height: 80px; border-radius: 20px; }`.
+Delete:
+```css
+.clg-icon { width: 80px; height: 80px; border-radius: 20px; }
+```
+
+**Part 84** (baseline lines 4952-4952). Manual anchor: from `.clg-title { font-size: 13px; }` to `.clg-title { font-size: 13px; }`.
+Delete:
+```css
+.clg-title { font-size: 13px; }
+```
+
+**Part 85** (baseline lines 4953-4953). Manual anchor: from `.clg-slogan { font-size: 11px; }` to `.clg-slogan { font-size: 11px; }`.
+Delete:
+```css
+.clg-slogan { font-size: 11px; }
+```
+
+**Part 86** (baseline lines 4960-4960). Manual anchor: from `.clg-pill { height: 180px; }` to `.clg-pill { height: 180px; }`.
+Delete:
+```css
+.clg-pill { height: 180px; }
+```
+
+**Part 87** (baseline lines 4961-4961). Manual anchor: from `.clg-icon { width: 68px; height: 68px; }` to `.clg-icon { width: 68px; height: 68px; }`.
+Delete:
+```css
+.clg-icon { width: 68px; height: 68px; }
+```
+
+**Part 88** (baseline lines 5007-5007). Manual anchor: from `.product-card--pink { border-color: rgba(255,66,161,0.2) !important; }` to `.product-card--pink { border-color: rgba(255,66,161,0.2) !important; }`.
+Delete:
+```css
+.product-card--pink { border-color: rgba(255,66,161,0.2) !important; }
+```
+
+**Part 89** (baseline lines 5008-5008). Manual anchor: from `.product-card--yellow { border-color: rgba(255,216,61,0.25) !important; }` to `.product-card--yellow { border-color: rgba(255,216,61,0.25) !important; }`.
+Delete:
+```css
+.product-card--yellow { border-color: rgba(255,216,61,0.25) !important; }
+```
+
+**Part 90** (baseline lines 5009-5009). Manual anchor: from `.product-card--cyan { border-color: rgba(33,213,237,0.25) !important; }` to `.product-card--cyan { border-color: rgba(33,213,237,0.25) !important; }`.
+Delete:
+```css
+.product-card--cyan { border-color: rgba(33,213,237,0.25) !important; }
+```
+
+**Part 91** (baseline lines 5084-5088). Manual anchor: from `.trust-badges {` to `}`.
+Delete:
+```css
+.trust-badges {
+  display: block !important;
+  padding: 16px 20px 30px !important;
+  box-sizing: border-box !important;
+}
+```
+
+**Part 92** (baseline lines 5283-5285). Manual anchor: from `.site-footer__col {` to `}`.
+Delete:
+```css
+.site-footer__col {
+    text-align: center !important;
+  }
+```
+
+**Part 93** (baseline lines 5289-5291). Manual anchor: from `.site-footer__col-links {` to `}`.
+Delete:
+```css
+.site-footer__col-links {
+    text-align: center !important;
+  }
+```
+
+**Part 94** (baseline lines 5292-5294). Manual anchor: from `.site-footer__col-links li {` to `}`.
+Delete:
+```css
+.site-footer__col-links li {
+    text-align: center !important;
+  }
+```
+
+**Part 95** (baseline lines 5300-5303). Manual anchor: from `.category-arc__grid:has(.category-sphere:hover) .category-sphere {` to `}`.
+Delete:
+```css
+.category-arc__grid:has(.category-sphere:hover) .category-sphere {
+  filter: brightness(0.55) saturate(0.8);
+    transition: filter 0.45s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+```
+
+**Part 96** (baseline lines 5306-5311). Manual anchor: from `.category-arc__grid:has(.category-sphere:hover) .category-sphere:hover {` to `}`.
+Delete:
+```css
+.category-arc__grid:has(.category-sphere:hover) .category-sphere:hover {
+      filter: brightness(1.25) saturate(1.15) drop-shadow(0 0 18px rgba(255,255,255,0.55)) drop-shadow(0 0 40px rgba(255,255,255,0.25));
+        transform: translateY(-6px) scale(1.06);
+          transition: filter 0.45s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 10;
+            }
+```
+
+**Part 97** (baseline lines 5536-5536). Manual anchor: from `.cat-ice-grid { gap: 14px; padding: 30px 16px 16px; }` to `.cat-ice-grid { gap: 14px; padding: 30px 16px 16px; }`.
+Delete:
+```css
+.cat-ice-grid { gap: 14px; padding: 30px 16px 16px; }
+```
+
+**Part 98** (baseline lines 5537-5537). Manual anchor: from `.cat-ice-frame { border-radius: 22px; }` to `.cat-ice-frame { border-radius: 22px; }`.
+Delete:
+```css
+.cat-ice-frame { border-radius: 22px; }
+```
+
+**Part 99** (baseline lines 5623-5627). Manual anchor: from `.trust-badges .trust-badge .trust-badge__icon,` to `}`.
+Delete:
+```css
+.trust-badges .trust-badge .trust-badge__icon,
+.trust-badges .trust-badge[class*="trust-badge"] svg {
+  width: 8px !important;
+  height: 8px !important;
+}
+```
+
+**Part 100** (baseline lines 5645-5651). Manual anchor: from `html body .cat-ice-grid .cat-ice-card,` to `}`.
+Delete:
+```css
+html body .cat-ice-grid .cat-ice-card,
+  html body .cat-ice-grid.cat-ice-active .cat-ice-card,
+  html body .cat-ice-grid:has(.cat-ice-card:hover) .cat-ice-card {
+    filter: brightness(1) saturate(1) !important;
+    opacity: 1 !important;
+    transition: filter 0s, opacity 0s !important;
+  }
+```
+
+**Part 101** (baseline lines 5670-5674). Manual anchor: from `html body .product-grid .product-card .product-card__image-wrap {` to `}`.
+Delete:
+```css
+html body .product-grid .product-card .product-card__image-wrap {
+    aspect-ratio: 1/1 !important;
+    height: auto !important;
+    flex-shrink: 0 !important;
+  }
+```
+
+**Part 102** (baseline lines 5683-5685). Manual anchor: from `html body .product-grid .product-card .product-card__footer {` to `}`.
+Delete:
+```css
+html body .product-grid .product-card .product-card__footer {
+    margin-top: auto !important;
+  }
+```
+
+**Part 103** (baseline lines 5895-5895). Manual anchor: from `.fsbar { padding:10px 14px; background:transparent; border-radius:10px; margin:0.5rem 0; }` to `.fsbar { padding:10px 14px; background:transparent; border-radius:10px; margin:0.5rem 0; }`.
+Delete:
+```css
+.fsbar { padding:10px 14px; background:transparent; border-radius:10px; margin:0.5rem 0; }
+```
+
+**Part 104** (baseline lines 5896-5896). Manual anchor: from `.fsbar--unlocked { background:transparent; color:#15803d; font-size:13px; font-weight:7...` to `.fsbar--unlocked { background:transparent; color:#15803d; font-size:13px; font-weight:7...`.
+Delete:
+```css
+.fsbar--unlocked { background:transparent; color:#15803d; font-size:13px; font-weight:700; text-align:center; padding:6px 14px; border-radius:10px; }
+```
+
+**Part 105** (baseline lines 5897-5897). Manual anchor: from `.fsbar__text { font-size:12.5px; color:#ff42a1; font-weight:600; margin-bottom:6px; }` to `.fsbar__text { font-size:12.5px; color:#ff42a1; font-weight:600; margin-bottom:6px; }`.
+Delete:
+```css
+.fsbar__text { font-size:12.5px; color:#ff42a1; font-weight:600; margin-bottom:6px; }
+```
+
+**Part 106** (baseline lines 5898-5898). Manual anchor: from `.fsbar__track { display:block !important; height:6px !important; min-height:6px !import...` to `.fsbar__track { display:block !important; height:6px !important; min-height:6px !import...`.
+Delete:
+```css
+.fsbar__track { display:block !important; height:6px !important; min-height:6px !important; background:#dcfce7 !important; border-radius:999px !important; overflow:hidden !important; width:100% !important; box-sizing:border-box !important; }
+```
+
+**Part 107** (baseline lines 5899-5899). Manual anchor: from `.fsbar__fill { display:block !important; height:6px !important; min-height:6px !importa...` to `.fsbar__fill { display:block !important; height:6px !important; min-height:6px !importa...`.
+Delete:
+```css
+.fsbar__fill { display:block !important; height:6px !important; min-height:6px !important; background:linear-gradient(90deg,#22c55e,#16a34a) !important; border-radius:999px !important; transition:width 0.5s ease !important; }
+```
+
+**Part 108** (baseline lines 5902-5902). Manual anchor: from `.pdp-reward-timer { display:flex; align-items:center; gap:8px; padding:9px 14px; backgr...` to `.pdp-reward-timer { display:flex; align-items:center; gap:8px; padding:9px 14px; backgr...`.
+Delete:
+```css
+.pdp-reward-timer { display:flex; align-items:center; gap:8px; padding:9px 14px; background:#fff8f0; border:1.5px solid #f97316; border-radius:10px; font-size:13px; font-weight:600; color:#9a3412; }
+```
+
+**Part 109** (baseline lines 5903-5903). Manual anchor: from `.pdp-reward-timer svg { flex-shrink:0; stroke:#f97316; }` to `.pdp-reward-timer svg { flex-shrink:0; stroke:#f97316; }`.
+Delete:
+```css
+.pdp-reward-timer svg { flex-shrink:0; stroke:#f97316; }
+```
+
+**Part 110** (baseline lines 5918-5918). Manual anchor: from `.fsbar--empty { display:flex; align-items:center; gap:7px; font-size:12.5px; font-weigh...` to `.fsbar--empty { display:flex; align-items:center; gap:7px; font-size:12.5px; font-weigh...`.
+Delete:
+```css
+.fsbar--empty { display:flex; align-items:center; gap:7px; font-size:12.5px; font-weight:600; color:#374151; padding:9px 12px; background:transparent; border-radius:10px; }
+```
+
+**Part 111** (baseline lines 5919-5919). Manual anchor: from `.fsbar--empty strong { color:#15803d; }` to `.fsbar--empty strong { color:#15803d; }`.
+Delete:
+```css
+.fsbar--empty strong { color:#15803d; }
+```
+
+**Part 112** (baseline lines 5930-5930). Manual anchor: from `.cart-bundle__discount { font-size:11px; color:#16a34a; font-weight:700; margin-top:6px...` to `.cart-bundle__discount { font-size:11px; color:#16a34a; font-weight:700; margin-top:6px...`.
+Delete:
+```css
+.cart-bundle__discount { font-size:11px; color:#16a34a; font-weight:700; margin-top:6px; text-align:center; }
+```
+
+**Part 113** (baseline lines 5978-5981). Manual anchor: from `.coll-sort__btn:not(.coll-sort__btn--active) {` to `}`.
+Delete:
+```css
+.coll-sort__btn:not(.coll-sort__btn--active) {
+  color: #111 !important;
+  font-weight: 300 !important;
+}
+```
+
+**Part 114** (baseline lines 5982-5984). Manual anchor: from `.coll-sort__btn--active {` to `}`.
+Delete:
+```css
+.coll-sort__btn--active {
+  font-weight: 600 !important;
+}
+```
+
+**Part 115** (baseline lines 6109-6114). Manual anchor: from `.product-card--cyan,` to `.product-card--orange { animation: none !important; }`.
+Delete:
+```css
+.product-card--cyan,
+  .product-card--pink,
+  .product-card--yellow,
+  .product-card--purple,
+  .product-card--green,
+  .product-card--orange { animation: none !important; }
+```
+
+**Part 116** (baseline lines 6162-6162). Manual anchor: from `#tvFilters .tv-theme-more { color:#444 !important; background:#fff !important; border:1...` to `#tvFilters .tv-theme-more { color:#444 !important; background:#fff !important; border:1...`.
+Delete:
+```css
+#tvFilters .tv-theme-more { color:#444 !important; background:#fff !important; border:1.5px solid #e2e8f0 !important; box-shadow:0 1px 3px rgba(0,0,0,0.06) !important; }
+```
+
+**Part 117** (baseline lines 6163-6163). Manual anchor: from `#tvFilters .tv-theme-more:hover { color:#ff42a1 !important; background:#fff !important;...` to `#tvFilters .tv-theme-more:hover { color:#ff42a1 !important; background:#fff !important;...`.
+Delete:
+```css
+#tvFilters .tv-theme-more:hover { color:#ff42a1 !important; background:#fff !important; border-color:#ff42a1 !important; }
+```
+
+**Part 118** (baseline lines 6164-6164). Manual anchor: from `#tvFilters .tv-type-card { background:#fff !important; border:1.5px solid #e5e7eb !impo...` to `#tvFilters .tv-type-card { background:#fff !important; border:1.5px solid #e5e7eb !impo...`.
+Delete:
+```css
+#tvFilters .tv-type-card { background:#fff !important; border:1.5px solid #e5e7eb !important; box-shadow:0 1px 5px rgba(0,0,0,0.07) !important; }
+```
+
+**Part 119** (baseline lines 6165-6165). Manual anchor: from `#tvFilters .tv-tc-label { color:#333 !important; font-weight:600 !important; }` to `#tvFilters .tv-tc-label { color:#333 !important; font-weight:600 !important; }`.
+Delete:
+```css
+#tvFilters .tv-tc-label { color:#333 !important; font-weight:600 !important; }
+```
+
+**Part 120** (baseline lines 6166-6166). Manual anchor: from `#tvFilters .tv-type-card.tv-type-card--active { border-color:#ff42a1 !important; box-sh...` to `#tvFilters .tv-type-card.tv-type-card--active { border-color:#ff42a1 !important; box-sh...`.
+Delete:
+```css
+#tvFilters .tv-type-card.tv-type-card--active { border-color:#ff42a1 !important; box-shadow:0 0 0 2px #ff42a1 !important; background:rgba(255,66,161,0.04) !important; }
+```
+
+**Part 121** (baseline lines 6167-6167). Manual anchor: from `#tvFilters .tv-type-card.tv-type-card--active .tv-tc-label { color:#ff42a1 !important; }` to `#tvFilters .tv-type-card.tv-type-card--active .tv-tc-label { color:#ff42a1 !important; }`.
+Delete:
+```css
+#tvFilters .tv-type-card.tv-type-card--active .tv-tc-label { color:#ff42a1 !important; }
+```
+
+**Part 122** (baseline lines 6198-6198). Manual anchor: from `html body .product-card__badge[data-badge="best-seller"] { background: transparent !imp...` to `html body .product-card__badge[data-badge="best-seller"] { background: transparent !imp...`.
+Delete:
+```css
+html body .product-card__badge[data-badge="best-seller"] { background: transparent !important; border: 1.5px solid #ff2a94 !important; color: #ff2a94 !important; }
+```
+
+**Part 123** (baseline lines 6199-6199). Manual anchor: from `html body .product-card__badge[data-badge="new"] { background: transparent !important; ...` to `html body .product-card__badge[data-badge="new"] { background: transparent !important; ...`.
+Delete:
+```css
+html body .product-card__badge[data-badge="new"]         { background: transparent !important; border: 1.5px solid #16a34a !important; color: #16a34a !important; }
+```
+
+**Part 124** (baseline lines 6200-6200). Manual anchor: from `html body .product-card__badge[data-badge="sale"] { background: transparent !important;...` to `html body .product-card__badge[data-badge="sale"] { background: transparent !important;...`.
+Delete:
+```css
+html body .product-card__badge[data-badge="sale"]        { background: transparent !important; border: 1.5px solid #dc2626 !important; color: #dc2626 !important; }
+```
+
+**Part 125** (baseline lines 6201-6201). Manual anchor: from `html body .product-card__badge[data-badge="award"] { background: transparent !important...` to `html body .product-card__badge[data-badge="award"] { background: transparent !important...`.
+Delete:
+```css
+html body .product-card__badge[data-badge="award"]       { background: transparent !important; border: 1.5px solid #d97706 !important; color: #d97706 !important; }
+```
+
+**Part 126** (baseline lines 6202-6202). Manual anchor: from `html body .product-card__badge[data-badge="top pick"] { background: transparent !import...` to `html body .product-card__badge[data-badge="top pick"] { background: transparent !import...`.
+Delete:
+```css
+html body .product-card__badge[data-badge="top pick"]    { background: transparent !important; border: 1.5px solid #7c3aed !important; color: #7c3aed !important; }
+```
+
+**Part 127** (baseline lines 6203-6203). Manual anchor: from `html body .product-card__badge[data-badge="trending"] { background: transparent !import...` to `html body .product-card__badge[data-badge="trending"] { background: transparent !import...`.
+Delete:
+```css
+html body .product-card__badge[data-badge="trending"]    { background: transparent !important; border: 1.5px solid #ea580c !important; color: #ea580c !important; }
+```
+
+**Part 128** (baseline lines 6204-6204). Manual anchor: from `html body .product-card__badge[data-badge="hot"] { background: transparent !important; ...` to `html body .product-card__badge[data-badge="hot"] { background: transparent !important; ...`.
+Delete:
+```css
+html body .product-card__badge[data-badge="hot"]         { background: transparent !important; border: 1.5px solid #dc2626 !important; color: #dc2626 !important; }
+```
+
+**Part 129** (baseline lines 6205-6205). Manual anchor: from `html body .product-card__badge[data-badge="sold-out"] { background: transparent !import...` to `html body .product-card__badge[data-badge="sold-out"] { background: transparent !import...`.
+Delete:
+```css
+html body .product-card__badge[data-badge="sold-out"]    { background: transparent !important; border: 1.5px solid #6b7280 !important; color: #6b7280 !important; }
+```
+
+### T123 [TODO] 1 always-overridden or empty rule(s) inside lines of assets/home-palette.css
+- **File:** `assets/home-palette.css` | baseline lines 141-142 | kind: rule-level removal inside lines (exact text) - always overridden (tool-proven)
+- **Why it is dead:** Each removed rule is restated later in the SAME <style> block (same selectors, same or top-level @media, every property at equal-or-higher priority, winner not inside a Liquid conditional), or is empty. Selectors: html body .cat-rows
+- **Proof:** Joint shadow proof per file on the CSS views (tools/shadow.js) -> PROVEN; joint Chrome CSSOM check: exactly these rules removed, nothing added. These parts remove a single rule from the middle of a line: only the exact_text is removed, context is kept.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: html body .cat-rows {  }**
+- **Visual change if removed:** None.
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 141-142). Manual anchor: from `html body .cat-rows {` to `}`.
+Delete:
+```css
+html body .cat-rows {
+}
+```
+
+### T124 [REVIEW] 1 orphaned rule(s) inside lines of assets/home-palette.css
+- **File:** `assets/home-palette.css` | baseline lines 207-208 | kind: rule-level removal inside lines (exact text) - orphan selectors (scripted search)
+- **Why it is dead:** Every selector of each rule needs a class/ID that appears nowhere in the theme outside CSS (markup, JS, JSON; any mention counts as used; prefix-built names count as used; Shopify/app prefixes count as used). Selectors: html body .cat-rows .cr-card__img-wrap > .var-dot .var-dot__count, html body .cat-rows .cr-card__img-wrap > .var-dot .var-dot__label
+- **Proof:** Not provable from CSS alone, hence REVIEW; joint Chrome CSSOM check: exactly these rules removed, nothing added. These parts remove a single rule from the middle of a line: only the exact_text is removed, context is kept.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: html body .cat-rows .cr-card__img-wrap > .var-dot .var-dot__count, html body .cat-rows .cr-card__img-wrap > .var-dot .var-dot__label { display: inline !important; font: 600 8px / 1 Nunito, system-ui, sans-serif !important; }**
+- **Visual change if removed:** None expected.
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 207-208). Manual anchor: from `html body .cat-rows .cr-card__img-wrap > .var-dot .var-dot__count,` to `html body .cat-rows .cr-card__img-wrap > .var-dot .var-dot__label { display: inline !im...`.
+Delete:
+```css
+html body .cat-rows .cr-card__img-wrap > .var-dot .var-dot__count,
+html body .cat-rows .cr-card__img-wrap > .var-dot .var-dot__label { display: inline !important; font: 600 8px/1 'Nunito', system-ui, sans-serif !important; }
+```
+
+### T125 [REVIEW] 3 orphaned rule(s) inside lines of assets/live-card-fixes.css
+- **File:** `assets/live-card-fixes.css` | baseline lines 48-48, 151-151, 190-190 | kind: rule-level removal inside lines (exact text) - orphan selectors (scripted search)
+- **Why it is dead:** Every selector of each rule needs a class/ID that appears nowhere in the theme outside CSS (markup, JS, JSON; any mention counts as used; prefix-built names count as used; Shopify/app prefixes count as used). Selectors: .product-card__quick-cart; html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card .product-card__buy; html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card .product-card__buy
+- **Proof:** Not provable from CSS alone, hence REVIEW; joint Chrome CSSOM check: exactly these rules removed, nothing added. These parts remove a single rule from the middle of a line: only the exact_text is removed, context is kept.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .product-card__quick-cart { display: none !important; } /   - removed: html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card .product-card__buy { font-size: 11.5px !important; } /   - removed: html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card .product-card__buy { font-size: 12.5px !important; }**
+- **Visual change if removed:** None expected.
+- **Parts:** 3 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 48-48). Manual anchor: from `.product-card__quick-cart{display:none!important}` to `.product-card__quick-cart{display:none!important}`.
+Delete:
+```css
+.product-card__quick-cart{display:none!important}
+```
+
+**Part 2** (baseline lines 151-151). Manual anchor: from `html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#Main...` to `html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#Main...`.
+Delete:
+```css
+html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card .product-card__buy{font-size:11.5px!important}
+```
+
+**Part 3** (baseline lines 190-190). Manual anchor: from `html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#Main...` to `html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#Main...`.
+Delete:
+```css
+html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card .product-card__buy{font-size:12.5px!important}
 ```
 
 ---

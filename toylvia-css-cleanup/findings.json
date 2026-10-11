@@ -1,8 +1,8 @@
 {
   "scan": {
     "started": "2026-10-11T15:16:39Z",
-    "updated": "2026-10-11T17:04:37Z",
-    "rounds": 7,
+    "updated": "2026-10-11T17:07:38Z",
+    "rounds": 8,
     "branch": "claude/chrome-devtools-state-preservation-o47p8j",
     "theme_name": "lior's theme for toylvia",
     "theme_id": "209157554507",
@@ -4897,6 +4897,975 @@
         }
       ],
       "verify": "DIFFERENT /   - removed: @media (min-width: 768px) > .tlv-wlp__grid { grid-template-columns: repeat(4, 1fr); } /   - removed: .tlv-wlp__card { background: rgb(255, 255, 255); border: 1px solid rgb(228, 228, 231); border-radius: 8px; overflow: hidden; position: relative; transition: border-color 0.15s; } /   - removed: .tlv-wlp__card:hover { border-color: rgb(161, 161, 170); } /   - removed: .tlv-wlp a.tlv-wlp__t { color: rgb(26, 26, 46) !important; }"
+    },
+    {
+      "id": "T121",
+      "status": "TODO",
+      "round": 8,
+      "file": "assets/toylvia.css",
+      "baseline_lines": "13-13, 26-26, 483-485, 511-511, 514-514, 618-618, 641-649, 662-662, 2035-2037, 2043-2045, 2072-2074, 2077-2079, 2082-2084, 2164-2167, 4125-4130",
+      "title": "15 always-overridden or empty rule(s) inside lines of assets/toylvia.css",
+      "kind": "rule-level removal inside lines (exact text) - always overridden (tool-proven)",
+      "why": "Each removed rule is restated later in the SAME <style> block (same selectors, same or top-level @media, every property at equal-or-higher priority, winner not inside a Liquid conditional), or is empty. Selectors: *, ::before, ::after; .category-arc__grid:has(.category-sphere:hover) .category-sphere:hover; .collection-back-btn; .product-card; .product-card .product-card__body::before; .product-card--cyan:hover; .product-card--pink:hover; .product-card--yellow:hover; .product-card:hover; .product-card:hover img, .product-card:hover .product-card__image; .section-title; .see-all-btn; .see-all-btn:hover; a",
+      "proof": "Joint shadow proof per file on the CSS views (tools/shadow.js) -> PROVEN; joint Chrome CSSOM check: exactly these rules removed, nothing added. These parts remove a single rule from the middle of a line: only the exact_text is removed, context is kept.",
+      "visual_change": "None.",
+      "parts": [
+        {
+          "lines": "13-13",
+          "context_before": "",
+          "exact_text": "*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }",
+          "context_after": ""
+        },
+        {
+          "lines": "26-26",
+          "context_before": "",
+          "exact_text": "a { color: inherit; text-decoration: none; }",
+          "context_after": ""
+        },
+        {
+          "lines": "483-485",
+          "context_before": "",
+          "exact_text": ".product-card:hover {\n    transform: translateY(-8px);\n}",
+          "context_after": ""
+        },
+        {
+          "lines": "511-511",
+          "context_before": "",
+          "exact_text": ".product-card .product-card__body::before { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }",
+          "context_after": ""
+        },
+        {
+          "lines": "514-514",
+          "context_before": "",
+          "exact_text": ".product-card:hover img, .product-card:hover .product-card__image { transform: none !important; }",
+          "context_after": ""
+        },
+        {
+          "lines": "618-618",
+          "context_before": "",
+          "exact_text": ".section-title { font-size: 2.7rem; }",
+          "context_after": ""
+        },
+        {
+          "lines": "641-649",
+          "context_before": "",
+          "exact_text": ".see-all-btn {\n  display: inline-flex;\n  padding: 0.875rem 2.25rem;\n  border-radius: 999px;\n  font-size: 14px;\n  font-weight: 700;\n  border: 2px solid;\n  transition: all 0.4s ease;\n}",
+          "context_after": ""
+        },
+        {
+          "lines": "662-662",
+          "context_before": "",
+          "exact_text": ".see-all-btn:hover { transform: scale(1.1); }",
+          "context_after": ""
+        },
+        {
+          "lines": "2035-2037",
+          "context_before": "",
+          "exact_text": ".see-all-btn {\n    box-shadow: rgba(255,255,255,0.22) 0px 1px 4px 0px inset, rgba(0,0,0,0.16) 0px 0px 18px 0px, rgba(0,0,0,0.09) 0px 4px 12px 0px;\n    }",
+          "context_after": ""
+        },
+        {
+          "lines": "2043-2045",
+          "context_before": "",
+          "exact_text": ".collection-back-btn {\n        box-shadow: rgba(255,255,255,0.22) 0px 1px 4px 0px inset, rgba(0,0,0,0.16) 0px 0px 18px 0px, rgba(0,0,0,0.09) 0px 4px 12px 0px;\n        }",
+          "context_after": ""
+        },
+        {
+          "lines": "2072-2074",
+          "context_before": "",
+          "exact_text": ".product-card--pink:hover {\n                box-shadow: 0 0 22px 6px hsla(187,85%,53%,0.55), 0 0 50px 12px hsla(187,85%,53%,0.25), 0 8px 32px rgba(0,0,0,0.1);\n            }",
+          "context_after": ""
+        },
+        {
+          "lines": "2077-2079",
+          "context_before": "",
+          "exact_text": ".product-card--cyan:hover {\n                  box-shadow: 0 0 22px 6px hsla(48,100%,62%,0.6), 0 0 50px 12px hsla(48,100%,62%,0.28), 0 8px 32px rgba(0,0,0,0.1);\n              }",
+          "context_after": ""
+        },
+        {
+          "lines": "2082-2084",
+          "context_before": "",
+          "exact_text": ".product-card--yellow:hover {\n                    box-shadow: 0 0 22px 6px hsla(330,100%,63%,0.55), 0 0 50px 12px hsla(330,100%,63%,0.25), 0 8px 32px rgba(0,0,0,0.1);\n                }",
+          "context_after": ""
+        },
+        {
+          "lines": "2164-2167",
+          "context_before": "",
+          "exact_text": ".category-arc__grid:has(.category-sphere:hover) .category-sphere:hover {\n                                                                            transform: scale(1);\n                                                                              transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);\n                                                                              }",
+          "context_after": ""
+        },
+        {
+          "lines": "4125-4130",
+          "context_before": "",
+          "exact_text": ".product-card {\n  transition:\n    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),\n    box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1),\n    border-color 0.45s cubic-bezier(0.22, 1, 0.36, 1) !important;\n}",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: *, ::before, ::after { box-sizing: border-box; margin: 0px; padding: 0px; } /   - removed: a { color: inherit; text-decoration: none; } /   - removed: .product-card:hover { transform: translateY(-8px); } /   - removed: @media (max-width: 1023px) > .product-card .product-card__body::before { backdrop-filter: none !important; } /   - removed: @media (max-width: 1023px) > .product-card:hover img, .product-card:hover .product-card__image { transform: none !important; } /   - removed: @media (min-width: 768px) > .section-title { font-size: 2.7rem; } /   - removed: .see-all-btn { display: inline-flex; padding: 0.875rem 2.25rem; border-radius: 999px; font-size: 14px; font-weight: 700; border: 2px solid; transition: 0.4s; } /   - removed: .see-all-btn:hover { transform: scale(1.1); } /   - removed: .see-all-btn { box-shadow: rgba(255, 255, 255, 0.22) 0px 1px 4px 0px inset, rgba(0, 0, 0, 0.16) 0px 0px 18px 0px, rgba(0, 0, 0, 0.09) 0px 4px 12px 0px; } /   - removed: .collection-back-btn { box-shadow: rgba(255, 255, 255, 0.22) 0px 1px 4px 0px inset, rgba(0, 0, 0, 0.16) 0px 0px 18px 0px, rgba(0, 0, 0, 0.09) 0px 4px 12px 0px; } /   - removed: .product-card--pink:hover { box-shadow: rgba(33, 213, 237, 0.55) 0px 0px 22px 6px, rgba(33, 213, 237, 0.25) 0px 0px 50px 12px, rgba(0, 0, 0, 0.1) 0px 8px 32px; } /   - removed: .product-card--cyan:hover { box-shadow: rgba(255, 216, 61, 0.6) 0px 0px 22px 6px, rgba(255, 216, 61, 0.28) 0px 0px 50px 12px, rgba(0, 0, 0, 0.1) 0px 8px 32px; } /   - removed: .product-card--yellow:hover { box-shadow: rgba(255, 66, 161, 0.55) 0px 0px 22px 6px, rgba(255, 66, 161, 0.25) 0px 0px 50px 12px, rgba(0, 0, 0, 0.1) 0px 8px 32px; } /   - removed: .category-arc__grid:has(.category-sphere:hover) .category-sphere:hover { transform: scale(1); transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1); } /   - removed: .product-card { transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.45s cubic-bezier(0.22, 1, 0.36, 1) !important; }"
+    },
+    {
+      "id": "T122",
+      "status": "REVIEW",
+      "round": 8,
+      "file": "assets/toylvia.css",
+      "baseline_lines": "486-486, 487-487, 488-488, 599-602, 603-603, 604-604, 762-768, 769-769, 777-782, 783-792, 793-793, 794-794, 904-904, 928-932, 966-975, 1030-1030, 1146-1157, 1176-1179, 1181-1186, 1187-1187, 1188-1188, 1189-1189, 1190-1190, 1289-1294, 1296-1301, 1437-1444, 1446-1455, 1792-1794, 1902-1908, 1911-1916, 1953-1955, 2053-2056, 2061-2064, 2088-2088, 2092-2092, 2093-2093, 2094-2094, 2119-2119, 2555-2555, 2556-2556, 2557-2557, 2558-2558, 2559-2559, 2560-2560, 2566-2566, 2567-2567, 2568-2568, 2569-2569, 2570-2570, 2571-2571, 2586-2586, 2587-2587, 3014-3018, 3247-3247, 3296-3296, 3340-3340, 3345-3345, 3346-3346, 3397-3397, 3461-3461, 3462-3462, 3468-3468, 3475-3475, 3476-3476, 3478-3478, 3479-3479, 3480-3480, 3481-3481, 3615-3615, 3646-3646, 3650-3650, 3651-3651, 3652-3652, 3653-3653, 4091-4091, 4092-4092, 4110-4112, 4113-4117, 4938-4938, 4939-4939, 4949-4949, 4950-4950, 4951-4951, 4952-4952, 4953-4953, 4960-4960, 4961-4961, 5007-5007, 5008-5008, 5009-5009, 5084-5088, 5283-5285, 5289-5291, 5292-5294, 5300-5303, 5306-5311, 5536-5536, 5537-5537, 5623-5627, 5645-5651, 5670-5674, 5683-5685, 5895-5895, 5896-5896, 5897-5897, 5898-5898, 5899-5899, 5902-5902, 5903-5903, 5918-5918, 5919-5919, 5930-5930, 5978-5981, 5982-5984, 6109-6114, 6162-6162, 6163-6163, 6164-6164, 6165-6165, 6166-6166, 6167-6167, 6198-6198, 6199-6199, 6200-6200, 6201-6201, 6202-6202, 6203-6203, 6204-6204, 6205-6205",
+      "title": "129 orphaned rule(s) inside lines of assets/toylvia.css",
+      "kind": "rule-level removal inside lines (exact text) - orphan selectors (scripted search)",
+      "why": "Every selector of each rule needs a class/ID that appears nowhere in the theme outside CSS (markup, JS, JSON; any mention counts as used; prefix-built names count as used; Shopify/app prefixes count as used). Selectors: #tvFilters .tv-tc-label; #tvFilters .tv-theme-more; #tvFilters .tv-theme-more:hover; #tvFilters .tv-type-card; #tvFilters .tv-type-card.tv-type-card--active; #tvFilters .tv-type-card.tv-type-card--active .tv-tc-label; .announcement-bar .announcement-bar__track; .announcement-bar__track; .bento-grid; .bento-grid--left; .card-body; .card-body .excerpt; .card-body .meta; .card-body h3; .card-img; .card-img .placeholder; .cart-bump; .cart-bundle__discount; .cat-ice-frame; .cat-ice-grid; .category-arc__grid; .category-arc__grid:has(.category-sphere:hover) .category-sphere; .category-arc__grid:has(.category-sphere:hover) .category-sphere:hover; .category-sphere:hover .category-sphere__label; .cate",
+      "proof": "Not provable from CSS alone, hence REVIEW; joint Chrome CSSOM check: exactly these rules removed, nothing added. These parts remove a single rule from the middle of a line: only the exact_text is removed, context is kept.",
+      "visual_change": "None expected.",
+      "parts": [
+        {
+          "lines": "486-486",
+          "context_before": "",
+          "exact_text": ".product-card--cyan:hover { border-color: hsla(187, 85%, 53%, 0.7); box-shadow: 0 28px 64px rgba(34,211,238,0.45), 0 12px 32px rgba(34,211,238,0.30), 0 4px 12px rgba(0,0,0,0.06); }",
+          "context_after": ""
+        },
+        {
+          "lines": "487-487",
+          "context_before": "",
+          "exact_text": ".product-card--pink:hover { border-color: hsla(330, 100%, 63%, 0.7); box-shadow: 0 28px 64px rgba(255,66,161,0.45), 0 12px 32px rgba(255,66,161,0.30), 0 4px 12px rgba(0,0,0,0.06); }",
+          "context_after": ""
+        },
+        {
+          "lines": "488-488",
+          "context_before": "",
+          "exact_text": ".product-card--yellow:hover { border-color: hsla(48, 100%, 62%, 0.7); box-shadow: 0 28px 64px rgba(255,184,0,0.45), 0 12px 32px rgba(255,184,0,0.30), 0 4px 12px rgba(0,0,0,0.06); }",
+          "context_after": ""
+        },
+        {
+          "lines": "599-602",
+          "context_before": "",
+          "exact_text": ".bento-grid {\n  display: grid;\n  gap: 1rem;\n}",
+          "context_after": ""
+        },
+        {
+          "lines": "603-603",
+          "context_before": "",
+          "exact_text": ".bento-grid--left { grid-template-columns: 1fr 2fr 1fr; }",
+          "context_after": ""
+        },
+        {
+          "lines": "604-604",
+          "context_before": "",
+          "exact_text": ".bento-grid--left { grid-template-columns: 1fr; }",
+          "context_after": ""
+        },
+        {
+          "lines": "762-768",
+          "context_before": "",
+          "exact_text": ".site-footer__brand-name {\n  font-size: 28px;\n  font-weight: 900;\n  letter-spacing: -0.03em;\n  margin-bottom: 1rem;\n  display: block;\n}",
+          "context_after": ""
+        },
+        {
+          "lines": "769-769",
+          "context_before": "",
+          "exact_text": ".site-footer__brand-name sup { font-size: 12px; opacity: 0.5; font-weight: 700; }",
+          "context_after": ""
+        },
+        {
+          "lines": "777-782",
+          "context_before": "",
+          "exact_text": ".site-footer__social-icons {\n  display: flex;\n  align-items: center;\n  gap: 1rem;\n  margin-bottom: 1.5rem;\n}",
+          "context_after": ""
+        },
+        {
+          "lines": "783-792",
+          "context_before": "",
+          "exact_text": ".site-footer__social-icon {\n  width: 40px;\n  height: 40px;\n  border-radius: 50%;\n  background: hsla(210, 20%, 98%, 0.1);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  transition: background 0.3s;\n}",
+          "context_after": ""
+        },
+        {
+          "lines": "793-793",
+          "context_before": "",
+          "exact_text": ".site-footer__social-icon:hover { background: hsla(210, 20%, 98%, 0.2); }",
+          "context_after": ""
+        },
+        {
+          "lines": "794-794",
+          "context_before": "",
+          "exact_text": ".site-footer__social-icon svg { width: 20px; height: 20px; opacity: 0.7; }",
+          "context_after": ""
+        },
+        {
+          "lines": "904-904",
+          "context_before": "",
+          "exact_text": ".chat-msg--user { flex-direction: row-reverse; }",
+          "context_after": ""
+        },
+        {
+          "lines": "928-932",
+          "context_before": "",
+          "exact_text": ".chat-msg--user .chat-msg__bubble {\n  background: hsl(var(--secondary));\n  color: hsl(var(--secondary-foreground));\n  border-bottom-right-radius: 4px;\n}",
+          "context_after": ""
+        },
+        {
+          "lines": "966-975",
+          "context_before": "",
+          "exact_text": ".fly-dot {\n  position: fixed;\n  width: 12px;\n  height: 12px;\n  border-radius: 50%;\n  background: hsl(var(--toylvia-pink));\n  pointer-events: none;\n  z-index: 99999;\n  box-shadow: 0 0 8px hsla(330, 100%, 63%, 0.6);\n}",
+          "context_after": ""
+        },
+        {
+          "lines": "1030-1030",
+          "context_before": "",
+          "exact_text": ".cart-bump { animation: cartBump 0.4s ease-out; }",
+          "context_after": ""
+        },
+        {
+          "lines": "1146-1157",
+          "context_before": "",
+          "exact_text": ".category-arc__grid {\n    display: flex;\n    flex-wrap: wrap;\n    justify-content: center;\n    gap: 1.25rem 0.5rem;\n    height: auto;\n    width: 100%;\n    transform: none;\n    box-sizing: border-box;\n    margin-bottom: 0;\n    padding: 0 2rem;\n  }",
+          "context_after": ""
+        },
+        {
+          "lines": "1176-1179",
+          "context_before": "",
+          "exact_text": ".product-page-grid {\n    grid-template-columns: 1fr 1fr;\n    gap: 3rem;\n  }",
+          "context_after": ""
+        },
+        {
+          "lines": "1181-1186",
+          "context_before": "",
+          "exact_text": ".product-description {\n  font-size: 16px !important;\n  line-height: 2 !important;\n  color: #6b7280 !important;\n  text-transform: none !important;\n}",
+          "context_after": ""
+        },
+        {
+          "lines": "1187-1187",
+          "context_before": "",
+          "exact_text": ".product-description p { margin-bottom: 1rem; }",
+          "context_after": ""
+        },
+        {
+          "lines": "1188-1188",
+          "context_before": "",
+          "exact_text": ".product-description ul { padding-left: 1.5rem; margin-bottom: 1rem; }",
+          "context_after": ""
+        },
+        {
+          "lines": "1189-1189",
+          "context_before": "",
+          "exact_text": ".product-description li { margin-bottom: 0.5rem; }",
+          "context_after": ""
+        },
+        {
+          "lines": "1190-1190",
+          "context_before": "",
+          "exact_text": ".product-description strong { color: #1a1a2e; }",
+          "context_after": ""
+        },
+        {
+          "lines": "1289-1294",
+          "context_before": "",
+          "exact_text": ".product-main__badges {\n  display: flex;\n  gap: 1rem;\n  font-size: 13px;\n  margin-bottom: 1.5rem;\n}",
+          "context_after": ""
+        },
+        {
+          "lines": "1296-1301",
+          "context_before": "",
+          "exact_text": ".product-main__select {\n  width: 100%;\n  padding: 0.75rem;\n  border-radius: 0.5rem;\n  margin-bottom: 1rem;\n}",
+          "context_after": ""
+        },
+        {
+          "lines": "1437-1444",
+          "context_before": "",
+          "exact_text": ".product-main__back {\n  position: relative;\n  z-index: 20;\n\n  max-width: 1100px;\n  margin: 1.5rem auto 0;\n  padding: 0 1.5rem;\n}",
+          "context_after": ""
+        },
+        {
+          "lines": "1446-1455",
+          "context_before": "",
+          "exact_text": ".product-main__back a {\n  display: inline-block;\n  font-size: 15px;\n  font-weight: 700;\n  color: #000;\n  text-decoration: none;\n  background: rgba(255,255,255,0.9);\n  padding: 0.4rem 0.8rem;\n  border-radius: 999px;\n}",
+          "context_after": ""
+        },
+        {
+          "lines": "1792-1794",
+          "context_before": "",
+          "exact_text": ".product-main__description-full {\n  margin-top: 4rem;\n}",
+          "context_after": ""
+        },
+        {
+          "lines": "1902-1908",
+          "context_before": "",
+          "exact_text": ".product-main__description,\n.product-main__description-full {\n  font-size: 17px;\n  line-height: 1.8;\n  color: #444;\n  font-weight: 400;\n}",
+          "context_after": ""
+        },
+        {
+          "lines": "1911-1916",
+          "context_before": "",
+          "exact_text": ".product-main__description-full h2,\n.product-main__description-full h3 {\n  font-size: 22px;\n  font-weight: 700;\n  letter-spacing: 0;\n}",
+          "context_after": ""
+        },
+        {
+          "lines": "1953-1955",
+          "context_before": "",
+          "exact_text": ".category-sphere__shadow {\n                              width: 50px;\n                                }",
+          "context_after": ""
+        },
+        {
+          "lines": "2053-2056",
+          "context_before": "",
+          "exact_text": ".trust-badges {\n              background-image: radial-gradient(circle, rgba(175,155,210,0.14) 1.1px, transparent 1.1px);\n                background-size: 26px 26px;\n                }",
+          "context_after": ""
+        },
+        {
+          "lines": "2061-2064",
+          "context_before": "",
+          "exact_text": ".footer__inner {\n                      background-image: radial-gradient(circle, rgba(175,155,210,0.10) 1px, transparent 1px);\n                        background-size: 26px 26px;\n                        }",
+          "context_after": ""
+        },
+        {
+          "lines": "2088-2088",
+          "context_before": "",
+          "exact_text": ".category-arc__grid { padding: 1rem 1rem 0.5rem; box-sizing: border-box; }",
+          "context_after": ""
+        },
+        {
+          "lines": "2092-2092",
+          "context_before": "",
+          "exact_text": ".category-sphere:hover .category-sphere__label { opacity: 0; }",
+          "context_after": ""
+        },
+        {
+          "lines": "2093-2093",
+          "context_before": "",
+          "exact_text": ".category-sphere:hover .category-sphere__rim { opacity: 0.7; }",
+          "context_after": ""
+        },
+        {
+          "lines": "2094-2094",
+          "context_before": "",
+          "exact_text": ".category-sphere:hover .category-sphere__shadow { width: 65px; }",
+          "context_after": ""
+        },
+        {
+          "lines": "2119-2119",
+          "context_before": "",
+          "exact_text": ".product-card__badge--soldout                  { left: auto !important; right: 12px !important; width: max-content !important; }",
+          "context_after": ""
+        },
+        {
+          "lines": "2555-2555",
+          "context_before": "",
+          "exact_text": ".featured-body h2{font-size:1.6rem;font-weight:800;letter-spacing:2px;line-height:1.3;margin-bottom:.75rem}",
+          "context_after": ""
+        },
+        {
+          "lines": "2556-2556",
+          "context_before": "",
+          "exact_text": ".featured-body .excerpt{color:var(--text-muted);font-size:.78rem;letter-spacing:.5px;text-transform:none;line-height:1.7;margin-bottom:1.25rem}",
+          "context_after": ""
+        },
+        {
+          "lines": "2557-2557",
+          "context_before": "",
+          "exact_text": ".featured-body .meta{color:var(--text-muted);font-size:.65rem;letter-spacing:1.5px}",
+          "context_after": ""
+        },
+        {
+          "lines": "2558-2558",
+          "context_before": "",
+          "exact_text": ".read-more{display:inline-flex;align-items:center;gap:.4rem;color:var(--pink);font-size:.7rem;font-weight:700;letter-spacing:2px;margin-top:auto;transition:gap .3s}",
+          "context_after": ""
+        },
+        {
+          "lines": "2559-2559",
+          "context_before": "",
+          "exact_text": ".read-more:hover{gap:.8rem}",
+          "context_after": ""
+        },
+        {
+          "lines": "2560-2560",
+          "context_before": "",
+          "exact_text": ".read-more::after{content:'→'}",
+          "context_after": ""
+        },
+        {
+          "lines": "2566-2566",
+          "context_before": "",
+          "exact_text": ".card-img{background:linear-gradient(135deg,hsla(187,85%,53%,.12),hsla(48,100%,62%,.12));height:200px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}",
+          "context_after": ""
+        },
+        {
+          "lines": "2567-2567",
+          "context_before": "",
+          "exact_text": ".card-img .placeholder{color:var(--text-muted);font-size:.65rem;letter-spacing:2px}",
+          "context_after": ""
+        },
+        {
+          "lines": "2568-2568",
+          "context_before": "",
+          "exact_text": ".card-body{padding:1.25rem}",
+          "context_after": ""
+        },
+        {
+          "lines": "2569-2569",
+          "context_before": "",
+          "exact_text": ".card-body h3{font-size:.85rem;font-weight:700;letter-spacing:1.5px;margin-bottom:.5rem;line-height:1.4}",
+          "context_after": ""
+        },
+        {
+          "lines": "2570-2570",
+          "context_before": "",
+          "exact_text": ".card-body .excerpt{color:var(--text-muted);font-size:.72rem;text-transform:none;line-height:1.6;margin-bottom:.75rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}",
+          "context_after": ""
+        },
+        {
+          "lines": "2571-2571",
+          "context_before": "",
+          "exact_text": ".card-body .meta{color:var(--text-muted);font-size:.6rem;letter-spacing:1.5px;display:flex;justify-content:space-between;align-items:center}",
+          "context_after": ""
+        },
+        {
+          "lines": "2586-2586",
+          "context_before": "",
+          "exact_text": ".featured-body{padding:1.5rem}",
+          "context_after": ""
+        },
+        {
+          "lines": "2587-2587",
+          "context_before": "",
+          "exact_text": ".page-title h1{font-size:1.6rem}",
+          "context_after": ""
+        },
+        {
+          "lines": "3014-3018",
+          "context_before": "",
+          "exact_text": ".announcement-bar .announcement-bar__track {\n  animation: marquee 22s linear infinite !important;\n  display: inline-block !important;\n  white-space: nowrap !important;\n}",
+          "context_after": ""
+        },
+        {
+          "lines": "3247-3247",
+          "context_before": "",
+          "exact_text": ".announcement-bar__track { font-size: 11px; }",
+          "context_after": ""
+        },
+        {
+          "lines": "3296-3296",
+          "context_before": "",
+          "exact_text": ".product-trust-badges { gap: 0.5rem 0.75rem !important; }",
+          "context_after": ""
+        },
+        {
+          "lines": "3340-3340",
+          "context_before": "",
+          "exact_text": ".site-footer__brand-name { font-size: 22px !important; }",
+          "context_after": ""
+        },
+        {
+          "lines": "3345-3345",
+          "context_before": "",
+          "exact_text": ".sticky-cart { padding: 0.625rem 0.875rem !important; }",
+          "context_after": ""
+        },
+        {
+          "lines": "3346-3346",
+          "context_before": "",
+          "exact_text": ".sticky-cart button { padding: 0.875rem !important; font-size: 15px !important; }",
+          "context_after": ""
+        },
+        {
+          "lines": "3397-3397",
+          "context_before": "",
+          "exact_text": ".product-main__description-full { padding: 0 !important; font-size: 15px !important; }",
+          "context_after": ""
+        },
+        {
+          "lines": "3461-3461",
+          "context_before": "",
+          "exact_text": ".product-card .product-card__image-wrap,.product-card .product-card__image-wrapper{position:relative !important;width:100% !important;aspect-ratio:1/1 !important;border-radius:14px !important;overflow:hidden !important;background:#f0f0f0 !important;flex-shrink:0 !important;box-shadow:0 2px 12px rgba(0,0,0,0.09) !important;height:auto !important}",
+          "context_after": ""
+        },
+        {
+          "lines": "3462-3462",
+          "context_before": "",
+          "exact_text": ".product-card .product-card__image-wrap{height:auto !important;aspect-ratio:1/1 !important}",
+          "context_after": ""
+        },
+        {
+          "lines": "3468-3468",
+          "context_before": "",
+          "exact_text": ".product-card--pink:hover,.product-card--cyan:hover,.product-card--yellow:hover{box-shadow:none !important}",
+          "context_after": ""
+        },
+        {
+          "lines": "3475-3475",
+          "context_before": "",
+          "exact_text": ".product-card .product-card__vendor{font-size:11px !important;color:#999 !important;font-weight:400 !important;text-transform:none !important;letter-spacing:0 !important;line-height:1.2 !important}",
+          "context_after": ""
+        },
+        {
+          "lines": "3476-3476",
+          "context_before": "",
+          "exact_text": ".product-card .product-card__stars{display:flex !important;align-items:center !important;gap:1px !important;margin-top:1px !important}",
+          "context_after": ""
+        },
+        {
+          "lines": "3478-3478",
+          "context_before": "",
+          "exact_text": ".product-card .product-card__link{position:absolute !important;inset:0 !important;z-index:2 !important;display:block !important}",
+          "context_after": ""
+        },
+        {
+          "lines": "3479-3479",
+          "context_before": "",
+          "exact_text": ".product-card .product-card__quickview{position:absolute !important;bottom:10px !important;right:10px !important;z-index:3 !important;width:30px !important;height:30px !important;border-radius:50% !important;background:rgba(255,255,255,0.92) !important;display:flex !important;align-items:center !important;justify-content:center !important;color:#444 !important;text-decoration:none !important;opacity:0 !important;transition:opacity 0.2s !important;box-shadow:none !important}",
+          "context_after": ""
+        },
+        {
+          "lines": "3480-3480",
+          "context_before": "",
+          "exact_text": ".product-card:hover .product-card__quickview{opacity:1 !important}",
+          "context_after": ""
+        },
+        {
+          "lines": "3481-3481",
+          "context_before": "",
+          "exact_text": ".product-card .product-card__sold-badge{position:absolute !important;top:10px !important;left:10px !important;z-index:3 !important;background:rgba(0,0,0,0.65) !important;color:#fff !important;font-size:11px !important;font-weight:600 !important;padding:3px 8px !important;border-radius:20px !important;text-transform:none !important}",
+          "context_after": ""
+        },
+        {
+          "lines": "3615-3615",
+          "context_before": "",
+          "exact_text": ".return-page .hero h1 { text-align: center !important; }",
+          "context_after": ""
+        },
+        {
+          "lines": "3646-3646",
+          "context_before": "",
+          "exact_text": ".faq-page .support { display: none !important; }",
+          "context_after": ""
+        },
+        {
+          "lines": "3650-3650",
+          "context_before": "",
+          "exact_text": ".newsletter__socials { display:flex !important; gap:14px !important; justify-content:center !important; align-items:center !important; margin:1.2rem 0 1.6rem !important; flex-wrap:nowrap !important; }",
+          "context_after": ""
+        },
+        {
+          "lines": "3651-3651",
+          "context_before": "",
+          "exact_text": ".newsletter__social-link { width:46px !important; height:46px !important; display:inline-flex !important; align-items:center !important; justify-content:center !important; border-radius:50% !important; background:transparent !important; border:1.5px solid rgba(255,66,161,0.35) !important; backdrop-filter:none !important; -webkit-backdrop-filter:none !important; box-shadow:none !important; color:#ff42a1 !important; transition:background 0.2s,border-color 0.2s !important; flex-shrink:0 !important; }",
+          "context_after": ""
+        },
+        {
+          "lines": "3652-3652",
+          "context_before": "",
+          "exact_text": ".newsletter__social-link svg { width:22px !important; height:22px !important; fill:none !important; stroke:currentColor !important; stroke-width:2 !important; display:block !important; }",
+          "context_after": ""
+        },
+        {
+          "lines": "3653-3653",
+          "context_before": "",
+          "exact_text": ".newsletter__social-link:hover { background:rgba(255,66,161,0.12) !important; border-color:#ff42a1 !important; }",
+          "context_after": ""
+        },
+        {
+          "lines": "4091-4091",
+          "context_before": "",
+          "exact_text": ".category-sphere__label{transition:font-size 0.25s ease, opacity 1.5s cubic-bezier(0.4,0,0.2,1) 0.25s, transform 1.8s cubic-bezier(0.4,0,0.2,1) 0.15s;}",
+          "context_after": ""
+        },
+        {
+          "lines": "4092-4092",
+          "context_before": "",
+          "exact_text": ".category-sphere:hover .category-sphere__label{font-size:15px !important;}",
+          "context_after": ""
+        },
+        {
+          "lines": "4110-4112",
+          "context_before": "",
+          "exact_text": ".category-sphere__label {\n  transform: translateY(0);\n}",
+          "context_after": ""
+        },
+        {
+          "lines": "4113-4117",
+          "context_before": "",
+          "exact_text": ".category-sphere:hover .category-sphere__label {\n  transform: translateY(2px) !important;\n  letter-spacing: 0.12em !important;\n  font-weight: 600 !important;\n}",
+          "context_after": ""
+        },
+        {
+          "lines": "4938-4938",
+          "context_before": "",
+          "exact_text": ".clg-pill { height: 240px; }",
+          "context_after": ""
+        },
+        {
+          "lines": "4939-4939",
+          "context_before": "",
+          "exact_text": ".clg-icon { width: 96px; height: 96px; }",
+          "context_after": ""
+        },
+        {
+          "lines": "4949-4949",
+          "context_before": "",
+          "exact_text": ".clg-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }",
+          "context_after": ""
+        },
+        {
+          "lines": "4950-4950",
+          "context_before": "",
+          "exact_text": ".clg-pill { height: 200px; border-radius: 32px; }",
+          "context_after": ""
+        },
+        {
+          "lines": "4951-4951",
+          "context_before": "",
+          "exact_text": ".clg-icon { width: 80px; height: 80px; border-radius: 20px; }",
+          "context_after": ""
+        },
+        {
+          "lines": "4952-4952",
+          "context_before": "",
+          "exact_text": ".clg-title { font-size: 13px; }",
+          "context_after": ""
+        },
+        {
+          "lines": "4953-4953",
+          "context_before": "",
+          "exact_text": ".clg-slogan { font-size: 11px; }",
+          "context_after": ""
+        },
+        {
+          "lines": "4960-4960",
+          "context_before": "",
+          "exact_text": ".clg-pill { height: 180px; }",
+          "context_after": ""
+        },
+        {
+          "lines": "4961-4961",
+          "context_before": "",
+          "exact_text": ".clg-icon { width: 68px; height: 68px; }",
+          "context_after": ""
+        },
+        {
+          "lines": "5007-5007",
+          "context_before": "",
+          "exact_text": ".product-card--pink { border-color: rgba(255,66,161,0.2) !important; }",
+          "context_after": ""
+        },
+        {
+          "lines": "5008-5008",
+          "context_before": "",
+          "exact_text": ".product-card--yellow { border-color: rgba(255,216,61,0.25) !important; }",
+          "context_after": ""
+        },
+        {
+          "lines": "5009-5009",
+          "context_before": "",
+          "exact_text": ".product-card--cyan { border-color: rgba(33,213,237,0.25) !important; }",
+          "context_after": ""
+        },
+        {
+          "lines": "5084-5088",
+          "context_before": "",
+          "exact_text": ".trust-badges {\n  display: block !important;\n  padding: 16px 20px 30px !important;\n  box-sizing: border-box !important;\n}",
+          "context_after": ""
+        },
+        {
+          "lines": "5283-5285",
+          "context_before": "",
+          "exact_text": ".site-footer__col {\n    text-align: center !important;\n  }",
+          "context_after": ""
+        },
+        {
+          "lines": "5289-5291",
+          "context_before": "",
+          "exact_text": ".site-footer__col-links {\n    text-align: center !important;\n  }",
+          "context_after": ""
+        },
+        {
+          "lines": "5292-5294",
+          "context_before": "",
+          "exact_text": ".site-footer__col-links li {\n    text-align: center !important;\n  }",
+          "context_after": ""
+        },
+        {
+          "lines": "5300-5303",
+          "context_before": "",
+          "exact_text": ".category-arc__grid:has(.category-sphere:hover) .category-sphere {\n  filter: brightness(0.55) saturate(0.8);\n    transition: filter 0.45s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);\n    }",
+          "context_after": ""
+        },
+        {
+          "lines": "5306-5311",
+          "context_before": "",
+          "exact_text": ".category-arc__grid:has(.category-sphere:hover) .category-sphere:hover {\n      filter: brightness(1.25) saturate(1.15) drop-shadow(0 0 18px rgba(255,255,255,0.55)) drop-shadow(0 0 40px rgba(255,255,255,0.25));\n        transform: translateY(-6px) scale(1.06);\n          transition: filter 0.45s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);\n            z-index: 10;\n            }",
+          "context_after": ""
+        },
+        {
+          "lines": "5536-5536",
+          "context_before": "",
+          "exact_text": ".cat-ice-grid { gap: 14px; padding: 30px 16px 16px; }",
+          "context_after": ""
+        },
+        {
+          "lines": "5537-5537",
+          "context_before": "",
+          "exact_text": ".cat-ice-frame { border-radius: 22px; }",
+          "context_after": ""
+        },
+        {
+          "lines": "5623-5627",
+          "context_before": "",
+          "exact_text": ".trust-badges .trust-badge .trust-badge__icon,\n.trust-badges .trust-badge[class*=\"trust-badge\"] svg {\n  width: 8px !important;\n  height: 8px !important;\n}",
+          "context_after": ""
+        },
+        {
+          "lines": "5645-5651",
+          "context_before": "",
+          "exact_text": "html body .cat-ice-grid .cat-ice-card,\n  html body .cat-ice-grid.cat-ice-active .cat-ice-card,\n  html body .cat-ice-grid:has(.cat-ice-card:hover) .cat-ice-card {\n    filter: brightness(1) saturate(1) !important;\n    opacity: 1 !important;\n    transition: filter 0s, opacity 0s !important;\n  }",
+          "context_after": ""
+        },
+        {
+          "lines": "5670-5674",
+          "context_before": "",
+          "exact_text": "html body .product-grid .product-card .product-card__image-wrap {\n    aspect-ratio: 1/1 !important;\n    height: auto !important;\n    flex-shrink: 0 !important;\n  }",
+          "context_after": ""
+        },
+        {
+          "lines": "5683-5685",
+          "context_before": "",
+          "exact_text": "html body .product-grid .product-card .product-card__footer {\n    margin-top: auto !important;\n  }",
+          "context_after": ""
+        },
+        {
+          "lines": "5895-5895",
+          "context_before": "",
+          "exact_text": ".fsbar { padding:10px 14px; background:transparent; border-radius:10px; margin:0.5rem 0; }",
+          "context_after": ""
+        },
+        {
+          "lines": "5896-5896",
+          "context_before": "",
+          "exact_text": ".fsbar--unlocked { background:transparent; color:#15803d; font-size:13px; font-weight:700; text-align:center; padding:6px 14px; border-radius:10px; }",
+          "context_after": ""
+        },
+        {
+          "lines": "5897-5897",
+          "context_before": "",
+          "exact_text": ".fsbar__text { font-size:12.5px; color:#ff42a1; font-weight:600; margin-bottom:6px; }",
+          "context_after": ""
+        },
+        {
+          "lines": "5898-5898",
+          "context_before": "",
+          "exact_text": ".fsbar__track { display:block !important; height:6px !important; min-height:6px !important; background:#dcfce7 !important; border-radius:999px !important; overflow:hidden !important; width:100% !important; box-sizing:border-box !important; }",
+          "context_after": ""
+        },
+        {
+          "lines": "5899-5899",
+          "context_before": "",
+          "exact_text": ".fsbar__fill { display:block !important; height:6px !important; min-height:6px !important; background:linear-gradient(90deg,#22c55e,#16a34a) !important; border-radius:999px !important; transition:width 0.5s ease !important; }",
+          "context_after": ""
+        },
+        {
+          "lines": "5902-5902",
+          "context_before": "",
+          "exact_text": ".pdp-reward-timer { display:flex; align-items:center; gap:8px; padding:9px 14px; background:#fff8f0; border:1.5px solid #f97316; border-radius:10px; font-size:13px; font-weight:600; color:#9a3412; }",
+          "context_after": ""
+        },
+        {
+          "lines": "5903-5903",
+          "context_before": "",
+          "exact_text": ".pdp-reward-timer svg { flex-shrink:0; stroke:#f97316; }",
+          "context_after": ""
+        },
+        {
+          "lines": "5918-5918",
+          "context_before": "",
+          "exact_text": ".fsbar--empty { display:flex; align-items:center; gap:7px; font-size:12.5px; font-weight:600; color:#374151; padding:9px 12px; background:transparent; border-radius:10px; }",
+          "context_after": ""
+        },
+        {
+          "lines": "5919-5919",
+          "context_before": "",
+          "exact_text": ".fsbar--empty strong { color:#15803d; }",
+          "context_after": ""
+        },
+        {
+          "lines": "5930-5930",
+          "context_before": "",
+          "exact_text": ".cart-bundle__discount { font-size:11px; color:#16a34a; font-weight:700; margin-top:6px; text-align:center; }",
+          "context_after": ""
+        },
+        {
+          "lines": "5978-5981",
+          "context_before": "",
+          "exact_text": ".coll-sort__btn:not(.coll-sort__btn--active) {\n  color: #111 !important;\n  font-weight: 300 !important;\n}",
+          "context_after": ""
+        },
+        {
+          "lines": "5982-5984",
+          "context_before": "",
+          "exact_text": ".coll-sort__btn--active {\n  font-weight: 600 !important;\n}",
+          "context_after": ""
+        },
+        {
+          "lines": "6109-6114",
+          "context_before": "",
+          "exact_text": ".product-card--cyan,\n  .product-card--pink,\n  .product-card--yellow,\n  .product-card--purple,\n  .product-card--green,\n  .product-card--orange { animation: none !important; }",
+          "context_after": ""
+        },
+        {
+          "lines": "6162-6162",
+          "context_before": "",
+          "exact_text": "#tvFilters .tv-theme-more { color:#444 !important; background:#fff !important; border:1.5px solid #e2e8f0 !important; box-shadow:0 1px 3px rgba(0,0,0,0.06) !important; }",
+          "context_after": ""
+        },
+        {
+          "lines": "6163-6163",
+          "context_before": "",
+          "exact_text": "#tvFilters .tv-theme-more:hover { color:#ff42a1 !important; background:#fff !important; border-color:#ff42a1 !important; }",
+          "context_after": ""
+        },
+        {
+          "lines": "6164-6164",
+          "context_before": "",
+          "exact_text": "#tvFilters .tv-type-card { background:#fff !important; border:1.5px solid #e5e7eb !important; box-shadow:0 1px 5px rgba(0,0,0,0.07) !important; }",
+          "context_after": ""
+        },
+        {
+          "lines": "6165-6165",
+          "context_before": "",
+          "exact_text": "#tvFilters .tv-tc-label { color:#333 !important; font-weight:600 !important; }",
+          "context_after": ""
+        },
+        {
+          "lines": "6166-6166",
+          "context_before": "",
+          "exact_text": "#tvFilters .tv-type-card.tv-type-card--active { border-color:#ff42a1 !important; box-shadow:0 0 0 2px #ff42a1 !important; background:rgba(255,66,161,0.04) !important; }",
+          "context_after": ""
+        },
+        {
+          "lines": "6167-6167",
+          "context_before": "",
+          "exact_text": "#tvFilters .tv-type-card.tv-type-card--active .tv-tc-label { color:#ff42a1 !important; }",
+          "context_after": ""
+        },
+        {
+          "lines": "6198-6198",
+          "context_before": "",
+          "exact_text": "html body .product-card__badge[data-badge=\"best-seller\"] { background: transparent !important; border: 1.5px solid #ff2a94 !important; color: #ff2a94 !important; }",
+          "context_after": ""
+        },
+        {
+          "lines": "6199-6199",
+          "context_before": "",
+          "exact_text": "html body .product-card__badge[data-badge=\"new\"]         { background: transparent !important; border: 1.5px solid #16a34a !important; color: #16a34a !important; }",
+          "context_after": ""
+        },
+        {
+          "lines": "6200-6200",
+          "context_before": "",
+          "exact_text": "html body .product-card__badge[data-badge=\"sale\"]        { background: transparent !important; border: 1.5px solid #dc2626 !important; color: #dc2626 !important; }",
+          "context_after": ""
+        },
+        {
+          "lines": "6201-6201",
+          "context_before": "",
+          "exact_text": "html body .product-card__badge[data-badge=\"award\"]       { background: transparent !important; border: 1.5px solid #d97706 !important; color: #d97706 !important; }",
+          "context_after": ""
+        },
+        {
+          "lines": "6202-6202",
+          "context_before": "",
+          "exact_text": "html body .product-card__badge[data-badge=\"top pick\"]    { background: transparent !important; border: 1.5px solid #7c3aed !important; color: #7c3aed !important; }",
+          "context_after": ""
+        },
+        {
+          "lines": "6203-6203",
+          "context_before": "",
+          "exact_text": "html body .product-card__badge[data-badge=\"trending\"]    { background: transparent !important; border: 1.5px solid #ea580c !important; color: #ea580c !important; }",
+          "context_after": ""
+        },
+        {
+          "lines": "6204-6204",
+          "context_before": "",
+          "exact_text": "html body .product-card__badge[data-badge=\"hot\"]         { background: transparent !important; border: 1.5px solid #dc2626 !important; color: #dc2626 !important; }",
+          "context_after": ""
+        },
+        {
+          "lines": "6205-6205",
+          "context_before": "",
+          "exact_text": "html body .product-card__badge[data-badge=\"sold-out\"]    { background: transparent !important; border: 1.5px solid #6b7280 !important; color: #6b7280 !important; }",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: .product-card--cyan:hover { border-color: rgba(33, 213, 237, 0.7); box-shadow: rgba(34, 211, 238, 0.45) 0px 28px 64px, rgba(34, 211, 238, 0.3) 0px 12px 32px, rgba(0, 0, 0, 0.06) 0px 4px 12px; } /   - removed: .product-card--pink:hover { border-color: rgba(255, 66, 161, 0.7); box-shadow: rgba(255, 66, 161, 0.45) 0px 28px 64px, rgba(255, 66, 161, 0.3) 0px 12px 32px, rgba(0, 0, 0, 0.06) 0px 4px 12px; } /   - removed: .product-card--yellow:hover { border-color: rgba(255, 216, 61, 0.7); box-shadow: rgba(255, 184, 0, 0.45) 0px 28px 64px, rgba(255, 184, 0, 0.3) 0px 12px 32px, rgba(0, 0, 0, 0.06) 0px 4px 12px; } /   - removed: .bento-grid { display: grid; gap: 1rem; } /   - removed: .bento-grid--left { grid-template-columns: 1fr 2fr 1fr; } /   - removed: @media (max-width: 767px) > .bento-grid--left { grid-template-columns: 1fr; } /   - removed: .site-footer__brand-name { font-size: 28px; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 1rem; display: block; } /   - removed: .site-footer__brand-name sup { font-size: 12px; opacity: 0.5; font-weight: 700; } /   - removed: .site-footer__social-icons { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; } /   - removed: .site-footer__social-icon { width: 40px; height: 40px; border-radius: 50%; background: rgba(249, 250, 251, 0.1); display: flex; align-items: center; justify-content: center; transition: background 0.3s; } /   - removed: .site-footer__social-icon:hover { background: rgba(249, 250, 251, 0.2); } /   - removed: .site-footer__social-icon svg { width: 20px; height: 20px; opacity: 0.7; } /   - removed: .chat-msg--user { flex-direction: row-reverse; } /   - removed: .chat-msg--user .chat-msg__bubble { background: hsl(var(--secondary)); color: hsl(var(--secondary-foreground)); border-bottom-right-radius: 4px; } /   - removed: .fly-dot { position: fixed; width: 12px; height: 12px; border-radius: 50%; background: hsl(var(--toylvia-pink)); pointer-events: none; z-index: 99999; box-shadow: rgba(255, 66, 161, 0.6) 0px 0px 8px; } /   - removed: .cart-bump { animation: 0.4s ease-out 0s 1 normal none running cartBump; } /   - removed: @media (max-width: 639px) > .category-arc__grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.25rem 0.5rem; height: auto; width: 100%; transform: none; box-sizing: border-box; margin-bottom: 0px; padding: 0px 2rem; } /   - removed: @media (min-width: 768px) > .product-page-grid { grid-template-columns: 1fr 1fr; gap: 3rem; } /   - removed: .product-description { font-size: 16px !important; line-height: 2 !important; color: rgb(107, 114, 128) !important; text-transform: none !important; } /   - removed: .product-description p { margin-bottom: 1rem; } /   - removed: .product-description ul { padding-left: 1.5rem; margin-bottom: 1rem; } /   - removed: .product-description li { margin-bottom: 0.5rem; } /   - removed: .product-description strong { color: rgb(26, 26, 46); } /   - removed: .product-main__badges { display: flex; gap: 1rem; font-size: 13px; margin-bottom: 1.5rem; } /   - removed: .product-main__select { width: 100%; padding: 0.75rem; border-radius: 0.5rem; margin-bottom: 1rem; } /   - removed: .product-main__back { position: relative; z-index: 20; max-width: 1100px; margin: 1.5rem auto 0px; padding: 0px 1.5rem; } /   - removed: .product-main__back a { display: inline-block; font-size: 15px; font-weight: 700; color: rgb(0, 0, 0); text-decoration: none; background: rgba(255, 255, 255, 0.9); padding: 0.4rem 0.8rem; border-radius: 999px; } /   - removed: .product-main__description-full { margin-top: 4rem; } /   - removed: .product-main__description, .product-main__description-full { font-size: 17px; line-height: 1.8; color: rgb(68, 68, 68); font-weight: 400; } /   - removed: .product-main__description-full h2, .product-main__description-full h3 { font-size: 22px; font-weight: 700; letter-spacing: 0px; } /   - removed: @media (max-width: 639px) > .category-sphere__shadow { width: 50px; } /   - removed: .trust-badges { background-image: radial-gradient(circle, rgba(175, 155, 210, 0.14) 1.1px, transparent 1.1px); background-size: 26px 26px; } /   - removed: .footer__inner { background-image: radial-gradient(circle, rgba(175, 155, 210, 0.1) 1px, transparent 1px); background-size: 26px 26px; } /   - removed: @media (max-width: 639px) > .category-arc__grid { padding: 1rem 1rem 0.5rem; box-sizing: border-box; } /   - removed: @media (max-width: 639px) > .category-sphere:hover .category-sphere__label { opacity: 0; } /   - removed: @media (max-width: 639px) > .category-sphere:hover .category-sphere__rim { opacity: 0.7; } /   - removed: @media (max-width: 639px) > .category-sphere:hover .category-sphere__shadow { width: 65px; } /   - removed: .product-card__badge--soldout { left: auto !important; right: 12px !important; width: max-content !important; } /   - removed: .featured-body h2 { font-size: 1.6rem; font-weight: 800; letter-spacing: 2px; line-height: 1.3; margin-bottom: 0.75rem; } /   - removed: .featured-body .excerpt { color: var(--text-muted); font-size: 0.78rem; letter-spacing: 0.5px; text-transform: none; line-height: 1.7; margin-bottom: 1.25rem; } /   - removed: .featured-body .meta { color: var(--text-muted); font-size: 0.65rem; letter-spacing: 1.5px; } /   - removed: .read-more { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--pink); font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; margin-top: auto; transition: gap 0.3s; } /   - removed: .read-more:hover { gap: 0.8rem; } /   - removed: .read-more::after { content: \"→\"; } /   - removed: .card-img { background: linear-gradient(135deg, rgba(33, 213, 237, 0.12), rgba(255, 216, 61, 0.12)); height: 200px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; } /   - removed: .card-img .placeholder { color: var(--text-muted); font-size: 0.65rem; letter-spacing: 2px; } /   - removed: .card-body { padding: 1.25rem; } /   - removed: .card-body h3 { font-size: 0.85rem; font-weight: 700; letter-spacing: 1.5px; margin-bottom: 0.5rem; line-height: 1.4; } /   - removed: .card-body .excerpt { color: var(--text-muted); font-size: 0.72rem; text-transform: none; line-height: 1.6; margin-bottom: 0.75rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; } /   - removed: .card-body .meta { color: var(--text-muted); font-size: 0.6rem; letter-spacing: 1.5px; display: flex; justify-content: space-between; align-items: center; } /   - removed: @media (max-width: 600px) > .featured-body { padding: 1.5rem; } /   - removed: @media (max-width: 600px) > .page-title h1 { font-size: 1.6rem; } /   - removed: .announcement-bar .announcement-bar__track { animation: 22s linear 0s infinite normal none running marquee !important; display: inline-block !important; white-space: nowrap !important; } /   - removed: @media (max-width: 480px) > .announcement-bar__track { font-size: 11px; } /   - removed: @media (max-width: 640px) > .product-trust-badges { gap: 0.5rem 0.75rem !important; } /   - removed: @media (max-width: 639px) > .site-footer__brand-name { font-size: 22px !important; } /   - removed: @media (max-width: 768px) > .sticky-cart { padding: 0.625rem 0.875rem !important; } /   - removed: @media (max-width: 768px) > .sticky-cart button { padding: 0.875rem !important; font-size: 15px !important; } /   - removed: @media (max-width: 640px) > .product-main__description-full { padding: 0px !important; font-size: 15px !important; } /   - removed: .product-card .product-card__image-wrap, .product-card .product-card__image-wrapper { position: relative !important; width: 100% !important; aspect-ratio: 1 / 1 !important; border-radius: 14px !important; overflow: hidden !important; background: rgb(240, 240, 240) !important; flex-shrink: 0 !importa /   - removed: @media (min-width: 768px) > .product-card .product-card__image-wrap { height: auto !important; aspect-ratio: 1 / 1 !important; } /   - removed: .product-card--pink:hover, .product-card--cyan:hover, .product-card--yellow:hover { box-shadow: none !important; } /   - removed: .product-card .product-card__vendor { font-size: 11px !important; color: rgb(153, 153, 153) !important; font-weight: 400 !important; text-transform: none !important; letter-spacing: 0px !important; line-height: 1.2 !important; } /   - removed: .product-card .product-card__stars { display: flex !important; align-items: center !important; gap: 1px !important; margin-top: 1px !important; } /   - removed: .product-card .product-card__link { position: absolute !important; inset: 0px !important; z-index: 2 !important; display: block !important; } /   - removed: .product-card .product-card__quickview { position: absolute !important; bottom: 10px !important; right: 10px !important; z-index: 3 !important; width: 30px !important; height: 30px !important; border-radius: 50% !important; background: rgba(255, 255, 255, 0.92) !important; display: flex !important;  /   - removed: .product-card:hover .product-card__quickview { opacity: 1 !important; } /   - removed: .product-card .product-card__sold-badge { position: absolute !important; top: 10px !important; left: 10px !important; z-index: 3 !important; background: rgba(0, 0, 0, 0.65) !important; color: rgb(255, 255, 255) !important; font-size: 11px !important; font-weight: 600 !important; padding: 3px 8px !im /   - removed: .return-page .hero h1 { text-align: center !important; } /   - removed: .faq-page .support { display: none !important; } /   - removed: .newsletter__socials { display: flex !important; gap: 14px !important; justify-content: center !important; align-items: center !important; margin: 1.2rem 0px 1.6rem !important; flex-wrap: nowrap !important; } /   - removed: .newsletter__social-link { width: 46px !important; height: 46px !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; border-radius: 50% !important; background: transparent !important; border: 1.5px solid rgba(255, 66, 161, 0.35) !important; /   - removed: .newsletter__social-link svg { width: 22px !important; height: 22px !important; fill: none !important; stroke: currentcolor !important; stroke-width: 2 !important; display: block !important; } /   - removed: .newsletter__social-link:hover { background: rgba(255, 66, 161, 0.12) !important; border-color: rgb(255, 66, 161) !important; } /   - removed: .category-sphere__label { transition: font-size 0.25s, opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.25s, transform 1.8s cubic-bezier(0.4, 0, 0.2, 1) 0.15s; } /   - removed: .category-sphere:hover .category-sphere__label { font-size: 15px !important; } /   - removed: .category-sphere__label { transform: translateY(0px); } /   - removed: .category-sphere:hover .category-sphere__label { transform: translateY(2px) !important; letter-spacing: 0.12em !important; font-weight: 600 !important; } /   - removed: @media (max-width: 1024px) > .clg-pill { height: 240px; } /   - removed: @media (max-width: 1024px) > .clg-icon { width: 96px; height: 96px; } /   - removed: @media (max-width: 768px) > .clg-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } /   - removed: @media (max-width: 768px) > .clg-pill { height: 200px; border-radius: 32px; } /   - removed: @media (max-width: 768px) > .clg-icon { width: 80px; height: 80px; border-radius: 20px; } /   - removed: @media (max-width: 768px) > .clg-title { font-size: 13px; } /   - removed: @media (max-width: 768px) > .clg-slogan { font-size: 11px; } /   - removed: @media (max-width: 480px) > .clg-pill { height: 180px; } /   - removed: @media (max-width: 480px) > .clg-icon { width: 68px; height: 68px; } /   - removed: .product-card--pink { border-color: rgba(255, 66, 161, 0.2) !important; } /   - removed: .product-card--yellow { border-color: rgba(255, 216, 61, 0.25) !important; } /   - removed: .product-card--cyan { border-color: rgba(33, 213, 237, 0.25) !important; } /   - removed: .trust-badges { display: block !important; padding: 16px 20px 30px !important; box-sizing: border-box !important; } /   - removed: @media (max-width: 768px) > .site-footer__col { text-align: center !important; } /   - removed: @media (max-width: 768px) > .site-footer__col-links { text-align: center !important; } /   - removed: @media (max-width: 768px) > .site-footer__col-links li { text-align: center !important; } /   - removed: .category-arc__grid:has(.category-sphere:hover) .category-sphere { filter: brightness(0.55) saturate(0.8); transition: filter 0.45s, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); } /   - removed: .category-arc__grid:has(.category-sphere:hover) .category-sphere:hover { filter: brightness(1.25) saturate(1.15) drop-shadow(rgba(255, 255, 255, 0.55) 0px 0px 18px) drop-shadow(rgba(255, 255, 255, 0.25) 0px 0px 40px); transform: translateY(-6px) scale(1.06); transition: filter 0.45s, transform 0.4s  /   - removed: @media (max-width: 1024px) > .cat-ice-grid { gap: 14px; padding: 30px 16px 16px; } /   - removed: @media (max-width: 1024px) > .cat-ice-frame { border-radius: 22px; } /   - removed: @media (max-width: 1024px) > .trust-badges .trust-badge .trust-badge__icon, .trust-badges .trust-badge[class*=\"trust-badge\"] svg { width: 8px !important; height: 8px !important; } /   - removed: @media (max-width: 1024px) > @media (pointer: coarse) > html body .cat-ice-grid .cat-ice-card, html body .cat-ice-grid.cat-ice-active .cat-ice-card, html body .cat-ice-grid:has(.cat-ice-card:hover) .cat-ice-card { filter: brightness(1) saturate(1) !important; opacity: 1 !important; transition: filte /   - removed: @media (max-width: 1024px) > @media (max-width: 1024px) > html body .product-grid .product-card .product-card__image-wrap { aspect-ratio: 1 / 1 !important; height: auto !important; flex-shrink: 0 !important; } /   - removed: @media (max-width: 1024px) > @media (max-width: 1024px) > html body .product-grid .product-card .product-card__footer { margin-top: auto !important; } /   - removed: @media (max-width: 1024px) > .fsbar { padding: 10px 14px; background: transparent; border-radius: 10px; margin: 0.5rem 0px; } /   - removed: @media (max-width: 1024px) > .fsbar--unlocked { background: transparent; color: rgb(21, 128, 61); font-size: 13px; font-weight: 700; text-align: center; padding: 6px 14px; border-radius: 10px; } /   - removed: @media (max-width: 1024px) > .fsbar__text { font-size: 12.5px; color: rgb(255, 66, 161); font-weight: 600; margin-bottom: 6px; } /   - removed: @media (max-width: 1024px) > .fsbar__track { display: block !important; height: 6px !important; min-height: 6px !important; background: rgb(220, 252, 231) !important; border-radius: 999px !important; overflow: hidden !important; width: 100% !important; box-sizing: border-box !important; } /   - removed: @media (max-width: 1024px) > .fsbar__fill { display: block !important; height: 6px !important; min-height: 6px !important; background: linear-gradient(90deg, rgb(34, 197, 94), rgb(22, 163, 74)) !important; border-radius: 999px !important; transition: width 0.5s !important; } /   - removed: @media (max-width: 1024px) > .pdp-reward-timer { display: flex; align-items: center; gap: 8px; padding: 9px 14px; background: rgb(255, 248, 240); border: 1.5px solid rgb(249, 115, 22); border-radius: 10px; font-size: 13px; font-weight: 600; color: rgb(154, 52, 18); } /   - removed: @media (max-width: 1024px) > .pdp-reward-timer svg { flex-shrink: 0; stroke: rgb(249, 115, 22); } /   - removed: @media (max-width: 1024px) > .fsbar--empty { display: flex; align-items: center; gap: 7px; font-size: 12.5px; font-weight: 600; color: rgb(55, 65, 81); padding: 9px 12px; background: transparent; border-radius: 10px; } /   - removed: @media (max-width: 1024px) > .fsbar--empty strong { color: rgb(21, 128, 61); } /   - removed: @media (max-width: 1024px) > .cart-bundle__discount { font-size: 11px; color: rgb(22, 163, 74); font-weight: 700; margin-top: 6px; text-align: center; } /   - removed: @media (max-width: 1024px) > .coll-sort__btn:not(.coll-sort__btn--active) { color: rgb(17, 17, 17) !important; font-weight: 300 !important; } /   - removed: @media (max-width: 1024px) > .coll-sort__btn--active { font-weight: 600 !important; } /   - removed: @media (max-width: 1024px) > @media (max-width: 1023px) > .product-card--cyan, .product-card--pink, .product-card--yellow, .product-card--purple, .product-card--green, .product-card--orange { animation: auto ease 0s 1 normal none running none !important; } /   - removed: @media (max-width: 1024px) > #tvFilters .tv-theme-more { color: rgb(68, 68, 68) !important; background: rgb(255, 255, 255) !important; border: 1.5px solid rgb(226, 232, 240) !important; box-shadow: rgba(0, 0, 0, 0.06) 0px 1px 3px !important; } /   - removed: @media (max-width: 1024px) > #tvFilters .tv-theme-more:hover { color: rgb(255, 66, 161) !important; background: rgb(255, 255, 255) !important; border-color: rgb(255, 66, 161) !important; } /   - removed: @media (max-width: 1024px) > #tvFilters .tv-type-card { background: rgb(255, 255, 255) !important; border: 1.5px solid rgb(229, 231, 235) !important; box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 5px !important; } /   - removed: @media (max-width: 1024px) > #tvFilters .tv-tc-label { color: rgb(51, 51, 51) !important; font-weight: 600 !important; } /   - removed: @media (max-width: 1024px) > #tvFilters .tv-type-card.tv-type-card--active { border-color: rgb(255, 66, 161) !important; box-shadow: rgb(255, 66, 161) 0px 0px 0px 2px !important; background: rgba(255, 66, 161, 0.04) !important; } /   - removed: @media (max-width: 1024px) > #tvFilters .tv-type-card.tv-type-card--active .tv-tc-label { color: rgb(255, 66, 161) !important; } /   - removed: @media (max-width: 1024px) > html body .product-card__badge[data-badge=\"best-seller\"] { background: transparent !important; border: 1.5px solid rgb(255, 42, 148) !important; color: rgb(255, 42, 148) !important; } /   - removed: @media (max-width: 1024px) > html body .product-card__badge[data-badge=\"new\"] { background: transparent !important; border: 1.5px solid rgb(22, 163, 74) !important; color: rgb(22, 163, 74) !important; } /   - removed: @media (max-width: 1024px) > html body .product-card__badge[data-badge=\"sale\"] { background: transparent !important; border: 1.5px solid rgb(220, 38, 38) !important; color: rgb(220, 38, 38) !important; } /   - removed: @media (max-width: 1024px) > html body .product-card__badge[data-badge=\"award\"] { background: transparent !important; border: 1.5px solid rgb(217, 119, 6) !important; color: rgb(217, 119, 6) !important; } /   - removed: @media (max-width: 1024px) > html body .product-card__badge[data-badge=\"top pick\"] { background: transparent !important; border: 1.5px solid rgb(124, 58, 237) !important; color: rgb(124, 58, 237) !important; } /   - removed: @media (max-width: 1024px) > html body .product-card__badge[data-badge=\"trending\"] { background: transparent !important; border: 1.5px solid rgb(234, 88, 12) !important; color: rgb(234, 88, 12) !important; } /   - removed: @media (max-width: 1024px) > html body .product-card__badge[data-badge=\"hot\"] { background: transparent !important; border: 1.5px solid rgb(220, 38, 38) !important; color: rgb(220, 38, 38) !important; } /   - removed: @media (max-width: 1024px) > html body .product-card__badge[data-badge=\"sold-out\"] { background: transparent !important; border: 1.5px solid rgb(107, 114, 128) !important; color: rgb(107, 114, 128) !important; }"
+    },
+    {
+      "id": "T123",
+      "status": "TODO",
+      "round": 8,
+      "file": "assets/home-palette.css",
+      "baseline_lines": "141-142",
+      "title": "1 always-overridden or empty rule(s) inside lines of assets/home-palette.css",
+      "kind": "rule-level removal inside lines (exact text) - always overridden (tool-proven)",
+      "why": "Each removed rule is restated later in the SAME <style> block (same selectors, same or top-level @media, every property at equal-or-higher priority, winner not inside a Liquid conditional), or is empty. Selectors: html body .cat-rows",
+      "proof": "Joint shadow proof per file on the CSS views (tools/shadow.js) -> PROVEN; joint Chrome CSSOM check: exactly these rules removed, nothing added. These parts remove a single rule from the middle of a line: only the exact_text is removed, context is kept.",
+      "visual_change": "None.",
+      "parts": [
+        {
+          "lines": "141-142",
+          "context_before": "",
+          "exact_text": "html body .cat-rows {\n}",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: html body .cat-rows {  }"
+    },
+    {
+      "id": "T124",
+      "status": "REVIEW",
+      "round": 8,
+      "file": "assets/home-palette.css",
+      "baseline_lines": "207-208",
+      "title": "1 orphaned rule(s) inside lines of assets/home-palette.css",
+      "kind": "rule-level removal inside lines (exact text) - orphan selectors (scripted search)",
+      "why": "Every selector of each rule needs a class/ID that appears nowhere in the theme outside CSS (markup, JS, JSON; any mention counts as used; prefix-built names count as used; Shopify/app prefixes count as used). Selectors: html body .cat-rows .cr-card__img-wrap > .var-dot .var-dot__count, html body .cat-rows .cr-card__img-wrap > .var-dot .var-dot__label",
+      "proof": "Not provable from CSS alone, hence REVIEW; joint Chrome CSSOM check: exactly these rules removed, nothing added. These parts remove a single rule from the middle of a line: only the exact_text is removed, context is kept.",
+      "visual_change": "None expected.",
+      "parts": [
+        {
+          "lines": "207-208",
+          "context_before": "",
+          "exact_text": "html body .cat-rows .cr-card__img-wrap > .var-dot .var-dot__count,\nhtml body .cat-rows .cr-card__img-wrap > .var-dot .var-dot__label { display: inline !important; font: 600 8px/1 'Nunito', system-ui, sans-serif !important; }",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: html body .cat-rows .cr-card__img-wrap > .var-dot .var-dot__count, html body .cat-rows .cr-card__img-wrap > .var-dot .var-dot__label { display: inline !important; font: 600 8px / 1 Nunito, system-ui, sans-serif !important; }"
+    },
+    {
+      "id": "T125",
+      "status": "REVIEW",
+      "round": 8,
+      "file": "assets/live-card-fixes.css",
+      "baseline_lines": "48-48, 151-151, 190-190",
+      "title": "3 orphaned rule(s) inside lines of assets/live-card-fixes.css",
+      "kind": "rule-level removal inside lines (exact text) - orphan selectors (scripted search)",
+      "why": "Every selector of each rule needs a class/ID that appears nowhere in the theme outside CSS (markup, JS, JSON; any mention counts as used; prefix-built names count as used; Shopify/app prefixes count as used). Selectors: .product-card__quick-cart; html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card .product-card__buy; html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card .product-card__buy",
+      "proof": "Not provable from CSS alone, hence REVIEW; joint Chrome CSSOM check: exactly these rules removed, nothing added. These parts remove a single rule from the middle of a line: only the exact_text is removed, context is kept.",
+      "visual_change": "None expected.",
+      "parts": [
+        {
+          "lines": "48-48",
+          "context_before": "",
+          "exact_text": ".product-card__quick-cart{display:none!important}",
+          "context_after": ""
+        },
+        {
+          "lines": "151-151",
+          "context_before": "",
+          "exact_text": "html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card .product-card__buy{font-size:11.5px!important}",
+          "context_after": ""
+        },
+        {
+          "lines": "190-190",
+          "context_before": "",
+          "exact_text": "html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card .product-card__buy{font-size:12.5px!important}",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: .product-card__quick-cart { display: none !important; } /   - removed: html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card .product-card__buy { font-size: 11.5px !important; } /   - removed: html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .product-card.product-card .product-card__buy { font-size: 12.5px !important; }"
     }
   ],
   "do_not_apply": [
@@ -4922,9 +5891,9 @@
   ],
   "final_summary": [
     "STATE: nothing in this file has been applied to the live theme yet. Baseline md5s above were the live files at scan time (re-checked at ~16:20 UTC; the four main stylesheets were unchanged).",
-    "WHAT TO DO, IN ORDER: (1) pull the live files listed under 'Files touched' (assets/*.css AND the .liquid files of T81-T88); (2) compare md5 with the baseline; (3) apply all TODO items with tools/apply.py (exact-text, refuses on any mismatch); (4) verify each file with tools/cssom.js compare against a backup (for every item the expected result is in its Verify line); (5) show Ziko the result and get his OK; (6) push with Shopify CLI (`--allow-live`), the Shopify MCP connector cannot write to the live theme; (7) re-pull and confirm md5; (8) mark items DONE/SKIPPED in findings.json, run tools/render.py, commit and push.",
+    "WHAT TO DO, IN ORDER: (1) pull the live files listed under 'Files touched' (assets/*.css AND every .liquid file that has items); (2) compare md5 with the baseline; (3) apply all TODO items with tools/apply.py (exact-text, refuses on any mismatch); (4) verify each file with tools/cssom.js compare against a backup (for every item the expected result is in its Verify line); (5) show Ziko the result and get his OK; (6) push with Shopify CLI (`--allow-live`), the Shopify MCP connector cannot write to the live theme; (7) re-pull and confirm md5; (8) mark items DONE/SKIPPED in findings.json, run tools/render.py, commit and push.",
     "REVIEW ITEMS: only with Ziko's approval, ideally applied to a duplicate theme first and previewed (homepage, product, collection, cart; desktop + mobile). Apply superseding items instead of the TODO items they contain.",
-    "EXPECTED RESULT: TODO only = 806 lines removed (toylvia.css 6205 -> 5544, plus 99 lines of inline CSS in 8 .liquid files, T81-T88). Everything approved = 2592 lines (toylvia.css -> 3847). Both paths were tested end to end in the cloud: every item applied cleanly and every file changed exactly as predicted.",
+    "EXPECTED RESULT: see the 'Items' and 'Lines removed' lines at the very top (they are recomputed every time). Some parts remove a single rule from the middle of a minified line, so the line count understates those. Both paths (TODO only / everything approved) were tested end to end in the cloud: every item applied cleanly and every file changed exactly as predicted.",
     "DO NOT: repair dead code (e.g. re-add a missing /*), touch tlv-owner-overrides.css, fix the unclosed @media, or apply Ziko's DevTools row-spacing edits without asking (see 'Known issues').",
     "IF T01 FAILS with 'found 0 times': Ziko probably already deleted that block by hand; check and mark it DONE.",
     "NEXT (optional): finish the inline-CSS scan described under 'Not scanned yet' with the tools in tools/."
