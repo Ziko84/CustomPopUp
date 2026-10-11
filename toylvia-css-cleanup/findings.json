@@ -1,8 +1,8 @@
 {
   "scan": {
     "started": "2026-10-11T15:16:39Z",
-    "updated": "2026-10-11T16:59:31Z",
-    "rounds": 6,
+    "updated": "2026-10-11T17:04:37Z",
+    "rounds": 7,
     "branch": "claude/chrome-devtools-state-preservation-o47p8j",
     "theme_name": "lior's theme for toylvia",
     "theme_id": "209157554507",
@@ -4231,6 +4231,672 @@
         }
       ],
       "verify": "DIFFERENT /   - removed: .tlv-wlp__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; } /   - removed: .tlv-wlp__card img { width: 100%; aspect-ratio: 1 / 1; object-fit: contain; background: rgb(247, 247, 249); display: block; } /   - removed: .tlv-wlp__b { padding: 9px 11px 12px; } /   - removed: .tlv-wlp__t { font-size: 13px; font-weight: 600; color: rgb(26, 26, 46); text-decoration: none; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 34px; } /   - removed: .tlv-wlp__card .pc-price-row { margin-top: 4px; } /   - removed: #tlv-wlp .tlv-wlp__card a.tlv-wlp__t, #tlv-wlp .tlv-wlp__card a.tlv-wlp__t:visited { color: rgb(26, 26, 46) !important; -webkit-text-fill-color: rgb(26, 26, 46) !important; }"
+    },
+    {
+      "id": "T107",
+      "status": "REVIEW",
+      "round": 7,
+      "file": "layout/theme.liquid",
+      "baseline_lines": "1725-1725, 1725-1725",
+      "title": "2 orphaned rule(s) inside minified/inline CSS of layout/theme.liquid",
+      "kind": "rule-level removal inside lines (exact text) - orphan selectors (scripted search)",
+      "why": "Every selector of each rule needs a class/ID that appears nowhere in the theme outside CSS (markup, JS, JSON; any mention counts as used; prefix-built names count as used; Shopify/app prefixes count as used). Selectors: .tlv-sb-social-icon:hover; .tlv-sb-social-icon:hover svg",
+      "proof": "Not provable from CSS alone, hence REVIEW; joint Chrome CSSOM check: exactly these rules removed, nothing added. These parts remove a single rule from the middle of a line: only the exact_text is removed, context is kept.",
+      "visual_change": "None expected.",
+      "parts": [
+        {
+          "lines": "1725-1725",
+          "context_before": "",
+          "exact_text": ".tlv-sb-social-icon:hover{background:#ff42a1;border-color:#ff42a1;}",
+          "context_after": ""
+        },
+        {
+          "lines": "1725-1725",
+          "context_before": "",
+          "exact_text": ".tlv-sb-social-icon:hover svg{stroke:#fff;}",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: @media (hover: hover) > .tlv-sb-social-icon:hover { background: rgb(255, 66, 161); border-color: rgb(255, 66, 161); } /   - removed: @media (hover: hover) > .tlv-sb-social-icon:hover svg { stroke: rgb(255, 255, 255); }"
+    },
+    {
+      "id": "T108",
+      "status": "TODO",
+      "round": 7,
+      "file": "sections/category-rows.liquid",
+      "baseline_lines": "97-109, 9072-9072, 9191-9191",
+      "title": "3 always-overridden or empty rule(s) inside minified/inline CSS of sections/category-rows.liquid",
+      "kind": "rule-level removal inside lines (exact text) - always overridden (tool-proven)",
+      "why": "Each removed rule is restated later in the SAME <style> block (same selectors, same or top-level @media, every property at equal-or-higher priority, winner not inside a Liquid conditional), or is empty. Selectors: .cat-rows__row; html body #MainContent .cat-rows__row + .cat-rows__row; html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .cat-rows__row",
+      "proof": "Joint shadow proof per file on the CSS views (tools/shadow.js) -> PROVEN; joint Chrome CSSOM check: exactly these rules removed, nothing added. These parts remove a single rule from the middle of a line: only the exact_text is removed, context is kept.",
+      "visual_change": "None.",
+      "parts": [
+        {
+          "lines": "97-109",
+          "context_before": "",
+          "exact_text": ".cat-rows__row {\n\n\n\n\n\n\n\n\n\n\n\n}",
+          "context_after": ""
+        },
+        {
+          "lines": "9072-9072",
+          "context_before": "",
+          "exact_text": "html body #MainContent .cat-rows__row + .cat-rows__row{}",
+          "context_after": ""
+        },
+        {
+          "lines": "9191-9191",
+          "context_before": "",
+          "exact_text": "html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .cat-rows__row{}",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: .cat-rows__row {  } /   - removed: @media (max-width: 1199px) > html body #MainContent .cat-rows__row + .cat-rows__row {  } /   - removed: html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .cat-rows__row {  }"
+    },
+    {
+      "id": "T109",
+      "status": "REVIEW",
+      "round": 7,
+      "file": "sections/category-rows.liquid",
+      "baseline_lines": "7881-7881, 7881-7881, 7941-7941, 7941-7941",
+      "title": "4 orphaned rule(s) inside minified/inline CSS of sections/category-rows.liquid",
+      "kind": "rule-level removal inside lines (exact text) - orphan selectors (scripted search)",
+      "why": "Every selector of each rule needs a class/ID that appears nowhere in the theme outside CSS (markup, JS, JSON; any mention counts as used; prefix-built names count as used; Shopify/app prefixes count as used). Selectors: .cat-rows__scroll.is-hinting; .cat-rows__scroll.is-hinting .cr-card, .cat-rows__scroll.is-hinting .cr-card *; .hw-glitch; .hw-glitch, .hw-glitch::after",
+      "proof": "Not provable from CSS alone, hence REVIEW; joint Chrome CSSOM check: exactly these rules removed, nothing added. These parts remove a single rule from the middle of a line: only the exact_text is removed, context is kept.",
+      "visual_change": "None expected.",
+      "parts": [
+        {
+          "lines": "7881-7881",
+          "context_before": "",
+          "exact_text": ".cat-rows__scroll.is-hinting{scroll-snap-type:none!important}",
+          "context_after": ""
+        },
+        {
+          "lines": "7881-7881",
+          "context_before": "",
+          "exact_text": ".cat-rows__scroll.is-hinting .cr-card,.cat-rows__scroll.is-hinting .cr-card *{transition:none!important;animation-play-state:paused!important}",
+          "context_after": ""
+        },
+        {
+          "lines": "7941-7941",
+          "context_before": "",
+          "exact_text": ".hw-glitch,.hw-glitch::after{animation:none}",
+          "context_after": ""
+        },
+        {
+          "lines": "7941-7941",
+          "context_before": "",
+          "exact_text": ".hw-glitch{color:#ff42a1}",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: .cat-rows__scroll.is-hinting { scroll-snap-type: none !important; } /   - removed: .cat-rows__scroll.is-hinting .cr-card, .cat-rows__scroll.is-hinting .cr-card * { transition: none !important; animation-play-state: paused !important; } /   - removed: @media (prefers-reduced-motion: reduce) > .hw-glitch, .hw-glitch::after { animation: auto ease 0s 1 normal none running none; } /   - removed: @media (prefers-reduced-motion: reduce) > .hw-glitch { color: rgb(255, 66, 161); }"
+    },
+    {
+      "id": "T110",
+      "status": "TODO",
+      "round": 7,
+      "file": "sections/clg-hero.liquid",
+      "baseline_lines": "1063-1063, 4585-4585, 4585-4585, 4585-4585, 4586-4586, 4586-4586",
+      "title": "6 always-overridden or empty rule(s) inside minified/inline CSS of sections/clg-hero.liquid",
+      "kind": "rule-level removal inside lines (exact text) - always overridden (tool-proven)",
+      "why": "Each removed rule is restated later in the SAME <style> block (same selectors, same or top-level @media, every property at equal-or-higher priority, winner not inside a Liquid conditional), or is empty. Selectors: .cat-strip; .cat-strip__inner; .cat-strip__inner .cat-pill; .cat-strip__inner .cat-pill svg; .drift-strip",
+      "proof": "Joint shadow proof per file on the CSS views (tools/shadow.js) -> PROVEN; joint Chrome CSSOM check: exactly these rules removed, nothing added. These parts remove a single rule from the middle of a line: only the exact_text is removed, context is kept.",
+      "visual_change": "None.",
+      "parts": [
+        {
+          "lines": "1063-1063",
+          "context_before": "",
+          "exact_text": ".drift-strip { }",
+          "context_after": ""
+        },
+        {
+          "lines": "4585-4585",
+          "context_before": "",
+          "exact_text": ".cat-strip{overflow:visible!important}",
+          "context_after": ""
+        },
+        {
+          "lines": "4585-4585",
+          "context_before": "",
+          "exact_text": ".cat-strip__inner .cat-pill{font-size:9px!important;padding:.38rem .42rem!important;gap:.2rem!important}",
+          "context_after": ""
+        },
+        {
+          "lines": "4585-4585",
+          "context_before": "",
+          "exact_text": ".cat-strip__inner .cat-pill svg{width:13px!important;height:13px!important}",
+          "context_after": ""
+        },
+        {
+          "lines": "4586-4586",
+          "context_before": "",
+          "exact_text": ".cat-strip__inner{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px!important}",
+          "context_after": ""
+        },
+        {
+          "lines": "4586-4586",
+          "context_before": "",
+          "exact_text": ".cat-strip__inner .cat-pill{width:94%!important;justify-self:center!important;justify-content:center!important;box-sizing:border-box!important}",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: @media (min-width: 1200px) > .drift-strip {  } /   - removed: @media (min-width: 721px) > .cat-strip { overflow: visible !important; } /   - removed: @media (min-width: 721px) > .cat-strip__inner .cat-pill { font-size: 9px !important; padding: 0.38rem 0.42rem !important; gap: 0.2rem !important; } /   - removed: @media (min-width: 721px) > .cat-strip__inner .cat-pill svg { width: 13px !important; height: 13px !important; } /   - removed: @media (min-width: 721px) and (max-width: 1199px) > .cat-strip__inner { grid-template-columns: repeat(5, minmax(0px, 1fr)); display: grid !important; gap: 5px !important; } /   - removed: @media (min-width: 721px) and (max-width: 1199px) > .cat-strip__inner .cat-pill { width: 94% !important; justify-self: center !important; justify-content: center !important; box-sizing: border-box !important; }"
+    },
+    {
+      "id": "T111",
+      "status": "TODO",
+      "round": 7,
+      "file": "sections/product-main.liquid",
+      "baseline_lines": "2419-2419",
+      "title": "1 always-overridden or empty rule(s) inside minified/inline CSS of sections/product-main.liquid",
+      "kind": "rule-level removal inside lines (exact text) - always overridden (tool-proven)",
+      "why": "Each removed rule is restated later in the SAME <style> block (same selectors, same or top-level @media, every property at equal-or-higher priority, winner not inside a Liquid conditional), or is empty. Selectors: .product-main__price",
+      "proof": "Joint shadow proof per file on the CSS views (tools/shadow.js) -> PROVEN; joint Chrome CSSOM check: exactly these rules removed, nothing added. These parts remove a single rule from the middle of a line: only the exact_text is removed, context is kept.",
+      "visual_change": "None.",
+      "parts": [
+        {
+          "lines": "2419-2419",
+          "context_before": "",
+          "exact_text": ".product-main__price { font-size:23px !important; }",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: @media (max-width: 767px) > .product-main__price { font-size: 23px !important; }"
+    },
+    {
+      "id": "T112",
+      "status": "REVIEW",
+      "round": 7,
+      "file": "sections/product-main.liquid",
+      "baseline_lines": "2566-2566",
+      "title": "1 orphaned rule(s) inside minified/inline CSS of sections/product-main.liquid",
+      "kind": "rule-level removal inside lines (exact text) - orphan selectors (scripted search)",
+      "why": "Every selector of each rule needs a class/ID that appears nowhere in the theme outside CSS (markup, JS, JSON; any mention counts as used; prefix-built names count as used; Shopify/app prefixes count as used). Selectors: .product-stars",
+      "proof": "Not provable from CSS alone, hence REVIEW; joint Chrome CSSOM check: exactly these rules removed, nothing added. These parts remove a single rule from the middle of a line: only the exact_text is removed, context is kept.",
+      "visual_change": "None expected.",
+      "parts": [
+        {
+          "lines": "2566-2566",
+          "context_before": "",
+          "exact_text": ".product-stars { justify-content: center !important; width: 100% !important; }",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: @media (max-width: 767px) > .product-stars { justify-content: center !important; width: 100% !important; }"
+    },
+    {
+      "id": "T113",
+      "status": "REVIEW",
+      "round": 7,
+      "file": "snippets/collection-discovery-banners.liquid",
+      "baseline_lines": "17-17, 17-17, 17-17, 17-17, 17-17, 18-18, 18-18",
+      "title": "7 orphaned rule(s) inside minified/inline CSS of snippets/collection-discovery-banners.liquid",
+      "kind": "rule-level removal inside lines (exact text) - orphan selectors (scripted search)",
+      "why": "Every selector of each rule needs a class/ID that appears nowhere in the theme outside CSS (markup, JS, JSON; any mention counts as used; prefix-built names count as used; Shopify/app prefixes count as used). Selectors: .collection-discovery--three; .collection-discovery--three .collection-discovery__copy; .collection-discovery--three .collection-discovery__link:nth-child(3); .collection-discovery--three .collection-discovery__link:nth-child(3) .collection-discovery__copy; .collection-discovery--three .collection-discovery__link:nth-child(3) .collection-discovery__description; .collection-discovery--three .collection-discovery__link:nth-child(3) .collection-discovery__title; .collection-discovery--three .collection-discovery__title",
+      "proof": "Not provable from CSS alone, hence REVIEW; joint Chrome CSSOM check: exactly these rules removed, nothing added. These parts remove a single rule from the middle of a line: only the exact_text is removed, context is kept.",
+      "visual_change": "None expected.",
+      "parts": [
+        {
+          "lines": "17-17",
+          "context_before": "",
+          "exact_text": ".collection-discovery--three .collection-discovery__copy{width:55%;padding:20px}",
+          "context_after": ""
+        },
+        {
+          "lines": "17-17",
+          "context_before": "",
+          "exact_text": ".collection-discovery--three .collection-discovery__title{font-size:clamp(20px,1.9vw,26px)}",
+          "context_after": ""
+        },
+        {
+          "lines": "17-17",
+          "context_before": "",
+          "exact_text": ".collection-discovery--three .collection-discovery__link:nth-child(3) .collection-discovery__copy{width:39%;padding:20px}",
+          "context_after": ""
+        },
+        {
+          "lines": "17-17",
+          "context_before": "",
+          "exact_text": ".collection-discovery--three .collection-discovery__link:nth-child(3) .collection-discovery__title{font-size:clamp(17px,1.45vw,20px)}",
+          "context_after": ""
+        },
+        {
+          "lines": "17-17",
+          "context_before": "",
+          "exact_text": ".collection-discovery--three .collection-discovery__link:nth-child(3) .collection-discovery__description{font-size:8px;letter-spacing:.06em}",
+          "context_after": ""
+        },
+        {
+          "lines": "18-18",
+          "context_before": "",
+          "exact_text": ".collection-discovery--three{grid-template-columns:repeat(2,minmax(0,1fr))}",
+          "context_after": ""
+        },
+        {
+          "lines": "18-18",
+          "context_before": "",
+          "exact_text": ".collection-discovery--three .collection-discovery__link:nth-child(3){grid-column:1/-1}",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: @media (min-width: 1200px) > .collection-discovery--three .collection-discovery__copy { width: 55%; padding: 20px; } /   - removed: @media (min-width: 1200px) > .collection-discovery--three .collection-discovery__title { font-size: clamp(20px, 1.9vw, 26px); } /   - removed: @media (min-width: 1200px) > .collection-discovery--three .collection-discovery__link:nth-child(3) .collection-discovery__copy { width: 39%; padding: 20px; } /   - removed: @media (min-width: 1200px) > .collection-discovery--three .collection-discovery__link:nth-child(3) .collection-discovery__title { font-size: clamp(17px, 1.45vw, 20px); } /   - removed: @media (min-width: 1200px) > .collection-discovery--three .collection-discovery__link:nth-child(3) .collection-discovery__description { font-size: 8px; letter-spacing: 0.06em; } /   - removed: @media (max-width: 1199px) > .collection-discovery--three { grid-template-columns: repeat(2, minmax(0px, 1fr)); } /   - removed: @media (max-width: 1199px) > .collection-discovery--three .collection-discovery__link:nth-child(3) { grid-column: 1 / -1; }"
+    },
+    {
+      "id": "T114",
+      "status": "TODO",
+      "round": 7,
+      "file": "snippets/cr-card-styles.liquid",
+      "baseline_lines": "105-105",
+      "title": "1 always-overridden or empty rule(s) inside minified/inline CSS of snippets/cr-card-styles.liquid",
+      "kind": "rule-level removal inside lines (exact text) - always overridden (tool-proven)",
+      "why": "Each removed rule is restated later in the SAME <style> block (same selectors, same or top-level @media, every property at equal-or-higher priority, winner not inside a Liquid conditional), or is empty. Selectors: .cr-card__tag.cr-card__tag.cr-card__tag.cr-card__tag:hover::after, .age-dot.age-dot.age-dot:hover::after",
+      "proof": "Joint shadow proof per file on the CSS views (tools/shadow.js) -> PROVEN; joint Chrome CSSOM check: exactly these rules removed, nothing added. These parts remove a single rule from the middle of a line: only the exact_text is removed, context is kept.",
+      "visual_change": "None.",
+      "parts": [
+        {
+          "lines": "105-105",
+          "context_before": "",
+          "exact_text": ".cr-card__tag.cr-card__tag.cr-card__tag.cr-card__tag:hover::after,.age-dot.age-dot.age-dot:hover::after{transform:translateY(0);opacity:1;transition:transform .42s cubic-bezier(.16,1,.3,1) .05s,opacity .15s ease .05s}",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: @media (hover: hover) > .cr-card__tag.cr-card__tag.cr-card__tag.cr-card__tag:hover::after, .age-dot.age-dot.age-dot:hover::after { transform: translateY(0px); opacity: 1; transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1) 0.05s, opacity 0.15s 0.05s; }"
+    },
+    {
+      "id": "T115",
+      "status": "TODO",
+      "round": 7,
+      "file": "snippets/product-card-styles.liquid",
+      "baseline_lines": "36-36",
+      "title": "1 always-overridden or empty rule(s) inside minified/inline CSS of snippets/product-card-styles.liquid",
+      "kind": "rule-level removal inside lines (exact text) - always overridden (tool-proven)",
+      "why": "Each removed rule is restated later in the SAME <style> block (same selectors, same or top-level @media, every property at equal-or-higher priority, winner not inside a Liquid conditional), or is empty. Selectors: .product-card__tag.product-card__tag.product-card__tag.product-card__tag:hover::after, .age-dot.age-dot.age-dot:hover::after",
+      "proof": "Joint shadow proof per file on the CSS views (tools/shadow.js) -> PROVEN; joint Chrome CSSOM check: exactly these rules removed, nothing added. These parts remove a single rule from the middle of a line: only the exact_text is removed, context is kept.",
+      "visual_change": "None.",
+      "parts": [
+        {
+          "lines": "36-36",
+          "context_before": "",
+          "exact_text": ".product-card__tag.product-card__tag.product-card__tag.product-card__tag:hover::after,.age-dot.age-dot.age-dot:hover::after{transform:translateY(0);opacity:1;transition:transform .42s cubic-bezier(.16,1,.3,1) .05s,opacity .15s ease .05s}",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: @media (hover: hover) > .product-card__tag.product-card__tag.product-card__tag.product-card__tag:hover::after, .age-dot.age-dot.age-dot:hover::after { transform: translateY(0px); opacity: 1; transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1) 0.05s, opacity 0.15s 0.05s; }"
+    },
+    {
+      "id": "T116",
+      "status": "REVIEW",
+      "round": 7,
+      "file": "snippets/product-card-styles.liquid",
+      "baseline_lines": "32-32, 32-32, 33-33, 33-33, 33-33, 33-33, 33-33, 33-33, 33-33, 33-33, 33-33, 33-33, 33-33, 33-33, 35-35, 37-37, 42-42, 42-42, 43-43, 43-43, 88-88",
+      "title": "21 orphaned rule(s) inside minified/inline CSS of snippets/product-card-styles.liquid",
+      "kind": "rule-level removal inside lines (exact text) - orphan selectors (scripted search)",
+      "why": "Every selector of each rule needs a class/ID that appears nowhere in the theme outside CSS (markup, JS, JSON; any mention counts as used; prefix-built names count as used; Shopify/app prefixes count as used). Selectors: .age-dot ~ .product-card__tag.product-card__tag.product-card__tag; .age-dot ~ .product-card__tag.product-card__tag.product-card__tag.product-card__tag; .product-card__tag; .product-card__tag--blaster; .product-card__tag--building; .product-card__tag--collectible; .product-card__tag--fidget; .product-card__tag--halloween; .product-card__tag--keychain; .product-card__tag--plush; .product-card__tag--puzzle; .product-card__tag--rc; .product-card__tag--rc, .product-card__tag--puzzle, .product-card__tag--building; .product-card__tag.product-card__tag; .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag; .product-card__tag.product-card__tag.product-card__tag.p",
+      "proof": "Not provable from CSS alone, hence REVIEW; joint Chrome CSSOM check: exactly these rules removed, nothing added. These parts remove a single rule from the middle of a line: only the exact_text is removed, context is kept.",
+      "visual_change": "None expected.",
+      "parts": [
+        {
+          "lines": "32-32",
+          "context_before": "",
+          "exact_text": ".product-card__tag{font-weight:400!important}",
+          "context_after": ""
+        },
+        {
+          "lines": "32-32",
+          "context_before": "",
+          "exact_text": ".product-card__tag--rc,.product-card__tag--puzzle,.product-card__tag--building{font-weight:400!important}",
+          "context_after": ""
+        },
+        {
+          "lines": "33-33",
+          "context_before": "",
+          "exact_text": ".product-card__tag.product-card__tag{--dot:#f97316;top:12px!important;left:auto!important;right:12px!important;box-sizing:border-box!important;min-width:8.4px!important;max-width:8.4px!important;height:8.4px!important;padding:0!important;border:0 solid transparent!important;border-radius:999px!important;background:color-mix(in srgb,var(--dot) 45%,#fff)!important;background-image:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;color:#fff!important;-webkit-text-fill-color:#fff!important;font-size:0!important;font-weight:600!important;letter-spacing:.02em!important;line-height:1!important;white-space:nowrap!important;overflow:hidden!important;display:inline-flex!important;align-items:center!important;box-shadow:none!important;opacity:.85;pointer-events:auto!important;cursor:default;transition:max-width .28s cubic-bezier(.2,.8,.2,1),height .22s ease,padding .22s ease,font-size .18s ease!important;z-index:4!important}",
+          "context_after": ""
+        },
+        {
+          "lines": "33-33",
+          "context_before": "",
+          "exact_text": ".product-card__tag.product-card__tag::before{display:none!important}",
+          "context_after": ""
+        },
+        {
+          "lines": "33-33",
+          "context_before": "",
+          "exact_text": ".product-card__tag.product-card__tag:hover{max-width:160px!important;height:22px!important;padding:0 10px!important;font-size:10.5px!important;background:var(--dot)!important;opacity:1;box-shadow:0 4px 14px rgba(15,23,42,.18)!important}",
+          "context_after": ""
+        },
+        {
+          "lines": "33-33",
+          "context_before": "",
+          "exact_text": ".product-card__tag--rc{--dot:#1d4ed8!important}",
+          "context_after": ""
+        },
+        {
+          "lines": "33-33",
+          "context_before": "",
+          "exact_text": ".product-card__tag--halloween{--dot:#334155!important}",
+          "context_after": ""
+        },
+        {
+          "lines": "33-33",
+          "context_before": "",
+          "exact_text": ".product-card__tag--collectible{--dot:#14b8a6!important}",
+          "context_after": ""
+        },
+        {
+          "lines": "33-33",
+          "context_before": "",
+          "exact_text": ".product-card__tag--keychain{--dot:#22c55e!important}",
+          "context_after": ""
+        },
+        {
+          "lines": "33-33",
+          "context_before": "",
+          "exact_text": ".product-card__tag--blaster{--dot:#ef4444!important}",
+          "context_after": ""
+        },
+        {
+          "lines": "33-33",
+          "context_before": "",
+          "exact_text": ".product-card__tag--puzzle{--dot:#f59e0b!important}",
+          "context_after": ""
+        },
+        {
+          "lines": "33-33",
+          "context_before": "",
+          "exact_text": ".product-card__tag--building{--dot:#84cc16!important}",
+          "context_after": ""
+        },
+        {
+          "lines": "33-33",
+          "context_before": "",
+          "exact_text": ".product-card__tag--plush{--dot:#ec4899!important}",
+          "context_after": ""
+        },
+        {
+          "lines": "33-33",
+          "context_before": "",
+          "exact_text": ".product-card__tag--fidget{--dot:#06b6d4!important}",
+          "context_after": ""
+        },
+        {
+          "lines": "35-35",
+          "context_before": "",
+          "exact_text": ".age-dot~.product-card__tag.product-card__tag.product-card__tag{right:18px!important}",
+          "context_after": ""
+        },
+        {
+          "lines": "37-37",
+          "context_before": "",
+          "exact_text": ".age-dot~.product-card__tag.product-card__tag.product-card__tag.product-card__tag{right:4px!important;top:21px!important}",
+          "context_after": ""
+        },
+        {
+          "lines": "42-42",
+          "context_before": "",
+          "exact_text": ".product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag{box-sizing:border-box!important;width:25.15px!important;min-width:25.15px!important;max-width:25.15px!important;height:25.15px!important;border:8px solid transparent!important;padding:0!important;background:color-mix(in srgb,var(--dot) 50%,#fff)!important;background-clip:padding-box!important;opacity:1!important;box-shadow:none!important}",
+          "context_after": ""
+        },
+        {
+          "lines": "42-42",
+          "context_before": "",
+          "exact_text": ".product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag:hover{box-sizing:border-box!important;width:25.15px!important;min-width:25.15px!important;max-width:25.15px!important;height:25.15px!important;border:8px solid transparent!important;padding:0!important;background:color-mix(in srgb,var(--dot) 50%,#fff)!important;background-clip:padding-box!important;opacity:1!important;box-shadow:none!important}",
+          "context_after": ""
+        },
+        {
+          "lines": "43-43",
+          "context_before": "",
+          "exact_text": ".product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag{background:transparent!important;box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--dot) 70%,#fff)!important}",
+          "context_after": ""
+        },
+        {
+          "lines": "43-43",
+          "context_before": "",
+          "exact_text": ".product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag:hover{background:transparent!important;box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--dot) 70%,#fff)!important}",
+          "context_after": ""
+        },
+        {
+          "lines": "88-88",
+          "context_before": "",
+          "exact_text": ".product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag:hover{transform:translateX(6px)!important;transition:transform .42s cubic-bezier(.22,1,.36,1) .04s,right .42s cubic-bezier(.22,1,.36,1) .04s!important}",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: .product-card__tag { font-weight: 400 !important; } /   - removed: .product-card__tag--rc, .product-card__tag--puzzle, .product-card__tag--building { font-weight: 400 !important; } /   - removed: .product-card__tag.product-card__tag { --dot: #f97316; opacity: 0.85; cursor: default; top: 12px !important; left: auto !important; right: 12px !important; box-sizing: border-box !important; min-width: 8.4px !important; max-width: 8.4px !important; height: 8.4px !important; padding: 0px !important;  /   - removed: .product-card__tag.product-card__tag::before { display: none !important; } /   - removed: @media (hover: hover) > .product-card__tag.product-card__tag:hover { opacity: 1; max-width: 160px !important; height: 22px !important; padding: 0px 10px !important; font-size: 10.5px !important; background: var(--dot) !important; box-shadow: rgba(15, 23, 42, 0.18) 0px 4px 14px !important; } /   - removed: .product-card__tag--rc { --dot: #1d4ed8 !important; } /   - removed: .product-card__tag--halloween { --dot: #334155 !important; } /   - removed: .product-card__tag--collectible { --dot: #14b8a6 !important; } /   - removed: .product-card__tag--keychain { --dot: #22c55e !important; } /   - removed: .product-card__tag--blaster { --dot: #ef4444 !important; } /   - removed: .product-card__tag--puzzle { --dot: #f59e0b !important; } /   - removed: .product-card__tag--building { --dot: #84cc16 !important; } /   - removed: .product-card__tag--plush { --dot: #ec4899 !important; } /   - removed: .product-card__tag--fidget { --dot: #06b6d4 !important; } /   - removed: .age-dot ~ .product-card__tag.product-card__tag.product-card__tag { right: 18px !important; } /   - removed: .age-dot ~ .product-card__tag.product-card__tag.product-card__tag.product-card__tag { right: 4px !important; top: 21px !important; } /   - removed: .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag { box-sizing: border-box !important; width: 25.15px !important; min-width: 25.15px !important; max-width: 25.15px !important; height: 25.15px !important; border: 8px solid transparent !import /   - removed: @media (hover: hover) > .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag:hover { box-sizing: border-box !important; width: 25.15px !important; min-width: 25.15px !important; max-width: 25.15px !important; height: 25.15px !important; border: /   - removed: .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag { background: transparent !important; box-shadow: inset 0 0 0 1.5px color-mix(in srgb,var(--dot) 70%,#fff) !important; } /   - removed: @media (hover: hover) > .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag:hover { background: transparent !important; box-shadow: inset 0 0 0 1.5px color-mix(in srgb,var(--dot) 70%,#fff) !important; } /   - removed: @media (hover: hover) > .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag:hover { transform: translateX(6px) !important; transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1) 0.04s, right 0.42s cubic-bezier(0.22, 1, 0."
+    },
+    {
+      "id": "T117",
+      "status": "REVIEW",
+      "round": 7,
+      "file": "snippets/product-description-card.liquid",
+      "baseline_lines": "88-88, 88-88",
+      "title": "2 orphaned rule(s) inside minified/inline CSS of snippets/product-description-card.liquid",
+      "kind": "rule-level removal inside lines (exact text) - orphan selectors (scripted search)",
+      "why": "Every selector of each rule needs a class/ID that appears nowhere in the theme outside CSS (markup, JS, JSON; any mention counts as used; prefix-built names count as used; Shopify/app prefixes count as used). Selectors: .pdc-spec-icon--green; .pdc-spec-icon--green svg",
+      "proof": "Not provable from CSS alone, hence REVIEW; joint Chrome CSSOM check: exactly these rules removed, nothing added. These parts remove a single rule from the middle of a line: only the exact_text is removed, context is kept.",
+      "visual_change": "None expected.",
+      "parts": [
+        {
+          "lines": "88-88",
+          "context_before": "",
+          "exact_text": ".pdc-spec-icon--green  { background:#ecfdf5; }",
+          "context_after": ""
+        },
+        {
+          "lines": "88-88",
+          "context_before": "",
+          "exact_text": ".pdc-spec-icon--green  svg { stroke:#059669; }",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: .pdc-spec-icon--green { background: rgb(236, 253, 245); } /   - removed: .pdc-spec-icon--green svg { stroke: rgb(5, 150, 105); }"
+    },
+    {
+      "id": "T118",
+      "status": "REVIEW",
+      "round": 7,
+      "file": "snippets/product-recommendations.liquid",
+      "baseline_lines": "20-20",
+      "title": "1 orphaned rule(s) inside minified/inline CSS of snippets/product-recommendations.liquid",
+      "kind": "rule-level removal inside lines (exact text) - orphan selectors (scripted search)",
+      "why": "Every selector of each rule needs a class/ID that appears nowhere in the theme outside CSS (markup, JS, JSON; any mention counts as used; prefix-built names count as used; Shopify/app prefixes count as used). Selectors: #product-recs-grid .rec-card--guide:hover .rec-card__read",
+      "proof": "Not provable from CSS alone, hence REVIEW; joint Chrome CSSOM check: exactly these rules removed, nothing added. These parts remove a single rule from the middle of a line: only the exact_text is removed, context is kept.",
+      "visual_change": "None expected.",
+      "parts": [
+        {
+          "lines": "20-20",
+          "context_before": "",
+          "exact_text": "#product-recs-grid .rec-card--guide:hover .rec-card__read { color:#1a1a2e; }",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: @media (hover: hover) > #product-recs-grid .rec-card--guide:hover .rec-card__read { color: rgb(26, 26, 46); }"
+    },
+    {
+      "id": "T119",
+      "status": "TODO",
+      "round": 7,
+      "file": "snippets/tlv-orbs.liquid",
+      "baseline_lines": "19-19, 20-20, 38-38, 129-129, 133-133, 134-134, 145-145, 152-152, 156-156, 156-156, 191-191, 196-196, 216-216, 219-219, 219-219, 282-282, 285-285, 285-285, 291-291, 291-291, 294-294, 294-294",
+      "title": "22 always-overridden or empty rule(s) inside minified/inline CSS of snippets/tlv-orbs.liquid",
+      "kind": "rule-level removal inside lines (exact text) - always overridden (tool-proven)",
+      "why": "Each removed rule is restated later in the SAME <style> block (same selectors, same or top-level @media, every property at equal-or-higher priority, winner not inside a Liquid conditional), or is empty. Selectors: .tlv-orb--has-subs .tlv-orb__subs; .tlv-orb--has-subs .tlv-orb__subs span; .tlv-orb--has-subs:hover .tlv-orb__wrap, .tlv-orb--has-subs:focus-within .tlv-orb__wrap; .tlv-orb:hover .tlv-orb__glow, .tlv-orb:focus-visible .tlv-orb__glow; .tlv-orb:hover .tlv-orb__glow::after, .tlv-orb:focus-visible .tlv-orb__glow::after, .tlv-orb:hover .tlv-orb__glow::before, .tlv-orb:focus-visible .tlv-orb__glow::before; .tlv-orb:hover .tlv-orb__glow::before, .tlv-orb:focus-visible .tlv-orb__glow::before; .tlv-orb:hover .tlv-orb__glow::before, .tlv-orb:focus-visible .tlv-orb__glow::before, .tlv-orb:hover .tlv-orb__glow::after, .tlv-orb:focus-visible .tlv-orb__glow::after; .tlv-orb:hover .tlv-orb__wrap::after, .t",
+      "proof": "Joint shadow proof per file on the CSS views (tools/shadow.js) -> PROVEN; joint Chrome CSSOM check: exactly these rules removed, nothing added. These parts remove a single rule from the middle of a line: only the exact_text is removed, context is kept.",
+      "visual_change": "None.",
+      "parts": [
+        {
+          "lines": "19-19",
+          "context_before": "",
+          "exact_text": ".tlv-orb--has-subs:hover .tlv-orb__wrap,.tlv-orb--has-subs:focus-within .tlv-orb__wrap{transform:translate3d(-34px,0,0)}",
+          "context_after": ""
+        },
+        {
+          "lines": "20-20",
+          "context_before": "",
+          "exact_text": ".tlv-orb--has-subs .tlv-orb__subs{display:none}",
+          "context_after": ""
+        },
+        {
+          "lines": "38-38",
+          "context_before": "",
+          "exact_text": ".tlv-orb--has-subs .tlv-orb__subs span{transition:none}",
+          "context_after": ""
+        },
+        {
+          "lines": "129-129",
+          "context_before": "",
+          "exact_text": ".tlv-orb__glow::after{transition:none}",
+          "context_after": ""
+        },
+        {
+          "lines": "133-133",
+          "context_before": "",
+          "exact_text": ".tlv-orb:hover .tlv-orb__wrap::before,.tlv-orb:focus-visible .tlv-orb__wrap::before{opacity:1;transform:translateX(-50%) scaleY(1)}",
+          "context_after": ""
+        },
+        {
+          "lines": "134-134",
+          "context_before": "",
+          "exact_text": ".tlv-orb__wrap::before{transition:none}",
+          "context_after": ""
+        },
+        {
+          "lines": "145-145",
+          "context_before": "",
+          "exact_text": ".tlv-orb__wrap{width:clamp(72px,13vw,96px)}",
+          "context_after": ""
+        },
+        {
+          "lines": "152-152",
+          "context_before": "",
+          "exact_text": ".tlv-orb:hover .tlv-orb__wrap::before,.tlv-orb:focus-visible .tlv-orb__wrap::before{transform:translateX(-50%) rotate(60deg) scaleY(1)!important}",
+          "context_after": ""
+        },
+        {
+          "lines": "156-156",
+          "context_before": "",
+          "exact_text": ".tlv-orb:hover .tlv-orb__wrap::after,.tlv-orb:focus-visible .tlv-orb__wrap::after{opacity:1;transform:translateX(-50%) rotate(-60deg) scaleY(1)}",
+          "context_after": ""
+        },
+        {
+          "lines": "156-156",
+          "context_before": "",
+          "exact_text": ".tlv-orb:hover .tlv-orb__glow::before,.tlv-orb:focus-visible .tlv-orb__glow::before{opacity:.82;transform:scale(1)}",
+          "context_after": ""
+        },
+        {
+          "lines": "191-191",
+          "context_before": "e(1)!important}",
+          "exact_text": ".tlv-orb:hover .tlv-orb__glow::before,.tlv-orb:focus-visible .tlv-orb__glow::before,.tlv-orb:hover .tlv-orb__glow::after,.tlv-orb:focus-visible .tlv-orb__glow::after{transform:scale(1)!important}",
+          "context_after": "}"
+        },
+        {
+          "lines": "196-196",
+          "context_before": "a(hover:hover){",
+          "exact_text": ".tlv-orb:hover .tlv-orb__glow::before,.tlv-orb:focus-visible .tlv-orb__glow::before{opacity:1!important}",
+          "context_after": "}"
+        },
+        {
+          "lines": "216-216",
+          "context_before": "a(hover:hover){",
+          "exact_text": ".tlv-orb:hover .tlv-orb__glow,.tlv-orb:focus-visible .tlv-orb__glow{opacity:1!important}",
+          "context_after": "}"
+        },
+        {
+          "lines": "219-219",
+          "context_before": "",
+          "exact_text": ".tlv-orb:hover .tlv-orb__wrap::before,.tlv-orb:focus-visible .tlv-orb__wrap::before{animation:tlv-arm-clock-right 1.8s cubic-bezier(.45,.05,.55,.95) both}",
+          "context_after": ""
+        },
+        {
+          "lines": "219-219",
+          "context_before": "",
+          "exact_text": ".tlv-orb:hover .tlv-orb__wrap::after,.tlv-orb:focus-visible .tlv-orb__wrap::after{animation:tlv-arm-clock-left 1.8s cubic-bezier(.45,.05,.55,.95) both}",
+          "context_after": ""
+        },
+        {
+          "lines": "282-282",
+          "context_before": "",
+          "exact_text": ".tlv-orb__glow::after{transition-delay:1.24s!important}",
+          "context_after": ""
+        },
+        {
+          "lines": "285-285",
+          "context_before": "",
+          "exact_text": ".tlv-orb:hover .tlv-orb__wrap::before,.tlv-orb:focus-visible .tlv-orb__wrap::before{animation:tlv-arm-one-turn-right 2.2s cubic-bezier(.22,.8,.2,1) both!important}",
+          "context_after": ""
+        },
+        {
+          "lines": "285-285",
+          "context_before": "",
+          "exact_text": ".tlv-orb:hover .tlv-orb__wrap::after,.tlv-orb:focus-visible .tlv-orb__wrap::after{animation:tlv-arm-one-turn-left 2.2s cubic-bezier(.22,.8,.2,1) both!important}",
+          "context_after": ""
+        },
+        {
+          "lines": "291-291",
+          "context_before": "",
+          "exact_text": ".tlv-orb:hover .tlv-orb__wrap::before,.tlv-orb:focus-visible .tlv-orb__wrap::before{animation:tlv-arm-one-turn-right-fast 1.5s cubic-bezier(.22,.8,.2,1) both!important}",
+          "context_after": ""
+        },
+        {
+          "lines": "291-291",
+          "context_before": "",
+          "exact_text": ".tlv-orb:hover .tlv-orb__wrap::after,.tlv-orb:focus-visible .tlv-orb__wrap::after{animation:tlv-arm-one-turn-left-fast 1.5s cubic-bezier(.22,.8,.2,1) both!important}",
+          "context_after": ""
+        },
+        {
+          "lines": "294-294",
+          "context_before": "",
+          "exact_text": ".tlv-orb:hover .tlv-orb__wrap::before,.tlv-orb:focus-visible .tlv-orb__wrap::before{animation-duration:1.9s!important}",
+          "context_after": ""
+        },
+        {
+          "lines": "294-294",
+          "context_before": "",
+          "exact_text": ".tlv-orb:hover .tlv-orb__wrap::after,.tlv-orb:focus-visible .tlv-orb__wrap::after{animation-duration:1.9s!important}",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: @media (hover: hover) > .tlv-orb--has-subs:hover .tlv-orb__wrap, .tlv-orb--has-subs:focus-within .tlv-orb__wrap { transform: translate3d(-34px, 0px, 0px); } /   - removed: @media (max-width: 767px) > .tlv-orb--has-subs .tlv-orb__subs { display: none; } /   - removed: @media (prefers-reduced-motion: reduce) > .tlv-orb--has-subs .tlv-orb__subs span { transition: none; } /   - removed: @media (prefers-reduced-motion: reduce) > .tlv-orb__glow::after { transition: none; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__wrap::before, .tlv-orb:focus-visible .tlv-orb__wrap::before { opacity: 1; transform: translateX(-50%) scaleY(1); } /   - removed: @media (prefers-reduced-motion: reduce) > .tlv-orb__wrap::before { transition: none; } /   - removed: @media (min-width: 768px) and (max-width: 1024px) > .tlv-orb__wrap { width: clamp(72px, 13vw, 96px); } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__wrap::before, .tlv-orb:focus-visible .tlv-orb__wrap::before { transform: translateX(-50%) rotate(60deg) scaleY(1) !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__wrap::after, .tlv-orb:focus-visible .tlv-orb__wrap::after { opacity: 1; transform: translateX(-50%) rotate(-60deg) scaleY(1); } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__glow::before, .tlv-orb:focus-visible .tlv-orb__glow::before { opacity: 0.82; transform: scale(1); } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__glow, .tlv-orb:focus-visible .tlv-orb__glow { opacity: 1 !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__glow::before, .tlv-orb:focus-visible .tlv-orb__glow::before, .tlv-orb:hover .tlv-orb__glow::after, .tlv-orb:focus-visible .tlv-orb__glow::after { transform: scale(1) !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__glow::before, .tlv-orb:focus-visible .tlv-orb__glow::before { opacity: 1 !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__wrap::before, .tlv-orb:focus-visible .tlv-orb__wrap::before { animation: 1.8s cubic-bezier(0.45, 0.05, 0.55, 0.95) 0s 1 normal both running tlv-arm-clock-right; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__wrap::after, .tlv-orb:focus-visible .tlv-orb__wrap::after { animation: 1.8s cubic-bezier(0.45, 0.05, 0.55, 0.95) 0s 1 normal both running tlv-arm-clock-left; } /   - removed: .tlv-orb__glow::after { transition-delay: 1.24s !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__wrap::before, .tlv-orb:focus-visible .tlv-orb__wrap::before { animation: 2.2s cubic-bezier(0.22, 0.8, 0.2, 1) 0s 1 normal both running tlv-arm-one-turn-right !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__wrap::after, .tlv-orb:focus-visible .tlv-orb__wrap::after { animation: 2.2s cubic-bezier(0.22, 0.8, 0.2, 1) 0s 1 normal both running tlv-arm-one-turn-left !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__wrap::before, .tlv-orb:focus-visible .tlv-orb__wrap::before { animation: 1.5s cubic-bezier(0.22, 0.8, 0.2, 1) 0s 1 normal both running tlv-arm-one-turn-right-fast !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__wrap::after, .tlv-orb:focus-visible .tlv-orb__wrap::after { animation: 1.5s cubic-bezier(0.22, 0.8, 0.2, 1) 0s 1 normal both running tlv-arm-one-turn-left-fast !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__wrap::before, .tlv-orb:focus-visible .tlv-orb__wrap::before { animation-duration: 1.9s !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__wrap::after, .tlv-orb:focus-visible .tlv-orb__wrap::after { animation-duration: 1.9s !important; }"
+    },
+    {
+      "id": "T120",
+      "status": "REVIEW",
+      "round": 7,
+      "file": "templates/page.wishlist.liquid",
+      "baseline_lines": "11-11, 12-12, 12-12, 17-17",
+      "title": "4 orphaned rule(s) inside minified/inline CSS of templates/page.wishlist.liquid",
+      "kind": "rule-level removal inside lines (exact text) - orphan selectors (scripted search)",
+      "why": "Every selector of each rule needs a class/ID that appears nowhere in the theme outside CSS (markup, JS, JSON; any mention counts as used; prefix-built names count as used; Shopify/app prefixes count as used). Selectors: .tlv-wlp a.tlv-wlp__t; .tlv-wlp__card; .tlv-wlp__card:hover; .tlv-wlp__grid",
+      "proof": "Not provable from CSS alone, hence REVIEW; joint Chrome CSSOM check: exactly these rules removed, nothing added. These parts remove a single rule from the middle of a line: only the exact_text is removed, context is kept.",
+      "visual_change": "None expected.",
+      "parts": [
+        {
+          "lines": "11-11",
+          "context_before": "",
+          "exact_text": ".tlv-wlp__grid{grid-template-columns:repeat(4,1fr)}",
+          "context_after": ""
+        },
+        {
+          "lines": "12-12",
+          "context_before": "",
+          "exact_text": ".tlv-wlp__card{background:#fff;border:1px solid #e4e4e7;border-radius:8px;overflow:hidden;position:relative;transition:border-color .15s ease}",
+          "context_after": ""
+        },
+        {
+          "lines": "12-12",
+          "context_before": "",
+          "exact_text": ".tlv-wlp__card:hover{border-color:#a1a1aa}",
+          "context_after": ""
+        },
+        {
+          "lines": "17-17",
+          "context_before": "",
+          "exact_text": ".tlv-wlp a.tlv-wlp__t{color:#1a1a2e!important}",
+          "context_after": ""
+        }
+      ],
+      "verify": "DIFFERENT /   - removed: @media (min-width: 768px) > .tlv-wlp__grid { grid-template-columns: repeat(4, 1fr); } /   - removed: .tlv-wlp__card { background: rgb(255, 255, 255); border: 1px solid rgb(228, 228, 231); border-radius: 8px; overflow: hidden; position: relative; transition: border-color 0.15s; } /   - removed: .tlv-wlp__card:hover { border-color: rgb(161, 161, 170); } /   - removed: .tlv-wlp a.tlv-wlp__t { color: rgb(26, 26, 46) !important; }"
     }
   ],
   "do_not_apply": [
@@ -4262,5 +4928,128 @@
     "DO NOT: repair dead code (e.g. re-add a missing /*), touch tlv-owner-overrides.css, fix the unclosed @media, or apply Ziko's DevTools row-spacing edits without asking (see 'Known issues').",
     "IF T01 FAILS with 'found 0 times': Ziko probably already deleted that block by hand; check and mark it DONE.",
     "NEXT (optional): finish the inline-CSS scan described under 'Not scanned yet' with the tools in tools/."
-  ]
+  ],
+  "unused_files": [
+    {
+      "file": "sections/cat-cards.liquid",
+      "size": 4751,
+      "style_blocks": 1
+    },
+    {
+      "file": "sections/featured-banner.liquid",
+      "size": 871,
+      "style_blocks": 1
+    },
+    {
+      "file": "sections/fish-background.liquid",
+      "size": 5232,
+      "style_blocks": 1
+    },
+    {
+      "file": "sections/glitch-background-backup.liquid",
+      "size": 9838,
+      "style_blocks": 1
+    },
+    {
+      "file": "sections/glitch-background.liquid",
+      "size": 17069,
+      "style_blocks": 1
+    },
+    {
+      "file": "sections/graffiti-tag.liquid",
+      "size": 9591,
+      "style_blocks": 1
+    },
+    {
+      "file": "sections/product-template.liquid",
+      "size": 9865,
+      "style_blocks": 1
+    },
+    {
+      "file": "sections/tlv-search-json.liquid",
+      "size": 1047,
+      "style_blocks": 0
+    },
+    {
+      "file": "snippets/collection-discovery-banners.liquid",
+      "size": 26094,
+      "style_blocks": 12
+    },
+    {
+      "file": "snippets/collection-wave.liquid",
+      "size": 9247,
+      "style_blocks": 1
+    },
+    {
+      "file": "snippets/fidget-showcase-banner.liquid",
+      "size": 10784,
+      "style_blocks": 1
+    },
+    {
+      "file": "snippets/fish-swim.liquid",
+      "size": 5222,
+      "style_blocks": 1
+    },
+    {
+      "file": "snippets/halloween-row-banner.liquid",
+      "size": 19932,
+      "style_blocks": 2
+    },
+    {
+      "file": "snippets/keychain-showcase-banner.liquid",
+      "size": 11091,
+      "style_blocks": 1
+    },
+    {
+      "file": "snippets/plexus-bg.liquid",
+      "size": 10831,
+      "style_blocks": 1
+    },
+    {
+      "file": "snippets/plush-showcase-banner.liquid",
+      "size": 10564,
+      "style_blocks": 1
+    },
+    {
+      "file": "snippets/product-rating-vals.liquid",
+      "size": 147,
+      "style_blocks": 0
+    },
+    {
+      "file": "snippets/product-rating.liquid",
+      "size": 131,
+      "style_blocks": 0
+    },
+    {
+      "file": "snippets/rc-showcase-banner.liquid",
+      "size": 8129,
+      "style_blocks": 1
+    },
+    {
+      "file": "snippets/torn-paper.liquid",
+      "size": 1102,
+      "style_blocks": 0
+    },
+    {
+      "file": "snippets/toylvia-loader.liquid",
+      "size": 5898,
+      "style_blocks": 1
+    },
+    {
+      "file": "snippets/ttt-graffiti.liquid",
+      "size": 11233,
+      "style_blocks": 0
+    },
+    {
+      "file": "snippets/tv-icon-defs.liquid",
+      "size": 6290,
+      "style_blocks": 1
+    },
+    {
+      "file": "snippets/tv-icon-tags.liquid",
+      "size": 6874,
+      "style_blocks": 0
+    }
+  ],
+  "unused_files_note": "These section/snippet files are not referenced by any template, layout, render/include/section tag, and their name appears in NO other theme file at all (not in JS, JSON or CSS either), so Shopify never renders them and their CSS never loads. Deleting the file is the cleanup (not editing its CSS). REVIEW: ask Ziko; a section can still be offered in the theme editor's 'Add section' list if it has a {% schema %} with presets, so check that first."
 }

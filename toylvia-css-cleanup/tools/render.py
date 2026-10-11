@@ -133,6 +133,13 @@ for i in items:
         w(fence(part['exact_text']))
         w('')
 
+if data.get('unused_files'):
+    w('---\n\n## Files that are never rendered (REVIEW: delete the file, not its CSS)\n')
+    w(data.get('unused_files_note', ''))
+    w('')
+    for u in data['unused_files']:
+        w(f"- `{u['file']}` ({u['size']} bytes, {u['style_blocks']} <style> block(s))")
+    w('')
 if data.get('review_advice'):
     w('---\n\n## Deciding on REVIEW items\n')
     for t in data['review_advice']: w(f'- {t}')

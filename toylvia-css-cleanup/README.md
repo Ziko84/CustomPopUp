@@ -3,9 +3,9 @@
 Dead and commented-out CSS found in the live theme of https://toylvia.com by a cloud Claude scan.
 Every item was found by one agent and then attacked by a separate skeptic agent that tried to prove it still affects the page. Only items that survived are listed.
 
-- Scan started: 2026-10-11T15:16:39Z | last update: 2026-10-11T16:59:31Z | rounds: 6
-- Items: **106** total, **46 TODO** (proven safe), **60 REVIEW** (very likely safe, ask Ziko first)
-- Lines removed if every item is applied (superseding items instead of the ones they contain): 3032 | TODO items only: 806
+- Scan started: 2026-10-11T15:16:39Z | last update: 2026-10-11T17:04:37Z | rounds: 7
+- Items: **120** total, **52 TODO** (proven safe), **68 REVIEW** (very likely safe, ask Ziko first)
+- Lines removed if every item is applied (superseding items instead of the ones they contain): 3044 | TODO items only: 818
 - Status legend: `TODO` apply | `REVIEW` apply only if Ziko says yes | `DONE` applied and verified | `SKIPPED: reason`
 
 ---
@@ -5541,6 +5541,620 @@ Delete:
 ```css
 #tlv-wlp .tlv-wlp__card a.tlv-wlp__t,#tlv-wlp .tlv-wlp__card a.tlv-wlp__t:visited{color:#1a1a2e!important;-webkit-text-fill-color:#1a1a2e!important}
 ```
+
+### T107 [REVIEW] 2 orphaned rule(s) inside minified/inline CSS of layout/theme.liquid
+- **File:** `layout/theme.liquid` | baseline lines 1725-1725, 1725-1725 | kind: rule-level removal inside lines (exact text) - orphan selectors (scripted search)
+- **Why it is dead:** Every selector of each rule needs a class/ID that appears nowhere in the theme outside CSS (markup, JS, JSON; any mention counts as used; prefix-built names count as used; Shopify/app prefixes count as used). Selectors: .tlv-sb-social-icon:hover; .tlv-sb-social-icon:hover svg
+- **Proof:** Not provable from CSS alone, hence REVIEW; joint Chrome CSSOM check: exactly these rules removed, nothing added. These parts remove a single rule from the middle of a line: only the exact_text is removed, context is kept.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: @media (hover: hover) > .tlv-sb-social-icon:hover { background: rgb(255, 66, 161); border-color: rgb(255, 66, 161); } /   - removed: @media (hover: hover) > .tlv-sb-social-icon:hover svg { stroke: rgb(255, 255, 255); }**
+- **Visual change if removed:** None expected.
+- **Parts:** 2 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 1725-1725). Manual anchor: from `.tlv-sb-social-icon:hover{background:#ff42a1;border-color:#ff42a1;}` to `.tlv-sb-social-icon:hover{background:#ff42a1;border-color:#ff42a1;}`.
+Delete:
+```css
+.tlv-sb-social-icon:hover{background:#ff42a1;border-color:#ff42a1;}
+```
+
+**Part 2** (baseline lines 1725-1725). Manual anchor: from `.tlv-sb-social-icon:hover svg{stroke:#fff;}` to `.tlv-sb-social-icon:hover svg{stroke:#fff;}`.
+Delete:
+```css
+.tlv-sb-social-icon:hover svg{stroke:#fff;}
+```
+
+### T108 [TODO] 3 always-overridden or empty rule(s) inside minified/inline CSS of sections/category-rows.liquid
+- **File:** `sections/category-rows.liquid` | baseline lines 97-109, 9072-9072, 9191-9191 | kind: rule-level removal inside lines (exact text) - always overridden (tool-proven)
+- **Why it is dead:** Each removed rule is restated later in the SAME <style> block (same selectors, same or top-level @media, every property at equal-or-higher priority, winner not inside a Liquid conditional), or is empty. Selectors: .cat-rows__row; html body #MainContent .cat-rows__row + .cat-rows__row; html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .cat-rows__row
+- **Proof:** Joint shadow proof per file on the CSS views (tools/shadow.js) -> PROVEN; joint Chrome CSSOM check: exactly these rules removed, nothing added. These parts remove a single rule from the middle of a line: only the exact_text is removed, context is kept.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .cat-rows__row {  } /   - removed: @media (max-width: 1199px) > html body #MainContent .cat-rows__row + .cat-rows__row {  } /   - removed: html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .cat-rows__row {  }**
+- **Visual change if removed:** None.
+- **Parts:** 3 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 97-109). Manual anchor: from `.cat-rows__row {` to `}`.
+Delete:
+```css
+.cat-rows__row {
+
+
+
+
+
+
+
+
+
+
+
+}
+```
+
+**Part 2** (baseline lines 9072-9072). Manual anchor: from `html body #MainContent .cat-rows__row + .cat-rows__row{}` to `html body #MainContent .cat-rows__row + .cat-rows__row{}`.
+Delete:
+```css
+html body #MainContent .cat-rows__row + .cat-rows__row{}
+```
+
+**Part 3** (baseline lines 9191-9191). Manual anchor: from `html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#Main...` to `html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#Main...`.
+Delete:
+```css
+html body #MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent#MainContent .cat-rows__row{}
+```
+
+### T109 [REVIEW] 4 orphaned rule(s) inside minified/inline CSS of sections/category-rows.liquid
+- **File:** `sections/category-rows.liquid` | baseline lines 7881-7881, 7881-7881, 7941-7941, 7941-7941 | kind: rule-level removal inside lines (exact text) - orphan selectors (scripted search)
+- **Why it is dead:** Every selector of each rule needs a class/ID that appears nowhere in the theme outside CSS (markup, JS, JSON; any mention counts as used; prefix-built names count as used; Shopify/app prefixes count as used). Selectors: .cat-rows__scroll.is-hinting; .cat-rows__scroll.is-hinting .cr-card, .cat-rows__scroll.is-hinting .cr-card *; .hw-glitch; .hw-glitch, .hw-glitch::after
+- **Proof:** Not provable from CSS alone, hence REVIEW; joint Chrome CSSOM check: exactly these rules removed, nothing added. These parts remove a single rule from the middle of a line: only the exact_text is removed, context is kept.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .cat-rows__scroll.is-hinting { scroll-snap-type: none !important; } /   - removed: .cat-rows__scroll.is-hinting .cr-card, .cat-rows__scroll.is-hinting .cr-card * { transition: none !important; animation-play-state: paused !important; } /   - removed: @media (prefers-reduced-motion: reduce) > .hw-glitch, .hw-glitch::after { animation: auto ease 0s 1 normal none running none; } /   - removed: @media (prefers-reduced-motion: reduce) > .hw-glitch { color: rgb(255, 66, 161); }**
+- **Visual change if removed:** None expected.
+- **Parts:** 4 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 7881-7881). Manual anchor: from `.cat-rows__scroll.is-hinting{scroll-snap-type:none!important}` to `.cat-rows__scroll.is-hinting{scroll-snap-type:none!important}`.
+Delete:
+```css
+.cat-rows__scroll.is-hinting{scroll-snap-type:none!important}
+```
+
+**Part 2** (baseline lines 7881-7881). Manual anchor: from `.cat-rows__scroll.is-hinting .cr-card,.cat-rows__scroll.is-hinting .cr-card *{transitio...` to `.cat-rows__scroll.is-hinting .cr-card,.cat-rows__scroll.is-hinting .cr-card *{transitio...`.
+Delete:
+```css
+.cat-rows__scroll.is-hinting .cr-card,.cat-rows__scroll.is-hinting .cr-card *{transition:none!important;animation-play-state:paused!important}
+```
+
+**Part 3** (baseline lines 7941-7941). Manual anchor: from `.hw-glitch,.hw-glitch::after{animation:none}` to `.hw-glitch,.hw-glitch::after{animation:none}`.
+Delete:
+```css
+.hw-glitch,.hw-glitch::after{animation:none}
+```
+
+**Part 4** (baseline lines 7941-7941). Manual anchor: from `.hw-glitch{color:#ff42a1}` to `.hw-glitch{color:#ff42a1}`.
+Delete:
+```css
+.hw-glitch{color:#ff42a1}
+```
+
+### T110 [TODO] 6 always-overridden or empty rule(s) inside minified/inline CSS of sections/clg-hero.liquid
+- **File:** `sections/clg-hero.liquid` | baseline lines 1063-1063, 4585-4585, 4585-4585, 4585-4585, 4586-4586, 4586-4586 | kind: rule-level removal inside lines (exact text) - always overridden (tool-proven)
+- **Why it is dead:** Each removed rule is restated later in the SAME <style> block (same selectors, same or top-level @media, every property at equal-or-higher priority, winner not inside a Liquid conditional), or is empty. Selectors: .cat-strip; .cat-strip__inner; .cat-strip__inner .cat-pill; .cat-strip__inner .cat-pill svg; .drift-strip
+- **Proof:** Joint shadow proof per file on the CSS views (tools/shadow.js) -> PROVEN; joint Chrome CSSOM check: exactly these rules removed, nothing added. These parts remove a single rule from the middle of a line: only the exact_text is removed, context is kept.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: @media (min-width: 1200px) > .drift-strip {  } /   - removed: @media (min-width: 721px) > .cat-strip { overflow: visible !important; } /   - removed: @media (min-width: 721px) > .cat-strip__inner .cat-pill { font-size: 9px !important; padding: 0.38rem 0.42rem !important; gap: 0.2rem !important; } /   - removed: @media (min-width: 721px) > .cat-strip__inner .cat-pill svg { width: 13px !important; height: 13px !important; } /   - removed: @media (min-width: 721px) and (max-width: 1199px) > .cat-strip__inner { grid-template-columns: repeat(5, minmax(0px, 1fr)); display: grid !important; gap: 5px !important; } /   - removed: @media (min-width: 721px) and (max-width: 1199px) > .cat-strip__inner .cat-pill { width: 94% !important; justify-self: center !important; justify-content: center !important; box-sizing: border-box !important; }**
+- **Visual change if removed:** None.
+- **Parts:** 6 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 1063-1063). Manual anchor: from `.drift-strip { }` to `.drift-strip { }`.
+Delete:
+```css
+.drift-strip { }
+```
+
+**Part 2** (baseline lines 4585-4585). Manual anchor: from `.cat-strip{overflow:visible!important}` to `.cat-strip{overflow:visible!important}`.
+Delete:
+```css
+.cat-strip{overflow:visible!important}
+```
+
+**Part 3** (baseline lines 4585-4585). Manual anchor: from `.cat-strip__inner .cat-pill{font-size:9px!important;padding:.38rem .42rem!important;gap...` to `.cat-strip__inner .cat-pill{font-size:9px!important;padding:.38rem .42rem!important;gap...`.
+Delete:
+```css
+.cat-strip__inner .cat-pill{font-size:9px!important;padding:.38rem .42rem!important;gap:.2rem!important}
+```
+
+**Part 4** (baseline lines 4585-4585). Manual anchor: from `.cat-strip__inner .cat-pill svg{width:13px!important;height:13px!important}` to `.cat-strip__inner .cat-pill svg{width:13px!important;height:13px!important}`.
+Delete:
+```css
+.cat-strip__inner .cat-pill svg{width:13px!important;height:13px!important}
+```
+
+**Part 5** (baseline lines 4586-4586). Manual anchor: from `.cat-strip__inner{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr));...` to `.cat-strip__inner{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr));...`.
+Delete:
+```css
+.cat-strip__inner{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px!important}
+```
+
+**Part 6** (baseline lines 4586-4586). Manual anchor: from `.cat-strip__inner .cat-pill{width:94%!important;justify-self:center!important;justify-c...` to `.cat-strip__inner .cat-pill{width:94%!important;justify-self:center!important;justify-c...`.
+Delete:
+```css
+.cat-strip__inner .cat-pill{width:94%!important;justify-self:center!important;justify-content:center!important;box-sizing:border-box!important}
+```
+
+### T111 [TODO] 1 always-overridden or empty rule(s) inside minified/inline CSS of sections/product-main.liquid
+- **File:** `sections/product-main.liquid` | baseline lines 2419-2419 | kind: rule-level removal inside lines (exact text) - always overridden (tool-proven)
+- **Why it is dead:** Each removed rule is restated later in the SAME <style> block (same selectors, same or top-level @media, every property at equal-or-higher priority, winner not inside a Liquid conditional), or is empty. Selectors: .product-main__price
+- **Proof:** Joint shadow proof per file on the CSS views (tools/shadow.js) -> PROVEN; joint Chrome CSSOM check: exactly these rules removed, nothing added. These parts remove a single rule from the middle of a line: only the exact_text is removed, context is kept.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: @media (max-width: 767px) > .product-main__price { font-size: 23px !important; }**
+- **Visual change if removed:** None.
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 2419-2419). Manual anchor: from `.product-main__price { font-size:23px !important; }` to `.product-main__price { font-size:23px !important; }`.
+Delete:
+```css
+.product-main__price { font-size:23px !important; }
+```
+
+### T112 [REVIEW] 1 orphaned rule(s) inside minified/inline CSS of sections/product-main.liquid
+- **File:** `sections/product-main.liquid` | baseline lines 2566-2566 | kind: rule-level removal inside lines (exact text) - orphan selectors (scripted search)
+- **Why it is dead:** Every selector of each rule needs a class/ID that appears nowhere in the theme outside CSS (markup, JS, JSON; any mention counts as used; prefix-built names count as used; Shopify/app prefixes count as used). Selectors: .product-stars
+- **Proof:** Not provable from CSS alone, hence REVIEW; joint Chrome CSSOM check: exactly these rules removed, nothing added. These parts remove a single rule from the middle of a line: only the exact_text is removed, context is kept.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: @media (max-width: 767px) > .product-stars { justify-content: center !important; width: 100% !important; }**
+- **Visual change if removed:** None expected.
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 2566-2566). Manual anchor: from `.product-stars { justify-content: center !important; width: 100% !important; }` to `.product-stars { justify-content: center !important; width: 100% !important; }`.
+Delete:
+```css
+.product-stars { justify-content: center !important; width: 100% !important; }
+```
+
+### T113 [REVIEW] 7 orphaned rule(s) inside minified/inline CSS of snippets/collection-discovery-banners.liquid
+- **File:** `snippets/collection-discovery-banners.liquid` | baseline lines 17-17, 17-17, 17-17, 17-17, 17-17, 18-18, 18-18 | kind: rule-level removal inside lines (exact text) - orphan selectors (scripted search)
+- **Why it is dead:** Every selector of each rule needs a class/ID that appears nowhere in the theme outside CSS (markup, JS, JSON; any mention counts as used; prefix-built names count as used; Shopify/app prefixes count as used). Selectors: .collection-discovery--three; .collection-discovery--three .collection-discovery__copy; .collection-discovery--three .collection-discovery__link:nth-child(3); .collection-discovery--three .collection-discovery__link:nth-child(3) .collection-discovery__copy; .collection-discovery--three .collection-discovery__link:nth-child(3) .collection-discovery__description; .collection-discovery--three .collection-discovery__link:nth-child(3) .collection-discovery__title; .collection-discovery--three .collection-discovery__title
+- **Proof:** Not provable from CSS alone, hence REVIEW; joint Chrome CSSOM check: exactly these rules removed, nothing added. These parts remove a single rule from the middle of a line: only the exact_text is removed, context is kept.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: @media (min-width: 1200px) > .collection-discovery--three .collection-discovery__copy { width: 55%; padding: 20px; } /   - removed: @media (min-width: 1200px) > .collection-discovery--three .collection-discovery__title { font-size: clamp(20px, 1.9vw, 26px); } /   - removed: @media (min-width: 1200px) > .collection-discovery--three .collection-discovery__link:nth-child(3) .collection-discovery__copy { width: 39%; padding: 20px; } /   - removed: @media (min-width: 1200px) > .collection-discovery--three .collection-discovery__link:nth-child(3) .collection-discovery__title { font-size: clamp(17px, 1.45vw, 20px); } /   - removed: @media (min-width: 1200px) > .collection-discovery--three .collection-discovery__link:nth-child(3) .collection-discovery__description { font-size: 8px; letter-spacing: 0.06em; } /   - removed: @media (max-width: 1199px) > .collection-discovery--three { grid-template-columns: repeat(2, minmax(0px, 1fr)); } /   - removed: @media (max-width: 1199px) > .collection-discovery--three .collection-discovery__link:nth-child(3) { grid-column: 1 / -1; }**
+- **Visual change if removed:** None expected.
+- **Parts:** 7 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 17-17). Manual anchor: from `.collection-discovery--three .collection-discovery__copy{width:55%;padding:20px}` to `.collection-discovery--three .collection-discovery__copy{width:55%;padding:20px}`.
+Delete:
+```css
+.collection-discovery--three .collection-discovery__copy{width:55%;padding:20px}
+```
+
+**Part 2** (baseline lines 17-17). Manual anchor: from `.collection-discovery--three .collection-discovery__title{font-size:clamp(20px,1.9vw,26...` to `.collection-discovery--three .collection-discovery__title{font-size:clamp(20px,1.9vw,26...`.
+Delete:
+```css
+.collection-discovery--three .collection-discovery__title{font-size:clamp(20px,1.9vw,26px)}
+```
+
+**Part 3** (baseline lines 17-17). Manual anchor: from `.collection-discovery--three .collection-discovery__link:nth-child(3) .collection-disco...` to `.collection-discovery--three .collection-discovery__link:nth-child(3) .collection-disco...`.
+Delete:
+```css
+.collection-discovery--three .collection-discovery__link:nth-child(3) .collection-discovery__copy{width:39%;padding:20px}
+```
+
+**Part 4** (baseline lines 17-17). Manual anchor: from `.collection-discovery--three .collection-discovery__link:nth-child(3) .collection-disco...` to `.collection-discovery--three .collection-discovery__link:nth-child(3) .collection-disco...`.
+Delete:
+```css
+.collection-discovery--three .collection-discovery__link:nth-child(3) .collection-discovery__title{font-size:clamp(17px,1.45vw,20px)}
+```
+
+**Part 5** (baseline lines 17-17). Manual anchor: from `.collection-discovery--three .collection-discovery__link:nth-child(3) .collection-disco...` to `.collection-discovery--three .collection-discovery__link:nth-child(3) .collection-disco...`.
+Delete:
+```css
+.collection-discovery--three .collection-discovery__link:nth-child(3) .collection-discovery__description{font-size:8px;letter-spacing:.06em}
+```
+
+**Part 6** (baseline lines 18-18). Manual anchor: from `.collection-discovery--three{grid-template-columns:repeat(2,minmax(0,1fr))}` to `.collection-discovery--three{grid-template-columns:repeat(2,minmax(0,1fr))}`.
+Delete:
+```css
+.collection-discovery--three{grid-template-columns:repeat(2,minmax(0,1fr))}
+```
+
+**Part 7** (baseline lines 18-18). Manual anchor: from `.collection-discovery--three .collection-discovery__link:nth-child(3){grid-column:1/-1}` to `.collection-discovery--three .collection-discovery__link:nth-child(3){grid-column:1/-1}`.
+Delete:
+```css
+.collection-discovery--three .collection-discovery__link:nth-child(3){grid-column:1/-1}
+```
+
+### T114 [TODO] 1 always-overridden or empty rule(s) inside minified/inline CSS of snippets/cr-card-styles.liquid
+- **File:** `snippets/cr-card-styles.liquid` | baseline lines 105-105 | kind: rule-level removal inside lines (exact text) - always overridden (tool-proven)
+- **Why it is dead:** Each removed rule is restated later in the SAME <style> block (same selectors, same or top-level @media, every property at equal-or-higher priority, winner not inside a Liquid conditional), or is empty. Selectors: .cr-card__tag.cr-card__tag.cr-card__tag.cr-card__tag:hover::after, .age-dot.age-dot.age-dot:hover::after
+- **Proof:** Joint shadow proof per file on the CSS views (tools/shadow.js) -> PROVEN; joint Chrome CSSOM check: exactly these rules removed, nothing added. These parts remove a single rule from the middle of a line: only the exact_text is removed, context is kept.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: @media (hover: hover) > .cr-card__tag.cr-card__tag.cr-card__tag.cr-card__tag:hover::after, .age-dot.age-dot.age-dot:hover::after { transform: translateY(0px); opacity: 1; transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1) 0.05s, opacity 0.15s 0.05s; }**
+- **Visual change if removed:** None.
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 105-105). Manual anchor: from `.cr-card__tag.cr-card__tag.cr-card__tag.cr-card__tag:hover::after,.age-dot.age-dot.age-...` to `.cr-card__tag.cr-card__tag.cr-card__tag.cr-card__tag:hover::after,.age-dot.age-dot.age-...`.
+Delete:
+```css
+.cr-card__tag.cr-card__tag.cr-card__tag.cr-card__tag:hover::after,.age-dot.age-dot.age-dot:hover::after{transform:translateY(0);opacity:1;transition:transform .42s cubic-bezier(.16,1,.3,1) .05s,opacity .15s ease .05s}
+```
+
+### T115 [TODO] 1 always-overridden or empty rule(s) inside minified/inline CSS of snippets/product-card-styles.liquid
+- **File:** `snippets/product-card-styles.liquid` | baseline lines 36-36 | kind: rule-level removal inside lines (exact text) - always overridden (tool-proven)
+- **Why it is dead:** Each removed rule is restated later in the SAME <style> block (same selectors, same or top-level @media, every property at equal-or-higher priority, winner not inside a Liquid conditional), or is empty. Selectors: .product-card__tag.product-card__tag.product-card__tag.product-card__tag:hover::after, .age-dot.age-dot.age-dot:hover::after
+- **Proof:** Joint shadow proof per file on the CSS views (tools/shadow.js) -> PROVEN; joint Chrome CSSOM check: exactly these rules removed, nothing added. These parts remove a single rule from the middle of a line: only the exact_text is removed, context is kept.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: @media (hover: hover) > .product-card__tag.product-card__tag.product-card__tag.product-card__tag:hover::after, .age-dot.age-dot.age-dot:hover::after { transform: translateY(0px); opacity: 1; transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1) 0.05s, opacity 0.15s 0.05s; }**
+- **Visual change if removed:** None.
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 36-36). Manual anchor: from `.product-card__tag.product-card__tag.product-card__tag.product-card__tag:hover::after,....` to `.product-card__tag.product-card__tag.product-card__tag.product-card__tag:hover::after,....`.
+Delete:
+```css
+.product-card__tag.product-card__tag.product-card__tag.product-card__tag:hover::after,.age-dot.age-dot.age-dot:hover::after{transform:translateY(0);opacity:1;transition:transform .42s cubic-bezier(.16,1,.3,1) .05s,opacity .15s ease .05s}
+```
+
+### T116 [REVIEW] 21 orphaned rule(s) inside minified/inline CSS of snippets/product-card-styles.liquid
+- **File:** `snippets/product-card-styles.liquid` | baseline lines 32-32, 32-32, 33-33, 33-33, 33-33, 33-33, 33-33, 33-33, 33-33, 33-33, 33-33, 33-33, 33-33, 33-33, 35-35, 37-37, 42-42, 42-42, 43-43, 43-43, 88-88 | kind: rule-level removal inside lines (exact text) - orphan selectors (scripted search)
+- **Why it is dead:** Every selector of each rule needs a class/ID that appears nowhere in the theme outside CSS (markup, JS, JSON; any mention counts as used; prefix-built names count as used; Shopify/app prefixes count as used). Selectors: .age-dot ~ .product-card__tag.product-card__tag.product-card__tag; .age-dot ~ .product-card__tag.product-card__tag.product-card__tag.product-card__tag; .product-card__tag; .product-card__tag--blaster; .product-card__tag--building; .product-card__tag--collectible; .product-card__tag--fidget; .product-card__tag--halloween; .product-card__tag--keychain; .product-card__tag--plush; .product-card__tag--puzzle; .product-card__tag--rc; .product-card__tag--rc, .product-card__tag--puzzle, .product-card__tag--building; .product-card__tag.product-card__tag; .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag; .product-card__tag.product-card__tag.product-card__tag.p
+- **Proof:** Not provable from CSS alone, hence REVIEW; joint Chrome CSSOM check: exactly these rules removed, nothing added. These parts remove a single rule from the middle of a line: only the exact_text is removed, context is kept.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .product-card__tag { font-weight: 400 !important; } /   - removed: .product-card__tag--rc, .product-card__tag--puzzle, .product-card__tag--building { font-weight: 400 !important; } /   - removed: .product-card__tag.product-card__tag { --dot: #f97316; opacity: 0.85; cursor: default; top: 12px !important; left: auto !important; right: 12px !important; box-sizing: border-box !important; min-width: 8.4px !important; max-width: 8.4px !important; height: 8.4px !important; padding: 0px !important;  /   - removed: .product-card__tag.product-card__tag::before { display: none !important; } /   - removed: @media (hover: hover) > .product-card__tag.product-card__tag:hover { opacity: 1; max-width: 160px !important; height: 22px !important; padding: 0px 10px !important; font-size: 10.5px !important; background: var(--dot) !important; box-shadow: rgba(15, 23, 42, 0.18) 0px 4px 14px !important; } /   - removed: .product-card__tag--rc { --dot: #1d4ed8 !important; } /   - removed: .product-card__tag--halloween { --dot: #334155 !important; } /   - removed: .product-card__tag--collectible { --dot: #14b8a6 !important; } /   - removed: .product-card__tag--keychain { --dot: #22c55e !important; } /   - removed: .product-card__tag--blaster { --dot: #ef4444 !important; } /   - removed: .product-card__tag--puzzle { --dot: #f59e0b !important; } /   - removed: .product-card__tag--building { --dot: #84cc16 !important; } /   - removed: .product-card__tag--plush { --dot: #ec4899 !important; } /   - removed: .product-card__tag--fidget { --dot: #06b6d4 !important; } /   - removed: .age-dot ~ .product-card__tag.product-card__tag.product-card__tag { right: 18px !important; } /   - removed: .age-dot ~ .product-card__tag.product-card__tag.product-card__tag.product-card__tag { right: 4px !important; top: 21px !important; } /   - removed: .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag { box-sizing: border-box !important; width: 25.15px !important; min-width: 25.15px !important; max-width: 25.15px !important; height: 25.15px !important; border: 8px solid transparent !import /   - removed: @media (hover: hover) > .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag:hover { box-sizing: border-box !important; width: 25.15px !important; min-width: 25.15px !important; max-width: 25.15px !important; height: 25.15px !important; border: /   - removed: .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag { background: transparent !important; box-shadow: inset 0 0 0 1.5px color-mix(in srgb,var(--dot) 70%,#fff) !important; } /   - removed: @media (hover: hover) > .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag:hover { background: transparent !important; box-shadow: inset 0 0 0 1.5px color-mix(in srgb,var(--dot) 70%,#fff) !important; } /   - removed: @media (hover: hover) > .product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag:hover { transform: translateX(6px) !important; transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1) 0.04s, right 0.42s cubic-bezier(0.22, 1, 0.**
+- **Visual change if removed:** None expected.
+- **Parts:** 21 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 32-32). Manual anchor: from `.product-card__tag{font-weight:400!important}` to `.product-card__tag{font-weight:400!important}`.
+Delete:
+```css
+.product-card__tag{font-weight:400!important}
+```
+
+**Part 2** (baseline lines 32-32). Manual anchor: from `.product-card__tag--rc,.product-card__tag--puzzle,.product-card__tag--building{font-wei...` to `.product-card__tag--rc,.product-card__tag--puzzle,.product-card__tag--building{font-wei...`.
+Delete:
+```css
+.product-card__tag--rc,.product-card__tag--puzzle,.product-card__tag--building{font-weight:400!important}
+```
+
+**Part 3** (baseline lines 33-33). Manual anchor: from `.product-card__tag.product-card__tag{--dot:#f97316;top:12px!important;left:auto!importa...` to `.product-card__tag.product-card__tag{--dot:#f97316;top:12px!important;left:auto!importa...`.
+Delete:
+```css
+.product-card__tag.product-card__tag{--dot:#f97316;top:12px!important;left:auto!important;right:12px!important;box-sizing:border-box!important;min-width:8.4px!important;max-width:8.4px!important;height:8.4px!important;padding:0!important;border:0 solid transparent!important;border-radius:999px!important;background:color-mix(in srgb,var(--dot) 45%,#fff)!important;background-image:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;color:#fff!important;-webkit-text-fill-color:#fff!important;font-size:0!important;font-weight:600!important;letter-spacing:.02em!important;line-height:1!important;white-space:nowrap!important;overflow:hidden!important;display:inline-flex!important;align-items:center!important;box-shadow:none!important;opacity:.85;pointer-events:auto!important;cursor:default;transition:max-width .28s cubic-bezier(.2,.8,.2,1),height .22s ease,padding .22s ease,font-size .18s ease!important;z-index:4!important}
+```
+
+**Part 4** (baseline lines 33-33). Manual anchor: from `.product-card__tag.product-card__tag::before{display:none!important}` to `.product-card__tag.product-card__tag::before{display:none!important}`.
+Delete:
+```css
+.product-card__tag.product-card__tag::before{display:none!important}
+```
+
+**Part 5** (baseline lines 33-33). Manual anchor: from `.product-card__tag.product-card__tag:hover{max-width:160px!important;height:22px!import...` to `.product-card__tag.product-card__tag:hover{max-width:160px!important;height:22px!import...`.
+Delete:
+```css
+.product-card__tag.product-card__tag:hover{max-width:160px!important;height:22px!important;padding:0 10px!important;font-size:10.5px!important;background:var(--dot)!important;opacity:1;box-shadow:0 4px 14px rgba(15,23,42,.18)!important}
+```
+
+**Part 6** (baseline lines 33-33). Manual anchor: from `.product-card__tag--rc{--dot:#1d4ed8!important}` to `.product-card__tag--rc{--dot:#1d4ed8!important}`.
+Delete:
+```css
+.product-card__tag--rc{--dot:#1d4ed8!important}
+```
+
+**Part 7** (baseline lines 33-33). Manual anchor: from `.product-card__tag--halloween{--dot:#334155!important}` to `.product-card__tag--halloween{--dot:#334155!important}`.
+Delete:
+```css
+.product-card__tag--halloween{--dot:#334155!important}
+```
+
+**Part 8** (baseline lines 33-33). Manual anchor: from `.product-card__tag--collectible{--dot:#14b8a6!important}` to `.product-card__tag--collectible{--dot:#14b8a6!important}`.
+Delete:
+```css
+.product-card__tag--collectible{--dot:#14b8a6!important}
+```
+
+**Part 9** (baseline lines 33-33). Manual anchor: from `.product-card__tag--keychain{--dot:#22c55e!important}` to `.product-card__tag--keychain{--dot:#22c55e!important}`.
+Delete:
+```css
+.product-card__tag--keychain{--dot:#22c55e!important}
+```
+
+**Part 10** (baseline lines 33-33). Manual anchor: from `.product-card__tag--blaster{--dot:#ef4444!important}` to `.product-card__tag--blaster{--dot:#ef4444!important}`.
+Delete:
+```css
+.product-card__tag--blaster{--dot:#ef4444!important}
+```
+
+**Part 11** (baseline lines 33-33). Manual anchor: from `.product-card__tag--puzzle{--dot:#f59e0b!important}` to `.product-card__tag--puzzle{--dot:#f59e0b!important}`.
+Delete:
+```css
+.product-card__tag--puzzle{--dot:#f59e0b!important}
+```
+
+**Part 12** (baseline lines 33-33). Manual anchor: from `.product-card__tag--building{--dot:#84cc16!important}` to `.product-card__tag--building{--dot:#84cc16!important}`.
+Delete:
+```css
+.product-card__tag--building{--dot:#84cc16!important}
+```
+
+**Part 13** (baseline lines 33-33). Manual anchor: from `.product-card__tag--plush{--dot:#ec4899!important}` to `.product-card__tag--plush{--dot:#ec4899!important}`.
+Delete:
+```css
+.product-card__tag--plush{--dot:#ec4899!important}
+```
+
+**Part 14** (baseline lines 33-33). Manual anchor: from `.product-card__tag--fidget{--dot:#06b6d4!important}` to `.product-card__tag--fidget{--dot:#06b6d4!important}`.
+Delete:
+```css
+.product-card__tag--fidget{--dot:#06b6d4!important}
+```
+
+**Part 15** (baseline lines 35-35). Manual anchor: from `.age-dot~.product-card__tag.product-card__tag.product-card__tag{right:18px!important}` to `.age-dot~.product-card__tag.product-card__tag.product-card__tag{right:18px!important}`.
+Delete:
+```css
+.age-dot~.product-card__tag.product-card__tag.product-card__tag{right:18px!important}
+```
+
+**Part 16** (baseline lines 37-37). Manual anchor: from `.age-dot~.product-card__tag.product-card__tag.product-card__tag.product-card__tag{right...` to `.age-dot~.product-card__tag.product-card__tag.product-card__tag.product-card__tag{right...`.
+Delete:
+```css
+.age-dot~.product-card__tag.product-card__tag.product-card__tag.product-card__tag{right:4px!important;top:21px!important}
+```
+
+**Part 17** (baseline lines 42-42). Manual anchor: from `.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__...` to `.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__...`.
+Delete:
+```css
+.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag{box-sizing:border-box!important;width:25.15px!important;min-width:25.15px!important;max-width:25.15px!important;height:25.15px!important;border:8px solid transparent!important;padding:0!important;background:color-mix(in srgb,var(--dot) 50%,#fff)!important;background-clip:padding-box!important;opacity:1!important;box-shadow:none!important}
+```
+
+**Part 18** (baseline lines 42-42). Manual anchor: from `.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__...` to `.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__...`.
+Delete:
+```css
+.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag:hover{box-sizing:border-box!important;width:25.15px!important;min-width:25.15px!important;max-width:25.15px!important;height:25.15px!important;border:8px solid transparent!important;padding:0!important;background:color-mix(in srgb,var(--dot) 50%,#fff)!important;background-clip:padding-box!important;opacity:1!important;box-shadow:none!important}
+```
+
+**Part 19** (baseline lines 43-43). Manual anchor: from `.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__...` to `.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__...`.
+Delete:
+```css
+.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag{background:transparent!important;box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--dot) 70%,#fff)!important}
+```
+
+**Part 20** (baseline lines 43-43). Manual anchor: from `.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__...` to `.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__...`.
+Delete:
+```css
+.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag:hover{background:transparent!important;box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--dot) 70%,#fff)!important}
+```
+
+**Part 21** (baseline lines 88-88). Manual anchor: from `.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__...` to `.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__...`.
+Delete:
+```css
+.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag.product-card__tag:hover{transform:translateX(6px)!important;transition:transform .42s cubic-bezier(.22,1,.36,1) .04s,right .42s cubic-bezier(.22,1,.36,1) .04s!important}
+```
+
+### T117 [REVIEW] 2 orphaned rule(s) inside minified/inline CSS of snippets/product-description-card.liquid
+- **File:** `snippets/product-description-card.liquid` | baseline lines 88-88, 88-88 | kind: rule-level removal inside lines (exact text) - orphan selectors (scripted search)
+- **Why it is dead:** Every selector of each rule needs a class/ID that appears nowhere in the theme outside CSS (markup, JS, JSON; any mention counts as used; prefix-built names count as used; Shopify/app prefixes count as used). Selectors: .pdc-spec-icon--green; .pdc-spec-icon--green svg
+- **Proof:** Not provable from CSS alone, hence REVIEW; joint Chrome CSSOM check: exactly these rules removed, nothing added. These parts remove a single rule from the middle of a line: only the exact_text is removed, context is kept.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: .pdc-spec-icon--green { background: rgb(236, 253, 245); } /   - removed: .pdc-spec-icon--green svg { stroke: rgb(5, 150, 105); }**
+- **Visual change if removed:** None expected.
+- **Parts:** 2 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 88-88). Manual anchor: from `.pdc-spec-icon--green { background:#ecfdf5; }` to `.pdc-spec-icon--green { background:#ecfdf5; }`.
+Delete:
+```css
+.pdc-spec-icon--green  { background:#ecfdf5; }
+```
+
+**Part 2** (baseline lines 88-88). Manual anchor: from `.pdc-spec-icon--green svg { stroke:#059669; }` to `.pdc-spec-icon--green svg { stroke:#059669; }`.
+Delete:
+```css
+.pdc-spec-icon--green  svg { stroke:#059669; }
+```
+
+### T118 [REVIEW] 1 orphaned rule(s) inside minified/inline CSS of snippets/product-recommendations.liquid
+- **File:** `snippets/product-recommendations.liquid` | baseline lines 20-20 | kind: rule-level removal inside lines (exact text) - orphan selectors (scripted search)
+- **Why it is dead:** Every selector of each rule needs a class/ID that appears nowhere in the theme outside CSS (markup, JS, JSON; any mention counts as used; prefix-built names count as used; Shopify/app prefixes count as used). Selectors: #product-recs-grid .rec-card--guide:hover .rec-card__read
+- **Proof:** Not provable from CSS alone, hence REVIEW; joint Chrome CSSOM check: exactly these rules removed, nothing added. These parts remove a single rule from the middle of a line: only the exact_text is removed, context is kept.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: @media (hover: hover) > #product-recs-grid .rec-card--guide:hover .rec-card__read { color: rgb(26, 26, 46); }**
+- **Visual change if removed:** None expected.
+- **Parts:** 1 (apply.py handles all parts of an item at once)
+
+**Exact text** (baseline lines 20-20). Manual anchor: from `#product-recs-grid .rec-card--guide:hover .rec-card__read { color:#1a1a2e; }` to `#product-recs-grid .rec-card--guide:hover .rec-card__read { color:#1a1a2e; }`.
+Delete:
+```css
+#product-recs-grid .rec-card--guide:hover .rec-card__read { color:#1a1a2e; }
+```
+
+### T119 [TODO] 22 always-overridden or empty rule(s) inside minified/inline CSS of snippets/tlv-orbs.liquid
+- **File:** `snippets/tlv-orbs.liquid` | baseline lines 19-19, 20-20, 38-38, 129-129, 133-133, 134-134, 145-145, 152-152, 156-156, 156-156, 191-191, 196-196, 216-216, 219-219, 219-219, 282-282, 285-285, 285-285, 291-291, 291-291, 294-294, 294-294 | kind: rule-level removal inside lines (exact text) - always overridden (tool-proven)
+- **Why it is dead:** Each removed rule is restated later in the SAME <style> block (same selectors, same or top-level @media, every property at equal-or-higher priority, winner not inside a Liquid conditional), or is empty. Selectors: .tlv-orb--has-subs .tlv-orb__subs; .tlv-orb--has-subs .tlv-orb__subs span; .tlv-orb--has-subs:hover .tlv-orb__wrap, .tlv-orb--has-subs:focus-within .tlv-orb__wrap; .tlv-orb:hover .tlv-orb__glow, .tlv-orb:focus-visible .tlv-orb__glow; .tlv-orb:hover .tlv-orb__glow::after, .tlv-orb:focus-visible .tlv-orb__glow::after, .tlv-orb:hover .tlv-orb__glow::before, .tlv-orb:focus-visible .tlv-orb__glow::before; .tlv-orb:hover .tlv-orb__glow::before, .tlv-orb:focus-visible .tlv-orb__glow::before; .tlv-orb:hover .tlv-orb__glow::before, .tlv-orb:focus-visible .tlv-orb__glow::before, .tlv-orb:hover .tlv-orb__glow::after, .tlv-orb:focus-visible .tlv-orb__glow::after; .tlv-orb:hover .tlv-orb__wrap::after, .t
+- **Proof:** Joint shadow proof per file on the CSS views (tools/shadow.js) -> PROVEN; joint Chrome CSSOM check: exactly these rules removed, nothing added. These parts remove a single rule from the middle of a line: only the exact_text is removed, context is kept.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: @media (hover: hover) > .tlv-orb--has-subs:hover .tlv-orb__wrap, .tlv-orb--has-subs:focus-within .tlv-orb__wrap { transform: translate3d(-34px, 0px, 0px); } /   - removed: @media (max-width: 767px) > .tlv-orb--has-subs .tlv-orb__subs { display: none; } /   - removed: @media (prefers-reduced-motion: reduce) > .tlv-orb--has-subs .tlv-orb__subs span { transition: none; } /   - removed: @media (prefers-reduced-motion: reduce) > .tlv-orb__glow::after { transition: none; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__wrap::before, .tlv-orb:focus-visible .tlv-orb__wrap::before { opacity: 1; transform: translateX(-50%) scaleY(1); } /   - removed: @media (prefers-reduced-motion: reduce) > .tlv-orb__wrap::before { transition: none; } /   - removed: @media (min-width: 768px) and (max-width: 1024px) > .tlv-orb__wrap { width: clamp(72px, 13vw, 96px); } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__wrap::before, .tlv-orb:focus-visible .tlv-orb__wrap::before { transform: translateX(-50%) rotate(60deg) scaleY(1) !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__wrap::after, .tlv-orb:focus-visible .tlv-orb__wrap::after { opacity: 1; transform: translateX(-50%) rotate(-60deg) scaleY(1); } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__glow::before, .tlv-orb:focus-visible .tlv-orb__glow::before { opacity: 0.82; transform: scale(1); } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__glow, .tlv-orb:focus-visible .tlv-orb__glow { opacity: 1 !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__glow::before, .tlv-orb:focus-visible .tlv-orb__glow::before, .tlv-orb:hover .tlv-orb__glow::after, .tlv-orb:focus-visible .tlv-orb__glow::after { transform: scale(1) !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__glow::before, .tlv-orb:focus-visible .tlv-orb__glow::before { opacity: 1 !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__wrap::before, .tlv-orb:focus-visible .tlv-orb__wrap::before { animation: 1.8s cubic-bezier(0.45, 0.05, 0.55, 0.95) 0s 1 normal both running tlv-arm-clock-right; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__wrap::after, .tlv-orb:focus-visible .tlv-orb__wrap::after { animation: 1.8s cubic-bezier(0.45, 0.05, 0.55, 0.95) 0s 1 normal both running tlv-arm-clock-left; } /   - removed: .tlv-orb__glow::after { transition-delay: 1.24s !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__wrap::before, .tlv-orb:focus-visible .tlv-orb__wrap::before { animation: 2.2s cubic-bezier(0.22, 0.8, 0.2, 1) 0s 1 normal both running tlv-arm-one-turn-right !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__wrap::after, .tlv-orb:focus-visible .tlv-orb__wrap::after { animation: 2.2s cubic-bezier(0.22, 0.8, 0.2, 1) 0s 1 normal both running tlv-arm-one-turn-left !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__wrap::before, .tlv-orb:focus-visible .tlv-orb__wrap::before { animation: 1.5s cubic-bezier(0.22, 0.8, 0.2, 1) 0s 1 normal both running tlv-arm-one-turn-right-fast !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__wrap::after, .tlv-orb:focus-visible .tlv-orb__wrap::after { animation: 1.5s cubic-bezier(0.22, 0.8, 0.2, 1) 0s 1 normal both running tlv-arm-one-turn-left-fast !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__wrap::before, .tlv-orb:focus-visible .tlv-orb__wrap::before { animation-duration: 1.9s !important; } /   - removed: @media (hover: hover) > .tlv-orb:hover .tlv-orb__wrap::after, .tlv-orb:focus-visible .tlv-orb__wrap::after { animation-duration: 1.9s !important; }**
+- **Visual change if removed:** None.
+- **Parts:** 22 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 19-19). Manual anchor: from `.tlv-orb--has-subs:hover .tlv-orb__wrap,.tlv-orb--has-subs:focus-within .tlv-orb__wrap{...` to `.tlv-orb--has-subs:hover .tlv-orb__wrap,.tlv-orb--has-subs:focus-within .tlv-orb__wrap{...`.
+Delete:
+```css
+.tlv-orb--has-subs:hover .tlv-orb__wrap,.tlv-orb--has-subs:focus-within .tlv-orb__wrap{transform:translate3d(-34px,0,0)}
+```
+
+**Part 2** (baseline lines 20-20). Manual anchor: from `.tlv-orb--has-subs .tlv-orb__subs{display:none}` to `.tlv-orb--has-subs .tlv-orb__subs{display:none}`.
+Delete:
+```css
+.tlv-orb--has-subs .tlv-orb__subs{display:none}
+```
+
+**Part 3** (baseline lines 38-38). Manual anchor: from `.tlv-orb--has-subs .tlv-orb__subs span{transition:none}` to `.tlv-orb--has-subs .tlv-orb__subs span{transition:none}`.
+Delete:
+```css
+.tlv-orb--has-subs .tlv-orb__subs span{transition:none}
+```
+
+**Part 4** (baseline lines 129-129). Manual anchor: from `.tlv-orb__glow::after{transition:none}` to `.tlv-orb__glow::after{transition:none}`.
+Delete:
+```css
+.tlv-orb__glow::after{transition:none}
+```
+
+**Part 5** (baseline lines 133-133). Manual anchor: from `.tlv-orb:hover .tlv-orb__wrap::before,.tlv-orb:focus-visible .tlv-orb__wrap::before{opa...` to `.tlv-orb:hover .tlv-orb__wrap::before,.tlv-orb:focus-visible .tlv-orb__wrap::before{opa...`.
+Delete:
+```css
+.tlv-orb:hover .tlv-orb__wrap::before,.tlv-orb:focus-visible .tlv-orb__wrap::before{opacity:1;transform:translateX(-50%) scaleY(1)}
+```
+
+**Part 6** (baseline lines 134-134). Manual anchor: from `.tlv-orb__wrap::before{transition:none}` to `.tlv-orb__wrap::before{transition:none}`.
+Delete:
+```css
+.tlv-orb__wrap::before{transition:none}
+```
+
+**Part 7** (baseline lines 145-145). Manual anchor: from `.tlv-orb__wrap{width:clamp(72px,13vw,96px)}` to `.tlv-orb__wrap{width:clamp(72px,13vw,96px)}`.
+Delete:
+```css
+.tlv-orb__wrap{width:clamp(72px,13vw,96px)}
+```
+
+**Part 8** (baseline lines 152-152). Manual anchor: from `.tlv-orb:hover .tlv-orb__wrap::before,.tlv-orb:focus-visible .tlv-orb__wrap::before{tra...` to `.tlv-orb:hover .tlv-orb__wrap::before,.tlv-orb:focus-visible .tlv-orb__wrap::before{tra...`.
+Delete:
+```css
+.tlv-orb:hover .tlv-orb__wrap::before,.tlv-orb:focus-visible .tlv-orb__wrap::before{transform:translateX(-50%) rotate(60deg) scaleY(1)!important}
+```
+
+**Part 9** (baseline lines 156-156). Manual anchor: from `.tlv-orb:hover .tlv-orb__wrap::after,.tlv-orb:focus-visible .tlv-orb__wrap::after{opaci...` to `.tlv-orb:hover .tlv-orb__wrap::after,.tlv-orb:focus-visible .tlv-orb__wrap::after{opaci...`.
+Delete:
+```css
+.tlv-orb:hover .tlv-orb__wrap::after,.tlv-orb:focus-visible .tlv-orb__wrap::after{opacity:1;transform:translateX(-50%) rotate(-60deg) scaleY(1)}
+```
+
+**Part 10** (baseline lines 156-156). Manual anchor: from `.tlv-orb:hover .tlv-orb__glow::before,.tlv-orb:focus-visible .tlv-orb__glow::before{opa...` to `.tlv-orb:hover .tlv-orb__glow::before,.tlv-orb:focus-visible .tlv-orb__glow::before{opa...`.
+Delete:
+```css
+.tlv-orb:hover .tlv-orb__glow::before,.tlv-orb:focus-visible .tlv-orb__glow::before{opacity:.82;transform:scale(1)}
+```
+
+**Part 11** (baseline lines 191-191). Manual anchor: from `.tlv-orb:hover .tlv-orb__glow::before,.tlv-orb:focus-visible .tlv-orb__glow::before,.tl...` to `.tlv-orb:hover .tlv-orb__glow::before,.tlv-orb:focus-visible .tlv-orb__glow::before,.tl...`.
+This text also exists elsewhere in the file, so it is located by the neighbouring lines (kept, not deleted): before = `e(1)!important}`, after = `}`.
+Delete:
+```css
+.tlv-orb:hover .tlv-orb__glow::before,.tlv-orb:focus-visible .tlv-orb__glow::before,.tlv-orb:hover .tlv-orb__glow::after,.tlv-orb:focus-visible .tlv-orb__glow::after{transform:scale(1)!important}
+```
+
+**Part 12** (baseline lines 196-196). Manual anchor: from `.tlv-orb:hover .tlv-orb__glow::before,.tlv-orb:focus-visible .tlv-orb__glow::before{opa...` to `.tlv-orb:hover .tlv-orb__glow::before,.tlv-orb:focus-visible .tlv-orb__glow::before{opa...`.
+This text also exists elsewhere in the file, so it is located by the neighbouring lines (kept, not deleted): before = `a(hover:hover){`, after = `}`.
+Delete:
+```css
+.tlv-orb:hover .tlv-orb__glow::before,.tlv-orb:focus-visible .tlv-orb__glow::before{opacity:1!important}
+```
+
+**Part 13** (baseline lines 216-216). Manual anchor: from `.tlv-orb:hover .tlv-orb__glow,.tlv-orb:focus-visible .tlv-orb__glow{opacity:1!important}` to `.tlv-orb:hover .tlv-orb__glow,.tlv-orb:focus-visible .tlv-orb__glow{opacity:1!important}`.
+This text also exists elsewhere in the file, so it is located by the neighbouring lines (kept, not deleted): before = `a(hover:hover){`, after = `}`.
+Delete:
+```css
+.tlv-orb:hover .tlv-orb__glow,.tlv-orb:focus-visible .tlv-orb__glow{opacity:1!important}
+```
+
+**Part 14** (baseline lines 219-219). Manual anchor: from `.tlv-orb:hover .tlv-orb__wrap::before,.tlv-orb:focus-visible .tlv-orb__wrap::before{ani...` to `.tlv-orb:hover .tlv-orb__wrap::before,.tlv-orb:focus-visible .tlv-orb__wrap::before{ani...`.
+Delete:
+```css
+.tlv-orb:hover .tlv-orb__wrap::before,.tlv-orb:focus-visible .tlv-orb__wrap::before{animation:tlv-arm-clock-right 1.8s cubic-bezier(.45,.05,.55,.95) both}
+```
+
+**Part 15** (baseline lines 219-219). Manual anchor: from `.tlv-orb:hover .tlv-orb__wrap::after,.tlv-orb:focus-visible .tlv-orb__wrap::after{anima...` to `.tlv-orb:hover .tlv-orb__wrap::after,.tlv-orb:focus-visible .tlv-orb__wrap::after{anima...`.
+Delete:
+```css
+.tlv-orb:hover .tlv-orb__wrap::after,.tlv-orb:focus-visible .tlv-orb__wrap::after{animation:tlv-arm-clock-left 1.8s cubic-bezier(.45,.05,.55,.95) both}
+```
+
+**Part 16** (baseline lines 282-282). Manual anchor: from `.tlv-orb__glow::after{transition-delay:1.24s!important}` to `.tlv-orb__glow::after{transition-delay:1.24s!important}`.
+Delete:
+```css
+.tlv-orb__glow::after{transition-delay:1.24s!important}
+```
+
+**Part 17** (baseline lines 285-285). Manual anchor: from `.tlv-orb:hover .tlv-orb__wrap::before,.tlv-orb:focus-visible .tlv-orb__wrap::before{ani...` to `.tlv-orb:hover .tlv-orb__wrap::before,.tlv-orb:focus-visible .tlv-orb__wrap::before{ani...`.
+Delete:
+```css
+.tlv-orb:hover .tlv-orb__wrap::before,.tlv-orb:focus-visible .tlv-orb__wrap::before{animation:tlv-arm-one-turn-right 2.2s cubic-bezier(.22,.8,.2,1) both!important}
+```
+
+**Part 18** (baseline lines 285-285). Manual anchor: from `.tlv-orb:hover .tlv-orb__wrap::after,.tlv-orb:focus-visible .tlv-orb__wrap::after{anima...` to `.tlv-orb:hover .tlv-orb__wrap::after,.tlv-orb:focus-visible .tlv-orb__wrap::after{anima...`.
+Delete:
+```css
+.tlv-orb:hover .tlv-orb__wrap::after,.tlv-orb:focus-visible .tlv-orb__wrap::after{animation:tlv-arm-one-turn-left 2.2s cubic-bezier(.22,.8,.2,1) both!important}
+```
+
+**Part 19** (baseline lines 291-291). Manual anchor: from `.tlv-orb:hover .tlv-orb__wrap::before,.tlv-orb:focus-visible .tlv-orb__wrap::before{ani...` to `.tlv-orb:hover .tlv-orb__wrap::before,.tlv-orb:focus-visible .tlv-orb__wrap::before{ani...`.
+Delete:
+```css
+.tlv-orb:hover .tlv-orb__wrap::before,.tlv-orb:focus-visible .tlv-orb__wrap::before{animation:tlv-arm-one-turn-right-fast 1.5s cubic-bezier(.22,.8,.2,1) both!important}
+```
+
+**Part 20** (baseline lines 291-291). Manual anchor: from `.tlv-orb:hover .tlv-orb__wrap::after,.tlv-orb:focus-visible .tlv-orb__wrap::after{anima...` to `.tlv-orb:hover .tlv-orb__wrap::after,.tlv-orb:focus-visible .tlv-orb__wrap::after{anima...`.
+Delete:
+```css
+.tlv-orb:hover .tlv-orb__wrap::after,.tlv-orb:focus-visible .tlv-orb__wrap::after{animation:tlv-arm-one-turn-left-fast 1.5s cubic-bezier(.22,.8,.2,1) both!important}
+```
+
+**Part 21** (baseline lines 294-294). Manual anchor: from `.tlv-orb:hover .tlv-orb__wrap::before,.tlv-orb:focus-visible .tlv-orb__wrap::before{ani...` to `.tlv-orb:hover .tlv-orb__wrap::before,.tlv-orb:focus-visible .tlv-orb__wrap::before{ani...`.
+Delete:
+```css
+.tlv-orb:hover .tlv-orb__wrap::before,.tlv-orb:focus-visible .tlv-orb__wrap::before{animation-duration:1.9s!important}
+```
+
+**Part 22** (baseline lines 294-294). Manual anchor: from `.tlv-orb:hover .tlv-orb__wrap::after,.tlv-orb:focus-visible .tlv-orb__wrap::after{anima...` to `.tlv-orb:hover .tlv-orb__wrap::after,.tlv-orb:focus-visible .tlv-orb__wrap::after{anima...`.
+Delete:
+```css
+.tlv-orb:hover .tlv-orb__wrap::after,.tlv-orb:focus-visible .tlv-orb__wrap::after{animation-duration:1.9s!important}
+```
+
+### T120 [REVIEW] 4 orphaned rule(s) inside minified/inline CSS of templates/page.wishlist.liquid
+- **File:** `templates/page.wishlist.liquid` | baseline lines 11-11, 12-12, 12-12, 17-17 | kind: rule-level removal inside lines (exact text) - orphan selectors (scripted search)
+- **Why it is dead:** Every selector of each rule needs a class/ID that appears nowhere in the theme outside CSS (markup, JS, JSON; any mention counts as used; prefix-built names count as used; Shopify/app prefixes count as used). Selectors: .tlv-wlp a.tlv-wlp__t; .tlv-wlp__card; .tlv-wlp__card:hover; .tlv-wlp__grid
+- **Proof:** Not provable from CSS alone, hence REVIEW; joint Chrome CSSOM check: exactly these rules removed, nothing added. These parts remove a single rule from the middle of a line: only the exact_text is removed, context is kept.
+- **Verify:** expected `cssom.js compare` result for this item alone: **DIFFERENT /   - removed: @media (min-width: 768px) > .tlv-wlp__grid { grid-template-columns: repeat(4, 1fr); } /   - removed: .tlv-wlp__card { background: rgb(255, 255, 255); border: 1px solid rgb(228, 228, 231); border-radius: 8px; overflow: hidden; position: relative; transition: border-color 0.15s; } /   - removed: .tlv-wlp__card:hover { border-color: rgb(161, 161, 170); } /   - removed: .tlv-wlp a.tlv-wlp__t { color: rgb(26, 26, 46) !important; }**
+- **Visual change if removed:** None expected.
+- **Parts:** 4 (apply.py handles all parts of an item at once)
+
+**Part 1** (baseline lines 11-11). Manual anchor: from `.tlv-wlp__grid{grid-template-columns:repeat(4,1fr)}` to `.tlv-wlp__grid{grid-template-columns:repeat(4,1fr)}`.
+Delete:
+```css
+.tlv-wlp__grid{grid-template-columns:repeat(4,1fr)}
+```
+
+**Part 2** (baseline lines 12-12). Manual anchor: from `.tlv-wlp__card{background:#fff;border:1px solid #e4e4e7;border-radius:8px;overflow:hidd...` to `.tlv-wlp__card{background:#fff;border:1px solid #e4e4e7;border-radius:8px;overflow:hidd...`.
+Delete:
+```css
+.tlv-wlp__card{background:#fff;border:1px solid #e4e4e7;border-radius:8px;overflow:hidden;position:relative;transition:border-color .15s ease}
+```
+
+**Part 3** (baseline lines 12-12). Manual anchor: from `.tlv-wlp__card:hover{border-color:#a1a1aa}` to `.tlv-wlp__card:hover{border-color:#a1a1aa}`.
+Delete:
+```css
+.tlv-wlp__card:hover{border-color:#a1a1aa}
+```
+
+**Part 4** (baseline lines 17-17). Manual anchor: from `.tlv-wlp a.tlv-wlp__t{color:#1a1a2e!important}` to `.tlv-wlp a.tlv-wlp__t{color:#1a1a2e!important}`.
+Delete:
+```css
+.tlv-wlp a.tlv-wlp__t{color:#1a1a2e!important}
+```
+
+---
+
+## Files that are never rendered (REVIEW: delete the file, not its CSS)
+
+These section/snippet files are not referenced by any template, layout, render/include/section tag, and their name appears in NO other theme file at all (not in JS, JSON or CSS either), so Shopify never renders them and their CSS never loads. Deleting the file is the cleanup (not editing its CSS). REVIEW: ask Ziko; a section can still be offered in the theme editor's 'Add section' list if it has a {% schema %} with presets, so check that first.
+
+- `sections/cat-cards.liquid` (4751 bytes, 1 <style> block(s))
+- `sections/featured-banner.liquid` (871 bytes, 1 <style> block(s))
+- `sections/fish-background.liquid` (5232 bytes, 1 <style> block(s))
+- `sections/glitch-background-backup.liquid` (9838 bytes, 1 <style> block(s))
+- `sections/glitch-background.liquid` (17069 bytes, 1 <style> block(s))
+- `sections/graffiti-tag.liquid` (9591 bytes, 1 <style> block(s))
+- `sections/product-template.liquid` (9865 bytes, 1 <style> block(s))
+- `sections/tlv-search-json.liquid` (1047 bytes, 0 <style> block(s))
+- `snippets/collection-discovery-banners.liquid` (26094 bytes, 12 <style> block(s))
+- `snippets/collection-wave.liquid` (9247 bytes, 1 <style> block(s))
+- `snippets/fidget-showcase-banner.liquid` (10784 bytes, 1 <style> block(s))
+- `snippets/fish-swim.liquid` (5222 bytes, 1 <style> block(s))
+- `snippets/halloween-row-banner.liquid` (19932 bytes, 2 <style> block(s))
+- `snippets/keychain-showcase-banner.liquid` (11091 bytes, 1 <style> block(s))
+- `snippets/plexus-bg.liquid` (10831 bytes, 1 <style> block(s))
+- `snippets/plush-showcase-banner.liquid` (10564 bytes, 1 <style> block(s))
+- `snippets/product-rating-vals.liquid` (147 bytes, 0 <style> block(s))
+- `snippets/product-rating.liquid` (131 bytes, 0 <style> block(s))
+- `snippets/rc-showcase-banner.liquid` (8129 bytes, 1 <style> block(s))
+- `snippets/torn-paper.liquid` (1102 bytes, 0 <style> block(s))
+- `snippets/toylvia-loader.liquid` (5898 bytes, 1 <style> block(s))
+- `snippets/ttt-graffiti.liquid` (11233 bytes, 0 <style> block(s))
+- `snippets/tv-icon-defs.liquid` (6290 bytes, 1 <style> block(s))
+- `snippets/tv-icon-tags.liquid` (6874 bytes, 0 <style> block(s))
 
 ---
 
